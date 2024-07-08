@@ -1,0 +1,30 @@
+* text=auto
+
+# For the following file types, normalize line endings to LF on
+# checkin and prevent conversion to CRLF when they are checked out
+# (this is required in order to prevent newline related issues like,
+# for example, after the build script is run)
+.* text eol=lf
+*.cmd text eol=lf
+*.cs text eol=lf
+*.csproj text eol=lf
+*.css text eol=lf
+*.DotSettings text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.scss text eol=lf
+*.md text eol=lf
+*.ncrunchsolution text eol=lf
+*.ps1 text eol=lf
+*.rs text eol=lf
+*.sh text eol=lf
+*.sln text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.user text eol=lf
+*.xml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+install text eol=lf
+vimrc text eol=lf

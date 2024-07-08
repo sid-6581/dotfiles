@@ -1,0 +1,106 @@
+#!/usr/bin/env nu
+
+# Relaunch using Windows nushell if started from WSL.
+if $nu.os-info.name == "linux" {
+  let nu_exe = $"($env.HOME)/winhome/.local/bin/nu.exe"
+  ^$nu_exe $env.CURRENT_FILE
+  exit
+}
+
+use std log
+use config/.config/nushell/scripts/nu-install *
+use config/.config/nushell/scripts/windows.nu
+
+let git_username = $env.GIT_AUTHOR_NAME? | default $env.GIT_COMMITTER_NAME? | if $in != null { $in } else { input "Please enter your git username: " }
+let git_email = $env.GIT_AUTHOR_EMAIL? | default $env.GIT_COMMITTER_EMAIL? | if $in != null { $in } else { input "Please enter your git email: " }
+
+windows set-user-env {
+  HOME:                    $"($env.USERPROFILE)"
+  WSLHOME:                 ($env.FILE_PWD | path dirname)
+  XDG_CONFIG_HOME:         $"($env.USERPROFILE)\\.config"
+  XDG_DATA_HOME:           $"($env.USERPROFILE)\\.local\\share"
+  XDG_STATE_HOME:          $"($env.USERPROFILE)\\.local\\state"
+  NODE_UNC_HOST_ALLOWLIST: "wsl.localhost"
+  EDITOR:                  "neovide"
+  RIPGREP_CONFIG_PATH:     $"($env.USERPROFILE)\\.config\\ripgrep\\config"
+  YAZI_FILE_ONE:           $"($env.USERPROFILE)\\scoop\\apps\\git\\current\\usr\\bin\\file.exe"
+  GIT_AUTHOR_NAME:         $git_username
+  GIT_AUTHOR_EMAIL:        $git_email
+  GIT_COMMITTER_NAME:      $git_username
+  GIT_COMMITTER_EMAIL:     $git_email
+}
+
+# Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
+cd $env.HOME
+
+if (which pwsh | is-empty) {
+  log info "Installing PowerShell"
+  ^winget install Microsoft.PowerShell
+}
+
+nu-install scoop --buckets [
+  extras
+  versions
+  nerd-fonts
+] --apps [
+  bat
+  broot
+  carapace-bin
+  cmake
+  delta
+  fd
+  fzf
+  gh
+  jq
+  just
+  lazygit
+  llvm
+  lsd
+  neovim-nightly,
+  nodejs
+  packer
+  pnpm
+  python
+  ripgrep
+  sed
+  starship
+  sudo
+  sysinternals
+  tealdeer
+  uutils-coreutils
+  wezterm-nightly
+  which
+  xsv
+  yazi
+  zoxide
+]
+
+if (which rustup | is-empty) {
+  log info "Installing rustup"
+  ^winget install -h -e --id Rustlang.Rustup
+  ^rustup -q toolchain install nightly
+}
+
+nu-install cargo [
+  cargo-edit
+  cargo-sweep
+  cargo-update
+  x12pp
+]
+
+^sudo nu $"($env.FILE_PWD)/install-windows-sudo.nu"
+
+cd $env.FILE_PWD
+
+nu-install link "config"                                   $"($env.HOME)"
+nu-install link "config-windows"                           $"($env.HOME)"
+nu-install link "config/.config/yazi"                      $"($env.HOME)/AppData/Roaming/yazi/config"
+nu-install git  "https://github.com/sid-6581/NeovimConfig" $"($env.HOME)/.config/nvim"
+
+nu-install link clean
+
+if not ($"($env.HOME)/.wslconfig" | path exists) {
+  "[wsl2]\nkernelCommandLine = cgroup_no_v1=all" | save -f $"($env.HOME)/.wslconfig"
+}
+
+exit

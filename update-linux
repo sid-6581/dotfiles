@@ -1,0 +1,14 @@
+#!/usr/bin/env nu
+
+use std log
+
+log info "Updating Linux"
+
+^sudo dnf -y -q update --refresh
+^rustup update | complete
+^cargo install-update -a -q
+^tldr -u -q
+
+^nvim --headless "+Lazy! sync" +qa
+^nvim --headless "+MasonToolsUpdateSync" +qa
+^nvim --headless "+TSUpdateSync" +qa

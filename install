@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+./bootstrap-linux
+./install-linux
+
+./bootstrap-windows
+./install-windows
+
+./update-linux
+./update-windows

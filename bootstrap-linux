@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+has() {
+  command -v "$1" 1>/dev/null 2>&1
+}
+
+# Install GitHub cli, because we need it to download the latest nushell release.
+if ! has gh; then
+  sudo dnf install gh -y
+fi
+
+# Must be authenticated with GitHub
+if ! gh auth token &>/dev/null; then
+  gh auth login
+fi
+
+# Install the latest nushell release from GitHub releases to ~/.local/bin.
+if ! has nu; then
+  temp_directory=$(mktemp -d)
+  trap 'rm -rf -- "$temp_directory"' EXIT
+  gh release download -R nushell/nushell -p '*x86_64-unknown-linux-gnu.tar.gz' -O - | tar xz -C "$temp_directory"
+  [[ ! -d ~/.local/bin ]] && mkdir ~/.local/bin
+  find "$temp_directory" -type f -executable -exec cp "{}" "$HOME/.local/bin" ';'
+fi

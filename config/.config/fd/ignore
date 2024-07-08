@@ -1,0 +1,14 @@
+.ansible/
+.cache/
+.cargo/
+.fastfile/
+.git/
+.idea/
+.local/
+.npm/
+.nvm/
+.ssh/
+.rustup/
+.vscode/
+node_modules/
+winhome/

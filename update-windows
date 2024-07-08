@@ -1,0 +1,33 @@
+#!/usr/bin/env nu
+
+# Relaunch using Windows nushell if started from WSL.
+if $nu.os-info.name == "linux" {
+  let nu_exe = $"($env.HOME)/winhome/.local/bin/nu.exe"
+  ^$nu_exe $env.CURRENT_FILE
+  exit
+}
+
+use std log
+
+# Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
+cd $env.HOME
+
+log info "Updating Windows"
+
+let scoop_filter = {|it| $it !~ "pdat|Latest|shiny"}
+
+^scoop update -q | filter $scoop_filter
+^scoop update -q -s '*'| filter $scoop_filter
+^scoop cleanup '*' | filter $scoop_filter
+^scoop cache rm '*' | filter $scoop_filter
+^rustup update | complete
+^cargo install-update -a -q
+^tldr -u -q
+
+^nvim --headless "+Lazy! sync" +qa
+^nvim --headless "+MasonToolsUpdateSync" +qa
+^nvim --headless "+TSUpdateSync" +qa
+
+^sudo nu $"($env.FILE_PWD)/update-windows-sudo.nu"
+
+exit

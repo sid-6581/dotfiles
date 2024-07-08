@@ -1,0 +1,298 @@
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_startofline = 0
+
+set NERDTree
+set ReplaceWithRegister
+set argtextobj
+set easymotion
+set exchange
+set highlightedyank
+set multiple-cursors
+set surround
+set textobj-indent
+
+set iskeyword+=-
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set scrolloff=8
+set ideajoin
+set lookupkeys+=<C-K>
+" set relativenumber
+" set nooldundo
+
+let g:argtextobj_pairs="[:],(:),{:},<:>"
+
+nmap <Space>bd <Action>(CloseContent)
+nmap <Space>wq <Action>(CloseContent)
+nmap <Space>wc <Action>(CloseContent)
+nmap <Space><Esc> <Action>(CloseContent)
+nmap q <Action>(CloseContent)
+nmap <S-Esc> <Action>(CloseContent)
+nmap <Space>e <Action>(ActivateProjectToolWindow)
+nmap <Space>E :NERDTreeFind<CR>
+nmap <Space>v <Action>(Tool_External Tools_neovim)
+nmap <Space>fb <Action>(RecentFiles)
+nmap <Space>fc <Action>(GotoAction)
+nmap <Space>ff <Action>(GotoFile)
+nmap <Space>fr <Action>(RecentFiles)
+nmap <Space>ft <Action>(FindInPath)
+nmap <Space>gb <Action>(ActivateVersionControlToolWindow)
+nmap <Space>gg <Action>(ActivateCommitToolWindow)
+nmap <Space>gh <Action>(Vcs.ShowTabbedFileHistory)
+nmap <Space>gl <Action>(Annotate)
+nmap <Space>gp <Action>(VcsShowCurrentChangeMarker)
+nmap <Space>gr <Action>(Vcs.RollbackChangedLines)
+nmap <Space>gj <Action>(VcsShowNextChangeMarker)
+nmap <Space>gk <Action>(VcsShowPrevChangeMarker)
+nmap <Space>gR <Action>(ChangesView.Revert)
+nmap <Space>cf <Action>(SilentCodeCleanup)
+nmap <Space>cr <Action>(RenameElement)
+vmap <Space>cj <Action>(RiderCompactFormatCode)
+vmap <Space>cs <Action>(RiderSpaciousFormatCode)
+nmap <S-h> <Action>(PreviousTab)
+nmap <S-l> <Action>(NextTab)
+nmap zff <Action>(RiderCollapseToDefinitions)
+nmap zfc <Action>(RiderCollapseToDefinitions)
+nmap gh <Action>(QuickImplementations)
+nmap gl <Action>(ShowErrorDescription)
+nmap gcc <Action>(CommentByLineComment)
+vmap gc <Action>(CommentByLineComment)
+vmap gb <Action>(CommentByBlockComment)
+
+" Surround shortcuts
+nmap <Space>' cs"'
+nmap <Space>( ds)
+nmap <Space>) csb)
+nmap <Space>< ds>
+nmap <Space>> csb>
+nmap <Space>[ ds]
+nmap <Space>] csb]
+nmap <Space>{ ds}
+nmap <Space>} csb{
+nmap <Space>" cs'"
+vmap <Space>' S'
+vmap <Space>> S>
+vmap <Space>] S]
+vmap <Space>) S)
+vmap <Space>} S{
+vmap <Space>" S"
+
+inoremap <Esc> <Esc>`^
+inoremap <S-Enter> <Esc>mzo<Esc>`za
+inoremap <S-C-Enter> <Esc>mzO<Esc>`za
+nnoremap Q q
+nnoremap <Esc> :noh<CR><Esc>
+nnoremap <BS> :noh<CR>
+vnoremap > >gv
+vnoremap < <gv
+" yank line character-wise without indent
+nnoremap Y _y$
+noremap ,. <C-U>
+noremap ,/ <C-D>
+noremap ,, ,
+nnoremap ,vb <C-V>
+nnoremap ,p "+p
+nnoremap ,P "+P
+nnoremap ,r <C-R>
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+nnoremap <Space>wh <C-W>h
+nnoremap <Space>wl <C-W>l
+nnoremap <Space>wj <C-W>j
+nnoremap <Space>wk <C-W>k
+nnoremap <Space>ws <C-W>s
+nnoremap <Space>wv <C-W>v
+nnoremap <Space><Space>- <C-W>s
+nnoremap <Space><Space>\ <C-W>v
+nmap <Space>w] <C-W>sgd
+imap <C-p> <Action>(HippieCompletion)
+imap <C-n> <Action>(HippieBackwardCompletion)
+map <A-k> <Action>(MoveLineUp)
+map <A-j> <Action>(MoveLineDown)
+map <A-h> <Action>(MoveElementLeft)
+map <A-l> <Action>(MoveElementRight)
+" vnoremap p "_dP
+vnoremap gs :sort i<CR>
+vnoremap ,y "+y
+vnoremap <Space>sl :sort iu<CR>
+vnoremap <Space>su :sort iu<CR>
+vnoremap <Space>sn :sort in<CR>
+
+map <Tab> <Plug>(easymotion-f2)
+map <S-Tab> <Plug>(easymotion-F2)
+" map f <Plug>(easymotion-f)
+" map F <Plug>(easymotion-F)
+" map t <Plug>(easymotion-t)
+" map T <Plug>(easymotion-T)
+
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+" nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+nmap <A-n> <Plug>AllWholeOccurrences
+xmap <A-n> <Plug>AllWholeOccurrences
+nmap g<A-n> <Plug>AllOccurrences
+xmap g<A-n> <Plug>AllOccurrences
+
+nnoremap [p O<C-r>"<Esc>
+nnoremap ]p o<C-r>"<Esc>
+nnoremap <Space>pb a <C-R>" <Esc>
+nnoremap <Space>pe a<C-R>" <Esc>
+nnoremap <Space>ps a <C-R>"<Esc>
+nnoremap <Space>Pb i <C-R>" <Esc>
+nnoremap <Space>Pe i<C-R>" <Esc>
+nnoremap <Space>Ps i <C-R>"<Esc>
+nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
+nnoremap [<Space> mzO<Esc>0"_D`z
+nnoremap ]<Space> mzo<Esc>0"_D`z
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+nmap [m <Action>(MethodUp)
+nmap ]m <Action>(MethodDown)
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [q <Action>(PreviousOccurence)
+nmap ]q <Action>(NextOccurence)
+vmap . <Action>(ReSharperSelectContainingDeclaration)
+map <Enter> <Action>(EditorSelectWord)
+map <S-Enter> <Action>(EditorUnSelectWord)
+
+vnoremap al :<C-u>norm!0v$<CR>
+vnoremap il :<C-u>norm!^vg_<CR>
+nmap yal valy
+nmap yil vily
+nnoremap dal dd
+nmap dil vild
+nnoremap cal ddi
+nmap cil vilc
+
+" Text objects for delimiters.
+nnoremap ci/ T/ct/
+nnoremap ca/ F/ct/
+nnoremap ci, T,ct,
+nnoremap ca, F,ct,
+nnoremap ci. T.ct.
+nnoremap ca. F.ct.
+nnoremap ci_ T_ct_
+nnoremap ca_ F_ct_
+nnoremap ci- T-ct-
+nnoremap ca- F-ct-
+nnoremap ci% T%ct%
+nnoremap ca% F%ct%
+nnoremap ci= T=ct=
+nnoremap ca= F=ct=
+nnoremap ci? T?ct?
+nnoremap ca? F?ct?
+nnoremap ci! T!ct!
+nnoremap ca! F!ct!
+nnoremap ci& T&ct&
+nnoremap ca& F&ct&
+nnoremap di/ T/dt/
+nnoremap da/ F/dt/
+nnoremap di, T,dt,
+nnoremap da, F,dt,
+nnoremap di. T.dt.
+nnoremap da. F.dt.
+nnoremap di_ T_dt_
+nnoremap da_ F_dt_
+nnoremap di- T-dt-
+nnoremap da- F-dt-
+nnoremap di% T%dt%
+nnoremap da% F%dt%
+nnoremap di= T=dt=
+nnoremap da= F=dt=
+nnoremap di? T?dt?
+nnoremap da? F?dt?
+nnoremap di! T!dt!
+nnoremap da! F!dt!
+nnoremap di& T&dt&
+nnoremap da& F&dt&
+nnoremap vi/ T/vt/
+nnoremap va/ F/vt/
+nnoremap vi, T,vt,
+nnoremap va, F,vt,
+nnoremap vi. T.vt.
+nnoremap va. F.vt.
+nnoremap vi_ T_vt_
+nnoremap va_ F_vt_
+nnoremap vi- T-vt-
+nnoremap va- F-vt-
+nnoremap vi% T%vt%
+nnoremap va% F%vt%
+nnoremap vi= T=vt=
+nnoremap va= F=vt=
+nnoremap vi? T?vt?
+nnoremap va? F?vt?
+nnoremap vi! T!vt!
+nnoremap va! F!vt!
+nnoremap vi& T&vt&
+nnoremap va& F&vt&
+nnoremap yi/ T/yt/
+nnoremap ya/ F/yt/
+nnoremap yi, T,yt,
+nnoremap ya, F,yt,
+nnoremap yi. T.yt.
+nnoremap ya. F.yt.
+nnoremap yi_ T_yt_
+nnoremap ya_ F_yt_
+nnoremap yi- T-yt-
+nnoremap ya- F-yt-
+nnoremap yi% T%yt%
+nnoremap ya% F%yt%
+nnoremap yi= T=yt=
+nnoremap ya= F=yt=
+nnoremap yi? T?yt?
+nnoremap ya? F?yt?
+nnoremap yi! T!yt!
+nnoremap ya! F!yt!
+nnoremap yi& T&yt&
+nnoremap ya& F&yt&
+
+sethandler <A-N> a:ide
+sethandler <A-P> a:ide
+sethandler <A-X> a:ide
+sethandler <C-;> a:vim
+sethandler <C-A> a:vim
+sethandler <C-B> a:vim
+sethandler <C-C> a:vim
+sethandler <C-D> a:vim
+sethandler <C-E> a:vim
+sethandler <C-F> a:vim
+sethandler <C-G> a:vim
+sethandler <C-H> a:vim
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-M> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-R> a:vim
+sethandler <C-S-2> a:vim
+sethandler <C-S-;> a:vim
+sethandler <C-S-CR> a:vim
+sethandler <C-S> a:ide
+sethandler <C-T> a:vim
+sethandler <C-U> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:vim
+sethandler <C-X> a:vim
+sethandler <C-Y> a:vim
+sethandler <C-[> a:vim
+sethandler <C-\> a:vim
+sethandler <C-]> a:vim
+sethandler <S-CR> a:vim
+sethandler <S-Esc> a:vim
+sethandler <S-Tab> a:vim

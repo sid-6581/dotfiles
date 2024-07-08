@@ -1,0 +1,10 @@
+--glob=!**/.ansible/*
+--glob=!**/.cache/*
+--glob=!**/.cargo/*
+--glob=!**/.git/*
+--glob=!**/.local/*
+--glob=!**/.npm/*
+--glob=!**/.nvm/*
+--glob=!**/.rustup/*
+--hidden
+--smart-case

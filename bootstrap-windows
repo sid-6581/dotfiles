@@ -1,0 +1,28 @@
+#!/usr/bin/env nu
+
+if $nu.os-info.name != "linux" {
+  error make { msg: "This script must be run from Linux only" }
+}
+
+let win_bin_path = $"($env.HOME)/winhome/.local/bin"
+
+# Call this file from WSL to download nushell for Windows.
+def main [] {
+  if not ($win_bin_path | path exists) {
+    mkdir $win_bin_path
+  }
+
+  if not ($"($win_bin_path)/nu.exe" | path exists) {
+    let temp_directory = mktemp -d
+
+    ^gh release download -R nushell/nushell -p *x86_64-pc-windows-msvc.zip -D $temp_directory
+    ^unzip -qq (ls $temp_directory).name.0 -d $temp_directory
+
+    ls $temp_directory
+    | filter { ($in.name | path parse).extension == exe }
+    | each {|it| ^chmod +x $it.name; $it }
+    | each { cp $in.name ([$win_bin_path ($in.name | path basename)] | path join) }
+
+    rm -rf $temp_directory
+  }
+}

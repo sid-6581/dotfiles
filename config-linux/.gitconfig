@@ -1,0 +1,35 @@
+[core]
+  autocrlf = input
+  editor = nvim
+  pager = delta
+  eol = lf
+[pull]
+  ff-only = true
+[push]
+  autoSetupRemote = true
+[delta]
+  hunk-header-decoration-style = ul
+  plus-color = "#012800"
+  minus-color = "#340001"
+  syntax-theme = gruvbox-dark
+[interactive]
+  diffFilter = delta --color-only
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[safe]
+  directory = *
+[init]
+  defaultBranch = main
+[credential]
+  helper = store
+[merge]
+  conflictStyle = zdiff3
+[rebase]
+  autosquash = true
+[rerere]
+  enabled = true
+[diff]
+  algorithm = histogram

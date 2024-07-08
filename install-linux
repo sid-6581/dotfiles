@@ -1,0 +1,92 @@
+#!/usr/bin/env nu
+
+if $nu.os-info.name != "linux" {
+  error make { msg: "This script must be run from Linux only" }
+}
+
+use std log
+use config/.config/nushell/scripts/nu-install *
+
+let git_username = $env.GIT_AUTHOR_NAME? | default $env.GIT_COMMITTER_NAME? | if $in != null { $in } else { input "Please enter your git username: " }
+let git_email = $env.GIT_AUTHOR_EMAIL? | default $env.GIT_COMMITTER_EMAIL? | if $in != null { $in } else { input "Please enter your git email: " }
+
+mkdir $"($nu.default-config-dir)/autoload-source"
+
+$"
+$env.GIT_AUTHOR_NAME = ($git_username)
+$env.GIT_AUTHOR_EMAIL = ($git_email)
+$env.GIT_COMMITTER_NAME = ($git_username)
+$env.GIT_COMMITTER_EMAIL = ($git_email)
+" | save -f $"($nu.default-config-dir)/autoload-source/99-GENERATED-git-username.nu"
+
+nu-install dnf [
+  cmake
+  gcc-c++
+  nodejs
+  python3-pip
+  openssl
+  openssl-devel
+  podman
+]
+
+if (which rustup | is-empty) {
+  log info "Installing rust"
+  ^curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+  ^rustup -q toolchain install nightly
+}
+
+nu-install cargo [
+  cargo-edit
+  cargo-sweep
+  cargo-update
+  x12pp
+]
+
+nu-install gh BurntSushi/ripgrep       *x86_64-unknown-linux-musl.tar.gz         # ripgrep - grep replacement
+nu-install gh ajeetdsouza/zoxide       *x86_64-unknown-linux-musl.tar.gz         # zoxide - Fast directory jumping
+nu-install gh ast-grep/ast-grep        *x86_64-unknown-linux-gnu.zip             # ast-grep - Code structural search tool
+nu-install gh carapace-sh/carapace-bin *linux_amd64.tar.gz                       # carapace - Command line completions
+nu-install gh casey/just               *x86_64-unknown-linux-musl.tar.gz         # just - Command runner
+nu-install gh cli/cli                  *linux_amd64.tar.gz                       # gh - GitHub CLI
+nu-install gh dandavison/delta         *x86_64-unknown-linux-gnu.tar.gz          # delta - git diff
+nu-install gh jesseduffield/lazygit    *Linux_x86_64.tar.gz                      # lazygit - git terminal UI
+nu-install gh junegunn/fzf             *linux_amd64.tar.gz                       # fzf - Fuzzy finder
+nu-install gh lsd-rs/lsd               *x86_64-unknown-linux-gnu.tar.gz          # lsd - ls replacement
+nu-install gh nushell/nushell          *x86_64-unknown-linux-gnu.tar.gz          # nushell - Shell
+nu-install gh sharkdp/bat              *x86_64-unknown-linux-gnu.tar.gz          # bat - File viewer
+nu-install gh sharkdp/fd               *x86_64-unknown-linux-gnu.tar.gz          # fd - find replacement
+nu-install gh starship/starship        *x86_64-unknown-linux-gnu.tar.gz          # starship - Shell prompt
+nu-install gh sxyazi/yazi              *x86_64-unknown-linux-gnu.zip             # yazi - Terminal file manager
+nu-install gh direnv/direnv            direnv.linux-amd64             -e direnv  # direnv - Load environment variables from files
+nu-install gh jqlang/jq                jq-linux-amd64                 -e jq      # jq - JSON command line processor
+nu-install gh dbrgn/tealdeer           tealdeer-linux-x86_64-musl     -e tldr    # tealdeer - Help for command line tools
+
+# broot - File manager
+nu-install gh Canop/broot broot*.zip -p {|path|
+  let executable = [$path x86_64-unknown-linux-gnu broot] | path join
+  ^chmod +x $executable
+  [$executable]
+}
+
+# bob - Neovim version manager
+nu-install gh MordechaiHadad/bob bob-linux-x86_64.zip -p {|path|
+  let executable = [$path bob-linux-x86_64 bob] | path join
+  ^chmod +x $executable
+  [$executable]
+}
+
+if (^bob list | find used | is-empty) {
+  log info "Installing neovim"
+  ^bob use nightly
+}
+
+nu-install link "config"                                                                   $"($env.HOME)"
+nu-install link "config-linux"                                                             $"($env.HOME)"
+nu-install link $"($env.HOME)/winhome/scoop/apps/neovim-nightly/current/bin/win32yank.exe" $"($env.HOME)/.local/bin/win32yank"
+nu-install link $"($env.HOME)/.local/bin/win32yank"                                        $"($env.HOME)/.local/bin/win32yank.exe"
+nu-install link "/usr/bin/podman"                                                          $"($env.HOME)/.local/bin/docker"
+nu-install git  "https://github.com/sid-6581/NeovimConfig"                                 $"($env.HOME)/.config/nvim"
+
+nu-install link clean
+
+exit
