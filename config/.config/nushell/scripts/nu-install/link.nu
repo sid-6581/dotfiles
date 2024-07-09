@@ -2,30 +2,31 @@ use std log
 
 # Creates a symbolic link to a file or all files in a directory, recursively.
 export def "nu-install link" [
-  target: string # Path to existing file or directory
-  link: string   # Path to new link
+  links: list<record<target: string, link: string>> # Links to create
 ] {
-  let target_type = $target | path type
+  for $l in $links {
+    let target_type = $l.target | path type
 
-  if ($target_type == dir) and (not ($link | path exists)) {
-    mkdir $link
-  }
-
-  if ($target_type == dir) != (($link | path type) == dir) {
-    error make { msg: $"Both ($target) and ($link) must be either a directory or a file" }
-  }
-
-  if $target_type == dir {
-    let target_files = glob --no-dir $"($target)/**"
-    let target = $target | path expand
-
-    for $target_file in $target_files {
-      let target_file = $target_file | path expand
-      let target_relative = $target_file | str substring (($target | str length) + 1)..
-      link $target_file ([$link $target_relative] | path join)
+    if ($target_type == dir) and (not ($l.link | path exists)) {
+      mkdir $l.link
     }
-  } else {
-    link $target $link
+
+    if ($target_type == dir) != (($l.link | path type) == dir) {
+      error make { msg: $"Both ($l.target) and ($l.link) must be either a directory or a file" }
+    }
+
+    if $target_type == dir {
+      let target_files = glob --no-dir $"($l.target)/**"
+      let target = $l.target | path expand
+
+      for $target_file in $target_files {
+        let target_file = $target_file | path expand
+        let target_relative = $target_file | str substring (($target | str length) + 1)..
+        link $target_file ([$l.link $target_relative] | path join)
+      }
+    } else {
+      link $l.target $l.link
+    }
   }
 }
 

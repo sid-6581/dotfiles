@@ -92,10 +92,15 @@ nu-install cargo [
 
 cd $env.FILE_PWD
 
-nu-install link "config"                                   $"($env.HOME)"
-nu-install link "config-windows"                           $"($env.HOME)"
-nu-install link "config/.config/yazi"                      $"($env.HOME)/AppData/Roaming/yazi/config"
-nu-install git  "https://github.com/sid-6581/NeovimConfig" $"($env.HOME)/.config/nvim"
+nu-install link [
+  { target: "config", link: $"($env.HOME)" }
+  { target: "config-windows", link: $"($env.HOME)" }
+  { target: "config/.config/yazi", link: $"($env.HOME)/AppData/Roaming/yazi/config" }
+]
+
+nu-install git [
+  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
+]
 
 nu-install link clean
 

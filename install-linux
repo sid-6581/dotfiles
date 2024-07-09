@@ -42,50 +42,53 @@ nu-install cargo [
   x12pp
 ]
 
-nu-install gh BurntSushi/ripgrep       *x86_64-unknown-linux-musl.tar.gz         # ripgrep - grep replacement
-nu-install gh ajeetdsouza/zoxide       *x86_64-unknown-linux-musl.tar.gz         # zoxide - Fast directory jumping
-nu-install gh ast-grep/ast-grep        *x86_64-unknown-linux-gnu.zip             # ast-grep - Code structural search tool
-nu-install gh carapace-sh/carapace-bin *linux_amd64.tar.gz                       # carapace - Command line completions
-nu-install gh casey/just               *x86_64-unknown-linux-musl.tar.gz         # just - Command runner
-nu-install gh cli/cli                  *linux_amd64.tar.gz                       # gh - GitHub CLI
-nu-install gh dandavison/delta         *x86_64-unknown-linux-gnu.tar.gz          # delta - git diff
-nu-install gh jesseduffield/lazygit    *Linux_x86_64.tar.gz                      # lazygit - git terminal UI
-nu-install gh junegunn/fzf             *linux_amd64.tar.gz                       # fzf - Fuzzy finder
-nu-install gh lsd-rs/lsd               *x86_64-unknown-linux-gnu.tar.gz          # lsd - ls replacement
-nu-install gh nushell/nushell          *x86_64-unknown-linux-gnu.tar.gz          # nushell - Shell
-nu-install gh sharkdp/bat              *x86_64-unknown-linux-gnu.tar.gz          # bat - File viewer
-nu-install gh sharkdp/fd               *x86_64-unknown-linux-gnu.tar.gz          # fd - find replacement
-nu-install gh starship/starship        *x86_64-unknown-linux-gnu.tar.gz          # starship - Shell prompt
-nu-install gh sxyazi/yazi              *x86_64-unknown-linux-gnu.zip             # yazi - Terminal file manager
-nu-install gh direnv/direnv            direnv.linux-amd64             -e direnv  # direnv - Load environment variables from files
-nu-install gh jqlang/jq                jq-linux-amd64                 -e jq      # jq - JSON command line processor
-nu-install gh dbrgn/tealdeer           tealdeer-linux-x86_64-musl     -e tldr    # tealdeer - Help for command line tools
-
-# broot - File manager
-nu-install gh Canop/broot broot*.zip -p {|path|
-  let executable = [$path x86_64-unknown-linux-gnu broot] | path join
-  ^chmod +x $executable
-  [$executable]
-}
-
-# bob - Neovim version manager
-nu-install gh MordechaiHadad/bob bob-linux-x86_64.zip -p {|path|
-  let executable = [$path bob-linux-x86_64 bob] | path join
-  ^chmod +x $executable
-  [$executable]
-}
+nu-install gh [
+  { repo: "BurntSushi/ripgrep", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # ripgrep - grep replacement
+  { repo: "ajeetdsouza/zoxide", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # zoxide - Fast directory jumping
+  { repo: "ast-grep/ast-grep", pattern: "*x86_64-unknown-linux-gnu.zip" } # ast-grep - Code structural search tool
+  { repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
+  { repo: "casey/just", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # just - Command runner
+  { repo: "cli/cli", pattern: "*linux_amd64.tar.gz" } # gh - GitHub CLI
+  { repo: "dandavison/delta", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # delta - git diff
+  { repo: "jesseduffield/lazygit", pattern: "*Linux_x86_64.tar.gz" } # lazygit - git terminal UI
+  { repo: "junegunn/fzf", pattern: "*linux_amd64.tar.gz" } # fzf - Fuzzy finder
+  { repo: "lsd-rs/lsd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # lsd - ls replacement
+  { repo: "nushell/nushell", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # nushell - Shell
+  { repo: "sharkdp/bat", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # bat - File viewer
+  { repo: "sharkdp/fd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # fd - find replacement
+  { repo: "starship/starship", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # starship - Shell prompt
+  { repo: "sxyazi/yazi", pattern: "*x86_64-unknown-linux-gnu.zip" } # yazi - Terminal file manager
+  { repo: "direnv/direnv", pattern: "direnv.linux-amd64", executable: "direnv"  } # direnv - Load environment variables from files
+  { repo: "jqlang/jq", pattern: "jq-linux-amd64", executable: "jq" } # jq - JSON command line processor
+  { repo: "dbrgn/tealdeer", pattern: "tealdeer-linux-x86_64-musl", executable: "tldr" } # tealdeer - Help for command line tools
+  { repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
+      let executable = [$path x86_64-unknown-linux-gnu broot] | path join
+      ^chmod +x $executable
+      [$executable]
+  }} # broot - File manager
+  { repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
+      let executable = [$path bob-linux-x86_64 bob] | path join
+      ^chmod +x $executable
+      [$executable]
+  }} # bob - Neovim version manager
+]
 
 if (^bob list | find used | is-empty) {
   log info "Installing neovim"
   ^bob use nightly
 }
 
-nu-install link "config"                                                                   $"($env.HOME)"
-nu-install link "config-linux"                                                             $"($env.HOME)"
-nu-install link $"($env.HOME)/winhome/scoop/apps/neovim-nightly/current/bin/win32yank.exe" $"($env.HOME)/.local/bin/win32yank"
-nu-install link $"($env.HOME)/.local/bin/win32yank"                                        $"($env.HOME)/.local/bin/win32yank.exe"
-nu-install link "/usr/bin/podman"                                                          $"($env.HOME)/.local/bin/docker"
-nu-install git  "https://github.com/sid-6581/NeovimConfig"                                 $"($env.HOME)/.config/nvim"
+nu-install link [
+  { target: "config", link: $"($env.HOME)" }
+  { target: "config-linux", link: $"($env.HOME)" }
+  { target: $"($env.HOME)/winhome/scoop/apps/neovim-nightly/current/bin/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }
+  { target: $"($env.HOME)/.local/bin/win32yank", link: $"($env.HOME)/.local/bin/win32yank.exe" }
+  { target: "/usr/bin/podman", link: $"($env.HOME)/.local/bin/docker" }
+]
+
+nu-install git [
+  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
+]
 
 nu-install link clean
 
