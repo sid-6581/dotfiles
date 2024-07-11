@@ -36,5 +36,5 @@ export-env {
         --terminal-width (term size).columns
       )
     }
-}
+  }
 }
