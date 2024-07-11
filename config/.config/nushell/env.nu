@@ -13,6 +13,6 @@ $env.PATH = (
   | str join (char esep)
 )
 
-let autoload_source = ls $"($nu.default-config-dir)/autoload-source" | each { $"source ($in.name)" }
-let autoload_modules = ls $"($nu.default-config-dir)/autoload-modules" | each { $"use ($in.name) *" }
+let autoload_source = ls $"($nu.default-config-dir)/autoload-source" | sort | each { $"source ($in.name)" }
+let autoload_modules = ls $"($nu.default-config-dir)/autoload-modules" | sort | each { $"use ($in.name) *" }
 $autoload_source ++ $autoload_modules | save -f $"($nu.default-config-dir)/autoload.nu"
