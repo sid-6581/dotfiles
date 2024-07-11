@@ -15,12 +15,14 @@ export-env {
     PROMPT_INDICATOR: ""
 
     PROMPT_COMMAND: {||
-      (
+      let prompt = (
         ^starship prompt
         --cmd-duration $env.CMD_DURATION_MS
         $"--status=($env.LAST_EXIT_CODE)"
         --terminal-width (term size).columns
-      )
+      ) | lines
+      print $prompt.0?
+      $prompt.1?
     }
 
     config: ($env.config? | default {} | merge {
