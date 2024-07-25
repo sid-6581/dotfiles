@@ -49,7 +49,7 @@ export def "nu-install gh" [
     let history_tag = nu-install history get [gh $r.repo tag]
 
     if $history_tag == $release.tag {
-      return
+      continue
     }
 
     log info $"Downloading executables from repo ($r.repo) (($release))"
