@@ -78,11 +78,11 @@ export def "nu-install gh" [
       # Copy executables to the destination.
       for $executable in $executables {
         let file_name = $executable | path basename
-        let destination_file = $"($destination)/($file_name)"
+        let destination_file = [$destination $file_name] | path join
 
         # This is necessary for Windows since running executables can't be replaced.
         if $nu.os-info != "linux" and ($destination_file | path exists) {
-          mv -f $destination_file $"($nu.temp-path)/($destination_file).bak"
+          mv -f $destination_file ([$nu.temp-path $"($file_name).bak"] | path join)
         }
 
         mv -f $executable $destination_file
@@ -108,7 +108,7 @@ export def "nu-install gh uninstall" [
   repo: string                    # The repo to download for (OWNER/REPO)
   --destination (-d): string      # The destination directory (default $HOME/.local/bin)
 ] {
-  let destination = $destination | default $"($env.HOME)/.local/bin/"
+  let destination = $destination | default ([$env.HOME ".local/bin/"] | path join)
   let executables = nu-install history get [gh $repo executables]
 
   if ($executables | is-empty) {
