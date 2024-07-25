@@ -24,7 +24,9 @@ export def "nu-install gh" [
         let original = (ls $path).name.0
         let new = [$path $r.executable] | path join
         mv $original $new
-        chmod +x $new
+        if $nu.os-info == "linux" {
+          chmod +x $new
+        }
         [$new]
       }
     } else {
@@ -73,7 +75,18 @@ export def "nu-install gh" [
         error make { msg: $"No executables found in ($temp_directory) after extracting asset" }
       }
 
-      $executables | each { mv -f $in $destination }
+      # Copy executables to the destination.
+      for $executable in $executables {
+        let file_name = $executable | path basename
+        let destination_file = $"($destination)/($file_name)"
+
+        # This is necessary for Windows since running executables can't be replaced.
+        if $nu.os-info != "linux" and ($destination_file | path exists) {
+          mv -f $destination_file $"($nu.temp-path)/($destination_file).bak"
+        }
+
+        mv -f $executable $destination_file
+      }
 
       nu-install history upsert [gh $r.repo] {
         tag: $release.tag,

@@ -90,6 +90,10 @@ nu-install cargo [
 
 ^sudo nu $"($env.FILE_PWD)/install-windows-sudo.nu"
 
+nu-install gh [
+  { repo: "nushell/nushell", pattern: "*x86_64-pc-windows-msvc.zip" } # nushell - Shell
+]
+
 cd $env.FILE_PWD
 
 nu-install link [

@@ -16,18 +16,32 @@ def extract [
     tar -xf $path -C $directory
     rm -rf $path
   } else if ($path ends-with zip) {
-    unzip -qq $path -d $directory
+    if $nu.os-info.name == "linux" {
+      unzip -qq $path -d $directory
+    } else {
+      tar -xf $path -C $directory
+    }
     rm -rf $path
   }
 }
 
 # Gets the full paths of executables at any depth in the given directory.
 def get-executables [directory: string] {
-  glob $"($directory)/**/*"
+  cd $directory
+  let files = glob "**/*"
   | each { ls -alD $in }
   | flatten
-  | where type == file and mode ends-with x
-  | get name
+  | where type == file
+
+  if $nu.os-info.name == "linux" {
+    $files
+    | where mode ends-with x
+    | get name
+  } else {
+    $files
+    | where name ends-with ".exe"
+    | get name
+  }
 }
 
 def "nu-install history path" [] {
