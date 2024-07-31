@@ -279,6 +279,7 @@ sethandler <C-M> a:vim
 sethandler <C-N> a:vim
 sethandler <C-O> a:vim
 sethandler <C-P> a:vim
+sethandler <C-Q> a:ide
 sethandler <C-R> a:vim
 sethandler <C-S-2> a:vim
 sethandler <C-S-;> a:vim
