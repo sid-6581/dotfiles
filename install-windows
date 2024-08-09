@@ -103,6 +103,7 @@ nu-install cargo [
 
 nu-install gh [
   { repo: "nushell/nushell", pattern: "*x86_64-pc-windows-msvc.zip" } # nushell - Shell
+  { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-pc-windows-msvc.zip" } # rust-analyzer - LSP for rust
 ]
 
 cd $env.FILE_PWD

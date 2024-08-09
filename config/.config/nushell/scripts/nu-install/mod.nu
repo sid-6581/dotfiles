@@ -15,6 +15,8 @@ def extract [
   if ($path ends-with tar.gz) {
     tar -xf $path -C $directory
     rm -rf $path
+  } else if ($path ends-with gz) {
+    gunzip $path
   } else if ($path ends-with zip) {
     if $nu.os-info.name == "linux" {
       unzip -qq $path -d $directory
