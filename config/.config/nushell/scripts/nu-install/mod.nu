@@ -6,7 +6,8 @@ export use link.nu *
 export use scoop.nu *
 
 # Extracts an archive's contents into the same directory, then deletes the archive.
-# If the given file path is not to a known archive format, the file is left alone.
+# If the given file path is not a known archive format, the file is left alone.
+# Currently handles .tar.gz, .gz, and .zip.
 def extract [
   path: string # Absolute path to file to extract.
 ] {
