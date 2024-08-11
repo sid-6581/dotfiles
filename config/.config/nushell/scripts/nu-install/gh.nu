@@ -112,7 +112,7 @@ export def "nu-install gh uninstall" [
 def process [
   repo: any
   path: string
-] nothing -> list<string> {
+]: nothing -> list<string> {
   if $repo.executable? != null {
     let original = (ls $path).name.0
     let new = [$path $repo.executable] | path join
