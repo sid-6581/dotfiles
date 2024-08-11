@@ -5,7 +5,7 @@ use std log
 #
 # Each repo record should have the following required or optional fields:
 #
-# repo          The repo to download for (OWNER/REPO)
+# repo          The repo to download from (OWNER/REPO)
 # pattern       The glob pattern to match (must match a single asset)
 # tag?          The tag to download, defaults to "Latest"
 # process?      Closure to process extracted files and return a list of executables
@@ -19,20 +19,6 @@ export def "nu-install gh" [
   # TODO: Do gh version checks in parallel.
 
   for $r in $repos {
-    let process = if $r.executable? != null {
-      {|path|
-        let original = (ls $path).name.0
-        let new = [$path $r.executable] | path join
-        mv $original $new
-        if $nu.os-info == "linux" {
-          chmod +x $new
-        }
-        [$new]
-      }
-    } else {
-      $r.process? | default {|path| get-executables $path }
-    }
-
     let tag = $r.tag? | default "Latest"
 
     let releases = (
@@ -69,7 +55,7 @@ export def "nu-install gh" [
 
       (ls $temp_directory).name.0 | extract $in
 
-      let executables = do $process $temp_directory
+      let executables = process $r $temp_directory
 
       if ($executables | length) == 0 {
         error make { msg: $"No executables found in ($temp_directory) after extracting asset" }
@@ -81,7 +67,7 @@ export def "nu-install gh" [
         let destination_file = [$destination $file_name] | path join
 
         # This is necessary for Windows since running executables can't be replaced.
-        if $nu.os-info != "linux" and ($destination_file | path exists) {
+        if $nu.os-info.name != "linux" and ($destination_file | path exists) {
           mv -f $destination_file ([$nu.temp-path $"($file_name).bak"] | path join)
         }
 
@@ -120,4 +106,28 @@ export def "nu-install gh uninstall" [
   $executables | each { rm -f ([$destination $in] | path join) }
 
   nu-install history remove [gh $repo]
+}
+
+# Process extracted files in temp directory and return a list of the executables to keep.
+def process [
+  repo: any
+  path: string
+] nothing -> list<string> {
+  if $repo.executable? != null {
+    let original = (ls $path).name.0
+    let new = [$path $repo.executable] | path join
+    mv $original $new
+
+    if $nu.os-info.name == "linux" {
+      ^chmod +x $new
+    }
+
+    return [$new]
+  }
+
+  if $repo.process? != null {
+    return (do $repo.process $path)
+  }
+
+  get-executables $path
 }
