@@ -89,7 +89,6 @@ export def "nu-install gh" [
       }
 
       nu-install history upsert [gh $r.repo] {
-        spec: $r
         tag: $release.tag
         executables: ($executables | each { path basename })
       }
