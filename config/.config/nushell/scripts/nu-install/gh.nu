@@ -7,9 +7,9 @@ use std log
 #
 # repo          The repo to download for (OWNER/REPO)
 # pattern       The glob pattern to match (must match a single asset)
-# tag           The tag to download, defaults to "Latest"
-# process       Closure to process extracted files and return a list of executables
-# executable    Treat the downloaded asset as an executable with the name supplied here, overrides process
+# tag?          The tag to download, defaults to "Latest"
+# process?      Closure to process extracted files and return a list of executables
+# executable?   Treat the downloaded asset as an executable and rename to this argument (overrides process)
 export def "nu-install gh" [
   repos: list<any>            # The repos to install
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
@@ -89,7 +89,8 @@ export def "nu-install gh" [
       }
 
       nu-install history upsert [gh $r.repo] {
-        tag: $release.tag,
+        spec: $r
+        tag: $release.tag
         executables: ($executables | each { path basename })
       }
 

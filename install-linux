@@ -72,12 +72,7 @@ nu-install gh [
   { repo: "direnv/direnv", pattern: "direnv.linux-amd64", executable: "direnv"  } # direnv - Load environment variables from files
   { repo: "jqlang/jq", pattern: "jq-linux-amd64", executable: "jq" } # jq - JSON command line processor
   { repo: "dbrgn/tealdeer", pattern: "tealdeer-linux-x86_64-musl", executable: "tldr" } # tealdeer - Help for command line tools
-  { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-unknown-linux-gnu.gz", process: {|path|
-      let executable = ([$path rust-analyzer] | path join)
-      mv ([$path rust-analyzer-x86_64-unknown-linux-gnu] | path join) $executable
-      ^chmod +x $executable
-      [$executable]
-  }} # rust-analyzer - LSP for rust
+  { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-unknown-linux-gnu.gz", executable: "rust-analyzer" } # rust-analyzer - LSP for rust
   { repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
       let executable = [$path x86_64-unknown-linux-gnu broot] | path join
       ^chmod +x $executable

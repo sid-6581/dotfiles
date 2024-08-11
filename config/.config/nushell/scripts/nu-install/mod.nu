@@ -49,7 +49,7 @@ def get-executables [directory: string] {
 def "nu-install history path" [] {
   let directory = $"($env.HOME)/.local/share/nu-install"
   mkdir $directory
-  [$directory history.json] | path join
+  [$directory history.nuon] | path join
 }
 
 def "nu-install history load" [] {
@@ -62,7 +62,8 @@ def "nu-install history load" [] {
 }
 
 def "nu-install history save" [] {
-  save -f (nu-install history path)
+  to nuon -i 2
+  | save -f (nu-install history path)
 }
 
 def "nu-install history update" [
