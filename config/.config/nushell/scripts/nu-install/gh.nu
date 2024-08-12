@@ -84,7 +84,7 @@ export def "nu-install gh" [
 
       null
     } catch {|e|
-      $e.raw
+      $e.raw?
     }
 
     rm -rf $temp_directory

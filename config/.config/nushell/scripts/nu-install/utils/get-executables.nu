@@ -3,7 +3,8 @@ export def main [
   directory: string # Path to directory with executables
 ] {
   cd $directory
-  let files = glob "**/*"
+
+  let files = glob **/*
   | each { ls -alD $in }
   | flatten
   | where type == file

@@ -30,6 +30,16 @@ $env.GIT_COMMITTER_NAME = ($git_username)
 $env.GIT_COMMITTER_EMAIL = ($git_email)
 " | save -f $"($nu.default-config-dir)/autoload-source/99-GENERATED-git-username.nu"
 
+nu-install link clean
+
+nu-install link [
+  { target: "config", link: $"($env.HOME)" }
+  { target: "config-linux", link: $"($env.HOME)" }
+  { target: $"($env.HOME)/winhome/scoop/apps/neovim-nightly/current/bin/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }
+  { target: $"($env.HOME)/.local/bin/win32yank", link: $"($env.HOME)/.local/bin/win32yank.exe" }
+  { target: "/usr/bin/podman", link: $"($env.HOME)/.local/bin/docker" }
+]
+
 nu-install dnf [
   cmake
   gcc-c++
@@ -74,14 +84,14 @@ nu-install gh [
   { repo: "dbrgn/tealdeer", pattern: "tealdeer-linux-x86_64-musl", executable: "tldr" } # tealdeer - Help for command line tools
   { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-unknown-linux-gnu.gz", executable: "rust-analyzer" } # rust-analyzer - LSP for rust
   { repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
-      let executable = [$path x86_64-unknown-linux-gnu broot] | path join
-      ^chmod +x $executable
-      [$executable]
+    let executable = [$path x86_64-unknown-linux-gnu broot] | path join
+    ^chmod +x $executable
+    [$executable]
   }} # broot - File manager
   { repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
-      let executable = [$path bob-linux-x86_64 bob] | path join
-      ^chmod +x $executable
-      [$executable]
+    let executable = [$path bob-linux-x86_64 bob] | path join
+    ^chmod +x $executable
+    [$executable]
   }} # bob - Neovim version manager
 ]
 
@@ -90,18 +100,8 @@ if (^bob list | find used | is-empty) {
   ^bob use nightly
 }
 
-nu-install link [
-  { target: "config", link: $"($env.HOME)" }
-  { target: "config-linux", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/winhome/scoop/apps/neovim-nightly/current/bin/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }
-  { target: $"($env.HOME)/.local/bin/win32yank", link: $"($env.HOME)/.local/bin/win32yank.exe" }
-  { target: "/usr/bin/podman", link: $"($env.HOME)/.local/bin/docker" }
-]
-
 nu-install git [
   { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
 ]
-
-nu-install link clean
 
 exit
