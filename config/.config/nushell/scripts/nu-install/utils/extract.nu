@@ -20,4 +20,3 @@ export def main [
     rm -rf $path
   }
 }
-
