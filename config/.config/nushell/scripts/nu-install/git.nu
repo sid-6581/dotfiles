@@ -1,4 +1,5 @@
 use std log
+use history.nu *
 
 # Clones or updates a git repository into a destination location.
 export def "nu-install git" [

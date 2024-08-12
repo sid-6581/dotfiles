@@ -1,4 +1,5 @@
 use std log
+use history.nu *
 
 # Creates a symbolic link to a file or all files in a directory, recursively.
 export def "nu-install link" [

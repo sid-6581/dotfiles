@@ -1,4 +1,7 @@
 use std log
+use history.nu *
+use utils/extract.nu
+use utils/get-executables.nu
 
 # Downloads a release from GitHub, extracts all binaries, and copies them to the target directory.
 # Uses the gh CLI, which needs to be installed.
