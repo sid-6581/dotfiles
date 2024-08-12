@@ -15,9 +15,9 @@ cd $env.HOME
 pwsh -NoProfile -NonInteractive -ExecutionPolicy ByPass -File $"($env.FILE_PWD)/install-windows-sudo.ps1"
 
 nu-install scoop --sudo-apps [
-  Jetbrains-Mono
-  JetbrainsMono-NF
-  JetbrainsMono-NF-Mono
+  JetBrains-Mono
+  JetBrainsMono-NF
+  JetBrainsMono-NF-Mono
 ]
 
 exit
