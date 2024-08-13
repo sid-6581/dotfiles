@@ -1,29 +1,38 @@
 export def debug [
   message: string
 ] {
-  print --stderr $"(ansi default_dimmed)($message)"
+  log debug $message (ansi default_dimmed)
 }
 
 export def info [
   message: string
 ] {
-  print --stderr $"(ansi blue)($message)"
+  log info $message (ansi blue)
 }
 
 export def warning [
   message: string
 ] {
-  print --stderr $"(ansi yellow)($message)"
+  log warning $message (ansi yellow)
 }
 
 export def error [
   message: string
 ] {
-  print --stderr $"(ansi red)($message)"
+  log error $message (ansi red)
 }
 
 export def critical [
   message: string
 ] {
-  print --stderr $"(ansi red_bold)($message)"
+  log critical $message (ansi red_bold)
+}
+
+def log [
+  level: string
+  message: string
+  ansi: string
+] {
+  let now = date now | format date "%Y-%m-%d %H:%M:%S"
+  print --stderr $"($ansi)($now) | ($message)(ansi reset)"
 }
