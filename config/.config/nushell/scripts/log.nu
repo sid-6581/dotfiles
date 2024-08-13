@@ -4,7 +4,7 @@ export use nu-install/log.nu *
 export def update-file [] {
   let directory = $"($env.HOME)/.local/state/dotfiles"
   if not ($directory | path exists) {
-    mkdir directory
+    mkdir $directory
   }
   [$directory $"updates-(date now | format date "%Y-%m-%d").log"] | path join
 }
