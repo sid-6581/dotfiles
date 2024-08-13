@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use std log
+use config/.config/nushell/scripts/nu-install/log.nu
 
 log info "Updating Linux"
 

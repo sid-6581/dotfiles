@@ -4,8 +4,8 @@ if $nu.os-info.name != "linux" {
   error make { msg: "This script must be run from Linux only" }
 }
 
-use std log
 use config/.config/nushell/scripts/nu-install *
+use config/.config/nushell/scripts/nu-install/log.nu
 
 $env.PATH = (
   $env.PATH

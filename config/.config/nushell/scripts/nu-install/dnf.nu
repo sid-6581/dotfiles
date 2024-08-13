@@ -1,4 +1,4 @@
-use std log
+use log.nu
 
 # Installs packages using dnf.
 export def "nu-install dnf" [

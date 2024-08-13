@@ -7,7 +7,7 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
-use std log
+use config/.config/nushell/scripts/nu-install/log.nu
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME

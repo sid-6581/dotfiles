@@ -1,4 +1,4 @@
-use std log
+use log.nu
 
 # Installs buckets and apps using scoop (Windows only).
 export def "nu-install scoop" [

@@ -7,8 +7,8 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
-use std log
 use config/.config/nushell/scripts/nu-install *
+use config/.config/nushell/scripts/nu-install/log.nu
 use config/.config/nushell/scripts/windows.nu
 
 $env.PATH = (

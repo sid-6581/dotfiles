@@ -1,4 +1,4 @@
-use std log
+use log.nu
 use history.nu *
 
 # Clones or updates a git repository into a destination location.

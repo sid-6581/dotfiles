@@ -1,4 +1,4 @@
-use std log
+use log.nu
 
 # Installs binaries using cargo.
 export def "nu-install cargo" [

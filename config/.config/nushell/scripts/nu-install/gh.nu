@@ -1,4 +1,4 @@
-use std log
+use log.nu
 use history.nu *
 use utils/extract.nu
 use utils/get-executables.nu

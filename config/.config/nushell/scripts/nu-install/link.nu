@@ -1,4 +1,4 @@
-use std log
+use log.nu
 use history.nu *
 
 # Creates a symbolic link to a file or all files in a directory, recursively.

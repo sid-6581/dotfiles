@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
-use std log
 use config/.config/nushell/scripts/nu-install *
+use config/.config/nushell/scripts/nu-install/log.nu
 
 # This script must be started from Windows as an admin.
 if $nu.os-info.name != "windows" or not (is-admin) {
