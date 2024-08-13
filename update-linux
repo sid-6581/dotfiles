@@ -1,14 +1,26 @@
 #!/usr/bin/env nu
 
-use config/.config/nushell/scripts/nu-install/log.nu
+use config/.config/nushell/scripts/log.nu
+
+let log_file = log update-file
 
 log info "Updating Linux"
 
-^sudo dnf -y -q update --refresh
-^rustup update | complete
-^cargo install-update -a -q
-^tldr -u -q
+do {
+  log info "Updating dnf" --file $log_file
+  ^sudo dnf -y update --refresh
 
-^nvim --headless "+Lazy! sync" +qa
-^nvim --headless "+MasonToolsUpdateSync" +qa
-^nvim --headless "+TSUpdateSync" +qa
+  log info "Updating rustup" --file $log_file
+  ^rustup update
+
+  log info "Updating cargo" --file $log_file
+  ^cargo install-update -a
+
+  log info "Updating tldr" --file $log_file
+  ^tldr -u
+
+  log info "Updating nvim" --file $log_file
+  ^nvim --headless "+Lazy! sync" "+qa"
+  ^nvim --headless "+MasonToolsUpdateSync" "+qa"
+  ^nvim --headless "+TSUpdateSync" "+qa"
+} o+e>> $log_file

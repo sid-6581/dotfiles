@@ -7,6 +7,10 @@ if $nu.os-info.name != "linux" {
 use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/nu-install/log.nu
 
+$env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
+$env.XDG_DATA_HOME = $"($env.HOME)/.local/share"
+$env.XDG_STATE_HOME = $"($env.HOME)/.local/state"
+
 $env.PATH = (
   $env.PATH
   | prepend $"($env.HOME)/.cargo/bin"

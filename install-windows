@@ -18,7 +18,6 @@ $env.PATH = (
   | append $"($env.HOME)/.local/share/pnpm"
   | append $"($env.HOME)/.local/share/bob/nvim-bin"
   | append $"($env.HOME)/go/bin"
-  | append "/mnt/c/Program Files/Oracle/VirtualBox"
   | uniq
 )
 

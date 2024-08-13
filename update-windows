@@ -7,26 +7,36 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
-use config/.config/nushell/scripts/nu-install/log.nu
+use config/.config/nushell/scripts/log.nu
+
+let log_file = log update-file
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
 log info "Updating Windows"
 
-let scoop_filter = {|it| $it !~ "pdat|Latest|shiny"}
+do {
+  log info "Updating scoop" --file $log_file
+  ^scoop update
+  ^scoop update -s '*'
+  ^scoop cleanup '*'
+  ^scoop cache rm '*'
 
-^scoop update -q | filter $scoop_filter
-^scoop update -q -s '*'| filter $scoop_filter
-^scoop cleanup '*' | filter $scoop_filter
-^scoop cache rm '*' | filter $scoop_filter
-^rustup update | complete
-^cargo install-update -a -q
-^tldr -u -q
+  log info "Updating rustup" --file $log_file
+  ^rustup update
 
-^nvim --headless "+Lazy! sync" +qa
-^nvim --headless "+MasonToolsUpdateSync" +qa
-^nvim --headless "+TSUpdateSync" +qa
+  log info "Updating cargo" --file $log_file
+  ^cargo install-update -a
+
+  log info "Updating tldr" --file $log_file
+  ^tldr -u
+
+  log info "Updating nvim" --file $log_file
+  ^nvim --headless "+Lazy! sync" "+qa"
+  ^nvim --headless "+MasonToolsUpdateSync" "+qa"
+  ^nvim --headless "+TSUpdateSync" "+qa"
+} o+e>> $log_file
 
 ^sudo nu $"($env.FILE_PWD)/update-windows-sudo.nu"
 
