@@ -11,13 +11,18 @@ use utils/get-executables.nu
 # repo          The repo to download from (OWNER/REPO)
 # pattern       The glob pattern to match (must match a single asset)
 # tag?          The tag to download, defaults to "Latest"
-# process?      Closure to process extracted files and return a list of executables
+# process?      Closure to process extracted files in the supplied path and return a list of executables
 # executable?   Treat the downloaded asset as an executable and rename to this argument (overrides process)
 export def "nu-install gh" [
   repos: list<any>            # The repos to install
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
   let destination = $destination | default $"($env.HOME)/.local/bin/"
+
+  if not (gh auth status o+e>| str contains "Logged in to") {
+    log error "Not logged into GitHub CLI, logging in"
+    ^gh auth login
+  }
 
   # TODO: Do gh version checks in parallel.
 

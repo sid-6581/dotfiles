@@ -12,7 +12,8 @@ if ! has gh; then
 fi
 
 # Must be authenticated with GitHub
-if ! gh auth token &>/dev/null; then
+if ! gh auth status 2>&1 | grep -q "Logged in to"; then
+  printf "\033[0;31mNot logged into GitHub CLI, logging in\n"
   gh auth login
 fi
 
