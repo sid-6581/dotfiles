@@ -12,24 +12,24 @@ source config/.config/nushell/env.nu
 use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/nu-install/log.nu
 use config/.config/nushell/scripts/windows.nu
+use setup/setup-git.nu
 
-let git_username = $env.GIT_AUTHOR_NAME? | default $env.GIT_COMMITTER_NAME? | if $in != null { $in } else { input "Please enter your git username: " }
-let git_email = $env.GIT_AUTHOR_EMAIL? | default $env.GIT_COMMITTER_EMAIL? | if $in != null { $in } else { input "Please enter your git email: " }
+setup-git author
 
 windows set-user-env {
-  HOME:                    $"($env.HOME)"
+  HOME:                    $env.HOME
   WSLHOME:                 ($env.FILE_PWD | path dirname)
-  XDG_CONFIG_HOME:         $"($env.HOME)\\.config"
-  XDG_DATA_HOME:           $"($env.HOME)\\.local\\share"
-  XDG_STATE_HOME:          $"($env.HOME)\\.local\\state"
+  XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME
+  XDG_DATA_HOME:           $env.XDG_DATA_HOME
+  XDG_STATE_HOME:          $env.XDG_STATE_HOME
   NODE_UNC_HOST_ALLOWLIST: "wsl.localhost"
   EDITOR:                  "neovide"
-  RIPGREP_CONFIG_PATH:     $"($env.HOME)\\.config\\ripgrep\\config"
-  YAZI_FILE_ONE:           $"($env.HOME)\\scoop\\apps\\git\\current\\usr\\bin\\file.exe"
-  GIT_AUTHOR_NAME:         $git_username
-  GIT_AUTHOR_EMAIL:        $git_email
-  GIT_COMMITTER_NAME:      $git_username
-  GIT_COMMITTER_EMAIL:     $git_email
+  RIPGREP_CONFIG_PATH:     $env.RIPGREP_CONFIG_PATH
+  YAZI_FILE_ONE:           $"($env.HOME)/scoop/apps/git/current/usr/bin/file.exe"
+  GIT_AUTHOR_NAME:         $env.GIT_AUTHOR_NAME
+  GIT_AUTHOR_EMAIL:        $env.GIT_AUTHOR_EMAIL
+  GIT_COMMITTER_NAME:      $env.GIT_COMMITTER_NAME
+  GIT_COMMITTER_EMAIL:     $env.GIT_COMMITTER_EMAIL
 }
 
 # Link from the current directory so we can use relative paths.
