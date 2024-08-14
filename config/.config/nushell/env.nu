@@ -31,12 +31,11 @@ $env.PATH = (
 )
 
 # Generate autoload.nu file that will be sourced in config.nu. Done in a separate scope to prevent leaking variables.
-# Also sources files in scopes for the same reason.
 if true {
   let autoload_path = $"($nu.default-config-dir)/autoload.nu"
 
   let autoload_contents = (
-    ((do -i { ls $"($nu.default-config-dir)/autoload-source" | sort | each { $"if true { source ($in.name) }" } }) | default [])
+    ((do -i { ls $"($nu.default-config-dir)/autoload-source" | sort | each { $"source ($in.name)" } }) | default [])
     ++
     ((do -i { ls $"($nu.default-config-dir)/autoload-modules" | sort | each { $"use ($in.name) *" } }) | default [])
   ) | str join "\n"

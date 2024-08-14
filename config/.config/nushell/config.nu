@@ -8,7 +8,6 @@ $env.config.table.trim.methodology = truncating
 $env.config.table.trim.truncating_suffix = …
 $env.config.history.sync_on_enter = true
 $env.config.history.file_format = sqlite
-$env.config.color_config = (gruvbox-theme)
 $env.config.shell_integration.osc133 = false
 $env.config.highlight_resolved_externals = true
 
