@@ -4,23 +4,10 @@ if $nu.os-info.name != "linux" {
   error make { msg: "This script must be run from Linux only" }
 }
 
+source config/.config/nushell/env.nu
+
 use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/nu-install/log.nu
-
-$env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
-$env.XDG_DATA_HOME = $"($env.HOME)/.local/share"
-$env.XDG_STATE_HOME = $"($env.HOME)/.local/state"
-
-$env.PATH = (
-  $env.PATH
-  | prepend $"($env.HOME)/.cargo/bin"
-  | prepend $"($env.HOME)/.local/bin"
-  | append $"($env.HOME)/.local/share/pnpm"
-  | append $"($env.HOME)/.local/share/bob/nvim-bin"
-  | append $"($env.HOME)/go/bin"
-  | append "/mnt/c/Program Files/Oracle/VirtualBox"
-  | uniq
-)
 
 let git_username = $env.GIT_AUTHOR_NAME? | default $env.GIT_COMMITTER_NAME? | if $in != null { $in } else { input "Please enter your git username: " }
 let git_email = $env.GIT_AUTHOR_EMAIL? | default $env.GIT_COMMITTER_EMAIL? | if $in != null { $in } else { input "Please enter your git email: " }
