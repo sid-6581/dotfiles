@@ -32,12 +32,21 @@ $env.PATH = (
 
 # Generate autoload.nu file that will be sourced in config.nu. Done in a separate scope to prevent leaking variables.
 if true {
+  # Get only valid files, ignore broken symlinks.
+  def get-files [path: string] {
+    do -i {
+      ls -al $path
+      | filter { $in.type == file or $in.type == symlink and ($in.target | path exists) }
+      | get name
+      | sort
+    } | default []
+  }
+
   let autoload_path = $"($nu.default-config-dir)/autoload.nu"
 
   let autoload_contents = (
-    ((do -i { ls $"($nu.default-config-dir)/autoload-source" | sort | each { $"source ($in.name)" } }) | default [])
-    ++
-    ((do -i { ls $"($nu.default-config-dir)/autoload-modules" | sort | each { $"use ($in.name) *" } }) | default [])
+    (get-files $"($nu.default-config-dir)/autoload-source" | each { $"source ($in)" }) ++
+    (get-files $"($nu.default-config-dir)/autoload-modules" | each { $"use ($in) *" })
   ) | str join "\n"
 
   if $autoload_contents != "" and (do -i { open -r $autoload_path }) != $autoload_contents {

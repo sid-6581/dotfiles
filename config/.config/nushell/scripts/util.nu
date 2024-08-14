@@ -1,5 +1,4 @@
-# Show a list of broken symlinks in the current directory and all child directories,
-# and delete the ones the user selects.
+# Show a list of broken symlinks in the current directory and all child directories, and delete the ones the user selects.
 export def delete-broken-symlinks [] {
   let files = ls -alD **/*
   | where type == symlink
