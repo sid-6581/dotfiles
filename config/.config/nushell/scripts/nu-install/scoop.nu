@@ -40,7 +40,7 @@ export def "nu-install scoop" [
     }
 
     log info $"Adding scoop sudo apps: ($missing_sudo_apps)"
-    $missing_sudo_apps | each { ^sudo scoop install -g -s $in }
+    $missing_sudo_apps | each { ^sudo.cmd $"($env.HOME)/scoop/shims/scoop.cmd" install -g -s $in }
   }
 }
 
