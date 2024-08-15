@@ -24,6 +24,7 @@ $env.PATH = (
   | append $"($env.HOME)/.local/share/pnpm"
   | append $"($env.HOME)/.local/share/bob/nvim-bin"
   | append $"($env.HOME)/go/bin"
+  | append (if $nu.os-info.name != "linux" { $"($env.HOME)/scoop/shims" } else { null })
   | filter {|p| $p !~ "(?i)^/mnt/./" } # Strip Windows WSL paths
   | append (if $nu.os-info.name == "linux" { "/mnt/c/Program Files/Oracle/VirtualBox" } else { null })
   | uniq
