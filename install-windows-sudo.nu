@@ -6,7 +6,7 @@ if $nu.os-info.name != "windows" or not (is-admin) {
   exit
 }
 
-source config/.config/nushell/env.nu
+source config/.config/nushell/scripts/globals.nu
 
 use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/nu-install/log.nu
