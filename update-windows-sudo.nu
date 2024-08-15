@@ -6,6 +6,8 @@ if $nu.os-info.name != "windows" or not (is-admin) {
   exit
 }
 
+source config/.config/nushell/scripts/globals.nu
+
 use config/.config/nushell/scripts/log.nu
 
 let log_file = log update-file
