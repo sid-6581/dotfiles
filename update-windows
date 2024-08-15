@@ -60,6 +60,6 @@ do {
   }
 } o+e>> $log_file
 
-^sudo nu $"($env.FILE_PWD)/update-windows-sudo.nu"
+^sudo.cmd nu $"($env.FILE_PWD)/update-windows-sudo.nu"
 
 exit
