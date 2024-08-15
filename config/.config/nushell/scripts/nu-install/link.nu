@@ -63,7 +63,12 @@ def link [
       mkdir ($link | path dirname)
     }
 
-    ^ln -sfT $target $link
+    if $nu.os-info.name == "linux" {
+      ^ln -sfT $target $link
+    } else {
+      cd $env.HOME
+      ^mklink $link $target | complete
+    }
   }
 
   nu-install history upsert [link $link] {
