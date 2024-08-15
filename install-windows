@@ -105,7 +105,7 @@ nu-install cargo [
   x12pp
 ]
 
-^sudo nu $"($env.FILE_PWD)/install-windows-sudo.nu"
+^sudo.cmd nu $"($env.FILE_PWD)/install-windows-sudo.nu"
 
 nu-install gh [
   { repo: "nushell/nushell", pattern: "*x86_64-pc-windows-msvc.zip" } # nushell - Shell
