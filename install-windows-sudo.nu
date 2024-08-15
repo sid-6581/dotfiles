@@ -14,7 +14,11 @@ use config/.config/nushell/scripts/nu-install/log.nu
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
-pwsh -NoProfile -NonInteractive -ExecutionPolicy ByPass -File $"($env.FILE_PWD)/install-windows-sudo.ps1"
+if (which pwsh | is-empty) {
+  log warning "pwsh not installed, skipping sudo PowerShell script"
+} else {
+  pwsh -NoProfile -NonInteractive -ExecutionPolicy ByPass -File $"($env.FILE_PWD)/install-windows-sudo.ps1"
+}
 
 nu-install scoop --sudo-apps [
   JetBrains-Mono

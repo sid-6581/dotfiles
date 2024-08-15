@@ -14,8 +14,12 @@ let log_file = log update-file
 cd $env.HOME
 
 do {
-  log info "Updating scoop (sudo)" --file $log_file
-  scoop update -g -s '*'
+  if (which scoop | is-empty) {
+    log warning "scoop not installed, skipping update" --file $log_file
+  } else {
+    log info "Updating scoop (sudo)" --file $log_file
+    ^scoop update -g -s '*'
+  }
 } o+e>> $log_file
 
 exit

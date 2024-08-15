@@ -18,14 +18,14 @@ export def "nu-install gh" [
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
   if (which gh | is-empty) {
-    log error "gh not found, skipping nu-install gh"
+    log warning "gh not found, skipping nu-install gh"
     return
   }
 
   let destination = $destination | default $"($env.HOME)/.local/bin/"
 
   if not (gh auth status o+e>| str contains "Logged in to") {
-    log error "Not logged into GitHub CLI, logging in"
+    log warning "Not logged into GitHub CLI, logging in"
     ^gh auth login
   }
 

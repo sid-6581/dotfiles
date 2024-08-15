@@ -6,7 +6,7 @@ export def "nu-install git" [
   repositories: list<record<repo: string, dir: string>> # Repositories to clone
 ] {
   if (which git | is-empty) {
-    log error "git not found, skipping nu-install git"
+    log warning "git not found, skipping nu-install git"
     return
   }
 

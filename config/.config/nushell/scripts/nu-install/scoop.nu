@@ -12,7 +12,7 @@ export def "nu-install scoop" [
   install-scoop
 
   if (which scoop | is-empty) {
-    log error "scoop not found, skipping nu-install scoop"
+    log warning "scoop not found, skipping nu-install scoop"
     return
   }
 

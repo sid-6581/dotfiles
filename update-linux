@@ -12,17 +12,33 @@ do {
   log info "Updating dnf" --file $log_file
   ^sudo dnf -y update --refresh
 
-  log info "Updating rustup" --file $log_file
-  ^rustup update
+  if (which rustup | is-empty) {
+    log warning "rustup not installed, skipping update" --file $log_file
+  } else {
+    log info "Updating rustup" --file $log_file
+    ^rustup update
+  }
 
-  log info "Updating cargo" --file $log_file
-  ^cargo install-update -a
+  if (which cargo | is-empty) {
+    log warning "cargo not installed, skipping update" --file $log_file
+  } else {
+    log info "Updating cargo" --file $log_file
+    ^cargo install-update -a
+  }
 
-  log info "Updating tldr" --file $log_file
-  ^tldr -u
+  if (which tldr | is-empty) {
+    log warning "tldr not installed, skipping update" --file $log_file
+  } else {
+    log info "Updating tldr" --file $log_file
+    ^tldr -u
+  }
 
-  log info "Updating nvim" --file $log_file
-  ^nvim --headless "+Lazy! sync" "+qa"
-  ^nvim --headless "+MasonToolsUpdateSync" "+qa"
-  ^nvim --headless "+TSUpdateSync" "+qa"
+  if (which nvim | is-empty) {
+    log warning "nvim not installed, skipping update" --file $log_file
+  } else {
+    log info "Updating nvim" --file $log_file
+    ^nvim --headless "+Lazy! sync" "+qa"
+    ^nvim --headless "+MasonToolsUpdateSync" "+qa"
+    ^nvim --headless "+TSUpdateSync" "+qa"
+  }
 } o+e>> $log_file

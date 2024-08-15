@@ -5,7 +5,7 @@ export def "nu-install dnf" [
   packages: list<string> # Packages to install
 ] {
   if (which dnf | is-empty) {
-    log error "dnf not found, skipping nu-install dnf"
+    log warning "dnf not found, skipping nu-install dnf"
     return
   }
 

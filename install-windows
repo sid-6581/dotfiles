@@ -90,7 +90,7 @@ nu-install scoop --buckets [
 
 if (which rustup | is-empty) {
   if (^winget list | find "VisualStudio.202" | is-empty) {
-    log error "Visual Studio not installed, skipping installation of rustup"
+    log warning "Visual Studio not installed, skipping installation of rustup"
   } else {
     log info "Installing rustup"
     ^winget install -h -e --id Rustlang.Rustup

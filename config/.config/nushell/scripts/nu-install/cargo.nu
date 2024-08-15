@@ -5,7 +5,7 @@ export def "nu-install cargo" [
   binaries: list<string> # Binaries to install
 ] {
   if (which cargo | is-empty) {
-    log error "cargo not found, skipping nu-install cargo"
+    log warning "cargo not found, skipping nu-install cargo"
     return
   }
 
