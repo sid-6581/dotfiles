@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
+source config/.config/nushell/env.nu
+
 use config/.config/nushell/scripts/log.nu
 
 let log_file = log update-file
