@@ -8,6 +8,10 @@ def gspr [
   branch: string  # Branch name
   message: string # Commit messages
 ] {
+  if (git_current_branch) != (git_main_branch) {
+    error make { msg: "Must be in main branch" }
+  }
+
   if ("./.github/workflows/pre-commit.yml" | path exists) {
     ^pre-commit run --all-files
   }
@@ -21,4 +25,24 @@ def gspr [
   ^git switch (git_main_branch)
   ^git pull
   ^git branch -D $branch
+}
+
+# Search for a GitHub repo and clone it.
+def gh-clone [
+  ...query: string
+] {
+  let results = do -c { ^gh search repos ...$query --json fullName,description }
+
+  let repo = $results
+  | from json
+  | select fullName description
+  | insert name { $"($in.fullName | fill -w 50) ($in.description)" }
+  | input list --fuzzy -d name
+  | get -i fullName
+
+  if $repo == null {
+    return
+  }
+
+  ^gh repo clone $repo
 }
