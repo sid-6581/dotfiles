@@ -28,7 +28,7 @@ def gspr [
 }
 
 # Search for a GitHub repo and clone it.
-def gh-clone [
+def --wrapped gh-clone [
   ...query: string
 ] {
   let results = do -c { ^gh search repos ...$query --json fullName,description }
@@ -45,4 +45,24 @@ def gh-clone [
   }
 
   ^gh repo clone $repo
+}
+
+# Search for a GitHub repo and fork it.
+def --wrapped gh-fork [
+  ...query: string
+] {
+  let results = do -c { ^gh search repos ...$query --json fullName,description }
+
+  let repo = $results
+  | from json
+  | select fullName description
+  | insert name { $"($in.fullName | fill -w 50) ($in.description)" }
+  | input list --fuzzy -d name
+  | get -i fullName
+
+  if $repo == null {
+    return
+  }
+
+  ^gh repo fork $repo
 }
