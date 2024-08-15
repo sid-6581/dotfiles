@@ -44,6 +44,10 @@ def --wrapped gh-clone [
     return
   }
 
+  if ($repo | is-empty) {
+    error make { msg: "No repos found" }
+  }
+
   ^gh repo clone $repo
 }
 
@@ -62,6 +66,10 @@ def --wrapped gh-fork [
 
   if $repo == null {
     return
+  }
+
+  if ($repo | is-empty) {
+    error make { msg: "No repos found" }
   }
 
   ^gh repo fork $repo
