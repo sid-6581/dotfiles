@@ -4,6 +4,11 @@ use log.nu
 export def "nu-install cargo" [
   binaries: list<string> # Binaries to install
 ] {
+  if (which cargo | is-empty) {
+    log error "cargo not found, skipping nu-install cargo"
+    return
+  }
+
   let installed_binaries = (
     ^cargo install --list
     | lines

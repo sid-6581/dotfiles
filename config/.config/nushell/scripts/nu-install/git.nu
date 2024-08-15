@@ -5,6 +5,11 @@ use history.nu *
 export def "nu-install git" [
   repositories: list<record<repo: string, dir: string>> # Repositories to clone
 ] {
+  if (which git | is-empty) {
+    log error "git not found, skipping nu-install git"
+    return
+  }
+
   for $r in $repositories {
     if not ($r.dir | path exists) {
       log info $"Cloning ($r.repo) to ($r.dir)"

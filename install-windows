@@ -89,9 +89,13 @@ nu-install scoop --buckets [
 ]
 
 if (which rustup | is-empty) {
-  log info "Installing rustup"
-  ^winget install -h -e --id Rustlang.Rustup
-  ^rustup -q toolchain install nightly
+  if (^winget list | find "VisualStudio.202" | is-empty) {
+    log error "Visual Studio not installed, skipping installation of rustup"
+  } else {
+    log info "Installing rustup"
+    ^winget install -h -e --id Rustlang.Rustup
+    ^rustup -q toolchain install nightly
+  }
 }
 
 nu-install cargo [

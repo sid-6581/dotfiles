@@ -1,6 +1,6 @@
 use log.nu
 
-# Installs buckets and apps using scoop (Windows only).
+# Installs buckets and apps using scoop (Windows only). Will install scoop if it's not already installed.
 export def "nu-install scoop" [
   --buckets (-b): list<string>   # Buckets to install
   --apps (-a): list<string>      # Apps to install
@@ -10,6 +10,11 @@ export def "nu-install scoop" [
   cd $env.HOME
 
   install-scoop
+
+  if (which scoop | is-empty) {
+    log error "scoop not found, skipping nu-install scoop"
+    return
+  }
 
   let installed = ^scoop export | from json
 
