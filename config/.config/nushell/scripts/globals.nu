@@ -30,6 +30,7 @@ if true {
     $paths
     | compact -e
     | filter {|p| $p !~ "(?i)^/mnt/./" }
+    | path expand --no-symlink
     | uniq
   )
 
