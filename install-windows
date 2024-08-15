@@ -10,7 +10,7 @@ if $nu.os-info.name == "linux" {
 source config/.config/nushell/scripts/globals.nu
 
 use config/.config/nushell/scripts/nu-install *
-use config/.config/nushell/scripts/nu-install/log.nu
+use config/.config/nushell/scripts/log.nu
 use config/.config/nushell/scripts/windows.nu
 use setup/setup-git.nu
 
@@ -64,6 +64,7 @@ nu-install scoop --buckets [
   fd
   fzf
   gh
+  git
   jq
   just
   lazygit

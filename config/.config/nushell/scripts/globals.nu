@@ -14,16 +14,21 @@ if true {
   let is_list = $env.PATH | describe | str starts-with list
   mut paths = if $is_list { $env.PATH } else { $env.PATH | split row (char esep) }
 
+  $paths = [
+    $"($env.HOME)/.local/bin"
+    $"($env.HOME)/.cargo/bin"
+    $"($env.HOME)/.local/share/bob/nvim-bin"
+    (if $nu.os-info.name != "linux" { $"($env.HOME)/scoop/shims" } else { null })
+    $"($env.HOME)/.local/share/pnpm"
+    $"($env.HOME)/go/bin"
+    (if $nu.os-info.name == "linux" { "/mnt/c/Program Files/Oracle/VirtualBox" } else { null })
+    ...$paths
+  ]
+
   $paths = (
     $paths
-    | prepend $"($env.HOME)/.cargo/bin"
-    | prepend $"($env.HOME)/.local/bin"
-    | append $"($env.HOME)/.local/share/pnpm"
-    | append $"($env.HOME)/.local/share/bob/nvim-bin"
-    | append $"($env.HOME)/go/bin"
-    | append (if $nu.os-info.name != "linux" { $"($env.HOME)/scoop/shims" } else { null })
+    | compact
     | filter {|p| $p !~ "(?i)^/mnt/./" } # Strip Windows WSL paths
-    | append (if $nu.os-info.name == "linux" { "/mnt/c/Program Files/Oracle/VirtualBox" } else { null })
     | uniq
   )
 

@@ -9,7 +9,7 @@ if $nu.os-info.name != "windows" or not (is-admin) {
 source config/.config/nushell/scripts/globals.nu
 
 use config/.config/nushell/scripts/nu-install *
-use config/.config/nushell/scripts/nu-install/log.nu
+use config/.config/nushell/scripts/log.nu
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
