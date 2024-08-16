@@ -1,5 +1,5 @@
 $env.config.hooks.pre_prompt = [{
-  if not (which direnv | is-empty) {
+  if (which direnv | is-not-empty) {
     direnv export json | from json | default {} | load-env
   }
 
@@ -15,4 +15,10 @@ $env.config.hooks.pre_prompt = [{
 $env.config.hooks.pre_execution = [{
   print ""
   $env.PROMPT_RENDERED = true
+}]
+
+$env.config.hooks.env_change.PWD = [{|_, dir|
+  if (which zoxide | is-not-empty) {
+    zoxide add -- $dir
+  }
 }]

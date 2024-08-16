@@ -19,3 +19,16 @@ install:
 
 update-pip:
   pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U
+
+# Install pre-commit hooks
+install-precommit:
+    pip3 install -q pre-commit
+    pre-commit install
+
+# Run pre-commit on all files
+run-precommit:
+    pre-commit run --all-files
+
+# Update pre-commit hooks
+update-precommit:
+    pre-commit autoupdate
