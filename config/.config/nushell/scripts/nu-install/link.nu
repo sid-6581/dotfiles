@@ -7,26 +7,30 @@ export def "nu-install link" [
 ] {
   for $l in $links {
     let target_type = $l.target | path type
+    let target = $l.target | path expand --no-symlink
+    let link = $l.link | path expand --no-symlink
 
-    if ($target_type == dir) and (not ($l.link | path exists)) {
-      mkdir $l.link
+    if ($target_type == dir) and (not ($link | path exists)) {
+      mkdir $link
     }
 
-    if ($target_type == dir) != (($l.link | path type) == dir) {
-      error make { msg: $"Both ($l.target) and ($l.link) must be either a directory or a file" }
+    if ($target_type == dir) != (($link | path type) == dir) {
+      error make { msg: $"Both ($target) and ($link) must be either a directory or a file" }
     }
 
     if $target_type == dir {
-      let target_files = glob --no-dir $"($l.target)/**"
-      let target = $l.target | path expand
+      let target_files = do {
+        cd $target
+        glob --no-dir **
+      }
 
       for $target_file in $target_files {
-        let target_file = $target_file | path expand
+        let target_file = $target_file
         let target_relative = $target_file | str substring (($target | str length) + 1)..
-        link $target_file ([$l.link $target_relative] | path join)
+        link $target_file ([$link $target_relative] | path join)
       }
     } else {
-      link $l.target $l.link
+      link $target $link
     }
   }
 }
@@ -67,7 +71,7 @@ def link [
       ^ln -sfT $target $link
     } else {
       cd $env.HOME
-      ^mklink $link $target | complete
+      ^mklink $link $target
     }
   }
 
