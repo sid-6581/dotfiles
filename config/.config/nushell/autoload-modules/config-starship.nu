@@ -9,20 +9,28 @@ export-env {
     STARSHIP_SESSION_KEY: (random chars -l 16)
 
     PROMPT_MULTILINE_INDICATOR: (
-      ^starship prompt --continuation
+      if (which starship | is-not-empty) {
+        ^starship prompt --continuation
+      } else {
+        "::: "
+      }
     )
 
     PROMPT_INDICATOR: ""
 
     PROMPT_COMMAND: {||
-      let prompt = (
-        ^starship prompt
-        --cmd-duration $env.CMD_DURATION_MS
-        $"--status=($env.LAST_EXIT_CODE)"
-        --terminal-width (term size).columns
-      ) | lines
-      print $prompt.0?
-      $prompt.1?
+      if (which starship | is-not-empty) {
+        let prompt = (
+          ^starship prompt
+          --cmd-duration $env.CMD_DURATION_MS
+          $"--status=($env.LAST_EXIT_CODE)"
+          --terminal-width (term size).columns
+        ) | lines
+        print $prompt.0?
+        $prompt.1?
+      } else {
+        ""
+      }
     }
 
     config: ($env.config? | default {} | merge {
@@ -30,13 +38,17 @@ export-env {
     })
 
     PROMPT_COMMAND_RIGHT: {||
-      (
-        ^starship prompt
-        --right
-        --cmd-duration $env.CMD_DURATION_MS
-        $"--status=($env.LAST_EXIT_CODE)"
-        --terminal-width (term size).columns
-      )
+      if (which starship | is-not-empty) {
+        (
+          ^starship prompt
+          --right
+          --cmd-duration $env.CMD_DURATION_MS
+          $"--status=($env.LAST_EXIT_CODE)"
+          --terminal-width (term size).columns
+        )
+      } else {
+        ""
+      }
     }
   }
 }
