@@ -27,7 +27,7 @@
 [init]
   defaultBranch = main
 [credential]
-  helper = store
+  helper = manager
 [merge]
   conflictStyle = zdiff3
 [rebase]
