@@ -1,4 +1,4 @@
-alias lsd = ^lsd --color=always --icon=always
+alias lsd = ^lsd --color=always --icon=always --group-dirs=first --git
 alias l = lsd -la
 alias lz = lsd -laZ
 alias lt = lsd -la --tree
