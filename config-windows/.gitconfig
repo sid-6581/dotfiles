@@ -20,14 +20,12 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
-[credential "helperselector"]
-  selected = store
 [safe]
   directory = *
 [init]
   defaultBranch = main
 [credential]
-  helper = manager
+  helper = store
 [merge]
   conflictStyle = zdiff3
 [rebase]

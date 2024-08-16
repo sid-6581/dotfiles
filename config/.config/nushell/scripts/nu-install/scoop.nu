@@ -50,5 +50,6 @@ def install-scoop [] {
     ^powershell -NoProfile -NonInteractive -ExecutionPolicy ByPass -Command "Invoke-WebRequest -UseBasicParsing get.scoop.sh | Invoke-Expression"
     ^scoop install -s git
     ^scoop config update_nightly true
+    do -i { ^git config --system --unset credential.helper }
   }
 }
