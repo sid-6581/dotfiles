@@ -71,6 +71,7 @@ def link [
       ^ln -sfT $target $link
     } else {
       cd $env.HOME
+      rm -f $link
       ^mklink $link $target
     }
   }
