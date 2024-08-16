@@ -21,8 +21,8 @@ config.custom_block_glyphs = false
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" })
 config.font_size = 9.5
 config.command_palette_font_size = 12
-config.window_background_opacity = 0
-config.win32_system_backdrop = "Mica"
+-- config.window_background_opacity = 0
+-- config.win32_system_backdrop = "Mica"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 
 config.window_frame = {
