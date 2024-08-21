@@ -21,10 +21,10 @@ export def --env author [] {
   mkdir $"($nu.default-config-dir)/autoload-source"
 
   let contents = $"
-  $env.GIT_AUTHOR_NAME = "($env.GIT_AUTHOR_NAME)"
-  $env.GIT_AUTHOR_EMAIL = "($env.GIT_AUTHOR_EMAIL)"
-  $env.GIT_COMMITTER_NAME = "($env.GIT_COMMITTER_NAME)"
-  $env.GIT_COMMITTER_EMAIL = "($env.GIT_COMMITTER_EMAIL)"
+  $env.GIT_AUTHOR_NAME = \"($env.GIT_AUTHOR_NAME)\"
+  $env.GIT_AUTHOR_EMAIL = \"($env.GIT_AUTHOR_EMAIL)\"
+  $env.GIT_COMMITTER_NAME = \"($env.GIT_COMMITTER_NAME)\"
+  $env.GIT_COMMITTER_EMAIL = \"($env.GIT_COMMITTER_EMAIL)\"
   "
 
   if (do -i { open -r $path }) != $contents {
