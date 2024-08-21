@@ -1,3 +1,5 @@
+use ../autoload-modules/config-git-aliases.nu *
+
 # Git simple PR:
 #
 # - Runs pre-commit on all files, if needed.
