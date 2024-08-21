@@ -7,7 +7,7 @@ $env.config.hooks.pre_prompt = [{
     print ""
   }
 
-  let git_root = git rev-parse --show-toplevel | complete | get stdout
+  let git_root = git rev-parse --show-toplevel | complete | get stdout | str trim
   let precommit_config = [$git_root ".pre-commit-config.yaml"] | path join
   let precommit_hook = [$git_root ".git" "hooks" "pre-commit"] | path join
 
