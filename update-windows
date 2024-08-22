@@ -53,6 +53,7 @@ if (which nvim | is-empty) {
 } else {
   log info "Updating nvim"
   ^nvim --headless "+Lazy! sync" "+qa"
+  ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"
   ^nvim --headless "+TSUpdateSync" "+qa"
 }
