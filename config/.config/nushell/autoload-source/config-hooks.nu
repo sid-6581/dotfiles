@@ -21,8 +21,9 @@ $env.config.hooks.pre_execution = [{
   $env.PROMPT_RENDERED = true
 }]
 
-$env.config.hooks.env_change.PWD = [{|_, dir|
-  if (which zoxide | is-not-empty) {
-    zoxide add -- $dir
+$env.config.hooks.env_change.PWD = [
+  {
+    condition: {|before, after| which zoxide | is-not-empty }
+    code: {|before, after| zoxide add -- $after }
   }
-}]
+]

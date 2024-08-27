@@ -12,3 +12,4 @@ alias tree = broot -c :pt
 alias sudome = sudo --preserve-env=HOME
 alias mc = ^mc --nosubshell
 alias n = nvim
+alias activate = overlay use .venv/bin/activate.nu
