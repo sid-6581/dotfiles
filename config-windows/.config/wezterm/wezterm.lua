@@ -11,7 +11,7 @@ config.color_schemes = {
   GruvboxDarkHard = scheme,
 }
 
-config.front_end = "OpenGL"
+config.front_end = "WebGpu"
 config.color_scheme = "GruvboxDarkHard"
 config.default_cursor_style = "SteadyBar"
 config.freetype_load_flags = "DEFAULT"
