@@ -65,6 +65,7 @@ nu-install gh [
   { repo: "jqlang/jq", pattern: "jq-linux-amd64", executable: "jq" } # jq - JSON command line processor
   { repo: "dbrgn/tealdeer", pattern: "tealdeer-linux-x86_64-musl", executable: "tldr" } # tealdeer - Help for command line tools
   { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-unknown-linux-gnu.gz", executable: "rust-analyzer" } # rust-analyzer - LSP for rust
+  { repo: "astral-sh/uv", pattern: "uv-x86_64-unknown-linux-gnu.tar.gz" } # uv - Python package/project manager
   { repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
     let executable = [$path x86_64-unknown-linux-gnu broot] | path join
     ^chmod +x $executable
