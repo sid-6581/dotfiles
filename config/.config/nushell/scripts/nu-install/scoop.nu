@@ -44,6 +44,50 @@ export def "nu-install scoop" [
   }
 }
 
+# Uninstalls buckets and apps using scoop (Windows only). Will install scoop if it's not already installed.
+export def "nu-install scoop uninstall" [
+  --buckets (-b): list<string>   # Buckets to uninstall
+  --apps (-a): list<string>      # Apps to uninstall
+  --sudo-apps (-s): list<string> # Apps to uninstall with sudo
+] {
+  # Set the CD temporarily because scoop doesn't like being called with a PWD inside WSL.
+  cd $env.HOME
+
+  install-scoop
+
+  if (which scoop | is-empty) {
+    log warning "scoop not found, skipping nu-install scoop"
+    return
+  }
+
+  let installed = ^scoop export | from json
+
+  let found_buckets = $buckets | default [] | filter { $in in $installed.buckets.Name }
+
+  if ($found_buckets | is-not-empty) {
+    log info $"Removing scoop buckets: ($found_buckets)"
+    $found_buckets | each { ^scoop bucket rm $in }
+  }
+
+  let found_apps = $apps | default [] | filter { $in in $installed.apps.Name }
+
+  if ($found_apps | is-not-empty) {
+    log info $"Uninstalling scoop apps: ($found_apps)"
+    $found_apps | each { ^scoop uninstall -s $in }
+  }
+
+  let found_sudo_apps = $sudo_apps | default [] | filter { $in in $installed.apps.Name }
+
+  if ($found_sudo_apps | is-not-empty) {
+    if (which sudo | is-empty) {
+      ^scoop install sudo
+    }
+
+    $found_sudo_apps | each { ^sudo.cmd $"($env.HOME)/scoop/shims/scoop.cmd" uninstall -g -s $in }
+    log info $"Uninstalling scoop sudo apps: ($found_sudo_apps)"
+  }
+}
+
 def install-scoop [] {
   if (which scoop | is-empty) {
     log info "Installing scoop"

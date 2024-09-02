@@ -51,6 +51,10 @@ if (which pwsh | is-empty) {
   ^winget install Microsoft.PowerShell
 }
 
+nu-install scoop uninstall --apps [
+  neovim-nightly
+]
+
 nu-install scoop --buckets [
   extras
   versions
@@ -70,7 +74,7 @@ nu-install scoop --buckets [
   lazygit
   llvm
   lsd
-  neovim-nightly,
+  neovim,
   nodejs
   packer
   pnpm
@@ -87,6 +91,10 @@ nu-install scoop --buckets [
   xsv
   yazi
   zoxide
+]
+
+nu-install git [
+  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
 ]
 
 if (which rustup | is-empty) {
@@ -111,10 +119,6 @@ nu-install cargo [
 nu-install gh [
   { repo: "nushell/nushell", pattern: "*x86_64-pc-windows-msvc.zip" } # nushell - Shell
   { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-pc-windows-msvc.zip" } # rust-analyzer - LSP for rust
-]
-
-nu-install git [
-  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
 ]
 
 if not ($"($env.HOME)/.wslconfig" | path exists) {

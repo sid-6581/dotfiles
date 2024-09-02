@@ -22,6 +22,10 @@ nu-install link [
   { target: "/usr/bin/podman", link: $"($env.HOME)/.local/bin/docker" }
 ]
 
+nu-install git [
+  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
+]
+
 nu-install dnf [
   cmake
   gcc-c++
@@ -82,11 +86,7 @@ if (which bob | is-empty) {
   log warning "bob not installed, skipping installation of neovim"
 } else if (^bob list | find used | is-empty) {
   log info "Installing neovim"
-  ^bob use nightly
+  ^bob use stable
 }
-
-nu-install git [
-  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
-]
 
 exit
