@@ -73,7 +73,7 @@ export def "nu-install scoop uninstall" [
 
   if ($found_apps | is-not-empty) {
     log info $"Uninstalling scoop apps: ($found_apps)"
-    $found_apps | each { ^scoop uninstall -s $in }
+    $found_apps | each { ^scoop uninstall $in }
   }
 
   let found_sudo_apps = $sudo_apps | default [] | filter { $in in $installed.apps.Name }
@@ -83,7 +83,7 @@ export def "nu-install scoop uninstall" [
       ^scoop install sudo
     }
 
-    $found_sudo_apps | each { ^sudo.cmd $"($env.HOME)/scoop/shims/scoop.cmd" uninstall -g -s $in }
+    $found_sudo_apps | each { ^sudo.cmd $"($env.HOME)/scoop/shims/scoop.cmd" uninstall -g $in }
     log info $"Uninstalling scoop sudo apps: ($found_sudo_apps)"
   }
 }
