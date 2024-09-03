@@ -262,6 +262,7 @@ nnoremap ya& F&yt&
 sethandler <A-N> a:ide
 sethandler <A-P> a:ide
 sethandler <A-X> a:ide
+sethandler <C-/> a:ide
 sethandler <C-;> a:vim
 sethandler <C-A> a:vim
 sethandler <C-B> a:vim
