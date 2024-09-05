@@ -17,7 +17,7 @@ nu-install link clean
 nu-install link [
   { target: "config", link: $"($env.HOME)" }
   { target: "config-linux", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/winhome/scoop/apps/neovim-nightly/current/bin/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }
+  { target: $"($env.HOME)/winhome/scoop/apps/neovim/current/bin/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }
   { target: $"($env.HOME)/.local/bin/win32yank", link: $"($env.HOME)/.local/bin/win32yank.exe" }
   { target: "/usr/bin/podman", link: $"($env.HOME)/.local/bin/docker" }
 ]

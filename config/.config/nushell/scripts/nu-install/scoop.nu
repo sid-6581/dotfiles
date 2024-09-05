@@ -62,21 +62,33 @@ export def "nu-install scoop uninstall" [
 
   let installed = ^scoop export | from json
 
-  let found_buckets = $buckets | default [] | filter { $in in $installed.buckets.Name }
+  let found_buckets = (
+    $buckets
+    | default []
+    | filter { $in in $installed.buckets.Name }
+  )
 
   if ($found_buckets | is-not-empty) {
     log info $"Removing scoop buckets: ($found_buckets)"
     $found_buckets | each { ^scoop bucket rm $in }
   }
 
-  let found_apps = $apps | default [] | filter { $in in $installed.apps.Name }
+  let found_apps = (
+    $apps
+    | default []
+    | filter { $in in ($installed.apps | where Info == "").Name }
+  )
 
   if ($found_apps | is-not-empty) {
     log info $"Uninstalling scoop apps: ($found_apps)"
     $found_apps | each { ^scoop uninstall $in }
   }
 
-  let found_sudo_apps = $sudo_apps | default [] | filter { $in in $installed.apps.Name }
+  let found_sudo_apps = (
+    $sudo_apps
+    | default []
+    | filter { $in in ($installed.apps | where Info == "Global install").Name }
+  )
 
   if ($found_sudo_apps | is-not-empty) {
     if (which sudo | is-empty) {

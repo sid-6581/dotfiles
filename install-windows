@@ -60,6 +60,9 @@ nu-install scoop --buckets [
   versions
   nerd-fonts
 ] --apps [
+  JetBrains-Mono
+  JetBrainsMono-NF
+  JetBrainsMono-NF-Mono
   bat
   broot
   carapace-bin
@@ -114,8 +117,6 @@ nu-install cargo [
   x12pp
 ]
 
-^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($env.FILE_PWD)/install-windows-sudo.nu"
-
 nu-install gh [
   { repo: "nushell/nushell", pattern: "*x86_64-pc-windows-msvc.zip" } # nushell - Shell
   { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-pc-windows-msvc.zip" } # rust-analyzer - LSP for rust
@@ -124,5 +125,7 @@ nu-install gh [
 if not ($"($env.HOME)/.wslconfig" | path exists) {
   "[wsl2]\nkernelCommandLine = cgroup_no_v1=all" | save -f $"($env.HOME)/.wslconfig"
 }
+
+^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($env.FILE_PWD)/install-windows-sudo.nu"
 
 exit

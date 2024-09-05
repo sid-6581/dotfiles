@@ -14,12 +14,6 @@ use config/.config/nushell/scripts/log.nu
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
-nu-install scoop --sudo-apps [
-  JetBrains-Mono
-  JetBrainsMono-NF
-  JetBrainsMono-NF-Mono
-]
-
 # Enable developer mode
 ^reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock' /f /v 'AllowDevelopmentWithoutDevLicense' /t REG_DWORD /d 0x1 | null
 
