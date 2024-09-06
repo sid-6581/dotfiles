@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 return {
   entry = function()
     local h = cx.active.current.hovered

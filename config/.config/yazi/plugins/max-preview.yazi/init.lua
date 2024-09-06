@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local function entry(st)
   if st.old then
     Tab.layout, st.old = st.old, nil
