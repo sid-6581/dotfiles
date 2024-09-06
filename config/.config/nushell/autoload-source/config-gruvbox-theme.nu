@@ -41,7 +41,7 @@ $env.config.color_config = {
   list: "#d5c4a1"
   block: "#d5c4a1"
   hints: "dark_gray"
-  search_result: { fg: "#fb4934" bg: "#d5c4a1" }
+  search_result: { fg: "#282828" bg: "#d79921" }
   shape_and: { fg: "#d3869b" attr: "b" }
   shape_binary: { fg: "#d3869b" attr: "b" }
   shape_block: { fg: "#83a598" attr: "b" }
