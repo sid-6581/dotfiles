@@ -1,3 +1,4 @@
+use std
 use log.nu
 use history.nu *
 
@@ -72,7 +73,7 @@ def link [
     } else {
       cd $env.HOME
       rm -f $link
-      ^mklink $link $target
+      ^mklink $link $target o> (std null-device)
     }
   }
 

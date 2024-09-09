@@ -32,19 +32,10 @@ windows set-user-env {
   GIT_COMMITTER_EMAIL:     $env.GIT_COMMITTER_EMAIL
 }
 
-# Link from the current directory so we can use relative paths.
-cd $env.FILE_PWD
-
-nu-install link clean
-
-nu-install link [
-  { target: "config", link: $"($env.HOME)" }
-  { target: "config-windows", link: $"($env.HOME)" }
-  { target: "config/.config/yazi", link: $"($env.HOME)/AppData/Roaming/yazi/config" }
-]
-
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
+
+nu-install link clean
 
 if (which pwsh | is-empty) {
   log info "Installing PowerShell"
@@ -97,7 +88,14 @@ nu-install scoop --buckets [
 ]
 
 nu-install git [
+  { repo: "https://github.com/sid-6581/dotfiles", dir: $"($env.HOME)/.dotfiles" }
   { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
+]
+
+nu-install link [
+  { target: $"($env.HOME)/.dotfiles/config", link: $"($env.HOME)" }
+  { target: $"($env.HOME)/.dotfiles/config-windows", link: $"($env.HOME)" }
+  { target: $"($env.HOME)/.dotfiles/config/.config/yazi", link: $"($env.HOME)/AppData/Roaming/yazi/config" }
 ]
 
 if (which rustup | is-empty) {
