@@ -4,6 +4,8 @@
   pager = delta
   eol = lf
   filemode = false
+  untrackedCache = true
+  fsmonitor = true
 [pull]
   ff-only = true
 [push]
