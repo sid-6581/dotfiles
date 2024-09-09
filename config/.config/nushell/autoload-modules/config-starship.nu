@@ -37,18 +37,20 @@ export-env {
       render_right_prompt_on_last_line: true
     })
 
-    PROMPT_COMMAND_RIGHT: {||
-      if (which starship | is-not-empty) {
-        (
-          ^starship prompt
-          --right
-          --cmd-duration $env.CMD_DURATION_MS
-          $"--status=($env.LAST_EXIT_CODE)"
-          --terminal-width (term size).columns
-        )
-      } else {
-        ""
-      }
-    }
+    PROMPT_COMMAND_RIGHT: ""
+
+    # PROMPT_COMMAND_RIGHT: {||
+    #   if (which starship | is-not-empty) {
+    #     (
+    #       ^starship prompt
+    #       --right
+    #       --cmd-duration $env.CMD_DURATION_MS
+    #       $"--status=($env.LAST_EXIT_CODE)"
+    #       --terminal-width (term size).columns
+    #     )
+    #   } else {
+    #     ""
+    #   }
+    # }
   }
 }
