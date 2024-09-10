@@ -3,109 +3,72 @@
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "actions": [
     {
-      "command": "unbound",
+      "command": null,
       "keys": "alt+enter"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "f11"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+0"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+numpad0"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "alt+space"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+space"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+comma"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+plus"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+numpad_plus"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+numpad_minus"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+minus"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "enter"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+c"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+insert"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "ctrl+v"
     },
     {
-      "command": "unbound",
+      "command": null,
       "keys": "shift+insert"
     },
     {
-      "command": {
-        "action": "copy",
-        "singleLine": false
-      }
-    },
-    {
-      "command": "openSystemMenu"
-    },
-    {
-      "command": "paste"
-    },
-    {
-      "command": {
-        "action": "quakeMode"
-      },
-      "id": "User.quakeMode.F1E129A4",
-      "keys": "win+`"
-    },
-    {
-      "command": {
-        "action": "splitPane",
-        "split": "auto",
-        "splitMode": "duplicate"
-      },
-      "id": "User.splitPane.A6751878",
-      "keys": "alt+shift+d"
-    },
-    {
-      "command": "find",
-      "id": "User.find",
-      "keys": "ctrl+shift+f"
-    },
-    {
-      "command": {
-        "action": "openSettings",
-        "target": "settingsUI"
-      },
-      "id": "User.openSettings.6CD791B",
-      "keys": "ctrl+shift+comma"
+      "command": null,
+      "keys": "win+sc(41)"
     }
   ],
   "confirmCloseAllTabs": false,
@@ -118,11 +81,6 @@
     "Windows.Terminal.PowershellCore",
     "Windows.Terminal.SSH",
     "Windows.Terminal.VisualStudio"
-  ],
-  "newTabMenu": [
-    {
-      "type": "remainingProfiles"
-    }
   ],
   "profiles": {
     "defaults": {
