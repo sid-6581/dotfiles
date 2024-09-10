@@ -40,9 +40,9 @@ def log [
   --file: string
 ] {
   let now = date now | format date "%Y-%m-%d %H:%M:%S"
-  print --stderr $"($ansi)($now) | ($message)(ansi reset)"
+  print --stderr $"($ansi)($now) | ($message | ansi strip)(ansi reset)"
 
   if $file != null {
-    $"($now) | ($message)\n" | save -a $file
+    $"($now) | ($message | ansi strip)\n" | save -a $file
   }
 }
