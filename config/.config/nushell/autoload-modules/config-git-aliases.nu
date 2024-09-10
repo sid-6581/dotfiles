@@ -200,6 +200,10 @@ export alias gup = git pull --rebase
 export alias gupv = git pull --rebase --verbose
 export alias gupa = git pull --rebase --autostash
 export alias gupav = git pull --rebase --autostash --verbose
+export def gupdate [] {
+  git fetch --all --prune
+  git pull --all
+}
 
 export alias gwch = git whatchanged -p --abbrev-commit --pretty=medium
 
