@@ -161,6 +161,7 @@ Focus(xOffsetRatio, yOffsetRatio, name)
 
 FocusActive()
 {
+    focusMap.Delete("active")
     hwnd := GetActiveWindow()
     WinGetPosEx(&winX, &winY, &winWidth, &winHeight, hwnd)
     Focus((winX + winWidth / 2) / A_ScreenWidth, (winY + winHeight / 2) / A_ScreenHeight, "active")
