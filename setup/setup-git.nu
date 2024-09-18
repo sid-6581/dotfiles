@@ -7,7 +7,7 @@ export def --env author [] {
   let path = $"($directory)/99-GENERATED-git-username.nu"
 
   let git_username = $env.GIT_AUTHOR_NAME? | default $env.GIT_COMMITTER_NAME? | if $in != null { $in } else { input "Please enter your git username: " }
-  let git_email = $env.GIT_AUTHOR_EMAIL? | default $env.GIT_COMMITTER_EMAIL? | if $in != null { $in } else { input "Please enter your git username: " }
+  let git_email = $env.GIT_AUTHOR_EMAIL? | default $env.GIT_COMMITTER_EMAIL? | if $in != null { $in } else { input "Please enter your git email: " }
 
   $env.GIT_AUTHOR_NAME = $git_username
   $env.GIT_AUTHOR_EMAIL = $git_email
