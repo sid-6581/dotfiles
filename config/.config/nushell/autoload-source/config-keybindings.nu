@@ -1,25 +1,25 @@
 $env.config.keybindings = $env.config.keybindings ++ [
-  {
-    name: copy_selection_system
-    modifier: control
-    keycode: insert
-    mode: emacs
-    event: { edit: copyselectionsystem }
-  }
-  {
-    name: cut_selection_system
-    modifier: shift
-    keycode: delete
-    mode: emacs
-    event: { edit: cutselectionsystem }
-  }
-  {
-    name: paste_system
-    modifier: shift
-    keycode: insert
-    mode: emacs
-    event: { edit: pastesystem }
-  }
+  # {
+  #   name: copy_selection_system
+  #   modifier: control
+  #   keycode: insert
+  #   mode: emacs
+  #   event: { edit: copyselectionsystem }
+  # }
+  # {
+  #   name: cut_selection_system
+  #   modifier: shift
+  #   keycode: delete
+  #   mode: emacs
+  #   event: { edit: cutselectionsystem }
+  # }
+  # {
+  #   name: paste_system
+  #   modifier: shift
+  #   keycode: insert
+  #   mode: emacs
+  #   event: { edit: pastesystem }
+  # }
   # This is needed because CTRL+Backspace can get sent as CTRL+h
   {
     name: delete_one_word_backward
