@@ -17,19 +17,34 @@ use setup/setup-git.nu
 setup-git author
 
 windows set-user-env {
+  EDITOR:                  "neovide"
+  GIT_AUTHOR_EMAIL:        $env.GIT_AUTHOR_EMAIL?
+  GIT_AUTHOR_NAME:         $env.GIT_AUTHOR_NAME?
+  GIT_COMMITTER_EMAIL:     $env.GIT_COMMITTER_EMAIL?
+  GIT_COMMITTER_NAME:      $env.GIT_COMMITTER_NAME?
   HOME:                    $env.HOME?
+  NODE_UNC_HOST_ALLOWLIST: "wsl.localhost"
+  Path: (
+    [
+      $"($env.HOME)/.local/bin"
+      $"($env.HOME)/.cargo/bin"
+      $"($env.HOME)/scoop/shims"
+      ...(
+        registry query --hkcu Environment Path
+        | get value
+        | split row (char esep)
+      )
+    ]
+    | path expand --no-symlink
+    | uniq
+    | str join (char esep)
+  )
+  RIPGREP_CONFIG_PATH:     $env.RIPGREP_CONFIG_PATH?
   WSLHOME:                 ($env.FILE_PWD | path dirname)
   XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME?
   XDG_DATA_HOME:           $env.XDG_DATA_HOME?
   XDG_STATE_HOME:          $env.XDG_STATE_HOME?
-  NODE_UNC_HOST_ALLOWLIST: "wsl.localhost"
-  EDITOR:                  "neovide"
-  RIPGREP_CONFIG_PATH:     $env.RIPGREP_CONFIG_PATH?
   YAZI_FILE_ONE:           $"($env.HOME)/scoop/apps/git/current/usr/bin/file.exe"
-  GIT_AUTHOR_NAME:         $env.GIT_AUTHOR_NAME?
-  GIT_AUTHOR_EMAIL:        $env.GIT_AUTHOR_EMAIL?
-  GIT_COMMITTER_NAME:      $env.GIT_COMMITTER_NAME?
-  GIT_COMMITTER_EMAIL:     $env.GIT_COMMITTER_EMAIL?
 }
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.

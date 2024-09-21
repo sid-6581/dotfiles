@@ -2,7 +2,7 @@
 export def --env set-user-env [
   environment: record # Environment variables to set.
 ] {
-  let current_environment = registry query --hkcu environment | group-by name
+  let current_environment = registry query --hkcu Environment | group-by name
 
   # Set the environment variables that are different from what's currently in the registry.
   # We don't want to set them all regardless, because modifying the registry is slow.
@@ -15,5 +15,5 @@ export def --env set-user-env [
   }
 
   # Load environment in this scope so it's immediately available.
-  load-env $environment
+  load-env ($environment | reject Path)
 }
