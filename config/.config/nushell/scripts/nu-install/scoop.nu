@@ -6,9 +6,6 @@ export def "nu-install scoop" [
   --apps (-a): list<string>      # Apps to install
   --sudo-apps (-s): list<string> # Apps to install with sudo
 ] {
-  # Set the CD temporarily because scoop doesn't like being called with a PWD inside WSL.
-  cd $env.HOME
-
   install-scoop
 
   if (which scoop | is-empty) {
@@ -50,9 +47,6 @@ export def "nu-install scoop uninstall" [
   --apps (-a): list<string>      # Apps to uninstall
   --sudo-apps (-s): list<string> # Apps to uninstall with sudo
 ] {
-  # Set the CD temporarily because scoop doesn't like being called with a PWD inside WSL.
-  cd $env.HOME
-
   install-scoop
 
   if (which scoop | is-empty) {
@@ -101,6 +95,11 @@ export def "nu-install scoop uninstall" [
 }
 
 def install-scoop [] {
+  if $nu.os-info.name != "windows" {
+    log error $"scoop is only supported on Windows"
+    exit
+  }
+
   if (which scoop | is-empty) {
     log info "Installing scoop"
     ^powershell -NoProfile -NonInteractive -ExecutionPolicy ByPass -Command "Invoke-WebRequest -UseBasicParsing get.scoop.sh | Invoke-Expression"
