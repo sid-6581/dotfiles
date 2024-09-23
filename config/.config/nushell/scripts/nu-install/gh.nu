@@ -57,7 +57,7 @@ export def "nu-install gh" [
 
     let temp_directory = mktemp -d
 
-    let error = try {
+    try {
       ^gh release download $release.tag -R $r.repo -p $r.pattern -D $temp_directory
 
       let asset_count = ls $temp_directory | length
@@ -94,11 +94,10 @@ export def "nu-install gh" [
 
       null
     } catch {|e|
-      $e.raw?
+      log error $"Error downloading assets from ($r.repo): ($e.msg)"
     }
 
     rm -rf $temp_directory
-    $error
   }
 }
 
