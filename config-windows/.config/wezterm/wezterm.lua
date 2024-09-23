@@ -158,6 +158,12 @@ config.keys = {
   { key = "#", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab(launch_powershell) },
   { key = "@", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab(launch_nushell) },
   { key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+  -- New panes
+  { key = "!", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_fedora) },
+  { key = "#", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_powershell) },
+  { key = "@", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_nushell) },
+  { key = "|", mods = "SHIFT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+  { key = "_", mods = "SHIFT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
   -- Tab selection/moving
   { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
   { key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
@@ -179,8 +185,6 @@ config.keys = {
   { key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = true }) },
   { key = "x", mods = "SHIFT|CTRL", action = act.ActivateCopyMode },
   { key = "z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
-  { key = "|", mods = "SHIFT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-  { key = "_", mods = "SHIFT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
   -- { key = "phys:Space", mods = "SHIFT|CTRL", action = act.QuickSelect },
   -- Scrolling
   { key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-1) },
