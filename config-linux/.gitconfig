@@ -3,8 +3,6 @@
   editor = nvim
   pager = delta
   eol = lf
-  untrackedCache = true
-  fsmonitor = true
 [pull]
   ff-only = true
 [push]
