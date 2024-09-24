@@ -52,10 +52,10 @@ cd $env.HOME
 
 nu-install link clean
 
-if (which pwsh | is-empty) {
-  log info "Installing PowerShell"
-  ^winget install Microsoft.PowerShell
-}
+nu-install winget [
+  Microsoft.PowerShell
+  AutoHotkey.AutoHotkey
+]
 
 nu-install scoop uninstall --apps [
   neovim-nightly
@@ -119,8 +119,7 @@ if (which rustup | is-empty) {
   if (^winget list | find "VisualStudio.202" | is-empty) {
     log warning "Visual Studio not installed, skipping installation of rustup"
   } else {
-    log info "Installing rustup"
-    ^winget install -h -e --id Rustlang.Rustup
+    nu-install winget [ Rustlang.Rustup ]
     ^rustup -q toolchain install nightly
   }
 }
