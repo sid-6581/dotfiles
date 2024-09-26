@@ -16,6 +16,9 @@ use setup/setup-git.nu
 
 log info "Installing Windows"
 
+# Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
+cd $env.HOME
+
 setup-git author
 
 windows set-user-env {
@@ -37,6 +40,7 @@ windows set-user-env {
         | split row (char esep)
       )
     ]
+    | compact -e
     | path expand --no-symlink
     | uniq
     | str join (char esep)
@@ -48,9 +52,6 @@ windows set-user-env {
   XDG_STATE_HOME:          $env.XDG_STATE_HOME?
   YAZI_FILE_ONE:           $"($env.HOME)/scoop/apps/git/current/usr/bin/file.exe"
 }
-
-# Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
-cd $env.HOME
 
 nu-install link clean
 
