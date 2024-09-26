@@ -10,6 +10,8 @@ use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/log.nu
 use setup/setup-git.nu
 
+log info "Installing Linux"
+
 setup-git author
 
 nu-install link clean

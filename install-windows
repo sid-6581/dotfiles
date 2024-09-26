@@ -14,6 +14,8 @@ use config/.config/nushell/scripts/log.nu
 use config/.config/nushell/scripts/windows.nu
 use setup/setup-git.nu
 
+log info "Installing Windows"
+
 setup-git author
 
 windows set-user-env {
