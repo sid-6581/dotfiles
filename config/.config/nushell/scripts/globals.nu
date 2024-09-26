@@ -22,7 +22,6 @@ if true {
     (if $nu.os-info.name != "linux" { $"($env.HOME)/scoop/shims" } else { null })
     $"($env.HOME)/.local/share/pnpm"
     $"($env.HOME)/go/bin"
-    (if $nu.os-info.name == "linux" { "/mnt/c/Program Files/Oracle/VirtualBox" } else { null })
     ...$paths
   ]
 
