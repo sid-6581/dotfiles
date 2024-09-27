@@ -2,6 +2,7 @@
 # It should be sourced from env.nu, but also from scripts that require certain the standard environment variables and paths.
 
 $env.HOME = if $nu.os-info.name == "linux" { $env.HOME } else { $env.HOME? | default $env.USERPROFILE }
+$env.XDG_CACHE_HOME = $"($env.HOME)/.cache"
 $env.XDG_CONFIG_HOME = $"($env.HOME)/.config"
 $env.XDG_DATA_HOME = $"($env.HOME)/.local/share"
 $env.XDG_STATE_HOME = $"($env.HOME)/.local/state"
