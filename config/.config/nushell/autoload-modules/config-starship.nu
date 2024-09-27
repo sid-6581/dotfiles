@@ -27,7 +27,14 @@ export-env {
           --terminal-width (term size).columns
         ) | lines
         print $prompt.0?
-        $prompt.1?
+
+        let overlays = overlay list | skip
+
+        if ($overlays | is-not-empty) {
+          $"\(($overlays | str join ',')\) ($prompt.1?)"
+        } else {
+          $prompt.1?
+        }
       } else {
         ""
       }
