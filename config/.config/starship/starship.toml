@@ -10,5 +10,5 @@ format = "[$time]($style) "
 disabled = true
 
 [character]
-success_symbol = "[](green)"
+success_symbol = "[](bold green)"
 error_symbol = "[❌](bold red)"
