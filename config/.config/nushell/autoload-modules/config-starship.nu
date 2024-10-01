@@ -19,24 +19,23 @@ export-env {
     PROMPT_INDICATOR: ""
 
     PROMPT_COMMAND: {||
-      if (which starship | is-not-empty) {
-        let prompt = (
-          ^starship prompt
-          --cmd-duration $env.CMD_DURATION_MS
-          $"--status=($env.LAST_EXIT_CODE)"
-          --terminal-width (term size).columns
-        ) | lines
-        print $prompt.0?
+      if (which starship | is-empty) {
+        return ""
+      }
 
-        let overlays = overlay list | skip
+      let prompt = (
+        ^starship prompt
+        --cmd-duration $env.CMD_DURATION_MS
+        $"--status=($env.LAST_EXIT_CODE)"
+        --terminal-width (term size).columns
+      )
 
-        if ($overlays | is-not-empty) {
-          $"\(($overlays | str join ',')\) ($prompt.1?)"
-        } else {
-          $prompt.1?
-        }
+      let overlays = overlay list | skip
+
+      if ($overlays | is-not-empty) {
+        $"\(($overlays | str join ',')\) ($prompt)"
       } else {
-        ""
+        $prompt
       }
     }
 
