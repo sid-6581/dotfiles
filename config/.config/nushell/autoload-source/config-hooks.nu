@@ -22,12 +22,6 @@ $env.config.hooks.pre_execution = [
 ]
 
 $env.config.hooks.env_change.PWD = [
-  # # Load direnv files
-  # {
-  #   condition: {|before, after| which direnv | is-not-empty }
-  #   code: {|before, after| direnv export json | from json | default {} | load-env }
-  # },
-
   # Add directory to zoxide
   {
     condition: {|before, after| which zoxide | is-not-empty }
@@ -47,15 +41,13 @@ $env.config.hooks.env_change.PWD = [
       }
 
       mkdir $nu.cache-dir
-      $"
-      export-env {
-      export use ($file_path) *
-      }
-      " | save -f ($nu.cache-dir | path join ".autoload-nu")
+
+      $"export-env { export use ($file_path) * }"
+      | save -f ($nu.cache-dir | path join ".autoload-nu")
+
       true
     }
-    code:
-    $"
+    code: $"
     overlay use -r ($nu.cache-dir)/.autoload-nu as .nu
     cd \($after\)
     "
@@ -64,9 +56,6 @@ $env.config.hooks.env_change.PWD = [
   # Automatically unload .nu if not found in path or parent directory.
   {
     condition: {|before, after| (".nu" in (overlay list)) and (path find-in-parents $after ".nu") == null}
-    code:
-    "
-    overlay hide .nu --keep-env [PWD]
-    "
+    code: "overlay hide .nu --keep-env [PWD]"
   }
 ]
