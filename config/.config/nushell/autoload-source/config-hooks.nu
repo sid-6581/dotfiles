@@ -52,7 +52,7 @@ $env.config.hooks.env_change.PWD = [
       true
     }
     code: "
-    print 'Using .nu overlay'
+    print 'Using .nu overlay\n'
     overlay use -r ($nu.cache-dir | path join .autoload-nu) as .nu
     cd $after
     "
@@ -65,7 +65,7 @@ $env.config.hooks.env_change.PWD = [
       (".nu" in (overlay list)) and ($after | path find-up ".nu") == null
     }
     code: "
-    print 'Hiding .nu overlay'
+    print 'Hiding .nu overlay\n'
     overlay hide .nu --keep-env [PWD]
     "
   }
