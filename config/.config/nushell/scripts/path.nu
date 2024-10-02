@@ -1,8 +1,8 @@
-# Returns a list of paths starting with the path given, then every parent directory recursively.
-export def walk-parents [
-  path: string # The path to find parent directories of
+# Gets a list of paths starting with the path given, then every parent directory recursively.
+export def walk-up [] : [
+string -> list<string>
 ] {
-  let components = $path | path expand | path split
+  let components = $in | path expand | path split
 
   $components
   | enumerate
@@ -11,11 +11,15 @@ export def walk-parents [
 }
 
 # Finds a file in the given path or any parent directory.
-export def find-in-parents [
-  path: string # The path to find file in
+#
+# Returns the path to the first file that exists, or null if no file was found.
+export def find-up [
   file: string # The file to find
+] : [
+string -> string
 ] {
-  walk-parents $path
+  $in
+  | walk-up
   | each { path join $file }
   | filter { path exists }
   | get 0?
