@@ -30,14 +30,17 @@ export-env {
         --terminal-width (term size).columns
       ) | lines
 
-      print $prompt.0?
+      let prefix_top = $"(ansi yellow)┌ (ansi reset)"
+      let prefix_bottom = $"(ansi yellow)└ (ansi reset)"
+
+      print $"($prefix_top)($prompt.0?)"
 
       let overlays = overlay list | skip
 
       if ($overlays | is-not-empty) {
-        $"\(($overlays | str join ',')\) ($prompt.1?)"
+        $"($prefix_bottom)\(($overlays | str join ',')\) ($prompt.1?)"
       } else {
-        $prompt.1?
+        $"($prefix_bottom)($prompt.1?)"
       }
     }
 
