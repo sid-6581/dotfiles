@@ -63,6 +63,11 @@ config.colors = {
   },
 }
 
+config.inactive_pane_hsb = {
+  saturation = 1.0,
+  brightness = 1.0,
+}
+
 wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _max_width)
   local pane = tab.active_pane
   local title = pane.title
