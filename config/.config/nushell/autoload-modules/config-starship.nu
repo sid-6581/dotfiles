@@ -30,8 +30,8 @@ export-env {
         --terminal-width (term size).columns
       ) | lines
 
-      let prefix_top = $"(ansi yellow)┌ (ansi reset)"
-      let prefix_bottom = $"(ansi yellow)└ (ansi reset)"
+      let prefix_top = $"(ansi blue)┌ (ansi reset)"
+      let prefix_bottom = $"(ansi blue)└ (ansi reset)"
 
       print $"($prefix_top)($prompt.0?)"
 
