@@ -1,6 +1,5 @@
 $env.config.show_banner = false
 $env.config.table.mode = "compact"
-$env.config.table.index_mode = "auto"
 $env.config.table.show_empty = false
 $env.config.table.trim.methodology = "truncating"
 $env.config.table.trim.truncating_suffix = "…"

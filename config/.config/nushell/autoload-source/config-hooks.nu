@@ -1,22 +1,13 @@
-$env.config.hooks.pre_prompt = [{
-  if $env.PROMPT_RENDERED? == true {
-    # print ""
-  }
-
-  let git_root = git rev-parse --show-toplevel | complete | get stdout | str trim
-  let precommit_config = [$git_root ".pre-commit-config.yaml"] | path join
-  let precommit_hook = [$git_root ".git" "hooks" "pre-commit"] | path join
-
-  if ($precommit_config | path exists) and not ($precommit_hook | path exists) {
-    print $"(ansi red)WARNING: pre-commit configuration found, but pre-commit hook not installed(ansi reset)\n"
-  }
-}]
-
-$env.config.hooks.pre_execution = [
+$env.config.hooks.pre_prompt = [
   {
-    # print ""
-    $env.PROMPT_RENDERED = true
-  }
+    let git_root = git rev-parse --show-toplevel | complete | get stdout | str trim
+    let precommit_config = [$git_root ".pre-commit-config.yaml"] | path join
+    let precommit_hook = [$git_root ".git" "hooks" "pre-commit"] | path join
+
+    if ($precommit_config | path exists) and not ($precommit_hook | path exists) {
+      print $"(ansi red)WARNING: pre-commit configuration found, but pre-commit hook not installed(ansi reset)\n"
+    }
+  },
 ]
 
 $env.config.hooks.env_change.PWD = [
@@ -68,5 +59,5 @@ $env.config.hooks.env_change.PWD = [
     print 'Hiding .nu overlay'
     overlay hide .nu --keep-env [PWD]
     "
-  }
+  },
 ]
