@@ -1,6 +1,6 @@
 $env.config.hooks.pre_prompt = [{
   if $env.PROMPT_RENDERED? == true {
-    print ""
+    # print ""
   }
 
   let git_root = git rev-parse --show-toplevel | complete | get stdout | str trim
@@ -14,7 +14,7 @@ $env.config.hooks.pre_prompt = [{
 
 $env.config.hooks.pre_execution = [
   {
-    print ""
+    # print ""
     $env.PROMPT_RENDERED = true
   }
 ]
@@ -52,7 +52,7 @@ $env.config.hooks.env_change.PWD = [
       true
     }
     code: "
-    print 'Using .nu overlay\n'
+    print 'Using .nu overlay'
     overlay use -r ($nu.cache-dir | path join .autoload-nu) as .nu
     cd $after
     "
@@ -65,7 +65,7 @@ $env.config.hooks.env_change.PWD = [
       (".nu" in (overlay list)) and ($after | path find-up ".nu") == null
     }
     code: "
-    print 'Hiding .nu overlay\n'
+    print 'Hiding .nu overlay'
     overlay hide .nu --keep-env [PWD]
     "
   }
