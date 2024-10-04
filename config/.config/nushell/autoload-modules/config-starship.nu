@@ -38,7 +38,7 @@ export-env {
       let overlays = overlay list | skip
 
       if ($overlays | is-not-empty) {
-        $"($prefix_bottom)\(($overlays | str join ',')\) ($prompt.1?)"
+        $"($prefix_bottom)(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.1?)"
       } else {
         $"($prefix_bottom)($prompt.1?)"
       }
