@@ -1,5 +1,6 @@
 add_newline = false
 command_timeout = 2000
+format = '$time$all'
 
 [time]
 disabled = false
