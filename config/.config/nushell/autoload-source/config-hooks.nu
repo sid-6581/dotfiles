@@ -10,6 +10,13 @@ $env.config.hooks.pre_prompt = [
   },
 ]
 
+$env.config.hooks.pre_execution = [
+  {
+    $env.PROMPT_RENDERED = true
+    print ""
+  }
+]
+
 $env.config.hooks.env_change.PWD = [
   # Add directory to zoxide
   {

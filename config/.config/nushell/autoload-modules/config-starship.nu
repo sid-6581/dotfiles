@@ -23,6 +23,10 @@ export-env {
         return ""
       }
 
+      if $env.PROMPT_RENDERED? == true {
+        print ""
+      }
+
       let prompt = (
         ^starship prompt
         --cmd-duration $env.CMD_DURATION_MS
@@ -30,17 +34,14 @@ export-env {
         --terminal-width (term size).columns
       ) | lines
 
-      let prefix_top = $"(ansi blue)┌ (ansi reset)"
-      let prefix_bottom = $"(ansi blue)└ (ansi reset)"
-
-      print $"($prefix_top)($prompt.0?)"
+      print $"($prompt.0?)"
 
       let overlays = overlay list | skip
 
       if ($overlays | is-not-empty) {
-        $"($prefix_bottom)(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.1?)"
+        $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.1?)"
       } else {
-        $"($prefix_bottom)($prompt.1?)"
+        $"($prompt.1?)"
       }
     }
 
