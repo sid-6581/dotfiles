@@ -5,7 +5,7 @@ $env.config.hooks.pre_prompt = [
     let precommit_hook = [$git_root ".git" "hooks" "pre-commit"] | path join
 
     if ($precommit_config | path exists) and not ($precommit_hook | path exists) {
-      print $"(ansi red)WARNING: pre-commit configuration found, but pre-commit hook not installed(ansi reset)\n"
+      print $"(ansi red)WARNING: pre-commit configuration found, but pre-commit hook not installed(ansi reset)"
     }
   },
 ]
