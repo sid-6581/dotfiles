@@ -24,7 +24,7 @@ export-env {
       }
 
       if $env.PROMPT_RENDERED? == true {
-        print ""
+        # print ""
       }
 
       let prompt = (
