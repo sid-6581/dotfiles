@@ -23,27 +23,20 @@ set scrolloff=8
 set ideajoin
 set idearefactormode=keep
 set lookupkeys+=<C-K>
-" set relativenumber
-" set nooldundo
 
 let g:argtextobj_pairs="[:],(:),{:},<:>"
 
-nmap <Space>bd <Action>(CloseContent)
-nmap <Space>wq <Action>(CloseContent)
-nmap <Space>wc <Action>(CloseContent)
-nmap <Space><Esc> <Action>(CloseContent)
 nmap q <Action>(CloseContent)
-nmap <S-Esc> <Action>(CloseContent)
-nmap <Space>e <Action>(ActivateProjectToolWindow)
+
 nmap <Space>E :NERDTreeFind<CR>
 nmap <Space>v <Action>(Tool_External Tools_neovim)
-nmap <Space>fb <Action>(RecentFiles)
+
 nmap <Space>fc <Action>(GotoAction)
 nmap <Space>ff <Action>(GotoFile)
 nmap <Space>fr <Action>(RecentFiles)
 nmap <Space>ft <Action>(FindInPath)
-nmap <Space>gb <Action>(ActivateVersionControlToolWindow)
-nmap <Space>gg <Action>(ActivateCommitToolWindow)
+
+nmap <Space>gg <Action>(ActivateVersionControlToolWindow)
 nmap <Space>gh <Action>(Vcs.ShowTabbedFileHistory)
 nmap <Space>gl <Action>(Annotate)
 nmap <Space>gp <Action>(VcsShowCurrentChangeMarker)
@@ -51,14 +44,20 @@ nmap <Space>gr <Action>(Vcs.RollbackChangedLines)
 nmap <Space>gj <Action>(VcsShowNextChangeMarker)
 nmap <Space>gk <Action>(VcsShowPrevChangeMarker)
 nmap <Space>gR <Action>(ChangesView.Revert)
+
 nmap <Space>cf <Action>(SilentCodeCleanup)
 nmap <Space>cr <Action>(RenameElement)
 vmap <Space>cj <Action>(RiderCompactFormatCode)
 vmap <Space>cs <Action>(RiderSpaciousFormatCode)
+
+nmap <Space>lr <Action>(FindUsages)
+
 nmap <S-h> <Action>(PreviousTab)
 nmap <S-l> <Action>(NextTab)
+
 nmap zff <Action>(RiderCollapseToDefinitions)
 nmap zfc <Action>(RiderCollapseToDefinitions)
+
 nmap gh <Action>(QuickImplementations)
 nmap gl <Action>(ShowErrorDescription)
 nmap gcc <Action>(CommentByLineComment)
@@ -126,12 +125,8 @@ vnoremap <Space>sl :sort iu<CR>
 vnoremap <Space>su :sort iu<CR>
 vnoremap <Space>sn :sort in<CR>
 
-map <Tab> <Plug>(easymotion-f2)
-map <S-Tab> <Plug>(easymotion-F2)
-" map f <Plug>(easymotion-f)
-" map F <Plug>(easymotion-F)
-" map t <Plug>(easymotion-t)
-" map T <Plug>(easymotion-T)
+map <Space>/ <Plug>(easymotion-f2)
+map <Space>? <Plug>(easymotion-F2)
 
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
@@ -139,7 +134,6 @@ nmap g<C-n> <Plug>NextOccurrence
 xmap g<C-n> <Plug>NextOccurrence
 nmap <C-x> <Plug>SkipOccurrence
 xmap <C-x> <Plug>SkipOccurrence
-" nmap <C-p> <Plug>RemoveOccurrence
 xmap <C-p> <Plug>RemoveOccurrence
 nmap <A-n> <Plug>AllWholeOccurrences
 xmap <A-n> <Plug>AllWholeOccurrences
