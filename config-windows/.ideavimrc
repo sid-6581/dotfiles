@@ -100,6 +100,10 @@ inoremap <C-Enter> <Esc>mzO<Esc>`za
 nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
 nmap <S-Enter> <Action>(EditorStartNewLineBefore)
 
+" Fix indent on blank lines
+nmap cc cc<Action>(EmacsStyleIndent)
+nmap S S<Action>(EmacsStyleIndent)
+
 nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
 nnoremap <BS> :noh<CR>
