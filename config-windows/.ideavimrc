@@ -107,8 +107,14 @@ nmap S S<Action>(EmacsStyleIndent)
 nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
 nnoremap <BS> :noh<CR>
+
+" Better indenting
 vnoremap > >gv
 vnoremap < <gv
+nnoremap > >>
+nnoremap < <<
+nnoremap = ==
+
 " yank line character-wise without indent
 nnoremap Y _y$
 noremap ,. <C-u>
