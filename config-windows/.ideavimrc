@@ -31,11 +31,13 @@ nmap q <Action>(CloseContent)
 nmap <Space>E :NERDTreeFind<CR>
 nmap <Space>v <Action>(Tool_External Tools_neovim)
 
+" Find
 nmap <Space>fc <Action>(GotoAction)
 nmap <Space>ff <Action>(GotoFile)
 nmap <Space>fr <Action>(RecentFiles)
 nmap <Space>ft <Action>(FindInPath)
 
+" Git
 nmap <Space>gg <Action>(ActivateVersionControlToolWindow)
 nmap <Space>gh <Action>(Vcs.ShowTabbedFileHistory)
 nmap <Space>gl <Action>(Annotate)
@@ -45,26 +47,26 @@ nmap <Space>gj <Action>(VcsShowNextChangeMarker)
 nmap <Space>gk <Action>(VcsShowPrevChangeMarker)
 nmap <Space>gR <Action>(ChangesView.Revert)
 
+" Code
 nmap <Space>cf <Action>(SilentCodeCleanup)
 nmap <Space>cr <Action>(RenameElement)
 vmap <Space>cj <Action>(RiderCompactFormatCode)
 vmap <Space>cs <Action>(RiderSpaciousFormatCode)
-
 nmap <Space>lr <Action>(FindUsages)
-
-nmap <S-h> <Action>(PreviousTab)
-nmap <S-l> <Action>(NextTab)
-
-nmap zff <Action>(RiderCollapseToDefinitions)
-nmap zfc <Action>(RiderCollapseToDefinitions)
-
 nmap gh <Action>(QuickImplementations)
 nmap gl <Action>(ShowErrorDescription)
 nmap gcc <Action>(CommentByLineComment)
 vmap gc <Action>(CommentByLineComment)
 vmap gb <Action>(CommentByBlockComment)
 
-" Surround shortcuts
+nmap <S-h> <Action>(PreviousTab)
+nmap <S-l> <Action>(NextTab)
+
+" Folds
+nmap zff <Action>(RiderCollapseToDefinitions)
+nmap zfc <Action>(RiderCollapseToDefinitions)
+
+" Surrounds
 nmap <Space>' cs"'
 nmap <Space>( ds)
 nmap <Space>) csb)
@@ -82,9 +84,21 @@ vmap <Space>) S)
 vmap <Space>} S{
 vmap <Space>" S"
 
+" Center after movement
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+nnoremap n nzz
+nnoremap N Nzz
+
 inoremap <Esc> <Esc>`^
+
+" Insert blank lines
 inoremap <S-Enter> <Esc>mzo<Esc>`za
-inoremap <S-C-Enter> <Esc>mzO<Esc>`za
+inoremap <C-Enter> <Esc>mzO<Esc>`za
+nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
+
 nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
 nnoremap <BS> :noh<CR>
@@ -92,26 +106,26 @@ vnoremap > >gv
 vnoremap < <gv
 " yank line character-wise without indent
 nnoremap Y _y$
-noremap ,. <C-U>
-noremap ,/ <C-D>
+noremap ,. <C-u>
+noremap ,/ <C-d>
 noremap ,, ,
-nnoremap ,vb <C-V>
+nnoremap ,vb <C-v>
 nnoremap ,p "+p
 nnoremap ,P "+P
-nnoremap ,r <C-R>
-nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
-nnoremap <Space>wh <C-W>h
-nnoremap <Space>wl <C-W>l
-nnoremap <Space>wj <C-W>j
-nnoremap <Space>wk <C-W>k
-nnoremap <Space>ws <C-W>s
-nnoremap <Space>wv <C-W>v
-nnoremap <Space><Space>- <C-W>s
-nnoremap <Space><Space>\ <C-W>v
-nmap <Space>w] <C-W>sgd
+nnoremap ,r <C-r>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <Space>wh <C-w>h
+nnoremap <Space>wl <C-w>l
+nnoremap <Space>wj <C-w>j
+nnoremap <Space>wk <C-w>k
+nnoremap <Space>ws <C-w>s
+nnoremap <Space>wv <C-w>v
+nnoremap <Space><Space>- <C-w>s
+nnoremap <Space><Space>\ <C-w>v
+nmap <Space>w] <C-w>sgd
 imap <C-p> <Action>(HippieCompletion)
 imap <C-n> <Action>(HippieBackwardCompletion)
 map <A-k> <Action>(MoveLineUp)
@@ -142,13 +156,12 @@ xmap g<A-n> <Plug>AllOccurrences
 
 nnoremap [p O<C-r>"<Esc>
 nnoremap ]p o<C-r>"<Esc>
-nnoremap <Space>pb a <C-R>" <Esc>
-nnoremap <Space>pe a<C-R>" <Esc>
-nnoremap <Space>ps a <C-R>"<Esc>
-nnoremap <Space>Pb i <C-R>" <Esc>
-nnoremap <Space>Pe i<C-R>" <Esc>
-nnoremap <Space>Ps i <C-R>"<Esc>
-nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
+nnoremap <Space>pb a <C-r>" <Esc>
+nnoremap <Space>pe a<C-r>" <Esc>
+nnoremap <Space>ps a <C-r>"<Esc>
+nnoremap <Space>Pb i <C-r>" <Esc>
+nnoremap <Space>Pe i<C-r>" <Esc>
+nnoremap <Space>Ps i <C-r>"<Esc>
 nnoremap [<Space> mzO<Esc>`z
 nnoremap ]<Space> mzo<Esc>`z
 nmap [d <Action>(GotoPreviousError)
@@ -254,39 +267,39 @@ nnoremap ya! F!yt!
 nnoremap yi& T&yt&
 nnoremap ya& F&yt&
 
-sethandler <A-N> a:ide
-sethandler <A-P> a:ide
-sethandler <A-X> a:ide
+sethandler <A-n> a:ide
+sethandler <A-p> a:ide
+sethandler <A-x> a:ide
 sethandler <C-/> a:ide
 sethandler <C-;> a:vim
-sethandler <C-A> a:vim
-sethandler <C-B> a:vim
-sethandler <C-C> a:vim
-sethandler <C-D> a:vim
-sethandler <C-E> a:vim
-sethandler <C-F> a:vim
-sethandler <C-G> a:vim
-sethandler <C-H> a:vim
-sethandler <C-I> a:vim
-sethandler <C-J> a:vim
-sethandler <C-K> a:vim
-sethandler <C-L> a:vim
-sethandler <C-M> a:vim
-sethandler <C-N> a:vim
-sethandler <C-O> a:vim
-sethandler <C-P> a:vim
-sethandler <C-Q> a:ide
-sethandler <C-R> a:vim
+sethandler <C-a> a:vim
+sethandler <C-b> a:vim
+sethandler <C-c> a:vim
+sethandler <C-d> a:vim
+sethandler <C-e> a:vim
+sethandler <C-f> a:vim
+sethandler <C-g> a:vim
+sethandler <C-h> a:vim
+sethandler <C-i> a:vim
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+sethandler <C-l> a:vim
+sethandler <C-m> a:vim
+sethandler <C-n> a:vim
+sethandler <C-o> a:vim
+sethandler <C-p> a:vim
+sethandler <C-q> a:ide
+sethandler <C-r> a:vim
 sethandler <C-S-2> a:vim
 sethandler <C-S-;> a:vim
 sethandler <C-S-CR> a:vim
-sethandler <C-S> a:ide
-sethandler <C-T> a:vim
-sethandler <C-U> a:vim
-sethandler <C-V> a:vim
-sethandler <C-W> a:vim
-sethandler <C-X> a:vim
-sethandler <C-Y> a:vim
+sethandler <C-s> a:ide
+sethandler <C-t> a:vim
+sethandler <C-u> a:vim
+sethandler <C-v> a:vim
+sethandler <C-w> a:vim
+sethandler <C-x> a:vim
+sethandler <C-y> a:vim
 sethandler <C-[> a:vim
 sethandler <C-\> a:vim
 sethandler <C-]> a:vim
