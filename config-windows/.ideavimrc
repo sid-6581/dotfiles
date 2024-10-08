@@ -97,7 +97,8 @@ inoremap <Esc> <Esc>`^
 " Insert blank lines
 inoremap <S-Enter> <Esc>mzo<Esc>`za
 inoremap <C-Enter> <Esc>mzO<Esc>`za
-nmap <S-CR> <Action>(EditorStartNewLineBefore)
+nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
+nmap <S-Enter> <Action>(EditorStartNewLineBefore)
 
 nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
