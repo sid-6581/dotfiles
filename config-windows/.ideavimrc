@@ -149,8 +149,8 @@ nnoremap <Space>Pb i <C-R>" <Esc>
 nnoremap <Space>Pe i<C-R>" <Esc>
 nnoremap <Space>Ps i <C-R>"<Esc>
 nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
-nnoremap [<Space> mzO<Esc>0"_D`z
-nnoremap ]<Space> mzo<Esc>0"_D`z
+nnoremap [<Space> mzO<Esc>`z
+nnoremap ]<Space> mzo<Esc>`z
 nmap [d <Action>(GotoPreviousError)
 nmap ]d <Action>(GotoNextError)
 nmap [m <Action>(MethodUp)
