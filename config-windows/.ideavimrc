@@ -97,7 +97,7 @@ inoremap <Esc> <Esc>`^
 " Insert blank lines
 inoremap <S-Enter> <Esc>mzo<Esc>`za
 inoremap <C-Enter> <Esc>mzO<Esc>`za
-nmap <Space><Enter> <Action>(EditorStartNewLineBefore)
+nmap <S-CR> <Action>(EditorStartNewLineBefore)
 
 nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
@@ -174,7 +174,7 @@ nmap [q <Action>(PreviousOccurence)
 nmap ]q <Action>(NextOccurence)
 vmap . <Action>(ReSharperSelectContainingDeclaration)
 map <Enter> <Action>(EditorSelectWord)
-map <S-Enter> <Action>(EditorUnSelectWord)
+xmap <S-Enter> <Action>(EditorUnSelectWord)
 
 vnoremap al :<C-u>norm!0v$<CR>
 vnoremap il :<C-u>norm!^vg_<CR>
