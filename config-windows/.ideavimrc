@@ -21,8 +21,6 @@ set ignorecase
 set smartcase
 set scrolloff=8
 set ideajoin
-set idearefactormode=keep
-set selectmode=ideaselection
 set lookupkeys+=<C-K>
 
 let g:argtextobj_pairs="[:],(:),{:},<:>"
