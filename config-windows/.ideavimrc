@@ -111,10 +111,20 @@ nnoremap <Esc> :noh<CR><Esc>
 nnoremap <BS> :noh<CR>
 
 " Better indenting
-vnoremap > >gv
-vnoremap < <gv
+xnoremap > >gv
+xnoremap < <gv
 nnoremap > >>
 nnoremap < <<
+
+" Better movements
+nnoremap ) ])
+xnoremap ) ])
+nnoremap ( [(
+xnoremap ( [(
+nnoremap } ]}
+xnoremap } ]}
+nnoremap { [{
+xnoremap { [{
 
 " yank line character-wise without indent
 nnoremap Y _y$
