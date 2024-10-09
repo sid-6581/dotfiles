@@ -29,7 +29,8 @@ let g:argtextobj_pairs="[:],(:),{:},<:>"
 nmap q <Action>(CloseContent)
 
 nmap <Space>E :NERDTreeFind<CR>
-nmap <Space>v <Action>(Tool_External Tools_neovim)
+nmap <Space>R <Action>(IdeaVim.ReloadVimRc.reload)
+nmap <Space>V <Action>(Tool_External Tools_neovim)
 
 " Find
 nmap <Space>fc <Action>(GotoAction)
@@ -58,6 +59,7 @@ nmap gl <Action>(ShowErrorDescription)
 nmap gcc <Action>(CommentByLineComment)
 vmap gc <Action>(CommentByLineComment)
 vmap gb <Action>(CommentByBlockComment)
+nmap = <Action>(ReformatCode)
 
 nmap <S-h> <Action>(PreviousTab)
 nmap <S-l> <Action>(NextTab)
@@ -113,7 +115,6 @@ vnoremap > >gv
 vnoremap < <gv
 nnoremap > >>
 nnoremap < <<
-nnoremap = ==
 
 " yank line character-wise without indent
 nnoremap Y _y$
@@ -152,7 +153,6 @@ vnoremap <Space>sn :sort in<CR>
 
 map <Space>/ <Plug>(easymotion-f2)
 map <Space>? <Plug>(easymotion-F2)
-
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
 nmap g<C-n> <Plug>NextOccurrence
