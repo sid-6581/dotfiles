@@ -31,11 +31,13 @@ let keyboardResponsePath = 'HKCU\Control Panel\Accessibility\Keyboard Response'
 # Underline access keys even when not holding Alt
 ^reg add 'HKCU\Control Panel\Accessibility\Keyboard Preference' /f /v 'On' /t REG_DWORD /d 0x1 | null
 
-# Disable device search
+# Disable start menu search options
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings' /f /v 'IsMSACloudSearchEnabled' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings' /f /v 'IsAADCloudSearchEnabled' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings' /f /v 'IsDeviceSearchHistoryEnabled' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings' /f /v 'IsDynamicSearchBoxEnabled' /t REG_DWORD /d 0x0 | null
+^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Search' /f /v 'BingSearchEnabled' /t REG_DWORD /d 0x0 | null
+^reg add 'HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer' /f /v 'DisableSearchBoxSuggestions' /t REG_DWORD /d 0x1 | null
 
 # Disable recommended section
 ^reg add 'HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer' /f /v 'HideRecommendedSection' /t REG_DWORD /d 0x1 | null
