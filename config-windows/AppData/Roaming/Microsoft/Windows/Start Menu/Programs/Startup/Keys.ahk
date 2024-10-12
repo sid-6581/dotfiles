@@ -3,9 +3,6 @@
 
 SetWorkingDir(EnvGet("UserProfile"))
 
-GroupAdd("neovim", "ahk_exe neovide.exe ahk_class Window Class")
-GroupAdd("terminal", "ahk_exe wezterm-gui.exe")
-
 ; Get window position without the invisible border.
 WinGetPosEx(&X, &Y, &W, &H, hwnd) {
     static DWMWA_EXTENDED_FRAME_BOUNDS := 9
@@ -282,10 +279,16 @@ $CapsLock::Ctrl
 ;
 ; Win + application will activate the next instance of the application.
 ; Shift + Win + application will run a new instance of the application.
+GroupAdd("neovim", "ahk_exe neovide.exe ahk_class Window Class")
+GroupAdd("terminal", "ahk_exe wezterm-gui.exe")
+GroupAdd("dopus", "ahk_exe dopus.exe ahk_class dopus.lister")
+
 #n::GroupActivate("neovim", "R")
 +#n::RunAndActivate(EnvGet("UserProfile") "/.cargo/bin/neovide.exe")
-#x::GroupActivate("terminal", "R")
-+#x::RunAndActivate(EnvGet("UserProfile") "/scoop/apps/wezterm-nightly/current/wezterm-gui.exe")
+#`::GroupActivate("terminal", "R")
++#`::RunAndActivate(EnvGet("UserProfile") "/scoop/apps/wezterm-nightly/current/wezterm-gui.exe")
+#o::GroupActivate("dopus", "R")
++#o::Run("C:/Program Files/GPSoftware/Directory Opus/dopus.exe")
 
 ; Win + j/k will activate the next/previous application in the current zone.
 #j::NextWindowInZone()
