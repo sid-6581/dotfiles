@@ -19,6 +19,7 @@ if true {
   let default_config_path = $"($nu.default-config-dir)/autoload-source/00-config-default-(version | get version).nu"
 
   if not ($default_config_path | path exists) {
+    glob $"($nu.default-config-dir)/autoload-source/00-config-default-*" | each { rm -f $in }
     $"if true { (config nu --default) }" | save $default_config_path
   }
 

@@ -21,33 +21,35 @@ $env.config.hooks.env_change.PWD = [
   # Add directory to zoxide
   {
     condition: {|before, after| which zoxide | is-not-empty }
-    code: {|before, after| zoxide add -- $after }
+    code: {|before, after| ^zoxide add -- $after }
   },
 
   # Automatically use .nu if found in path or parent directory.
   {
     condition: {|before, after|
-      use ../scripts/path.nu
+      do -i {
+        use ../scripts/path.nu
 
-      if (".nu" in (overlay list)) {
-        return false
+        if (".nu" in (overlay list)) {
+          return false
+        }
+
+        let file_path = $after | path find-up ".nu"
+
+        if $file_path == null {
+          return false
+        }
+
+        mkdir $nu.cache-dir
+
+        $"
+        export-env { use ($file_path) }
+        export use ($file_path) *
+        "
+        | save -f ($nu.cache-dir | path join ".autoload-nu")
+
+        true
       }
-
-      let file_path = $after | path find-up ".nu"
-
-      if $file_path == null {
-        return false
-      }
-
-      mkdir $nu.cache-dir
-
-      $"
-      export-env { use ($file_path) }
-      export use ($file_path) *
-      "
-      | save -f ($nu.cache-dir | path join ".autoload-nu")
-
-      true
     }
     code: "
     print 'Using .nu overlay'
