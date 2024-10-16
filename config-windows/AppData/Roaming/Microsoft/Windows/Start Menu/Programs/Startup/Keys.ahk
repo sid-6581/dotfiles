@@ -217,11 +217,20 @@ PreviousWindowAtPosition(x ,y)
     }
 }
 
+ActivateOrRun(group, command)
+{
+    if WinExist("ahk_group " group)
+        GroupActivate(group, "R")
+    else
+        RunAndActivate(command)
+}
+
 RunAndActivate(command)
 {
     Run(command,,,&pid)
     WinWait("ahk_pid " pid)
-    WinActivate("ahk_pid " pid)
+    if WinExist("ahk_pid " pid)
+        WinActivate("ahk_pid " pid)
 }
 
 RunWindowsTerminal()
@@ -283,11 +292,11 @@ GroupAdd("neovim", "ahk_exe neovide.exe ahk_class Window Class")
 GroupAdd("terminal", "ahk_exe wezterm-gui.exe")
 GroupAdd("dopus", "ahk_exe dopus.exe ahk_class dopus.lister")
 
-#n::GroupActivate("neovim", "R")
+#n::ActivateOrRun("neovim", EnvGet("UserProfile") "/.cargo/bin/neovide.exe")
 +#n::RunAndActivate(EnvGet("UserProfile") "/.cargo/bin/neovide.exe")
-#`::GroupActivate("terminal", "R")
+#`::ActivateOrRun("terminal", EnvGet("UserProfile") "/scoop/apps/wezterm-nightly/current/wezterm-gui.exe")
 +#`::RunAndActivate(EnvGet("UserProfile") "/scoop/apps/wezterm-nightly/current/wezterm-gui.exe")
-#o::GroupActivate("dopus", "R")
+#o::ActivateOrRun("dopus", "C:/Program Files/GPSoftware/Directory Opus/dopus.exe")
 +#o::Run("C:/Program Files/GPSoftware/Directory Opus/dopus.exe")
 
 ; Win + j/k will activate the next/previous application in the current zone.
