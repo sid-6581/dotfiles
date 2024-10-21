@@ -1,11 +1,15 @@
 $env.config.hooks.pre_prompt = [
   {
-    let git_root = git rev-parse --show-toplevel | complete | get stdout | str trim
-    let precommit_config = [$git_root ".pre-commit-config.yaml"] | path join
-    let precommit_hook = [$git_root ".git" "hooks" "pre-commit"] | path join
+    condition: { which git | is-not-empty }
 
-    if ($precommit_config | path exists) and not ($precommit_hook | path exists) {
-      print $"(ansi red)WARNING: pre-commit configuration found, but pre-commit hook not installed(ansi reset)"
+    code: {
+      let git_root = ^git rev-parse --show-toplevel | complete | get stdout | str trim
+      let precommit_config = [$git_root ".pre-commit-config.yaml"] | path join
+      let precommit_hook = [$git_root ".git" "hooks" "pre-commit"] | path join
+
+      if ($precommit_config | path exists) and not ($precommit_hook | path exists) {
+        print $"(ansi red)WARNING: pre-commit configuration found, but pre-commit hook not installed(ansi reset)"
+      }
     }
   },
 ]
