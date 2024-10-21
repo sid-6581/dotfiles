@@ -27,30 +27,29 @@ $env.config.hooks.env_change.PWD = [
   # Automatically use .nu if found in path or parent directory.
   {
     condition: {|before, after|
-      do -i {
-        use ../scripts/path.nu
+      use ../scripts/path.nu
 
-        if (".nu" in (overlay list)) {
-          return false
-        }
-
-        let file_path = $after | path find-up ".nu"
-
-        if $file_path == null {
-          return false
-        }
-
-        mkdir $nu.cache-dir
-
-        $"
-        export-env { use ($file_path) }
-        export use ($file_path) *
-        "
-        | save -f ($nu.cache-dir | path join ".autoload-nu")
-
-        true
+      if (".nu" in (overlay list)) {
+        return false
       }
+
+      let file_path = $after | path find-up ".nu"
+
+      if $file_path == null {
+        return false
+      }
+
+      mkdir $nu.cache-dir
+
+      $"
+      export-env { use ($file_path) }
+      export use ($file_path) *
+      "
+      | save -f ($nu.cache-dir | path join ".autoload-nu")
+
+      true
     }
+
     code: "
     print 'Using .nu overlay'
     overlay use -r ($nu.cache-dir | path join .autoload-nu) as .nu
@@ -64,6 +63,7 @@ $env.config.hooks.env_change.PWD = [
       use ../scripts/path.nu
       (".nu" in (overlay list)) and ($after | path find-up ".nu") == null
     }
+
     code: "
     print 'Hiding .nu overlay'
     overlay hide .nu --keep-env [PWD]
