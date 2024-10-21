@@ -1,5 +1,5 @@
 [core]
-  autocrlf = input
+  autocrlf = false
   editor = nvim
   pager = delta
   eol = lf
