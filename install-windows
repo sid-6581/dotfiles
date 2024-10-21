@@ -33,7 +33,6 @@ windows set-user-env {
       $"($env.HOME)/.local/bin"
       $"($env.HOME)/.cargo/bin"
       $"($env.HOME)/scoop/shims"
-      $"C:/Program Files/Git/cmd"
       ...(
         registry query --hkcu Environment Path
         | get value
@@ -65,11 +64,9 @@ nu-install link [
 # Remove scoop application that may have been installed before.
 nu-install scoop uninstall --apps [
   neovim-nightly
-  git
 ]
 
 nu-install winget [
-  Git.Git
   Microsoft.PowerShell
   AutoHotkey.AutoHotkey
 ]
@@ -90,6 +87,7 @@ nu-install scoop --buckets [
   fd
   fzf
   gh
+  git
   jq
   just
   lazygit
