@@ -33,6 +33,7 @@ windows set-user-env {
       $"($env.HOME)/.local/bin"
       $"($env.HOME)/.cargo/bin"
       $"($env.HOME)/scoop/shims"
+      $"C:/Program Files/Git/cmd"
       ...(
         registry query --hkcu Environment Path
         | get value
