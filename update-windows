@@ -2,8 +2,7 @@
 
 # Relaunch using Windows nushell if started from WSL.
 if $nu.os-info.name == "linux" {
-  let nu_exe = $"($env.HOME)/winhome/.local/bin/nu.exe"
-  ^$nu_exe $env.CURRENT_FILE
+  ^$"($env.HOME)/winhome/.local/bin/nu.exe" $env.CURRENT_FILE
   exit
 }
 

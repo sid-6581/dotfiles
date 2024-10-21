@@ -2,8 +2,7 @@
 
 # Relaunch using Windows nushell if started from WSL.
 if $nu.os-info.name == "linux" {
-  let nu_exe = $"($env.HOME)/winhome/.local/bin/nu.exe"
-  ^$nu_exe $env.CURRENT_FILE
+  ^$"($env.HOME)/winhome/.local/bin/nu.exe" $env.CURRENT_FILE
   exit
 }
 
@@ -56,13 +55,22 @@ windows set-user-env {
 
 nu-install link clean
 
-nu-install winget [
-  Microsoft.PowerShell
-  AutoHotkey.AutoHotkey
+nu-install link [
+  { target: $"($env.HOME)/.dotfiles/config", link: $"($env.HOME)" }
+  { target: $"($env.HOME)/.dotfiles/config-windows", link: $"($env.HOME)" }
+  { target: $"($env.HOME)/.dotfiles/config/.config/yazi", link: $"($env.HOME)/AppData/Roaming/yazi/config" }
 ]
 
+# Remove scoop application that may have been installed before.
 nu-install scoop uninstall --apps [
   neovim-nightly
+  git
+]
+
+nu-install winget [
+  Git.Git
+  Microsoft.PowerShell
+  AutoHotkey.AutoHotkey
 ]
 
 nu-install scoop --buckets [
@@ -81,7 +89,6 @@ nu-install scoop --buckets [
   fd
   fzf
   gh
-  git
   jq
   just
   lazygit
@@ -111,12 +118,6 @@ nu-install scoop --buckets [
 nu-install git [
   { repo: "https://github.com/sid-6581/dotfiles", dir: $"($env.HOME)/.dotfiles" }
   { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
-]
-
-nu-install link [
-  { target: $"($env.HOME)/.dotfiles/config", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/.dotfiles/config-windows", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/.dotfiles/config/.config/yazi", link: $"($env.HOME)/AppData/Roaming/yazi/config" }
 ]
 
 if (which rustup | is-empty) {
