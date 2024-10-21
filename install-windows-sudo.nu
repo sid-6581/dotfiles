@@ -15,7 +15,7 @@ use config/.config/nushell/scripts/log.nu
 cd $env.HOME
 
 # Enable developer mode
-^reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock' /f /v 'AllowDevelopmentWithoutDevLicense' /t REG_DWORD /d 0x1 | null
+^reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock' /f /v 'AllowDevelopmentWithoutDevLicense' /t REG_DWORD /d 0x1 | null
 
 # Keyboard repeat rate
 let keyboardResponsePath = 'HKCU\Control Panel\Accessibility\Keyboard Response'
@@ -37,10 +37,10 @@ let keyboardResponsePath = 'HKCU\Control Panel\Accessibility\Keyboard Response'
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings' /f /v 'IsDeviceSearchHistoryEnabled' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\SearchSettings' /f /v 'IsDynamicSearchBoxEnabled' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Search' /f /v 'BingSearchEnabled' /t REG_DWORD /d 0x0 | null
-^reg add 'HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer' /f /v 'DisableSearchBoxSuggestions' /t REG_DWORD /d 0x1 | null
+^reg add 'HKCU\Software\Policies\Microsoft\Windows\Explorer' /f /v 'DisableSearchBoxSuggestions' /t REG_DWORD /d 0x1 | null
 
 # Disable recommended section
-^reg add 'HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer' /f /v 'HideRecommendedSection' /t REG_DWORD /d 0x1 | null
+^reg add 'HKCU\Software\Policies\Microsoft\Windows\Explorer' /f /v 'HideRecommendedSection' /t REG_DWORD /d 0x1 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' /f /v 'Start_IrisRecommendations' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' /f /v 'Start_TrackDocs' /t REG_DWORD /d 0x0 | null
 ^reg add 'HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot' /f /v 'TurnOffWindowsCopilot' /t REG_DWORD /d 0x1 | null
