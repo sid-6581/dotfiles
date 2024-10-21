@@ -293,6 +293,13 @@ sethandler <A-p> a:ide
 sethandler <A-x> a:ide
 sethandler <C-/> a:ide
 sethandler <C-;> a:vim
+sethandler <C-Enter> n:ide
+sethandler <C-S-2> a:vim
+sethandler <C-S-;> a:vim
+sethandler <C-S-CR> a:vim
+sethandler <C-[> a:vim
+sethandler <C-\> a:vim
+sethandler <C-]> a:vim
 sethandler <C-a> a:vim
 sethandler <C-b> a:vim
 sethandler <C-c> a:vim
@@ -311,9 +318,6 @@ sethandler <C-o> a:vim
 sethandler <C-p> a:vim
 sethandler <C-q> a:ide
 sethandler <C-r> a:vim
-sethandler <C-S-2> a:vim
-sethandler <C-S-;> a:vim
-sethandler <C-S-CR> a:vim
 sethandler <C-s> a:ide
 sethandler <C-t> a:vim
 sethandler <C-u> a:vim
@@ -321,9 +325,6 @@ sethandler <C-v> a:vim
 sethandler <C-w> a:vim
 sethandler <C-x> a:vim
 sethandler <C-y> a:vim
-sethandler <C-[> a:vim
-sethandler <C-\> a:vim
-sethandler <C-]> a:vim
 sethandler <S-CR> a:vim
 sethandler <S-Esc> a:vim
 sethandler <S-Tab> a:vim
