@@ -48,6 +48,8 @@ windows registry add 'HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot' '
 
 # Disable Windows Defender
 # windows registry add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' 'DisableRealtimeMonitoring' 0x1
+windows registry add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet' 'SpynetReporting' 0x0
+windows registry add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet' 'SubmitSamplesConsent' 0x0
 
 # Stop search indexing
 ^sc stop 'wsearch' | null
