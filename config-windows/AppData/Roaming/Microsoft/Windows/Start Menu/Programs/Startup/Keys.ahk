@@ -243,8 +243,17 @@ RunWindowsTerminal()
     Run(EnvGet("LocalAppData") "/Microsoft/WindowsApps/wt.exe")
 }
 
-; Remap caps lock to CTRL.
-$CapsLock::Ctrl
+; Remap caps lock to CTRL (hold) and ESC (tap).
+*CapsLock::
+{
+    Send "{LControl Down}"
+    tick1 := A_TickCount
+    KeyWait("CapsLock")
+    tick2 := A_TickCount
+    Send "{LControl Up}"
+    if tick2 - tick1 <= 200 && A_PriorKey == "CapsLock"
+        Send "{Esc}"
+}
 
 ; The desktop is divided into these zones:
 ;
