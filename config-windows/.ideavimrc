@@ -107,7 +107,7 @@ nmap cc cc<Action>(EmacsStyleIndent)
 nmap S S<Action>(EmacsStyleIndent)
 
 nnoremap Q q
-nnoremap <Esc> :noh<CR><Esc>
+nnoremap <Esc> :noh<CR>:action JumpToLastWindow<CR><Esc>
 nnoremap <BS> :noh<CR>
 
 " Better indenting
