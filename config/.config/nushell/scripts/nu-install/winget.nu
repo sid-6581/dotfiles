@@ -12,7 +12,7 @@ export def "nu-install winget" [
 
   for $app in $apps {
     try {
-      ^winget list --exact --id $app o> (std null-device)
+      ^winget list --exact --id $app o+e> (std null-device)
     } catch {
       log info $"Installing winget app: ($app)"
       ^winget install --silent --exact --id $app
@@ -31,10 +31,10 @@ export def "nu-install winget uninstall" [
 
   for $app in $apps {
     try {
-      ^winget list --exactg --name $app o> (std null-device)
-    } catch {
+      ^winget list --exact --name $app o+e> (std null-device)
       log info $"Uninstalling winget app: ($app)"
       ^winget uninstall --silent --exact --name $app
+    } catch {
     }
   }
 }
