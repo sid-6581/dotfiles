@@ -47,7 +47,8 @@ windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
 windows registry add 'HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot' 0x1
 
 # Disable Windows Defender
-# windows registry add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection' 'DisableRealtimeMonitoring' 0x1
+# windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection' 'DisableRealtimeMonitoring' 0x1
+# windows registry add 'HKLM\Software\CurrentControlSet\Control\CI\Policy' 'VerifiedAndReputablePolicyState' 0x0
 windows registry add 'HKLM\System\CurrentControlSet\Control\DeviceGuard\Scenarios\KernelShadowStacks' 'Enabled' 0x0
 windows registry add 'HKLM\System\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity' 'Enabled' 0x0
 windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet' 'SpynetReporting' 0x0
