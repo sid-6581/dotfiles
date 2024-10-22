@@ -17,3 +17,29 @@ export def --env set-user-env [
   # Load environment in this scope so it's immediately available.
   load-env ($environment | reject Path)
 }
+
+# Add or overwrite a registry value.
+export def "registry add" [
+  key_name: string   # The registry key name
+  value_name: string # The registry value name
+  value: any         # The value to add
+] {
+  let type = match ($value | describe) { "string" => "REG_SZ", "int" => "REG_DWORD" }
+  let query_value = ^reg query $key_name /v $value_name | complete
+
+  let old_value = if $query_value.exit_code == 0 {
+    let value_string = $query_value.stdout | str trim | parse --regex '.*REG_\w+\s+(?<value>.+)' | get value.0
+    match $type { "REG_SZ" => $value_string, "REG_DWORD" => { $value_string | into int } }
+  } else {
+    null
+  }
+
+  if $old_value != $value {
+    log info $"Setting environment variable ($key_name)\\($value_name) to ($value) \(Current value: ($old_value)\)"
+  }
+
+  let result = ^reg add $key_name /f /v $value_name /t $type /d $value | complete
+  if $result.exit_code != 0 {
+    log error $"Error setting environment variable ($key_name)\\($value_name): ($result.stderr)"
+  }
+}
