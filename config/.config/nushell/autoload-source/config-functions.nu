@@ -29,7 +29,7 @@ def gspr [
   ^git branch -D $branch
 }
 
-# Search for a GitHub repo and clone it.
+# Searches for a GitHub repo and clones it.
 def --wrapped gh-clone [
   ...query: string
 ] {
@@ -53,7 +53,7 @@ def --wrapped gh-clone [
   ^gh repo clone $repo
 }
 
-# Search for a GitHub repo and fork it.
+# Searches for a GitHub repo and forks it.
 def --wrapped gh-fork [
   ...query: string
 ] {
@@ -75,4 +75,19 @@ def --wrapped gh-fork [
   }
 
   ^gh repo fork $repo
+}
+
+# Runs bash in a podman container.
+def podbash [
+  image: string # The name of the image to run
+] {
+  podman run -it --replace --name $image $image /usr/bin/env bash
+}
+
+# Runs a command in a podman container.
+def podrun [
+  image: string      # The name of the image to run
+  ...command: string # The command to run
+] {
+  podman run -it --replace --name $image $image ...$command
 }
