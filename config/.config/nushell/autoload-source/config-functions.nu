@@ -77,17 +77,22 @@ def --wrapped gh-fork [
   ^gh repo fork $repo
 }
 
-# Runs bash in a podman container.
-def podbash [
-  image: string # The name of the image to run
-] {
-  podman run -it --replace --name $image $image /usr/bin/env bash
+# Does a podman system prune.
+def pm-gc [] {
+  ^podman system prune -a -f
 }
 
-# Runs a command in a podman container.
-def podrun [
+# Runs a podman container with bash as the entrypoint.
+def pm-bash [
+  image: string # The name of the image to run
+] {
+  ^podman run -it --replace --entrypoint /usr/bin/env --name $image $image bash
+}
+
+# Runs a podman container with optional command arguments.
+def pm-run [
   image: string      # The name of the image to run
   ...command: string # The command to run
 ] {
-  podman run -it --replace --name $image $image ...$command
+  ^podman run -it --replace --name $image $image ...$command
 }
