@@ -15,6 +15,25 @@ use config/.config/nushell/scripts/windows.nu
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
+nu-install winget uninstall [
+  "Copilot"
+  "Cross Device Experience Host"
+  "Dev Home(Preview)"
+  "Feedback Hub"
+  "Get Help"
+  "IIS 10.0 Express"
+  "MSN Weather"
+  "Microsoft Bing Search"
+  "Microsoft Family"
+  "Microsoft ODBC Driver 17 for SQL Server"
+  "Microsoft SQL Server 2019 LocalDB"
+  "Microsoft System CLR Types for SQL Server 2019"
+  "Microsoft Web Deploy 4.0"
+  "Phone Link"
+  "Web Search from Microsoft Bing"
+  "Windows Camera"
+]
+
 # Enable developer mode
 windows registry add 'HKLM\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock' 'AllowDevelopmentWithoutDevLicense' 0x1
 

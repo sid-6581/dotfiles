@@ -71,11 +71,6 @@ nu-install winget [
   AutoHotkey.AutoHotkey
 ]
 
-nu-install winget uninstall [
-  "Get Help"
-  "Phone Link"
-]
-
 nu-install scoop --buckets [
   extras
   versions
