@@ -79,6 +79,9 @@ windows registry add 'HKLM\System\CurrentControlSet\Control\DeviceGuard\Scenario
 windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet' 'SpynetReporting' 0x0
 windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet' 'SubmitSamplesConsent' 0x0
 
+# Disable using sign-in info to automatically finish setting up
+windows registry add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System' 'DisableAutomaticRestartSignOn' 0x1
+
 # Stop search indexing
 ^sc stop 'wsearch' | null
 ^sc config 'wsearch' start=disabled | null
