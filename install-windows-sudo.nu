@@ -42,7 +42,7 @@ windows registry add 'HKCU\Control Panel\Accessibility\Keyboard Response' 'Bounc
 windows registry add 'HKCU\Control Panel\Accessibility\Keyboard Response' 'AutoRepeatDelay' '264'
 windows registry add 'HKCU\Control Panel\Accessibility\Keyboard Response' 'AutoRepeatRate' '16'
 windows registry add 'HKCU\Control Panel\Accessibility\Keyboard Response' 'DelayBeforeAcceptance' '0'
-windows registry add 'HKCU\Control Panel\Accessibility\Keyboard Response' 'Flags' '27'
+windows registry add 'HKCU\Control Panel\Accessibility\Keyboard Response' 'Flags' '26'
 
 # Disable StickyKeys
 windows registry add 'HKCU\Control Panel\Accessibility\StickyKeys' 'Flags' '26'
@@ -64,6 +64,12 @@ windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
 windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Start_SearchFiles' 0x0
 windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'Start_TrackDocs' 0x0
 windows registry add 'HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot' 'TurnOffWindowsCopilot' 0x1
+
+# Disable showing tabs in apps when pressing Alt+Tab
+windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'MultiTaskingAltTabFilter' 0x3
+
+# Disallow title bar window shake
+windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'DisallowShaking' 0x1
 
 # Disable Windows Defender
 windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection' 'DisableRealtimeMonitoring' 0x1
