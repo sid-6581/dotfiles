@@ -2,6 +2,11 @@ add_newline = false
 command_timeout = 2000
 format = '$time$all'
 
+[directory]
+truncation_symbol = "… "
+truncation_length = 10
+truncate_to_repo = false
+
 [time]
 disabled = false
 use_12hr = true
