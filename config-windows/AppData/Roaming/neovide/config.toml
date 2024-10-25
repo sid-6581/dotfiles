@@ -1,8 +1,8 @@
 frame = "none"
 
 [font]
-normal = ["Iosevka Nerd Font"]
-size = 10
+normal = ["JetBrainsMono Nerd Font"]
+size = 9.5
 hinting = "full"
 edging = "subpixelantialias"
 
