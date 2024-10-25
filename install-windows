@@ -76,10 +76,7 @@ nu-install scoop --buckets [
   versions
   nerd-fonts
 ] --apps [
-  Iosevka-NF
-  JetBrains-Mono
   JetBrainsMono-NF
-  JetBrainsMono-NF-Mono
   bat
   broot
   carapace-bin
