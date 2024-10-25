@@ -18,8 +18,11 @@ config.freetype_load_flags = "DEFAULT"
 config.max_fps = 240
 config.animation_fps = 240
 config.custom_block_glyphs = false
-config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 9.5
+config.font = wezterm.font({
+  family = "Iosevka Nerd Font",
+  harfbuzz_features = { "ss07" },
+})
+config.font_size = 10
 config.command_palette_font_size = 12
 -- config.window_background_opacity = 0
 -- config.win32_system_backdrop = "Mica"

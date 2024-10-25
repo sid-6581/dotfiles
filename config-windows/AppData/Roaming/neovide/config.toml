@@ -1,1 +1,10 @@
 frame = "none"
+
+[font]
+normal = ["Iosevka Nerd Font"]
+size = 10
+hinting = "full"
+edging = "subpixelantialias"
+
+[font.features]
+"Iosevka Nerd Font" = ["+ss07"]
