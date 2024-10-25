@@ -7,4 +7,4 @@ hinting = "full"
 edging = "subpixelantialias"
 
 [font.features]
-"Iosevka Nerd Font" = ["+ss07"]
+"Iosevka Nerd Font" = ["+ss14"]
