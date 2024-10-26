@@ -82,6 +82,9 @@ windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet' 
 # Disable using sign-in info to automatically finish setting up
 windows registry add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System' 'DisableAutomaticRestartSignOn' 0x1
 
+# Disable finish setting up PC
+windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement' 'ScoobeSystemSettingEnabled' 0x0
+
 # Stop search indexing
 ^sc stop 'wsearch' | null
 ^sc config 'wsearch' start=disabled | null
