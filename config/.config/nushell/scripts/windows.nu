@@ -40,6 +40,6 @@ export def "registry add" [
 
   let result = ^reg add $key_name /f /v $value_name /t $type /d $value | complete
   if $result.exit_code != 0 {
-    log error $"Error setting environment variable ($key_name)\\($value_name): ($result.stderr)"
+    log error $"Error setting environment variable ($key_name)\\($value_name): ($result.stderr | str trim)"
   }
 }
