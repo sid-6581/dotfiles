@@ -95,6 +95,7 @@ nnoremap n nzz
 nnoremap N Nzz
 
 inoremap <Esc> <Esc>`^
+inoremap <C-s> <Esc>`^:w!<CR>
 
 " Insert blank lines
 inoremap <S-Enter> <Esc>mzo<Esc>`za
@@ -319,7 +320,7 @@ sethandler <C-o> a:vim
 sethandler <C-p> a:vim
 sethandler <C-q> a:ide
 sethandler <C-r> a:vim
-sethandler <C-s> a:ide
+sethandler <C-s> a:vim
 sethandler <C-t> a:vim
 sethandler <C-u> a:vim
 sethandler <C-v> a:vim
