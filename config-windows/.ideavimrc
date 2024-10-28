@@ -111,6 +111,7 @@ nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
 nnoremap <S-Esc> :action JumpToLastWindow<CR>
 nnoremap <BS> :noh<CR>
+nnoremap <C-s> :w!<CR>
 
 " Better indenting
 xnoremap > >gv
