@@ -255,6 +255,19 @@ RunWindowsTerminal()
         Send "{Esc}"
 }
 
+; Remap CTRL lock to CTRL (hold) and ESC (tap).
+*LControl::
+{
+    Send "{LControl Down}"
+    tick1 := A_TickCount
+    KeyWait("LControl")
+    tick2 := A_TickCount
+    Send "{LControl Up}"
+    if tick2 - tick1 <= 200 && A_PriorKey == "LControl"
+        Send "{Esc}"
+}
+
+
 ; The desktop is divided into these zones:
 ;
 ; q w e
