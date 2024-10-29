@@ -96,6 +96,7 @@ nnoremap N Nzz
 
 inoremap <Esc> <Esc>`^
 inoremap <C-s> <Esc>`^:w!<CR>
+vnoremap <C-s> <Esc>:w!<CR>
 
 " Insert blank lines
 inoremap <S-Enter> <Esc>mzo<Esc>`za
