@@ -109,6 +109,7 @@ nmap cc cc<Action>(EmacsStyleIndent)
 nmap S S<Action>(EmacsStyleIndent)
 
 nnoremap ; i <Esc>r
+nnoremap ` '
 nnoremap ' `
 nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
