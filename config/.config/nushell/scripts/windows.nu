@@ -1,3 +1,5 @@
+use log.nu
+
 # Set user environment variables in the registry, and also load them into the current scope.
 export def --env set-user-env [
   environment: record # Environment variables to set.
