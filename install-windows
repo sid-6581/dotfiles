@@ -2,7 +2,8 @@
 
 # Relaunch using Windows nushell if started from WSL.
 if $nu.os-info.name == "linux" {
-  ^$"($env.HOME)/winhome/.local/bin/nu.exe" $env.CURRENT_FILE
+  let nu_exe = $"($env.HOME)/winhome/.local/bin/nu.exe"
+  ^$nu_exe $env.CURRENT_FILE
   exit
 }
 
@@ -50,7 +51,7 @@ windows set-user-env {
   XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME?
   XDG_DATA_HOME:           $env.XDG_DATA_HOME?
   XDG_STATE_HOME:          $env.XDG_STATE_HOME?
-  YAZI_FILE_ONE:           $"($env.HOME)/scoop/apps/git/current/usr/bin/file.exe"
+  YAZI_FILE_ONE:           ($env.HOME | path join scoop apps git current usr bin file.exe)
 }
 
 nu-install link clean
