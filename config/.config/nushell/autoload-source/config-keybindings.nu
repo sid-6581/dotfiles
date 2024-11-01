@@ -65,4 +65,23 @@ $env.config.keybindings = $env.config.keybindings ++ [
       ]
     }
   }
+  {
+    name: completion_menu
+    modifier: none
+    keycode: tab
+    mode: [emacs vi_normal vi_insert]
+    event: {
+      until: [
+        { send: menu name: completion_menu }
+        { send: enter }
+      ]
+    }
+  }
+  {
+    name: completion_previous_menu
+    modifier: shift
+    keycode: backtab
+    mode: [emacs, vi_normal, vi_insert]
+    event: null
+  }
 ]
