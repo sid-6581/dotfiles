@@ -6,6 +6,7 @@ format = '$time$all'
 truncation_symbol = "… "
 truncation_length = 10
 truncate_to_repo = false
+use_os_path_sep = false
 
 [time]
 disabled = false
