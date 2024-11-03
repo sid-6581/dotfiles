@@ -91,4 +91,14 @@ windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfile
 ^sc stop 'wsearch' | null
 ^sc config 'wsearch' start=disabled | null
 
+rm -rf ($env.HOME | path join .templateengine)
+rm -rf ($env.HOME | path join Contacts)
+rm -rf ($env.HOME | path join Documents Downloads)
+rm -rf ($env.HOME | path join Documents IISExpress)
+rm -rf ($env.HOME | path join Documents "My Web Sites")
+rm -rf ($env.HOME | path join Favorites)
+rm -rf ($env.HOME | path join Links)
+rm -rf ($env.HOME | path join Music)
+rm -rf ($env.HOME | path join Searches)
+
 exit
