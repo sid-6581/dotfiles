@@ -54,12 +54,17 @@ windows set-user-env {
   YAZI_FILE_ONE:           ($env.HOME | path join scoop apps git current usr bin file.exe)
 }
 
+# Pull latest changes from our github repo first.
+nu-install git [
+  { repo: "https://github.com/sid-6581/dotfiles", dir: ($env.HOME | path join .dotfiles) }
+]
+
 nu-install link clean
 
 nu-install link [
-  { target: $"($env.HOME)/.dotfiles/config", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/.dotfiles/config-windows", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/.dotfiles/config/.config/yazi", link: $"($env.HOME)/AppData/Roaming/yazi/config" }
+  { target: ($env.HOME | path join .dotfiles config), link: $env.HOME  }
+  { target: ($env.HOME | path join .dotfiles config-windows), link: $env.HOME  }
+  { target: ($env.HOME | path join .dotfiles config .config yazi), link: ($env.HOME | path join AppData Roaming yazi config) }
 ]
 
 # Remove scoop application that may have been installed before.
@@ -114,8 +119,8 @@ nu-install scoop --buckets [
 ^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($env.FILE_PWD)/install-windows-sudo.nu"
 
 nu-install git [
-  { repo: "https://github.com/sid-6581/dotfiles", dir: $"($env.HOME)/.dotfiles" }
-  { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
+  { repo: "https://github.com/sid-6581/dotfiles", dir: ($env.HOME | path join .dotfiles) }
+  { repo: "https://github.com/sid-6581/NeovimConfig", dir: ($env.HOME | path join .config nvim) }
 ]
 
 if (which rustup | is-empty) {
@@ -140,7 +145,7 @@ nu-install gh [
 ]
 
 if not ($"($env.HOME)/.wslconfig" | path exists) {
-  "[wsl2]\nkernelCommandLine = cgroup_no_v1=all\nnetworkingMode = nat" | save -f $"($env.HOME)/.wslconfig"
+  "[wsl2]\nkernelCommandLine = cgroup_no_v1=all\nnetworkingMode = nat" | save -f ($env.HOME | path join .wslconfig)
 }
 
 exit
