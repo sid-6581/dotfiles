@@ -2,9 +2,10 @@ use log.nu
 use history.nu *
 use utils/extract.nu
 use utils/get-executables.nu
+use utils/copy-executables.nu
 
-# Downloads a release from GitHub, extracts all binaries, and copies them to the target directory.
-# Uses the gh CLI, which needs to be installed.
+# Downloads a release from GitHub, extracts all binaries, and copies them to
+# the target directory. Uses the gh CLI, which needs to be installed.
 #
 # Each repo record should have the following required or optional fields:
 #
@@ -48,7 +49,6 @@ export def "nu-install gh" [
     # If we've already installed a release with this tag, skip the rest.
     let release = $releases | first
     let history_tag = nu-install history get [gh $r.repo tag]
-
     if $history_tag == $release.tag {
       continue
     }
@@ -61,38 +61,18 @@ export def "nu-install gh" [
       ^gh release download $release.tag -R $r.repo -p $r.pattern -D $temp_directory
 
       let asset_count = ls $temp_directory | length
-
       if $asset_count != 1 {
         error make { msg: $"($asset_count) assets downloaded, the glob pattern must match a single asset" }
       }
 
-      (ls $temp_directory).name.0 | extract $in
-
+      extract (ls $temp_directory).0.name
       let executables = process $r $temp_directory
-
-      if ($executables | length) == 0 {
-        error make { msg: $"No executables found in ($temp_directory) after extracting asset" }
-      }
-
-      # Copy executables to the destination.
-      for $executable in $executables {
-        let file_name = $executable | path basename
-        let destination_file = [$destination $file_name] | path join
-
-        # This is necessary for Windows since running executables can't be replaced.
-        if $nu.os-info.name != "linux" and ($destination_file | path exists) {
-          mv -f $destination_file ([$nu.temp-path $"($file_name).bak"] | path join)
-        }
-
-        mv -f $executable $destination_file
-      }
+      copy-executables $executables $destination
 
       nu-install history upsert [gh $r.repo] {
         tag: $release.tag
         executables: ($executables | each { path basename })
       }
-
-      null
     } catch {|e|
       log error $"Error downloading assets from ($r.repo): ($e.msg)"
     }
@@ -106,7 +86,7 @@ export def "nu-install gh uninstall" [
   repo: string                    # The repo to download for (OWNER/REPO)
   --destination (-d): string      # The destination directory (default $HOME/.local/bin)
 ] {
-  let destination = $destination | default ([$env.HOME ".local/bin/"] | path join)
+  let destination = $destination | default ($env.HOME | path join .local bin)
   let executables = nu-install history get [gh $repo executables]
 
   if ($executables | is-empty) {
