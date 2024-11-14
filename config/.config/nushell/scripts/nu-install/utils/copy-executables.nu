@@ -33,6 +33,6 @@ export def main [
 
     # Launch in a separate nushell instance so we can properly suppress the error.
     # The built-in rm currently doesn't let us suppress it.
-    ^nu -c $"rm -f '($destination_file_path)' '($destination_file_path).bak'"
+    try { ^nu -c $"rm -f '($destination_file_path).bak'" }
   }
 }
