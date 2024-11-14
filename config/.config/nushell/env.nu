@@ -28,7 +28,7 @@ if true {
 
   # Get only valid files, ignore broken symlinks.
   def get-files [path: string] {
-    do -i {
+    try {
       ls -al $path
       | filter { $in.type == file or $in.type == symlink and ($in.target | path exists) }
       | get name
@@ -43,7 +43,7 @@ if true {
     (get-files $"($nu.default-config-dir)/autoload-modules" | each { $"use ($in) *" })
   ) | str join "\n"
 
-  if $autoload_contents != "" and (do -i { open -r $autoload_path }) != $autoload_contents {
+  if $autoload_contents != "" and (try { open -r $autoload_path }) != $autoload_contents {
     $autoload_contents | save -f $autoload_path
   }
 }

@@ -59,7 +59,7 @@ def link [
   target: string # Path to existing file
   link: string   # Path to new link
 ] {
-  if (do -i { (ls -al $link).target.0 }) != $target {
+  if (try { (ls -al $link).0.target }) != $target {
     log info $"Creating link to ($target) at ($link)"
 
     let parent = $link | path dirname

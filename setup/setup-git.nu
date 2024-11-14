@@ -34,7 +34,7 @@ export def --env author [] {
   $env.GIT_COMMITTER_EMAIL = \"($env.GIT_COMMITTER_EMAIL)\"
   "
 
-  if (do -i { open -r $path }) != $contents {
+  if (try { open -r $path }) != $contents {
     mkdir $directory
     $contents | save -f $path
   }

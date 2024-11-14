@@ -26,10 +26,10 @@ export def main [
     let destination_file_path = $destination | path join $file_name
 
     if ($destination_file_path | path exists) {
-      mv -f $destination_file_path $"($destination_file_path).bak"
+      ^mv -f $destination_file_path $"($destination_file_path).bak" | complete | ignore
     }
 
-    cp -f $executable $destination_file_path
-    do -i { rm -f $destination_file_path $"($destination_file_path).bak" }
+    ^cp -f $executable $destination_file_path
+    ^rm -f $destination_file_path $"($destination_file_path).bak" | complete | ignore
   }
 }

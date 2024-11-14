@@ -24,7 +24,7 @@ if (which scoop | is-empty) {
   ^scoop update -s '*'
   ^scoop cleanup '*'
   ^scoop cache rm '*'
-  do -i { ^git config --system --unset credential.helper }
+  try { ^git config --system --unset credential.helper }
 }
 
 if (which rustup | is-empty) {
