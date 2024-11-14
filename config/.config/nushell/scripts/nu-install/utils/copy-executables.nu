@@ -26,10 +26,13 @@ export def main [
     let destination_file_path = $destination | path join $file_name
 
     if ($destination_file_path | path exists) {
-      ^mv -f $destination_file_path $"($destination_file_path).bak" | complete | ignore
+      mv -f $destination_file_path $"($destination_file_path).bak"
     }
 
-    ^cp -f $executable $destination_file_path
-    ^rm -f $destination_file_path $"($destination_file_path).bak" | complete | ignore
+    cp -f $executable $destination_file_path
+
+    # Launch in a separate nushell instance so we can properly suppress the error.
+    # The built-in rm currently doesn't let us suppress it.
+    ^nu -c $"rm -f \"($destination_file_path)\" $\"($destination_file_path).bak\""
   }
 }
