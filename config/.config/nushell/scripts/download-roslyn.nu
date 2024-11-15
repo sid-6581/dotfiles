@@ -1,7 +1,7 @@
 use log.nu
 
 # Downloads the Roslyn LSP language server and puts it in ~/.local/share/nvim-data/roslyn, where roslyn.nvim can find it.
-def main [] {
+export def main [] {
   if $nu.os-info.name != "windows" {
     log error $"($env.CURRENT_FILE) must be run on Windows"
     return
