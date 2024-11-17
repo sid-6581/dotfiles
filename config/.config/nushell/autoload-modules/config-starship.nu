@@ -32,8 +32,6 @@ export-env {
 
       let overlays = overlay list | skip
 
-      # We manually print the first line of the prompt because of a bug in reedline.
-      # If we don't do this, the prompt will be redrawn one line lower after a terminal resize.
       let line_1 = if ($overlays | is-not-empty) {
         $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.0?)"
       } else {
