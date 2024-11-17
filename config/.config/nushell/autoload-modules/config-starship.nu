@@ -23,10 +23,6 @@ export-env {
         return ""
       }
 
-      if $env.PROMPT_RENDERED? == true {
-        # print ""
-      }
-
       let prompt = (
         ^starship prompt
         --cmd-duration $env.CMD_DURATION_MS
@@ -38,13 +34,13 @@ export-env {
 
       # We manually print the first line of the prompt because of a bug in reedline.
       # If we don't do this, the prompt will be redrawn one line lower after a terminal resize.
-      if ($overlays | is-not-empty) {
-        print $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.0?)"
+      let line_1 = if ($overlays | is-not-empty) {
+        $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.0?)"
       } else {
-        print $"($prompt.0?)"
+        $prompt.0?
       }
 
-      $prompt.1?
+      [$line_1, $prompt.1?] | str join (char newline)
     }
 
     PROMPT_COMMAND_RIGHT: ""
