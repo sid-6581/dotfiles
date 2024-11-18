@@ -81,6 +81,9 @@ windows registry add 'HKLM\System\CurrentControlSet\Control\DeviceGuard\Scenario
 windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet' 'SpynetReporting' 0x0
 windows registry add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet' 'SubmitSamplesConsent' 0x0
 
+# Disable malicious software removal tool
+windows registry add 'HKLM\SOFTWARE\Policies\Microsoft\MRT' 'DontOfferThroughWUAU' 0x1
+
 # Disable using sign-in info to automatically finish setting up
 windows registry add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System' 'DisableAutomaticRestartSignOn' 0x1
 
