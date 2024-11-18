@@ -28,17 +28,15 @@ export-env {
         --cmd-duration $env.CMD_DURATION_MS
         $"--status=($env.LAST_EXIT_CODE)"
         --terminal-width (term size).columns
-      ) | lines
+      )
 
       let overlays = overlay list | skip
 
-      let line_1 = if ($overlays | is-not-empty) {
-        $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt.0?)"
+      if ($overlays | is-not-empty) {
+        $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt)"
       } else {
-        $prompt.0?
+        $prompt
       }
-
-      [$line_1, $prompt.1?] | str join (char newline)
     }
 
     PROMPT_COMMAND_RIGHT: ""
