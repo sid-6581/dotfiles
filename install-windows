@@ -111,6 +111,7 @@ nu-install scoop --buckets [
   uutils-coreutils
   wezterm-nightly
   which
+  win32yank
   xsv
   yazi
   zoxide
