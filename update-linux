@@ -34,7 +34,7 @@ if (which nvim | is-empty) {
   log warning "nvim not installed, skipping update"
 } else {
   log info "Updating nvim"
-  ^bob use stable
+  ^bob use nightly
   ^nvim --headless "+Lazy! sync" "+qa"
   ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"

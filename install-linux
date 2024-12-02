@@ -88,7 +88,7 @@ if (which bob | is-empty) {
   log warning "bob not installed, skipping installation of neovim"
 } else if (^bob list | find used | is-empty) {
   log info "Installing neovim"
-  ^bob use stable
+  ^bob use nightly
 }
 
 exit
