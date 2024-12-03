@@ -10,10 +10,12 @@ export def --env set-user-env [
   # We don't want to set them all regardless, because modifying the registry is slow.
   $environment
   | transpose key value
-  | filter {|it| ($current_environment | get -i ([$it.key value 0] | into cell-path)) != $it.value }
   | each {|it|
-    log info $"Setting environment variable ($it.key) to ($it.value)"
-    ^setx $it.key $it.value
+    let current_value = $current_environment | get -i ([$it.key value 0] | into cell-path)
+    if $it.value != $current_value {
+      log info $"Setting environment variable ($it.key) to ($it.value) \(Current value: ($current_value)\)"
+      ^setx $it.key $it.value
+    }
   }
 
   # Load environment in this scope so it's immediately available.
