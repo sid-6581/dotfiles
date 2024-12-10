@@ -43,6 +43,7 @@ nu-install pacman [
   openssl
   pkgconf
   podman
+  pre-commit
   python-pip
   unzip
 ]
