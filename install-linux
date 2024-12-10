@@ -31,10 +31,10 @@ nu-install dnf [
   cmake
   gcc-c++
   nodejs
-  python3-pip
   openssl
   openssl-devel
   podman
+  python3-pip
 ]
 
 nu-install pacman [
@@ -43,6 +43,7 @@ nu-install pacman [
   openssl
   pkgconf
   podman
+  python-pip
   unzip
 ]
 
