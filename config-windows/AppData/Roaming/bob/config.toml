@@ -2,6 +2,5 @@ enable_nightly_info = false
 enable_release_build = false
 downloads_location = "$USERPROFILE\\.local\\share\\bob"
 installation_location = "$USERPROFILE\\.local\\share\\bob\\nvim-bin"
-version_sync_file_location = "$USERPROFILE\\.config\\nvim\\nvim.version"
 rollback_limit = 3
 github_mirror = "https://github.com"
