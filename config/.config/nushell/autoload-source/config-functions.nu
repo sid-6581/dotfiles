@@ -96,3 +96,8 @@ def pm-run [
 ] {
   ^podman run -it --replace --name $image $image ...$command
 }
+
+# Gets a less cluttered $env.
+def nv [] {
+  $env | reject config LS_COLORS ENV_CONVERSIONS PROMPT_COMMAND PROMPT_COMMAND_RIGHT PROMPT_INDICATOR PROMPT_MULTILINE_INDICATOR
+}
