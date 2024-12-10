@@ -8,7 +8,11 @@ has() {
 
 # Install GitHub cli, because we need it to download the latest nushell release.
 if ! has gh; then
-  sudo dnf install gh -y
+  if has dnf; then
+    sudo dnf install gh -y
+  elif has pacman; then
+    sudo pacman -Sy --noconfirm github-cli
+  fi
 fi
 
 # Must be authenticated with GitHub
