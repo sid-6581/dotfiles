@@ -11,15 +11,20 @@ export def "nu-install link" [
     let target = $l.target | path expand --no-symlink
     let link = $l.link | path expand --no-symlink
 
-    if ($target_type == dir) and (not ($link | path exists)) {
+    if $target_type == null {
+      log warning $"($target) does not exist, skipping linking"
+      return
+    }
+
+    if ($target_type == "dir") and (not ($link | path exists)) {
       mkdir $link
     }
 
-    if ($target_type == dir) != (($link | path type) == dir) {
+    if ($target_type == "dir") != (($link | path type) == "dir") {
       error make { msg: $"Both ($target) and ($link) must be either a directory or a file" }
     }
 
-    if $target_type == dir {
+    if $target_type == "dir" {
       let target_files = do {
         cd $target
         glob --no-dir **
