@@ -38,6 +38,7 @@ nu-install dnf [
 ]
 
 nu-install pacman [
+  cmake
   gcc
   nodejs
   npm
