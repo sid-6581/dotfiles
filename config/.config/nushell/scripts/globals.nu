@@ -24,7 +24,7 @@ if true {
     ($env.HOME | path join .local bin)
     ($env.HOME | path join .cargo bin)
     ($env.HOME | path join .local share bob nvim-bin)
-    (if $nu.os-info.name != "linux" { $env.HOME | path join scoop shims } else { null })
+    (if $nu.os-info.name == "windows" { $env.HOME | path join scoop shims } else { null })
     ($env.HOME | path join .local share pnpm)
     ($env.HOME | path join go bin)
     ...$paths
