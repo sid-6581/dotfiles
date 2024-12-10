@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+export PATH="$HOME/.local/bin:$PATH"
+
 has() {
   command -v "$1" 1>/dev/null 2>&1
 }
