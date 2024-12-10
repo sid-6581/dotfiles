@@ -47,7 +47,7 @@ windows set-user-env {
   )
   RIPGREP_CONFIG_PATH:     $env.RIPGREP_CONFIG_PATH?
   WSLHOME:                 ($env.FILE_PWD | path dirname)
-  XDG_CACHE_HOME:         $env.XDG_CACHE_HOME?
+  XDG_CACHE_HOME:          $env.XDG_CACHE_HOME?
   XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME?
   XDG_DATA_HOME:           $env.XDG_DATA_HOME?
   XDG_STATE_HOME:          $env.XDG_STATE_HOME?
