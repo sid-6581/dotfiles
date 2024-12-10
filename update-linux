@@ -6,8 +6,12 @@ use config/.config/nushell/scripts/log.nu
 
 log info "Updating Linux"
 
-log info "Updating dnf"
-^sudo dnf -y update --refresh
+if (which dnf | is-empty) {
+  log warning "dnf not installed, skipping update"
+} else {
+  log info "Updating dnf"
+  ^sudo dnf -y update --refresh
+}
 
 if (which rustup | is-empty) {
   log warning "rustup not installed, skipping update"
