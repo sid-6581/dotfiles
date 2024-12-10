@@ -10,8 +10,8 @@ prepend_keymap = [
   { on = "q", run = "quit --no-cwd-file", desc = "Exit the process without writing cwd-file" },
   { on = "Q", run = "quit", desc = "Exit the process and write cwd-file" },
   { on = "d", run = "remove --permanently", desc = "Permanently delete the files" },
-  { on = "<Enter>", run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
-  { on = "<C-p>", run = "plugin --sync max-preview", desc = "Maximize or restore preview" },
+  { on = "<Enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+  { on = "<C-p>", run = "plugin max-preview", desc = "Maximize or restore preview" },
   { on = "!", run = "shell \"nu -li\" --block --confirm", desc = "Launch shell" },
 ]
 

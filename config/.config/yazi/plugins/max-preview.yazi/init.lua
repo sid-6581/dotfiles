@@ -1,4 +1,5 @@
----@diagnostic disable: undefined-global
+--- @sync entry
+--- @diagnostic disable: undefined-global
 
 local function entry(st)
   if st.old then
