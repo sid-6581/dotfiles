@@ -1,7 +1,6 @@
 #!/usr/bin/env nu
 
-source config/.config/nushell/scripts/globals.nu
-
+use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
 
 log info "Updating Linux"

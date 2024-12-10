@@ -7,8 +7,7 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
-source config/.config/nushell/scripts/globals.nu
-
+use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
 
 log info "Updating Windows"

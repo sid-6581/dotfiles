@@ -6,10 +6,10 @@ has() {
   command -v "$1" 1>/dev/null 2>&1
 }
 
-# Install GitHub cli, because we need it to download the latest nushell release.
+# Install GitHub CLI, because we need it to download the latest nushell release.
 if ! has gh; then
   if has dnf; then
-    sudo dnf install gh -y
+    sudo dnf install -y gh
   elif has pacman; then
     sudo pacman -Sy --noconfirm github-cli
   fi

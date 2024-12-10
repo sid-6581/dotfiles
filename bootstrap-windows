@@ -4,8 +4,7 @@ if $nu.os-info.name != "linux" {
   error make { msg: "This script must be run from Linux only" }
 }
 
-source config/.config/nushell/scripts/globals.nu
-
+use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
 
 if not ($"($env.HOME)/winhome" | path exists) {

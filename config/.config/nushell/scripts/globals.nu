@@ -1,15 +1,13 @@
 # This file should contain things that are required everywhere.
 # It should be sourced from env.nu, but also from scripts that require certain the standard environment variables and paths.
+export-env {
+  $env.HOME = if $nu.os-info.name == "linux" { $env.HOME } else { $env.HOME? | default $env.USERPROFILE }
+  $env.XDG_CACHE_HOME = $env.HOME | path join .cache
+  $env.XDG_CONFIG_HOME = $env.HOME | path join .config
+  $env.XDG_DATA_HOME = $env.HOME | path join .local share
+  $env.XDG_STATE_HOME = $env.HOME | path join .local state
+  $env.PNPM_HOME = $env.HOME | path join .local share pnpm
 
-$env.HOME = if $nu.os-info.name == "linux" { $env.HOME } else { $env.HOME? | default $env.USERPROFILE }
-$env.XDG_CACHE_HOME = $env.HOME | path join .cache
-$env.XDG_CONFIG_HOME = $env.HOME | path join .config
-$env.XDG_DATA_HOME = $env.HOME | path join .local share
-$env.XDG_STATE_HOME = $env.HOME | path join .local state
-$env.PNPM_HOME = $env.HOME | path join .local share pnpm
-
-# Running in block to prevent variable leakage.
-if true {
   # Handle being sourced from env.nu/config.nu where the path isn't separated yet,
   # as well as scripts where the path is already separated.
   let is_list = $env.PATH | describe | str starts-with list
