@@ -33,6 +33,3 @@
   enabled = true
 [diff]
   algorithm = histogram
-[user]
-	email = sid6581@gmail.com
-	name = sid-6581
