@@ -4,11 +4,6 @@ use log.nu
 export def "nu-install dnf" [
   packages: list<string> # Packages to install
 ] {
-  if $nu.os-info.name != "linux" {
-    log error $"dnf is only supported on Linux"
-    exit
-  }
-
   if (which dnf | is-empty) {
     log warning "dnf not found, skipping nu-install dnf"
     return
