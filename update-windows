@@ -7,6 +7,8 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
+let file_pwd = $env.FILE_PWD
+
 use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
 
@@ -59,6 +61,6 @@ if (which nvim | is-empty) {
   print (char newline)
 }
 
-^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($env.FILE_PWD)/update-windows-sudo.nu"
+^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($file_pwd)/update-windows-sudo.nu"
 
 exit

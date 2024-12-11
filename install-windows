@@ -7,10 +7,12 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
+let file_pwd = $env.FILE_PWD
+
 use config/.config/nushell/scripts/globals.nu
-use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/log.nu
 use config/.config/nushell/scripts/windows.nu
+use config/.config/nushell/scripts/nu-install *
 use setup/setup-git.nu
 
 log info "Installing Windows"
@@ -46,7 +48,7 @@ windows set-user-env {
     | str join (char esep)
   )
   RIPGREP_CONFIG_PATH:     $env.RIPGREP_CONFIG_PATH?
-  WSLHOME:                 ($env.FILE_PWD | path dirname)
+  WSLHOME:                 ($file_pwd | path dirname)
   XDG_CACHE_HOME:          $env.XDG_CACHE_HOME?
   XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME?
   XDG_DATA_HOME:           $env.XDG_DATA_HOME?
@@ -117,7 +119,7 @@ nu-install scoop --buckets [
   zoxide
 ]
 
-^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($env.FILE_PWD)/install-windows-sudo.nu"
+^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($file_pwd)/install-windows-sudo.nu"
 
 nu-install git [
   { repo: "https://github.com/sid-6581/dotfiles", dir: ($env.HOME | path join .dotfiles) }
