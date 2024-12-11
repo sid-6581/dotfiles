@@ -1,4 +1,4 @@
-use ./get-executables.nu
+use get-executables.nu
 
 # Copies executables from one directory to another. This will rename the
 # existing executable before copying the new file in its place, since running
