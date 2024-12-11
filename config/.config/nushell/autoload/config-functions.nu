@@ -1,4 +1,4 @@
-use ../autoload-modules/config-git-aliases.nu *
+use config-git-aliases.nu *
 
 # Git simple PR:
 #
@@ -6,7 +6,7 @@ use ../autoload-modules/config-git-aliases.nu *
 # - Commits all changes
 # - Creates a new branch with the provided name
 # - Commits the changes with the provided commit message
-def gspr [
+export def gspr [
   branch: string  # Branch name
   message: string # Commit messages
 ] {
@@ -30,7 +30,7 @@ def gspr [
 }
 
 # Searches for a GitHub repo and clones it.
-def --wrapped gh-clone [
+export def --wrapped gh-clone [
   ...query: string
 ] {
   let results = do -c { ^gh search repos ...$query --json fullName,description }
@@ -54,7 +54,7 @@ def --wrapped gh-clone [
 }
 
 # Searches for a GitHub repo and forks it.
-def --wrapped gh-fork [
+export def --wrapped gh-fork [
   ...query: string
 ] {
   let results = do -c { ^gh search repos ...$query --json fullName,description }
@@ -78,19 +78,19 @@ def --wrapped gh-fork [
 }
 
 # Does a podman system prune.
-def pm-gc [] {
+export def pm-gc [] {
   ^podman system prune -a -f
 }
 
 # Runs a podman container with bash as the entrypoint.
-def pm-bash [
+export def pm-bash [
   image: string # The name of the image to run
 ] {
   ^podman run -it --replace --entrypoint /usr/bin/env --name $image $image bash
 }
 
 # Runs a podman container with optional command arguments.
-def pm-run [
+export def pm-run [
   image: string      # The name of the image to run
   ...command: string # The command to run
 ] {
@@ -98,6 +98,6 @@ def pm-run [
 }
 
 # Gets a less cluttered $env.
-def nv [] {
+export def nv [] {
   $env | reject config LS_COLORS ENV_CONVERSIONS PROMPT_COMMAND PROMPT_COMMAND_RIGHT PROMPT_INDICATOR PROMPT_MULTILINE_INDICATOR
 }

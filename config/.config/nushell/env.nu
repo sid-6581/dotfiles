@@ -16,13 +16,17 @@ export-env {
   # Generate autoload.nu file that will be sourced in config.nu.
   # Running in block to prevent variable leakage.
   # Write the default config for this version if it doesn't exist.
-  let default_config_path = $"($nu.default-config-dir)/autoload-source/00-config-default-(version | get version).nu"
+  let default_config_path = $"($nu.default-config-dir)/autoload/00-config-default-(version | get version).nu"
 
   if not ($default_config_path | path exists) {
     do {
-      cd $"($nu.default-config-dir)/autoload-source"
+      cd $"($nu.default-config-dir)/autoload"
       glob 00-config-default-* | each { rm -f $in }
-      $"if true { (config nu --default) }" | save $default_config_path
+
+      $"export-env {
+      (config nu --default)
+      }"
+      | save $default_config_path
     }
   }
 
@@ -30,7 +34,7 @@ export-env {
   def get-files [path: string] {
     try {
       ls -al $path
-      | filter { $in.type == file or $in.type == symlink and ($in.target | path exists) }
+      | filter { $in.type == "file" or $in.type == "symlink" and ($in.target | path exists) }
       | get name
       | sort
     } | default []
@@ -39,8 +43,7 @@ export-env {
   let autoload_path = $"($nu.default-config-dir)/autoload.nu"
 
   let autoload_contents = (
-    (get-files $"($nu.default-config-dir)/autoload-source" | each { $"source ($in)" }) ++
-    (get-files $"($nu.default-config-dir)/autoload-modules" | each { $"use ($in) *" })
+    (get-files $"($nu.default-config-dir)/autoload" | each { $"use ($in) *" })
   ) | str join "\n"
 
   if $autoload_contents != "" and (try { open -r $autoload_path }) != $autoload_contents {
