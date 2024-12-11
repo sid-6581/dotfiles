@@ -58,7 +58,6 @@ if (which nvim | is-empty) {
   ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"
   ^nvim --headless "+TSUpdateSync" "+qa"
-  print (char newline)
 }
 
 ^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($file_pwd)/update-windows-sudo.nu"
