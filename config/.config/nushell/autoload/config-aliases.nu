@@ -6,6 +6,7 @@ export alias sudome = sudo --preserve-env=HOME
 export alias mc = ^mc --nosubshell
 export alias n = nvim
 export alias activate = overlay use .venv/bin/activate.nu
+export alias tf = terraform
 
 # LSD
 export alias lsd = ^lsd --color=always --icon=always --group-dirs=first --git
