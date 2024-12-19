@@ -46,6 +46,7 @@ nu-install pacman [
   podman
   pre-commit
   python-pip
+  ttf-jetbrains-mono-nerd
   unzip
 ]
 

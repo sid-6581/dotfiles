@@ -3,6 +3,8 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local act = wezterm.action
 
+local is_linux = wezterm.target_triple:find("linux") ~= nil
+
 -- UI
 
 local scheme = wezterm.get_builtin_color_schemes()["GruvboxDarkHard"]
@@ -21,11 +23,17 @@ config.custom_block_glyphs = false
 config.font = wezterm.font({
   family = "JetBrainsMono Nerd Font",
 })
-config.font_size = 9.5
+
+if is_linux then
+  config.font_size = 10
+else
+  config.font_size = 9.5
+end
+
 config.command_palette_font_size = 12
 -- config.window_background_opacity = 0
 -- config.win32_system_backdrop = "Mica"
-config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.window_decorations = is_linux and "TITLE | RESIZE" or "INTEGRATED_BUTTONS | RESIZE"
 
 config.window_frame = {
   inactive_titlebar_bg = "none",
@@ -86,7 +94,12 @@ wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _ma
   return title
 end)
 
-wezterm.on("format-window-title", function(tab, _pane, _tabs, _panes, _config) return tab.active_pane.title end)
+wezterm.on(
+  "format-window-title",
+  function(tab, _pane, _tabs, _panes, _config)
+    return tab.active_pane.title
+  end
+)
 
 config.skip_close_confirmation_for_processes_named = {
   "bash",
@@ -109,11 +122,15 @@ config.skip_close_confirmation_for_processes_named = {
 
 -- Profiles
 
-config.default_domain = "WSL:fedoraremix"
-
+if is_linux then
+  config.default_domain = "nu"
+else
+  config.default_domain = "WSL:fedoraremix"
+end
 config.exec_domains = {
+
   wezterm.exec_domain("nu", function(cmd)
-    local args = { "nu", "-l" }
+    local args = { is_linux and "bash" or "nu", "-l" }
     for _, arg in ipairs(cmd.args or { "-i" }) do
       table.insert(args, arg)
     end
