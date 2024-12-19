@@ -2,7 +2,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local act = wezterm.action
-
 local is_linux = wezterm.target_triple:find("linux") ~= nil
 
 -- UI
@@ -24,20 +23,18 @@ config.font = wezterm.font({
   family = "JetBrainsMono Nerd Font",
 })
 
-if is_linux then
-  config.font_size = 10.5
-else
-  config.font_size = 9.5
-end
-
+config.font_size = 9.5
 config.command_palette_font_size = 12
+
 -- config.window_background_opacity = 0
 -- config.win32_system_backdrop = "Mica"
+
 config.window_decorations = is_linux and "TITLE | RESIZE" or "INTEGRATED_BUTTONS | RESIZE"
 
 config.window_frame = {
   inactive_titlebar_bg = "none",
   active_titlebar_bg = "none",
+  font_size = 9.5,
 }
 
 config.colors = {
@@ -127,46 +124,60 @@ if is_linux then
 else
   config.default_domain = "WSL:fedoraremix"
 end
-config.exec_domains = {
 
-  wezterm.exec_domain("nu", function(cmd)
-    local args = { is_linux and "bash" or "nu", "-l" }
-    for _, arg in ipairs(cmd.args or { "-i" }) do
-      table.insert(args, arg)
-    end
+if is_linux then
+  config.exec_domains = {
+    wezterm.exec_domain("nu", function(cmd)
+      local args = { "bash", "-l" }
+      for _, arg in ipairs(cmd.args or { "-i" }) do
+        table.insert(args, arg)
+      end
 
-    cmd.args = args
-    return cmd
-  end),
+      cmd.args = args
+      return cmd
+    end),
+  }
+else
+  config.exec_domains = {
+    wezterm.exec_domain("nu", function(cmd)
+      local args = { "nu", "-l" }
+      for _, arg in ipairs(cmd.args or { "-i" }) do
+        table.insert(args, arg)
+      end
 
-  wezterm.exec_domain("pwsh", function(cmd)
-    local args = { "pwsh.exe", "-nologo" }
-    for _, arg in ipairs(cmd.args or {}) do
-      table.insert(args, arg)
-    end
+      cmd.args = args
+      return cmd
+    end),
 
-    cmd.args = args
-    return cmd
-  end),
-}
+    wezterm.exec_domain("pwsh", function(cmd)
+      local args = { "pwsh.exe", "-nologo" }
+      for _, arg in ipairs(cmd.args or {}) do
+        table.insert(args, arg)
+      end
 
-local launch_fedora = {
-  label = "Fedora",
-  domain = { DomainName = "WSL:fedoraremix" },
+      cmd.args = args
+      return cmd
+    end),
+  }
+end
+
+local launch_default = {
+  label = config.default_domain,
+  domain = { DomainName = config.default_domain },
 }
 
 local launch_nushell = {
-  label = "Nushell",
+  label = "nu",
   domain = { DomainName = "nu" },
 }
 
 local launch_powershell = {
-  label = "PowerShell",
+  label = "pwsh",
   domain = { DomainName = "pwsh" },
 }
 
 config.launch_menu = {
-  launch_fedora,
+  launch_default,
   launch_nushell,
   launch_powershell,
 }
@@ -178,12 +189,12 @@ config.disable_default_key_bindings = true
 
 config.keys = {
   -- New tabs
-  { key = "!", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab(launch_fedora) },
+  { key = "!", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab(launch_default) },
   { key = "#", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab(launch_powershell) },
   { key = "@", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab(launch_nushell) },
   { key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("CurrentPaneDomain") },
   -- New panes
-  { key = "!", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_fedora) },
+  { key = "!", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_default) },
   { key = "#", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_powershell) },
   { key = "@", mods = "SHIFT|CTRL|ALT", action = act.SplitVertical(launch_nushell) },
   { key = "|", mods = "SHIFT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
