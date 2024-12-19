@@ -25,7 +25,7 @@ config.font = wezterm.font({
 })
 
 if is_linux then
-  config.font_size = 10
+  config.font_size = 10.5
 else
   config.font_size = 9.5
 end
