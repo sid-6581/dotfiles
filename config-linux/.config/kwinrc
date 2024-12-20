@@ -17,10 +17,6 @@ layoutsJson=[\n    {\n        "name": "Priority Grid",\n        "padding": 5,\n 
 zoneOverlayHighlightTarget=1
 zoneSelectorTriggerDistance=2
 
-[TabBox]
-LayoutName=compact
-ShowTabBox=false
-
 [Tiling]
 padding=4
 
