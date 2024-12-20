@@ -19,18 +19,21 @@ export def "nu-install gh" [
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
   if (which gh | is-empty) {
-    log warning "gh not found, skipping nu-install gh"
+    log error "nu-install gh: gh not found"
     return
   }
 
   let destination = $destination | default $"($env.HOME)/.local/bin/"
 
-  if not (gh auth status | complete | get stdout | str contains "Logged in to") {
-    log warning "Not logged into GitHub CLI, logging in"
-    ^gh auth login
+  if not ($destination | path exists) {
+    log error $"nu-install gh: ($destination) does not exist"
+    return
   }
 
-  # TODO: Do gh version checks in parallel.
+  if not (gh auth status | complete | get stdout | str contains "Logged in to") {
+    log warning "nu-install gh: Not logged into GitHub CLI, logging in"
+    ^gh auth login
+  }
 
   for $r in $repos {
     let tag = $r.tag? | default "Latest"
@@ -43,17 +46,18 @@ export def "nu-install gh" [
     )
 
     if ($releases | length) != 1 {
-      error make { msg: $"No release found with tag ($tag)" }
+      log error $"No release found with tag ($tag)"
+      return
     }
 
     # If we've already installed a release with this tag, skip the rest.
     let release = $releases | first
-    let history_tag = nu-install history get [gh $r.repo tag]
+    let history_tag = nu-install history get ["gh" $r.repo "tag"]
     if $history_tag == $release.tag {
       continue
     }
 
-    log info $"Downloading executables from repo ($r.repo) (($release))"
+    log info $"nu-install gh: Downloading executables from repo ($r.repo) (($release))"
 
     let temp_directory = mktemp -d
 
@@ -62,19 +66,20 @@ export def "nu-install gh" [
 
       let asset_count = ls $temp_directory | length
       if $asset_count != 1 {
-        error make { msg: $"($asset_count) assets downloaded, the glob pattern must match a single asset" }
+        log error $"nu-install gh: ($asset_count) assets downloaded from ($r.repo), the glob pattern must match a single asset"
+        continue
       }
 
       extract (ls $temp_directory).0.name
       let executables = process $r $temp_directory
       copy-executables $executables $destination
 
-      nu-install history upsert [gh $r.repo] {
+      nu-install history upsert ["gh" $r.repo] {
         tag: $release.tag
         executables: ($executables | each { path basename })
       }
     } catch {|e|
-      log error $"Error downloading assets from ($r.repo): ($e.msg)"
+      log error $"nu-install gh: Error downloading assets from ($r.repo): ($e.msg)"
     }
 
     rm -rf $temp_directory
@@ -87,7 +92,7 @@ export def "nu-install gh uninstall" [
   --destination (-d): string      # The destination directory (default $HOME/.local/bin)
 ] {
   let destination = $destination | default ($env.HOME | path join .local bin)
-  let executables = nu-install history get [gh $repo executables]
+  let executables = nu-install history get ["gh" $repo "executables"]
 
   if ($executables | is-empty) {
     return
@@ -97,7 +102,7 @@ export def "nu-install gh uninstall" [
 
   $executables | each { rm -f ([$destination $in] | path join) }
 
-  nu-install history remove [gh $repo]
+  nu-install history remove ["gh" $repo]
 }
 
 # Process extracted files in temp directory and return a list of the executables to keep.
