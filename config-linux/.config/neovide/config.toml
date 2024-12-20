@@ -1,0 +1,10 @@
+frame = "none"
+
+[font]
+normal = ["JetBrainsMono Nerd Font"]
+size = 9.5
+hinting = "full"
+edging = "subpixelantialias"
+
+[font.features]
+"Iosevka Nerd Font" = ["+ss14"]
