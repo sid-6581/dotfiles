@@ -12,6 +12,13 @@ if (which dnf | is-empty) {
   ^sudo dnf -y update --refresh
 }
 
+if (which pacman | is-empty) {
+  log warning "pacman not installed, skipping update"
+} else {
+  log info "Updating pacman"
+  ^sudo pacman -Syyu
+}
+
 if (which rustup | is-empty) {
   log warning "rustup not installed, skipping update"
 } else {

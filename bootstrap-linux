@@ -2,16 +2,32 @@
 
 set -euo pipefail
 
+export PATH="$HOME/.local/bin:$PATH"
+
 has() {
   command -v "$1" 1>/dev/null 2>&1
 }
+
+# If we're on arch we can do everything with pacman.
+if has pacman; then
+  if ! has nu; then
+    sudo pacman -Sy --noconfirm nushell
+  fi
+  if ! has gh; then
+    sudo pacman -Sy --noconfirm github-cli
+  fi
+  exit
+fi
+
+# If we already have nushell, we're done.
+if has nu; then
+  exit 0
+fi
 
 # Install GitHub CLI, because we need it to download the latest nushell release.
 if ! has gh; then
   if has dnf; then
     sudo dnf install -y gh
-  elif has pacman; then
-    sudo pacman -Sy --noconfirm github-cli
   fi
 fi
 
@@ -22,10 +38,8 @@ if ! gh auth status 2>&1 | grep -q "Logged in to"; then
 fi
 
 # Install the latest nushell release from GitHub releases to ~/.local/bin.
-if ! has nu; then
-  temp_directory=$(mktemp -d)
-  trap 'rm -rf -- "$temp_directory"' EXIT
-  gh release download -R nushell/nushell -p '*x86_64-unknown-linux-gnu.tar.gz' -O - | tar xz -C "$temp_directory"
-  [[ ! -d ~/.local/bin ]] && mkdir -p ~/.local/bin
-  find "$temp_directory" -type f -executable -exec cp "{}" "$HOME/.local/bin" ';'
-fi
+temp_directory=$(mktemp -d)
+trap 'rm -rf -- "$temp_directory"' EXIT
+gh release download -R nushell/nushell -p '*x86_64-unknown-linux-gnu.tar.gz' -O - | tar xz -C "$temp_directory"
+[[ ! -d ~/.local/bin ]] && mkdir -p ~/.local/bin
+find "$temp_directory" -type f -executable -exec cp "{}" "$HOME/.local/bin" ';'
