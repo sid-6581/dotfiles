@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+[[ ! -d ~/.local/bin ]] && mkdir -p ~/.local/bin
+
 export PATH="$HOME/.local/bin:$PATH"
 
 has() {
@@ -41,5 +43,4 @@ fi
 temp_directory=$(mktemp -d)
 trap 'rm -rf -- "$temp_directory"' EXIT
 gh release download -R nushell/nushell -p '*x86_64-unknown-linux-gnu.tar.gz' -O - | tar xz -C "$temp_directory"
-[[ ! -d ~/.local/bin ]] && mkdir -p ~/.local/bin
 find "$temp_directory" -type f -executable -exec cp "{}" "$HOME/.local/bin" ';'
