@@ -1,5 +1,5 @@
 [PlasmaTransientsConfig]
-PreloadWeight=42
+PreloadWeight[$d]
 
 [PlasmaViews][Panel 2]
 floating=1
@@ -8,9 +8,9 @@ floating=1
 thickness=44
 
 [PlasmaViews][Panel 26]
-floating=1
+floating=0
 panelLengthMode=0
-panelOpacity=0
+panelOpacity=2
 
 [PlasmaViews][Panel 26][Defaults]
 thickness=44

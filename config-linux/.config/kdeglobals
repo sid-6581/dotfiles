@@ -133,6 +133,7 @@ ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
 [General]
+BrowserApplication=vivaldi-stable.desktop
 ColorSchemeHash=babca25f3a5cf7ece26a85de212ab43d0a141257
 XftAntialias=true
 XftHintStyle=hintfull
