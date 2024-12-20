@@ -5,7 +5,7 @@ export def "nu-install pacman" [
   packages: list<string> # Packages to install
 ] {
   if (which pacman | is-empty) {
-    log warning "pacman not found, skipping nu-install pacman"
+    log error "nu-install pacman: pacman not found"
     return
   }
 
@@ -13,7 +13,7 @@ export def "nu-install pacman" [
   let missing_packages = $packages | filter { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
-    log info $"Installing pacman packages: ($missing_packages)"
-    ^sudo pacman -Syu --noconfirm ...$missing_packages
+    log info $"nu-install pacman: Installing: ($missing_packages)"
+    ^sudo pacman -Syyu --noconfirm ...$missing_packages
   }
 }

@@ -7,4 +7,5 @@ export use history.nu *
 export use link.nu *
 export use pacman.nu *
 export use scoop.nu *
+export use yay.nu *
 export use winget.nu *

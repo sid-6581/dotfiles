@@ -50,6 +50,10 @@ nu-install pacman [
   unzip
 ]
 
+nu-install yay [
+  neovim-nightly
+]
+
 if (which rustup | is-empty) {
   log info "Installing rust"
   ^curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
