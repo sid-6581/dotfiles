@@ -129,7 +129,7 @@ nu-install gh [
 
 if (which bob | is-empty) and (which nvim | is-empty) {
   log warning "bob not installed, skipping installation of neovim"
-} else if (^bob list | find used | is-empty) {
+} else if not (which bob | is-empty) and (^bob list | find used | is-empty) {
   log info "Installing neovim"
   ^bob use nightly
 }
