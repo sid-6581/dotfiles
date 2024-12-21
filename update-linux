@@ -12,6 +12,13 @@ if (which dnf | is-empty) {
   ^sudo dnf -y update --refresh
 }
 
+if (which yay | is-empty) {
+  log warning "yay not installed, skipping update"
+} else {
+  log info "Updating yay"
+  ^yay -Syyu --noconfirm
+}
+
 if (which pacman | is-empty) {
   log warning "pacman not installed, skipping update"
 } else {
