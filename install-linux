@@ -53,6 +53,7 @@ nu-install pacman [
   npm
   nushell
   openssl
+  p7zip
   pkgconf
   podman
   pre-commit
