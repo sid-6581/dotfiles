@@ -40,7 +40,7 @@ export def "nu-install hashicorp" [
       continue
     }
 
-    log info $"Downloading executables for HashiCorp ($product.name) (($version))"
+    log info $"nu-install hashicorp: Downloading executables for ($product.name) (($version))"
 
     let temp_directory = mktemp -d
 
@@ -56,7 +56,7 @@ export def "nu-install hashicorp" [
         executables: (get-executables $temp_directory | each { path basename })
       }
     } catch {|e|
-      log error $"Error downloading release from ($url): ($e.msg)"
+      log error $"nu-install hashicorp: Error downloading release from ($url): ($e.msg)"
     }
 
     rm -rf $temp_directory
@@ -75,7 +75,7 @@ export def "nu-install hashicorp uninstall" [
     return
   }
 
-  log info $"Deleting executables downloaded for HashiCorp ($product)"
+  log info $"nu-install hashicorp: Deleting executables downloaded for ($product)"
 
   $executables | each { rm -f ([$destination $in] | path join) }
 

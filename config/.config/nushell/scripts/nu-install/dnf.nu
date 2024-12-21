@@ -5,7 +5,7 @@ export def "nu-install dnf" [
   packages: list<string> # Packages to install
 ] {
   if (which dnf | is-empty) {
-    log warning "dnf not found, skipping nu-install dnf"
+    log warning "nu-install dnf: dnf not found"
     return
   }
 
@@ -13,7 +13,7 @@ export def "nu-install dnf" [
   let missing_packages = $packages | filter { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
-    log info $"Installing dnf packages: ($missing_packages)"
+    log info $"nu-install dnf: Installing: ($missing_packages)"
     ^sudo dnf install -qy ...$missing_packages
   }
 }

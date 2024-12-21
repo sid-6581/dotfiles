@@ -6,7 +6,7 @@ export def "nu-install winget" [
   apps: list<string>      # Apps to install (exact ID)
 ] {
   if (which winget | is-empty) {
-    log warning "winget not found, skipping nu-install winget"
+    log warning "nu-install winget: winget not found"
     return
   }
 
@@ -14,7 +14,7 @@ export def "nu-install winget" [
     try {
       ^winget list --accept-source-agreements --exact --id $app o+e> (std null-device)
     } catch {
-      log info $"Installing winget app: ($app)"
+      log info $"nu-install winget: Installing: ($app)"
       ^winget install --accept-source-agreements --silent --exact --id $app
     }
   }
@@ -25,14 +25,14 @@ export def "nu-install winget uninstall" [
   apps: list<string>      # Apps to uninstall (exact name)
 ] {
   if (which winget | is-empty) {
-    log warning "winget not found, skipping nu-install winget uninstall"
+    log warning "nu-install winget: winget not found"
     return
   }
 
   for $app in $apps {
     try {
       ^winget list --accept-source-agreements --exact --name $app o+e> (std null-device)
-      log info $"Uninstalling winget app: ($app)"
+      log info $"nu-install winget: Uninstalling: ($app)"
       ^winget uninstall --accept-source-agreements --silent --exact --name $app
     } catch {
     }

@@ -9,7 +9,7 @@ export def "nu-install scoop" [
   install-scoop
 
   if (which scoop | is-empty) {
-    log warning "scoop not found, skipping nu-install scoop"
+    log warning "nu-install scoop: scoop not found"
     return
   }
 
@@ -18,14 +18,14 @@ export def "nu-install scoop" [
   let missing_buckets = $buckets | default [] | filter { $in not-in $installed.buckets.Name }
 
   if ($missing_buckets | is-not-empty) {
-    log info $"Adding scoop buckets: ($missing_buckets)"
+    log info $"nu-install scoop: Adding buckets: ($missing_buckets)"
     $missing_buckets | each { ^scoop bucket add $in }
   }
 
   let missing_apps = $apps | default [] | filter { $in not-in $installed.apps.Name }
 
   if ($missing_apps | is-not-empty) {
-    log info $"Adding scoop apps: ($missing_apps)"
+    log info $"nu-install scoop: Adding apps: ($missing_apps)"
     $missing_apps | each { ^scoop install -s $in }
   }
 
@@ -36,7 +36,7 @@ export def "nu-install scoop" [
       ^scoop install sudo
     }
 
-    log info $"Adding scoop sudo apps: ($missing_sudo_apps)"
+    log info $"nu-install scoop: Adding sudo apps: ($missing_sudo_apps)"
     $missing_sudo_apps | each { ^sudo.cmd $"($env.HOME)/scoop/shims/scoop.cmd" install -g -s $in }
   }
 }
@@ -50,7 +50,7 @@ export def "nu-install scoop uninstall" [
   install-scoop
 
   if (which scoop | is-empty) {
-    log warning "scoop not found, skipping nu-install scoop"
+    log warning "nu-install scoop: scoop not found"
     return
   }
 
@@ -63,7 +63,7 @@ export def "nu-install scoop uninstall" [
   )
 
   if ($found_buckets | is-not-empty) {
-    log info $"Removing scoop buckets: ($found_buckets)"
+    log info $"nu-install scoop: Removing buckets: ($found_buckets)"
     $found_buckets | each { ^scoop bucket rm $in }
   }
 
@@ -74,7 +74,7 @@ export def "nu-install scoop uninstall" [
   )
 
   if ($found_apps | is-not-empty) {
-    log info $"Uninstalling scoop apps: ($found_apps)"
+    log info $"nu-install scoop: Uninstalling apps: ($found_apps)"
     $found_apps | each { ^scoop uninstall $in }
   }
 
@@ -90,18 +90,18 @@ export def "nu-install scoop uninstall" [
     }
 
     $found_sudo_apps | each { ^sudo.cmd $"($env.HOME)/scoop/shims/scoop.cmd" uninstall -g $in }
-    log info $"Uninstalling scoop sudo apps: ($found_sudo_apps)"
+    log info $"nu-install scoop: Uninstalling sudo apps: ($found_sudo_apps)"
   }
 }
 
 def install-scoop [] {
   if $nu.os-info.name != "windows" {
-    log error $"scoop is only supported on Windows"
+    log error $"nu-install scoop: scoop is only supported on Windows"
     exit
   }
 
   if (which scoop | is-empty) {
-    log info "Installing scoop"
+    log info "nu-install scoop: Installing scoop"
     ^powershell -NoProfile -NonInteractive -ExecutionPolicy ByPass -Command "Invoke-WebRequest -UseBasicParsing get.scoop.sh | Invoke-Expression"
     ^scoop install -s git
     ^scoop config update_nightly true

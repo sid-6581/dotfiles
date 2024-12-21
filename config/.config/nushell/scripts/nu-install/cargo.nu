@@ -5,7 +5,7 @@ export def "nu-install cargo" [
   binaries: list<string> # Binaries to install
 ] {
   if (which cargo | is-empty) {
-    log warning "cargo not found, skipping nu-install cargo"
+    log warning "nu-install cargo: cargo not found"
     return
   }
 
@@ -20,7 +20,7 @@ export def "nu-install cargo" [
   let missing_binaries = $binaries | filter { $in not-in $installed_binaries }
 
   if ($missing_binaries | is-not-empty) {
-    log info $"Installing cargo binaries: ($missing_binaries)"
+    log info $"nu-install cargo: Installing: ($missing_binaries)"
     ^cargo install ...$missing_binaries
   }
 }

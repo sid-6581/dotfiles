@@ -13,7 +13,7 @@ export def "nu-install yay" [
   let missing_packages = $packages | filter { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
-    log info $"Installing: ($missing_packages)"
+    log info $"nu-install yay: Installing: ($missing_packages)"
     ^yay -Syyu --noconfirm ...$missing_packages
   }
 }
