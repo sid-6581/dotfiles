@@ -26,6 +26,9 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][70341c17-3452-54ca-959d-91d45d04e7f8]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25468749999999907},{"width":0.49531250000000027},{"width":0.25}]}
 
+[Tiling][91496ba0-72f8-5637-86aa-aa7624c3140c]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Windows]
 ElectricBorderMaximize=false
 ElectricBorderTiling=false
