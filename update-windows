@@ -17,15 +17,15 @@ let file_pwd = $env.FILE_PWD
 use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
 
-log info "Updating Windows"
+log info "update-windows: Starting"
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
 if (which scoop | is-empty) {
-  log warning "scoop not installed, skipping update"
+  log warning "update-windows: scoop not found"
 } else {
-  log info "Updating scoop"
+  log info "update-windows: Updating scoop"
   ^scoop update
   ^scoop update -s '*'
   ^scoop cleanup '*'
@@ -34,31 +34,36 @@ if (which scoop | is-empty) {
 }
 
 if (which rustup | is-empty) {
-  log warning "rustup not installed, skipping update"
+  log warning "update-windows: rustup not found"
 } else {
-  log info "Updating rustup"
+  log info "update-windows: Updating rustup"
   ^rustup update
 }
 
 if (which cargo | is-empty) {
-  log warning "cargo not installed, skipping update"
+  log warning "update-windows: cargo not found"
 } else {
-  log info "Updating cargo"
+  log info "update-windows: Updating cargo"
   ^cargo install-update -a
 }
 
 if (which tldr | is-empty) {
-  log warning "tldr not installed, skipping update"
+  log warning "update-windows: tldr not found"
 } else {
-  log info "Updating tldr"
+  log info "update-windows: Updating tldr"
   ^tldr -u
 }
 
-if (which nvim | is-empty) {
-  log warning "nvim not installed, skipping update"
+if (which bob | is-empty) {
+  log warning "update-windows: bob not found"
 } else {
-  log info "Updating nvim"
+  log info "update-windows: Updating nvim"
   ^bob use nightly
+}
+
+log warning "update-windows: nvim not found"
+if (which nvim | is-empty) {
+} else {
   ^nvim --headless "+Lazy! sync" "+qa"
   ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"

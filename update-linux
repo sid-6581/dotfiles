@@ -3,55 +3,60 @@
 use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
 
-log info "Updating Linux"
+log info "update-linux: Starting"
 
 if (which dnf | is-empty) {
-  log warning "dnf not installed, skipping update"
+  log warning "update-linux: dnf not found"
 } else {
-  log info "Updating dnf"
+  log info "update-linux: Updating dnf"
   ^sudo dnf -y update --refresh
 }
 
 if (which yay | is-empty) {
-  log warning "yay not installed, skipping update"
+  log warning "update-linux: yay not found"
 } else {
-  log info "Updating yay"
+  log info "update-linux: Updating yay"
   ^yay -Syyu --noconfirm
 }
 
 if (which pacman | is-empty) {
-  log warning "pacman not installed, skipping update"
+  log warning "update-linux: pacman not found"
 } else {
-  log info "Updating pacman"
+  log info "update-linux: Updating pacman"
   ^sudo pacman -Syyu
 }
 
 if (which rustup | is-empty) {
-  log warning "rustup not installed, skipping update"
+  log warning "update-linux: rustup not found"
 } else {
-  log info "Updating rustup"
+  log info "update-linux: Updating rustup"
   ^rustup update
 }
 
 if (which cargo | is-empty) {
-  log warning "cargo not installed, skipping update"
+  log warning "update-linux: cargo not found"
 } else {
-  log info "Updating cargo"
+  log info "update-linux: Updating cargo"
   ^cargo install-update -a
 }
 
 if (which tldr | is-empty) {
-  log warning "tldr not installed, skipping update"
+  log warning "update-linux: tldr not found"
 } else {
-  log info "Updating tldr"
+  log info "update-linux: Updating tldr"
   ^tldr -u
 }
 
-if (which nvim | is-empty) {
-  log warning "nvim not installed, skipping update"
+if (which bob | is-empty) {
+  log warning "update-linux: bob not found"
 } else {
-  log info "Updating nvim"
+  log info "update-linux: Updating nvim"
   ^bob use nightly
+}
+
+if (which nvim | is-empty) {
+  log warning "update-linux: nvim not found"
+} else {
   ^nvim --headless "+Lazy! sync" "+qa"
   ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"
