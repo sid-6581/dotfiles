@@ -4,12 +4,16 @@ if $nu.os-info.name != "linux" {
   error make { msg: "This script must be run from Linux only" }
 }
 
+let file_pwd = $env.FILE_PWD
+let current_file = $env.CURRENT_FILE
+let category = $current_file | path basename
+
 use config/.config/nushell/scripts/globals.nu
-use config/.config/nushell/scripts/nu-install *
 use config/.config/nushell/scripts/log.nu
+use config/.config/nushell/scripts/nu-install *
 use setup/setup-git.nu
 
-log info "Installing Linux"
+log info -c $category "Starting"
 
 setup-git author
 
@@ -72,7 +76,7 @@ nu-install yay [
 ]
 
 if (which rustup | is-empty) {
-  log info "Installing rust"
+  log info -c $category "Installing rust"
   ^curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
   ^rustup -q toolchain install nightly
 }
@@ -128,10 +132,8 @@ nu-install gh [
 ]
 
 if (which bob | is-empty) and (which nvim | is-empty) {
-  log warning "bob not installed, skipping installation of neovim"
+  log warning -c $category "bob not installed, skipping installation of neovim"
 } else if not (which bob | is-empty) and (^bob list | find used | is-empty) {
-  log info "Installing neovim"
+  log info -c $category "Installing neovim using bob"
   ^bob use nightly
 }
-
-exit

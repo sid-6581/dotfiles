@@ -1,11 +1,13 @@
 use log.nu
 
+const category = "nu-install pacman"
+
 # Installs packages using pacman.
 export def "nu-install pacman" [
   packages: list<string> # Packages to install
 ] {
   if (which pacman | is-empty) {
-    log error "nu-install pacman: pacman not found"
+    log error -c $category "pacman not found"
     return
   }
 
@@ -13,7 +15,7 @@ export def "nu-install pacman" [
   let missing_packages = $packages | filter { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
-    log info $"nu-install pacman: Installing: ($missing_packages)"
+    log info -c $category $"Installing: ($missing_packages)"
     ^sudo pacman -Syyu --noconfirm ...$missing_packages
   }
 }

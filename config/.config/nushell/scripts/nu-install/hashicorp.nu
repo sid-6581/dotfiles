@@ -4,6 +4,8 @@ use utils/extract.nu
 use utils/get-executables.nu
 use utils/copy-executables.nu
 
+const category = "nu-install hashicorp"
+
 # Downloads a release from the HashiCorp official repo, extracts all binaries,
 # and copies them to the target directory.
 #
@@ -40,7 +42,7 @@ export def "nu-install hashicorp" [
       continue
     }
 
-    log info $"nu-install hashicorp: Downloading executables for ($product.name) (($version))"
+    log info -c $category $"Downloading executables for ($product.name) (($version))"
 
     let temp_directory = mktemp -d
 
@@ -56,7 +58,7 @@ export def "nu-install hashicorp" [
         executables: (get-executables $temp_directory | each { path basename })
       }
     } catch {|e|
-      log error $"nu-install hashicorp: Error downloading release from ($url): ($e.msg)"
+      log error -c $category $"Error downloading release from ($url): ($e.msg)"
     }
 
     rm -rf $temp_directory
@@ -75,7 +77,7 @@ export def "nu-install hashicorp uninstall" [
     return
   }
 
-  log info $"nu-install hashicorp: Deleting executables downloaded for ($product)"
+  log info -c $category $"Deleting executables downloaded for ($product)"
 
   $executables | each { rm -f ([$destination $in] | path join) }
 

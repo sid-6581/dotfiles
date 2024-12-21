@@ -102,5 +102,3 @@ rm -rf ($env.HOME | path join Favorites)
 rm -rf ($env.HOME | path join Links)
 rm -rf ($env.HOME | path join Music)
 rm -rf ($env.HOME | path join Searches)
-
-exit

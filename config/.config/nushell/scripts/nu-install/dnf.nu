@@ -1,11 +1,13 @@
 use log.nu
 
+const category = "nu-install dnf"
+
 # Installs packages using dnf.
 export def "nu-install dnf" [
   packages: list<string> # Packages to install
 ] {
   if (which dnf | is-empty) {
-    log warning "nu-install dnf: dnf not found"
+    log warning -c $category "dnf not found"
     return
   }
 
@@ -13,7 +15,7 @@ export def "nu-install dnf" [
   let missing_packages = $packages | filter { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
-    log info $"nu-install dnf: Installing: ($missing_packages)"
+    log info -c $category $"Installing: ($missing_packages)"
     ^sudo dnf install -qy ...$missing_packages
   }
 }

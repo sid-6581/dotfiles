@@ -1,11 +1,13 @@
 use log.nu
 
+
+const category = "nu-install cargo"
 # Installs binaries using cargo.
 export def "nu-install cargo" [
   binaries: list<string> # Binaries to install
 ] {
   if (which cargo | is-empty) {
-    log warning "nu-install cargo: cargo not found"
+    log warning -c $category "cargo not found"
     return
   }
 
@@ -20,7 +22,7 @@ export def "nu-install cargo" [
   let missing_binaries = $binaries | filter { $in not-in $installed_binaries }
 
   if ($missing_binaries | is-not-empty) {
-    log info $"nu-install cargo: Installing: ($missing_binaries)"
+    log info -c $category $"Installing: ($missing_binaries)"
     ^cargo install ...$missing_binaries
   }
 }

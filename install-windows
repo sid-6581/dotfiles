@@ -163,5 +163,3 @@ if (which bob | is-empty) {
 if not ($"($env.HOME)/.wslconfig" | path exists) {
   "[wsl2]\nkernelCommandLine = cgroup_no_v1=all\nnetworkingMode = nat" | save -f ($env.HOME | path join .wslconfig)
 }
-
-exit

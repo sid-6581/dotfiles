@@ -1,62 +1,24 @@
 #!/usr/bin/env nu
 
+let file_pwd = $env.FILE_PWD
+let current_file = $env.CURRENT_FILE
+let category = $current_file | path basename
+
 use config/.config/nushell/scripts/globals.nu
 use config/.config/nushell/scripts/log.nu
+use setup/update.nu
 
-log info "update-linux: Starting"
+log info -c $category "Starting"
 
-if (which dnf | is-empty) {
-  log warning "update-linux: dnf not found"
-} else {
-  log info "update-linux: Updating dnf"
-  ^sudo dnf -y update --refresh
-}
+update dnf { ^sudo dnf -y update --refresh }
+update yay { ^yay -Syyu --noconfirm }
+update pacman { ^sudo pacman -Syyu }
+update rustup { ^rustup update }
+update cargo { ^cargo install-update -a }
+update tldr { ^tldr -u }
+update bob { ^bob use nightly }
 
-if (which yay | is-empty) {
-  log warning "update-linux: yay not found"
-} else {
-  log info "update-linux: Updating yay"
-  ^yay -Syyu --noconfirm
-}
-
-if (which pacman | is-empty) {
-  log warning "update-linux: pacman not found"
-} else {
-  log info "update-linux: Updating pacman"
-  ^sudo pacman -Syyu
-}
-
-if (which rustup | is-empty) {
-  log warning "update-linux: rustup not found"
-} else {
-  log info "update-linux: Updating rustup"
-  ^rustup update
-}
-
-if (which cargo | is-empty) {
-  log warning "update-linux: cargo not found"
-} else {
-  log info "update-linux: Updating cargo"
-  ^cargo install-update -a
-}
-
-if (which tldr | is-empty) {
-  log warning "update-linux: tldr not found"
-} else {
-  log info "update-linux: Updating tldr"
-  ^tldr -u
-}
-
-if (which bob | is-empty) {
-  log warning "update-linux: bob not found"
-} else {
-  log info "update-linux: Updating nvim"
-  ^bob use nightly
-}
-
-if (which nvim | is-empty) {
-  log warning "update-linux: nvim not found"
-} else {
+update nvim {
   ^nvim --headless "+Lazy! sync" "+qa"
   ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"

@@ -4,6 +4,8 @@ use utils/extract.nu
 use utils/get-executables.nu
 use utils/copy-executables.nu
 
+const category = "nu-install gh"
+
 # Downloads a release from GitHub, extracts all binaries, and copies them to
 # the target directory. Uses the gh CLI, which needs to be installed.
 #
@@ -19,19 +21,19 @@ export def "nu-install gh" [
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
   if (which gh | is-empty) {
-    log error "nu-install gh: gh not found"
+    log error -c $category "gh not found"
     return
   }
 
   let destination = $destination | default $"($env.HOME)/.local/bin/"
 
   if not ($destination | path exists) {
-    log error $"nu-install gh: ($destination) does not exist"
+    log error -c $category $"($destination) does not exist"
     return
   }
 
-  if not (gh auth status | complete | get stdout | str contains "Logged in to") {
-    log warning "nu-install gh: Not logged into GitHub CLI, logging in"
+  if not (^gh auth status | complete | get stdout | str contains "Logged in to") {
+    log warning -c $category "Not logged into GitHub CLI, logging in"
     ^gh auth login
   }
 
@@ -46,7 +48,7 @@ export def "nu-install gh" [
     )
 
     if ($releases | length) != 1 {
-      log error $"No release found with tag ($tag)"
+      log error -c $category $"No release found with tag ($tag)"
       return
     }
 
@@ -57,7 +59,7 @@ export def "nu-install gh" [
       continue
     }
 
-    log info $"nu-install gh: Downloading executables from repo ($r.repo) (($release))"
+    log info -c $category $"Downloading executables from repo ($r.repo) (($release))"
 
     let temp_directory = mktemp -d
 
@@ -66,7 +68,7 @@ export def "nu-install gh" [
 
       let asset_count = ls $temp_directory | length
       if $asset_count != 1 {
-        log error $"nu-install gh: ($asset_count) assets downloaded from ($r.repo), the glob pattern must match a single asset"
+        log error -c $category $"($asset_count) assets downloaded from ($r.repo), the glob pattern must match a single asset"
         continue
       }
 
@@ -79,7 +81,7 @@ export def "nu-install gh" [
         executables: ($executables | each { path basename })
       }
     } catch {|e|
-      log error $"nu-install gh: Error downloading assets from ($r.repo): ($e.msg)"
+      log error -c $category $"Error downloading assets from ($r.repo): ($e.msg)"
     }
 
     rm -rf $temp_directory
@@ -98,7 +100,7 @@ export def "nu-install gh uninstall" [
     return
   }
 
-  log info $"Deleting executables downloaded from repo ($repo)"
+  log info -c $category $"Deleting executables downloaded from repo ($repo)"
 
   $executables | each { rm -f ([$destination $in] | path join) }
 
