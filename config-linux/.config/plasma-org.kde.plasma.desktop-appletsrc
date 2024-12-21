@@ -39,7 +39,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][26][Applets][31][Configuration]
-PreloadWeight=60
+PreloadWeight=65
 SystrayContainmentId=32
 
 [Containments][26][Applets][44]
@@ -126,7 +126,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][32][Applets][42][Configuration]
-PreloadWeight=55
+PreloadWeight=60
 
 [Containments][32][Applets][42][Configuration][General]
 migrated=true
@@ -146,6 +146,10 @@ plugin=org.kde.plasma.battery
 [Containments][32][Applets][48]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
+
+[Containments][32][Applets][67]
+immutability=1
+plugin=org.kde.plasma.mediacontroller
 
 [Containments][32][ConfigDialog]
 DialogHeight=1149
@@ -230,6 +234,10 @@ plugin=org.kde.plasma.battery
 [Containments][8][Applets][65]
 immutability=1
 plugin=org.kde.plasma.brightness
+
+[Containments][8][Applets][66]
+immutability=1
+plugin=org.kde.plasma.mediacontroller
 
 [Containments][8][General]
 extraItems=org.kde.plasma.manage-inputmethod,org.kde.plasma.volume,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.battery,org.kde.kscreen,org.kde.plasma.cameraindicator,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.kdeconnect,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.brightness,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout
