@@ -1,4 +1,0 @@
-[General]
-AudioFeedback=false
-GlobalMute=true
-GlobalMuteDevices=alsa_output.pci-0000_01_00.1.hdmi-stereo.0,alsa_output.usb-Generic_USB_Audio-00.HiFi__SPDIF__sink.0

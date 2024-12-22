@@ -7,7 +7,7 @@ export def "nu-install pacman" [
   packages: list<string> # Packages to install
 ] {
   if (which pacman | is-empty) {
-    log error -c $category "pacman not found"
+    log warning -c $category "pacman not found"
     return
   }
 

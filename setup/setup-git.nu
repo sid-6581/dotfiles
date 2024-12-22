@@ -1,5 +1,3 @@
-#!/usr/bin/env nu
-
 # Gets git username and email from the user if we don't currently have them.
 # They will be saved to a file that will be autoloaded and set the environment variables.
 export def --env author [] {

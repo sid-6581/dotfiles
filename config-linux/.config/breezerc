@@ -1,8 +1,0 @@
-[Common]
-OutlineIntensity=OutlineOff
-
-[Style]
-MnemonicsMode=MN_ALWAYS
-
-[Windeco]
-DrawBackgroundGradient=true

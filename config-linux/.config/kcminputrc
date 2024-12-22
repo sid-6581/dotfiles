@@ -1,6 +1,0 @@
-[Keyboard]
-RepeatDelay=200
-
-[Mouse]
-X11LibInputXAccelProfileFlat=true
-XLbInptScrollOnButtonDown=true

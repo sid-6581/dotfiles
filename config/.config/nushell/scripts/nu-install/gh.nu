@@ -21,7 +21,7 @@ export def "nu-install gh" [
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
   if (which gh | is-empty) {
-    log error -c $category "gh not found"
+    log warning -c $category "gh not found"
     return
   }
 
