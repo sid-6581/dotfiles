@@ -186,6 +186,7 @@ config.launch_menu = {
 
 config.allow_win32_input_mode = false
 config.disable_default_key_bindings = true
+config.enable_kitty_keyboard = true
 
 config.keys = {
   -- New tabs

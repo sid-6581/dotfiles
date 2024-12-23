@@ -68,6 +68,7 @@ nu-install pacman [
   ttf-jetbrains-mono-nerd
   unzip
   uv
+  xclip
   yazi
   zoxide
 ]

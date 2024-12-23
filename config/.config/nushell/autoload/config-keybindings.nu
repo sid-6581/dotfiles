@@ -1,5 +1,5 @@
 export-env {
-  $env.config.keybindings = $env.config.keybindings ++ [
+  $env.config.keybindings ++= [
     {
       name: copy_selection
       modifier: control
