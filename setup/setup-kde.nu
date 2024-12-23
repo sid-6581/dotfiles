@@ -87,6 +87,7 @@ def values [] {
     ["kwinrc", "Script-kzones", "zoneOverlayHighlightTarget", "1"],
     ["kwinrc", "Script-kzones", "zoneSelectorTriggerDistance", "2"],
     ["kwinrc", "TabBox", "HighlightWindows", "false"],
+    ["kwinrc", "Effect-overview", "BorderActivate", "9"],
     ["kwinrc", "Windows", "ElectricBorderMaximize", "false"],
     ["kwinrc", "Windows", "ElectricBorderTiling", "false"],
     ["plasmaparc", "General", "AudioFeedback", "false"],
