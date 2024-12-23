@@ -4,32 +4,27 @@ const category = "setup-kde"
 
 def values [] {
   return [
-    ["kcminputrc", "Keyboard", "RepeatDelay", "200"],
-    ["kcminputrc", "Mouse", "X11LibInputXAccelProfileFlat", "true"],
-    ["kcminputrc", "Mouse", "XLbInptScrollOnButtonDown", "true"],
-
     ["breezerc", "Common", "OutlineIntensity", "OutlineOff"],
     ["breezerc", "Style", "MnemonicsMode", "MN_ALWAYS"],
     ["breezerc", "Windeco", "DrawBackgroundGradient", "true"],
-
     ["kaccessrc", "Bell", "SystemBell", "false"],
-
+    ["kcminputrc", "Keyboard", "RepeatDelay", "200"],
+    ["kcminputrc", "Mouse", "X11LibInputXAccelProfileFlat", "true"],
+    ["kcminputrc", "Mouse", "XLbInptScrollOnButtonDown", "true"],
     ["kdeglobals", "General", "XftAntialias", "true"],
     ["kdeglobals", "General", "XftHintStyle", "hintfull"],
     ["kdeglobals", "General", "XftSubPixel", "rgb"],
     ["kdeglobals", "General", "fixed", "JetBrainsMonoNL Nerd Font,9.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"],
     ["kdeglobals", "KDE", "AnimationDurationFactor", "0"],
     ["kdeglobals", "KDE", "LookAndFeelPackage", "org.kde.breezedark.desktop"],
-    ["kdeglobals", "Sounds", "Enable", "false"],
-    ["kdeglobals", "KFileDialog Settings", "View Style", "DetailTree"],
     ["kdeglobals", "KFileDialog Settings", "Show hidden files", "true"],
-
+    ["kdeglobals", "KFileDialog Settings", "View Style", "DetailTree"],
+    ["kdeglobals", "Sounds", "Enable", "false"],
     ["klaunchrc", "BusyCursorSettings", "Bouncing", "false"],
     ["klaunchrc", "FeedbackStyle", "BusyCursor", "false"],
-
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
-    ["kwinrc", "Script-kzones", "layoutsJson",
-      ([
+    ["kwinrc", "Script-kzones", "layoutsJson", (
+      [
         {
           "name": "Priority Grid",
           "padding": 5,
@@ -86,13 +81,14 @@ def values [] {
             }
           ]
         }
-      ] | to json)
-    ],
+      ]
+      | to json
+    )],
     ["kwinrc", "Script-kzones", "zoneOverlayHighlightTarget", "1"],
     ["kwinrc", "Script-kzones", "zoneSelectorTriggerDistance", "2"],
+    ["kwinrc", "TabBox", "HighlightWindows", "false"],
     ["kwinrc", "Windows", "ElectricBorderMaximize", "false"],
     ["kwinrc", "Windows", "ElectricBorderTiling", "false"],
-
     ["plasmaparc", "General", "AudioFeedback", "false"],
   ]
 }
