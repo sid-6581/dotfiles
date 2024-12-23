@@ -9,6 +9,7 @@ def values [] {
     ["breezerc", "Windeco", "DrawBackgroundGradient", "true"],
     ["kaccessrc", "Bell", "SystemBell", "false"],
     ["kcminputrc", "Keyboard", "RepeatDelay", "200"],
+    ["kcminputrc", "Keyboard", "RepeatRate", "35"],
     ["kcminputrc", "Mouse", "X11LibInputXAccelProfileFlat", "true"],
     ["kcminputrc", "Mouse", "XLbInptScrollOnButtonDown", "true"],
     ["kdeglobals", "General", "XftAntialias", "true"],
