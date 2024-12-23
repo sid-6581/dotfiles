@@ -1,13 +1,25 @@
 export alias lg = lazygit
+
+export alias n = nvim
+
+export alias s = sudo
+export alias si = sudo -i
+export alias sy = sudo yazi
+
+export alias tf = terraform
+export alias tree = broot -c :pt
+
+export alias ys = yay -S --noconfirm
+export alias yss = yay -Ss
+export alias yq = yay -Q
+export alias yqs = yay -Qs
+export alias yr = yay -R --noconfirm
+export alias yrs = yay -Rs --noconfirm
+
 export alias zj = zellij
 export alias zja = zellij attach
-export alias tree = broot -c :pt
-export alias sudome = sudo --preserve-env=HOME
-export alias mc = ^mc --nosubshell
-export alias n = nvim
+
 export alias activate = overlay use .venv/bin/activate.nu
-export alias tf = terraform
-export alias ys = yay -S --noconfirm
 
 # LSD
 export alias lsd = ^lsd --color=always --icon=always --group-dirs=first --git
