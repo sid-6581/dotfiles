@@ -128,7 +128,7 @@ end
 if is_linux then
   config.exec_domains = {
     wezterm.exec_domain("nu", function(cmd)
-      local args = { "bash", "-l" }
+      local args = { "nu" }
       for _, arg in ipairs(cmd.args or { "-i" }) do
         table.insert(args, arg)
       end
@@ -140,7 +140,7 @@ if is_linux then
 else
   config.exec_domains = {
     wezterm.exec_domain("nu", function(cmd)
-      local args = { "nu", "-l" }
+      local args = { "nu" }
       for _, arg in ipairs(cmd.args or { "-i" }) do
         table.insert(args, arg)
       end
