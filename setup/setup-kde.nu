@@ -39,7 +39,10 @@ def values [] {
               "x": 0,
               "y": 0,
               "height": 100,
-              "width": 25
+              "width": 25,
+              "applications": [
+                "discord",
+              ]
             },
             {
               "x": 25,
@@ -47,14 +50,18 @@ def values [] {
               "height": 100,
               "width": 50,
               "applications": [
-                "org.wezfurlong.wezterm"
+                "org.wezfurlong.wezterm",
+                "Vivaldi-stable",
               ]
             },
             {
               "x": 75,
               "y": 0,
-              "height": 100,
               "width": 25
+              "height": 100,
+              "applications": [
+                "Slack",
+              ]
             }
           ]
         },
