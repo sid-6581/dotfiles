@@ -23,6 +23,8 @@ def values [] {
     ["kdeglobals", "Sounds", "Enable", "false"],
     ["klaunchrc", "BusyCursorSettings", "Bouncing", "false"],
     ["klaunchrc", "FeedbackStyle", "BusyCursor", "false"],
+    ["ksplashrc", "KSplash", "Engine", "none"],
+    ["ksplashrc", "KSplash", "Theme", "none"],
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
     ["kwinrc", "Script-kzones", "layoutsJson", (
       [
