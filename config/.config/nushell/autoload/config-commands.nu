@@ -77,7 +77,7 @@ export def --wrapped gh-fork [
   ^gh repo fork $repo
 }
 
-# Does a podman system prune.
+# Performs a podman system prune.
 export def pm-gc [] {
   ^podman system prune -a -f
 }
