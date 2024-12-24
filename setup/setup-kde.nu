@@ -33,7 +33,7 @@ def values [] {
       [
         {
           "name": "Priority Grid",
-          "padding": 5,
+          "padding": 4,
           "zones": [
             {
               "x": 0,
