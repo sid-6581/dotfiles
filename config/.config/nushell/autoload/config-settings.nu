@@ -1,5 +1,4 @@
 export-env {
-  $env.config.completions.algorithm = "fuzzy"
   $env.config.completions.external.max_results = 1000
   $env.config.footer_mode = "always"
   $env.config.highlight_resolved_externals = true
