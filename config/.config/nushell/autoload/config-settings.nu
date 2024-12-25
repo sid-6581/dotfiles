@@ -20,8 +20,8 @@ export-env {
         columns: 4                    # Number of columns where the options are displayed
         col_width: 20                 # Optional value. If missing all the screen width is used to calculate column width
         col_padding: 2                # Padding between columns
-        selection_rows: 4             # Number of rows allowed to display found options
-        description_rows: 10          # Number of rows allowed to display command description
+        selection_rows: 10             # Number of rows allowed to display found options
+        description_rows: 20          # Number of rows allowed to display command description
       }
       style: {
         text: green                   # Text style
@@ -35,8 +35,7 @@ export-env {
       marker: ""                      # Indicator that appears with the menu is active
       type: {
         layout: columnar              # Type of menu
-        columns: 4                    # Number of columns where the options are displayed
-        col_width: 20                 # Optional value. If missing all the screen width is used to calculate column width
+        columns: 1                    # Number of columns where the options are displayed
         col_padding: 2                # Padding between columns
       }
       style: {
@@ -51,7 +50,7 @@ export-env {
       marker: ""                      # Indicator that appears with the menu is active
       type: {
         layout: list                  # Type of menu
-        page_size: 20                 # Number of entries that will presented when activating the menu
+        page_size: 40                 # Number of entries that will presented when activating the menu
       }
       style: {
         text: green                   # Text style
