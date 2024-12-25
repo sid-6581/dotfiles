@@ -3,6 +3,7 @@ export alias lg = lazygit
 export alias n = nvim
 
 export alias s = sudo
+export alias se = sudoedit
 export alias si = sudo -i
 export alias sy = sudo yazi
 
