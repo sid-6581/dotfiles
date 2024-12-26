@@ -1,3 +1,5 @@
+[[ -f "$HOME/.profile" ]] && . .profile
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.dotnet"
 export PATH="$PATH:$HOME/.dotnet/tools"
@@ -9,3 +11,5 @@ has() {
 if has nvidia-settings; then
   nvidia-settings --load-config-only
 fi
+
+[[ -f "$HOME/.bash_profile.local" ]] && . .bash_profile.local
