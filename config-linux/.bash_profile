@@ -3,13 +3,10 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.dotnet"
 export PATH="$PATH:$HOME/.dotnet/tools"
+export GOPATH="$HOME/.go"
 
 has() {
   command -v "$1" 1>/dev/null 2>&1
 }
 
-if has nvidia-settings; then
-  nvidia-settings --load-config-only
-fi
-
-[[ -f "$HOME/.bash_profile.local" ]] && . .bash_profile.local
+[[ -f "$HOME/.bash_profile.nu" ]] && has nu && nu .bash_profile.nu
