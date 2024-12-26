@@ -8,7 +8,7 @@ export-env {
   $env.config.rm.always_trash = true
   $env.config.shell_integration.osc133 = $nu.os-info.name == "linux"
   $env.config.show_banner = false
-  $env.config.use_kitty_protocol = true
+  $env.config.use_kitty_protocol = false
 
   $env.config.menus ++= [
     {
