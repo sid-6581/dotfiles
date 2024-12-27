@@ -2,8 +2,7 @@
 
 # This script must be started from Windows as an admin.
 if $nu.os-info.name != "windows" or not (is-admin) {
-  log error $"($env.CURRENT_FILE) must be run on Windows as an administrator"
-  exit
+  error make { msg: $"($env.CURRENT_FILE) must be run on Windows as an administrator" }
 }
 
 use nushell/scripts/globals.nu

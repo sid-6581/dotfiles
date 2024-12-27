@@ -1,7 +1,7 @@
 use log.nu
 
-
 const category = "nu-install cargo"
+
 # Installs binaries using cargo.
 export def "nu-install cargo" [
   binaries: list<string> # Binaries to install

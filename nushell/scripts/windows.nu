@@ -1,5 +1,7 @@
 use log.nu
 
+const category = path self | path basename
+
 # Set user environment variables in the registry, and also load them into the current scope.
 export def --env set-user-env [
   environment: record # Environment variables to set.
@@ -13,7 +15,7 @@ export def --env set-user-env [
   | each {|it|
     let current_value = $current_environment | get -i ([$it.key value 0] | into cell-path)
     if $it.value != $current_value {
-      log info $"Setting environment variable ($it.key) to ($it.value) \(Current value: ($current_value)\)"
+      log info -c $category $"Setting environment variable ($it.key) to ($it.value) \(Current value: ($current_value)\)"
       ^setx $it.key $it.value
     }
   }
@@ -39,11 +41,11 @@ export def "registry add" [
   }
 
   if $old_value != $value {
-    log info $"Setting environment variable ($key_name)\\($value_name) to ($value) \(Current value: ($old_value)\)"
+    log info -c $category $"Setting environment variable ($key_name)\\($value_name) to ($value) \(Current value: ($old_value)\)"
   }
 
   let result = ^reg add $key_name /f /v $value_name /t $type /d $value | complete
   if $result.exit_code != 0 {
-    log error $"Error setting environment variable ($key_name)\\($value_name): ($result.stderr | str trim)"
+    log error-c $category  $"Error setting environment variable ($key_name)\\($value_name): ($result.stderr | str trim)"
   }
 }

@@ -1,9 +1,9 @@
-use ../scripts/log.nu
+use ../log.nu
 
 const category = "update"
 
 # Runs an update closure if an application exists.
-export def main [
+export def app [
   application: string
   command: closure
 ] {

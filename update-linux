@@ -1,24 +1,22 @@
 #!/usr/bin/env nu
 
-let file_pwd = $env.FILE_PWD
-let current_file = $env.CURRENT_FILE
-let category = $current_file | path basename
-
 use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
-use nushell/setup/update.nu
+use nushell/scripts/setup
+
+const category = path self | path basename
 
 log info -c $category "Starting"
 
-update dnf { ^sudo dnf -y update --refresh }
-update yay { ^yay -Syyu --noconfirm }
-update pacman { ^sudo pacman -Syyu }
-update rustup { ^rustup update }
-update cargo { ^cargo install-update -a }
-update tldr { ^tldr -u }
-update bob { ^bob use nightly }
+setup update app dnf { ^sudo dnf -y update --refresh }
+setup update app yay { ^yay -Syyu --noconfirm }
+setup update app pacman { ^sudo pacman -Syyu }
+setup update app rustup { ^rustup update }
+setup update app cargo { ^cargo install-update -a }
+setup update app tldr { ^tldr -u }
+setup update app bob { ^bob use nightly }
 
-update nvim {
+setup update app nvim {
   ^nvim --headless "+Lazy! sync" "+qa"
   ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"

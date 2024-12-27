@@ -12,20 +12,18 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
-let file_pwd = $env.FILE_PWD
-let current_file = $env.CURRENT_FILE
-let category = $current_file | path basename
-
 use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
-use nushell/setup/update.nu
+use nushell/scripts/setup
+
+const category = path self | path basename
 
 log info -c $category "Starting"
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
-update scoop {
+setup update app scoop {
   ^scoop update
   ^scoop update -s '*'
   ^scoop cleanup '*'
@@ -34,7 +32,7 @@ update scoop {
   ^sudo scoop update -g -s '*'
 }
 
-update rustup { ^rustup update }
-update cargo { ^cargo install-update -a }
-update tldr { ^tldr -u }
-update bob { ^bob use nightly }
+setup update app rustup { ^rustup update }
+setup update app cargo { ^cargo install-update -a }
+setup update app tldr { ^tldr -u }
+setup update app bob { ^bob use nightly }

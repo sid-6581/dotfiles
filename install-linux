@@ -4,19 +4,16 @@ if $nu.os-info.name != "linux" {
   error make { msg: "This script must be run from Linux only" }
 }
 
-let file_pwd = $env.FILE_PWD
-let current_file = $env.CURRENT_FILE
-let category = $current_file | path basename
-
 use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
+use nushell/scripts/setup
 use nushell/scripts/nu-install *
-use nushell/setup/setup-git.nu
-use nushell/setup/setup-kde.nu
+
+const category = path self | path basename
 
 log info -c $category "Starting"
 
-setup-git author
+setup git author
 
 nu-install link clean
 
@@ -146,4 +143,4 @@ if (which pueue | is-not-empty) {
   ^systemctl --user enable pueued
 }
 
-setup-kde settings
+setup kde settings

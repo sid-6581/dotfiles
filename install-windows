@@ -12,20 +12,20 @@ if $nu.os-info.name == "linux" {
   exit
 }
 
-let file_pwd = $env.FILE_PWD
-
 use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
 use nushell/scripts/windows.nu
+use nushell/scripts/setup
 use nushell/scripts/nu-install *
-use nushell/setup/setup-git.nu
 
-log info "Installing Windows"
+const category = path self | path basename
+
+log info -c $category "Starting"
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
-setup-git author
+setup git author
 
 windows set-user-env {
   EDITOR:                  "neovide"
@@ -53,7 +53,7 @@ windows set-user-env {
     | str join (char esep)
   )
   RIPGREP_CONFIG_PATH:     $env.RIPGREP_CONFIG_PATH?
-  WSLHOME:                 ($file_pwd | path dirname)
+  WSLHOME:                 (path self .)
   XDG_CACHE_HOME:          $env.XDG_CACHE_HOME?
   XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME?
   XDG_DATA_HOME:           $env.XDG_DATA_HOME?
@@ -124,7 +124,7 @@ nu-install scoop --buckets [
   zoxide
 ]
 
-^sudo.cmd $"($env.HOME)/.local/bin/nu" $"($file_pwd)/install-windows-sudo.nu"
+^sudo.cmd $"($env.HOME)/.local/bin/nu" $"(path self .)/install-windows-sudo.nu"
 
 nu-install git [
   { repo: "https://github.com/sid-6581/dotfiles", dir: ($env.HOME | path join .dotfiles) }
@@ -154,9 +154,9 @@ nu-install gh [
 ]
 
 if (which bob | is-empty) {
-  log warning "bob not installed, skipping installation of neovim"
+  log warning -c $category "bob not installed, skipping installation of neovim"
 } else if (^bob list | find used | is-empty) {
-  log info "Installing neovim"
+  log info -c $category "Installing neovim"
   ^bob use nightly
 }
 

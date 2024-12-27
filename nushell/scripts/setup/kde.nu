@@ -1,4 +1,4 @@
-use ../scripts/log.nu
+use ../log.nu
 
 const category = "setup-kde"
 
@@ -153,6 +153,7 @@ def values [] {
   ]
 }
 
+# Updates KDE settings that aren't correct.
 export def settings [] {
   if (which kwriteconfig6 | is-empty) {
     log warning -c $category "kwriteconfig6 not found"
