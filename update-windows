@@ -16,9 +16,9 @@ use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
 use nushell/scripts/setup
 
-const category = path self | path basename
+$env.LOG_CATEGORY = "update-windows"
 
-log info -c $category "Starting"
+log info "Starting"
 
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME

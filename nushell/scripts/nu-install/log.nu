@@ -46,7 +46,7 @@ def log [
   --file (-f): string
 ] {
   let now = date now | format date "%Y-%m-%d %H:%M:%S"
-  let category = $category | default "" | str substring ..19 | fill -w 20
+  let category = $category | default $env.LOG_CATEGORY | str substring ..19 | fill -w 20
   print --stderr $"($ansi)($now) | ($category) | ($message | ansi strip)(ansi reset)"
 
   if $file != null {

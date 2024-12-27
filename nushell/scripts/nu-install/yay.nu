@@ -1,13 +1,13 @@
 use log.nu
 
-const category = "nu-install yay"
-
 # Installs packages using yay.
 export def main [
   packages: list<string> # Packages to install
 ] {
+  $env.LOG_CATEGORY = "nu-install yay"
+
   if (which pacman | is-empty) {
-    log error -c $category "yay not found"
+    log error "yay not found"
     return
   }
 
@@ -15,7 +15,7 @@ export def main [
   let missing_packages = $packages | filter { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
-    log info -c $category $"Installing: ($missing_packages)"
+    log info $"Installing: ($missing_packages)"
     ^yay -Syyu --noconfirm ...$missing_packages
   }
 }

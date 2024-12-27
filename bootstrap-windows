@@ -9,10 +9,10 @@ if $nu.os-info.name != "linux" {
 use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
 
-const category = path self | path basename
+$env.LOG_CATEGORY = "bootstrap-windows"
 
 if not ($"($env.HOME)/winhome" | path exists) {
-  log warning -c $category $"($env.HOME)/winhome does not exist, skipping Windows bootstrap"
+  log warning $"($env.HOME)/winhome does not exist, skipping Windows bootstrap"
   return
 }
 

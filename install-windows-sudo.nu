@@ -10,6 +10,10 @@ use nushell/scripts/log.nu
 use nushell/scripts/windows.nu
 use nushell/scripts/nu-install
 
+$env.LOG_CATEGORY = "install-windows-sudo.nu"
+
+log info "Starting"
+
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 

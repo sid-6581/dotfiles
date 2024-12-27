@@ -9,9 +9,9 @@ use nushell/scripts/log.nu
 use nushell/scripts/setup
 use nushell/scripts/nu-install
 
-const category = path self | path basename
+$env.LOG_CATEGORY = "install-linux"
 
-log info -c $category "Starting"
+log info "Starting"
 
 setup git author
 
@@ -76,7 +76,7 @@ nu-install yay [
 ]
 
 if (which rustup | is-empty) {
-  log info -c $category "Installing rust"
+  log info "Installing rust"
   ^curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
   ^rustup -q toolchain install nightly
 }
@@ -132,9 +132,9 @@ nu-install gh [
 ]
 
 if (which bob | is-empty) and (which nvim | is-empty) {
-  log warning -c $category "bob not installed, skipping installation of neovim"
+  log warning "bob not installed, skipping installation of neovim"
 } else if not (which bob | is-empty) and (^bob list | find used | is-empty) {
-  log info -c $category "Installing neovim using bob"
+  log info "Installing neovim using bob"
   ^bob use nightly
 }
 

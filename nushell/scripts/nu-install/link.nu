@@ -2,19 +2,19 @@ use std
 use log.nu
 use state.nu
 
-const category = "nu-install link"
-
 # Creates a symbolic link to a file or all files in a directory, recursively.
 export def main [
   links: list<record<target: string, link: string>> # Links to create
 ] {
+  $env.LOG_CATEGORY = "nu-install link"
+
   for $l in $links {
     let target_type = $l.target | path type
     let target = $l.target | path expand --no-symlink
     let link = $l.link | path expand --no-symlink
 
     if $target_type == null {
-      log warning -c $category $"($target) does not exist"
+      log warning $"($target) does not exist"
       return
     }
 
@@ -23,7 +23,7 @@ export def main [
     }
 
     if ($target_type == "dir") != (($link | path type) == "dir") {
-      log error -c $category $"Both ($target) and ($link) must be either a directory or a file"
+      log error $"Both ($target) and ($link) must be either a directory or a file"
       return
     }
 
@@ -46,16 +46,18 @@ export def main [
 
 # Cleans links that are no longer valid.
 export def clean [] {
+  $env.LOG_CATEGORY = "nu-install link clean"
+
   let links = state history get ["link"] | transpose key value
 
   for $link in $links {
     if not ($link.key | path exists -n) {
-      log info -c $category $"Removing history for missing link at ($link.key)"
+      log info $"Removing history for missing link at ($link.key)"
       state history remove ["link" $link.key]
     } else {
       let actual_target = (ls -al $link.key | where type == symlink).target?.0?
       if $actual_target != null and not ($actual_target | path exists) {
-        log info -c $category $"Removing broken link at ($link.key) to ($actual_target)"
+        log info $"Removing broken link at ($link.key) to ($actual_target)"
         ^rm -rf $link.key
         state history remove ["link" $link.key]
       }
@@ -67,8 +69,10 @@ def link [
   target: string # Path to existing file
   link: string   # Path to new link
 ] {
+  $env.LOG_CATEGORY = "nu-install link"
+
   if (try { (ls -al $link).0.target }) != $target {
-    log info -c $category $"Creating link to ($target) at ($link)"
+    log info $"Creating link to ($target) at ($link)"
 
     let parent = $link | path dirname
 

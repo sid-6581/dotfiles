@@ -1,7 +1,5 @@
 use ../log.nu
 
-const category = "setup-kde"
-
 def values [] {
   return [
     ["breezerc", "Common", "OutlineIntensity", "OutlineOff"],
@@ -155,13 +153,15 @@ def values [] {
 
 # Updates KDE settings that aren't correct.
 export def settings [] {
+  $env.LOG_CATEGORY = "setup kde settings"
+
   if (which kwriteconfig6 | is-empty) {
-    log warning -c $category "kwriteconfig6 not found"
+    log warning "kwriteconfig6 not found"
     return
   }
 
   if (which kreadconfig6 | is-empty) {
-    log warning -c $category "kreadconfig6 not found"
+    log warning "kreadconfig6 not found"
     return
   }
 
@@ -169,7 +169,7 @@ export def settings [] {
     let existing_value = ^kreadconfig6 --file $value.0 --group $value.1 --key $value.2
 
     if $existing_value != $value.3 {
-      log info -c $category $"Setting ($value.0)/($value.1)/($value.2) to ($value.3)"
+      log info $"Setting ($value.0)/($value.1)/($value.2) to ($value.3)"
       ^kwriteconfig6 --file $value.0 --group $value.1 --key $value.2 $value.3
     }
   }

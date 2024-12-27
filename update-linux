@@ -4,9 +4,9 @@ use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
 use nushell/scripts/setup
 
-const category = path self | path basename
+$env.LOG_CATEGORY = "update-linux"
 
-log info -c $category "Starting"
+log info "Starting"
 
 setup update app dnf { ^sudo dnf -y update --refresh }
 setup update app yay { ^yay -Syyu --noconfirm }
