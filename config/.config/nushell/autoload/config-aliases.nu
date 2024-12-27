@@ -1,10 +1,15 @@
+export alias jc = sudo journalctl
+export alias ju = journalctl --user
+
 export alias lg = lazygit
 
 export alias n = nvim
 
 export alias s = sudo
+export alias sc = sudo systemctl
 export alias se = sudoedit
 export alias si = sudo -i
+export alias su = systemctl --user
 export alias sy = sudo yazi
 
 export alias tf = terraform
