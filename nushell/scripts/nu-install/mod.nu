@@ -1,11 +1,11 @@
-export use cargo.nu *
-export use dnf.nu *
-export use gh.nu *
-export use git.nu *
-export use hashicorp.nu *
-export use history.nu *
-export use link.nu *
-export use pacman.nu *
-export use scoop.nu *
-export use yay.nu *
-export use winget.nu *
+export module cargo.nu
+export module dnf.nu
+export module gh.nu
+export module git.nu
+export module hashicorp.nu
+export module state.nu
+export module link.nu
+export module pacman.nu
+export module scoop.nu
+export module yay.nu
+export module winget.nu

@@ -3,7 +3,7 @@ use log.nu
 const category = "nu-install dnf"
 
 # Installs packages using dnf.
-export def "nu-install dnf" [
+export def main [
   packages: list<string> # Packages to install
 ] {
   if (which dnf | is-empty) {

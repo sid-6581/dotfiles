@@ -1,10 +1,10 @@
 use log.nu
-use history.nu *
+use state.nu
 
 const category = "nu-install git"
 
 # Clones or updates a git repository into a destination location.
-export def "nu-install git" [
+export def main [
   repositories: list<record<repo: string, dir: string>> # Repositories to clone
 ] {
   if (which git | is-empty) {
@@ -13,8 +13,6 @@ export def "nu-install git" [
   }
 
   for $r in $repositories {
-    const category = "nu-install git"
-
     if not ($r.dir | path exists) {
       log info -c $category $"Cloning ($r.repo) to ($r.dir)"
       ^git clone $r.repo $r.dir
@@ -28,7 +26,7 @@ export def "nu-install git" [
       }
     }
 
-    nu-install history upsert ["git" $r.repo] {
+    state history upsert ["git" $r.repo] {
       directory: $r.dir
     }
   }

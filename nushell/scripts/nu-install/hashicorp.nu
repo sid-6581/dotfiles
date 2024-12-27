@@ -1,5 +1,5 @@
 use log.nu
-use history.nu *
+use state.nu
 use utils/extract.nu
 use utils/get-executables.nu
 use utils/copy-executables.nu
@@ -15,7 +15,7 @@ const category = "nu-install hashicorp"
 # version?    The version to download, defaults to "latest"
 # arch?       The desired architecture, defaults to "amd64"
 # os?         The desired OS, defaults to "linux"
-export def "nu-install hashicorp" [
+export def main [
   products: list<any>         # The products to install, either a list of product names or a list of product records
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
@@ -37,7 +37,7 @@ export def "nu-install hashicorp" [
     let url = $details.builds | where arch == $arch and os == $os | get 0.url
 
     # If we've already installed a release with this version, skip the rest.
-    let history_version = nu-install history get [hashicorp $product.name version]
+    let history_version = state history get ["hashicorp" $product.name "version"]
     if $history_version == $version {
       continue
     }
@@ -53,7 +53,7 @@ export def "nu-install hashicorp" [
       extract $temp_file_path
       copy-executables $temp_directory $destination
 
-      nu-install history upsert [hashicorp $product.name] {
+      state history upsert ["hashicorp" $product.name] {
         version: $version
         executables: (get-executables $temp_directory | each { path basename })
       }
@@ -66,12 +66,12 @@ export def "nu-install hashicorp" [
 }
 
 # Deletes executables installed from HashiCorp.
-export def "nu-install hashicorp uninstall" [
+export def uninstall [
   product: string             # The product to uninstall
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
   let destination = $destination | default ($env.HOME | path join .local bin)
-  let executables = nu-install history get [hashicorp $product executables]
+  let executables = state history get ["hashicorp" $product "executables"]
 
   if ($executables | is-empty) {
     return
@@ -81,5 +81,5 @@ export def "nu-install hashicorp uninstall" [
 
   $executables | each { rm -f ([$destination $in] | path join) }
 
-  nu-install history remove [hashicorp $product]
+  state history remove ["hashicorp" $product]
 }

@@ -3,7 +3,7 @@ use log.nu
 const category = "nu-install cargo"
 
 # Installs binaries using cargo.
-export def "nu-install cargo" [
+export def main [
   binaries: list<string> # Binaries to install
 ] {
   if (which cargo | is-empty) {

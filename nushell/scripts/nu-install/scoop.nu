@@ -1,9 +1,9 @@
 use log.nu
 
-const category = "nu-install pacman"
+const category = "nu-install scoop"
 
 # Installs buckets and apps using scoop (Windows only). Will install scoop if it's not already installed.
-export def "nu-install scoop" [
+export def main [
   --buckets (-b): list<string>   # Buckets to install
   --apps (-a): list<string>      # Apps to install
   --sudo-apps (-s): list<string> # Apps to install with sudo
@@ -44,7 +44,7 @@ export def "nu-install scoop" [
 }
 
 # Uninstalls buckets and apps using scoop (Windows only). Will install scoop if it's not already installed.
-export def "nu-install scoop uninstall" [
+export def uninstall [
   --buckets (-b): list<string>   # Buckets to uninstall
   --apps (-a): list<string>      # Apps to uninstall
   --sudo-apps (-s): list<string> # Apps to uninstall with sudo
@@ -52,7 +52,7 @@ export def "nu-install scoop uninstall" [
   install-scoop
 
   if (which scoop | is-empty) {
-    log warning "nu-install scoop: scoop not found"
+    log warning -c $category "scoop not found"
     return
   }
 

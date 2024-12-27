@@ -16,7 +16,7 @@ use nushell/scripts/globals.nu
 use nushell/scripts/log.nu
 use nushell/scripts/windows.nu
 use nushell/scripts/setup
-use nushell/scripts/nu-install *
+use nushell/scripts/nu-install
 
 const category = path self | path basename
 

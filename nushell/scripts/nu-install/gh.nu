@@ -1,5 +1,5 @@
 use log.nu
-use history.nu *
+use state.nu
 use utils/extract.nu
 use utils/get-executables.nu
 use utils/copy-executables.nu
@@ -16,7 +16,7 @@ const category = "nu-install gh"
 # tag?          The tag to download, defaults to "Latest"
 # process?      Closure to process extracted files in the supplied path and return a list of executables
 # executable?   Treat the downloaded asset as an executable and rename to this argument (overrides process)
-export def "nu-install gh" [
+export def main [
   repos: list<any>            # The repos to install
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
 ] {
@@ -54,7 +54,7 @@ export def "nu-install gh" [
 
     # If we've already installed a release with this tag, skip the rest.
     let release = $releases | first
-    let history_tag = nu-install history get ["gh" $r.repo "tag"]
+    let history_tag = state history get ["gh" $r.repo "tag"]
     if $history_tag == $release.tag {
       continue
     }
@@ -76,7 +76,7 @@ export def "nu-install gh" [
       let executables = process $r $temp_directory
       copy-executables $executables $destination
 
-      nu-install history upsert ["gh" $r.repo] {
+      state history upsert ["gh" $r.repo] {
         tag: $release.tag
         executables: ($executables | each { path basename })
       }
@@ -89,12 +89,12 @@ export def "nu-install gh" [
 }
 
 # Deletes executables installed from GitHub.
-export def "nu-install gh uninstall" [
+export def uninstall [
   repo: string                    # The repo to download for (OWNER/REPO)
   --destination (-d): string      # The destination directory (default $HOME/.local/bin)
 ] {
   let destination = $destination | default ($env.HOME | path join .local bin)
-  let executables = nu-install history get ["gh" $repo "executables"]
+  let executables = state history get ["gh" $repo "executables"]
 
   if ($executables | is-empty) {
     return
@@ -104,7 +104,7 @@ export def "nu-install gh uninstall" [
 
   $executables | each { rm -f ([$destination $in] | path join) }
 
-  nu-install history remove ["gh" $repo]
+  state history remove ["gh" $repo]
 }
 
 # Process extracted files in temp directory and return a list of the executables to keep.

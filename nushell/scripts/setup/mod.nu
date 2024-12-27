@@ -1,3 +1,3 @@
-export use git.nu
-export use kde.nu
-export use update.nu
+export module git.nu
+export module kde.nu
+export module update.nu

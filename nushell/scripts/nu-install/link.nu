@@ -1,11 +1,11 @@
 use std
 use log.nu
-use history.nu *
+use state.nu
 
 const category = "nu-install link"
 
 # Creates a symbolic link to a file or all files in a directory, recursively.
-export def "nu-install link" [
+export def main [
   links: list<record<target: string, link: string>> # Links to create
 ] {
   for $l in $links {
@@ -45,19 +45,19 @@ export def "nu-install link" [
 }
 
 # Cleans links that are no longer valid.
-export def "nu-install link clean" [] {
-  let links = nu-install history get [link] | transpose key value
+export def clean [] {
+  let links = state history get ["link"] | transpose key value
 
   for $link in $links {
     if not ($link.key | path exists -n) {
       log info -c $category $"Removing history for missing link at ($link.key)"
-      nu-install history remove [link $link.key]
+      state history remove ["link" $link.key]
     } else {
       let actual_target = (ls -al $link.key | where type == symlink).target?.0?
       if $actual_target != null and not ($actual_target | path exists) {
         log info -c $category $"Removing broken link at ($link.key) to ($actual_target)"
         ^rm -rf $link.key
-        nu-install history remove [link $link.key]
+        state history remove ["link" $link.key]
       }
     }
   }
@@ -85,7 +85,7 @@ def link [
     }
   }
 
-  nu-install history upsert [link $link] {
+  state history upsert ["link" $link] {
     target: $target
   }
 }

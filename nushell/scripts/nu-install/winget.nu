@@ -1,10 +1,10 @@
 use std
-
 use log.nu
+
 const category = "nu-install winget"
 
 # Installs apps using winget (Windows only).
-export def "nu-install winget" [
+export def main [
   apps: list<string>      # Apps to install (exact ID)
 ] {
   if (which winget | is-empty) {
@@ -23,7 +23,7 @@ export def "nu-install winget" [
 }
 
 # Uninstalls apps using winget (Windows only).
-export def "nu-install winget uninstall" [
+export def uninstall [
   apps: list<string>      # Apps to uninstall (exact name)
 ] {
   if (which winget | is-empty) {

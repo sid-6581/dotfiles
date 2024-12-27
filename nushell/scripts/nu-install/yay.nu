@@ -3,7 +3,7 @@ use log.nu
 const category = "nu-install yay"
 
 # Installs packages using yay.
-export def "nu-install yay" [
+export def main [
   packages: list<string> # Packages to install
 ] {
   if (which pacman | is-empty) {
