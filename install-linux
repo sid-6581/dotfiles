@@ -61,6 +61,7 @@ nu-install pacman [
   pkgconf
   podman
   pre-commit
+  pueue
   python-pip
   ripgrep
   starship
@@ -138,6 +139,11 @@ if (which bob | is-empty) and (which nvim | is-empty) {
 } else if not (which bob | is-empty) and (^bob list | find used | is-empty) {
   log info -c $category "Installing neovim using bob"
   ^bob use nightly
+}
+
+if (which pueue | is-not-empty) {
+  ^systemctl --user start pueued
+  ^systemctl --user enable pueued
 }
 
 setup-kde settings
