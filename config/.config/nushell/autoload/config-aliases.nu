@@ -7,9 +7,10 @@ export alias n = nvim
 
 export alias s = sudo
 export alias sc = sudo systemctl
+export alias scs = sudo systemctl status
 export alias se = sudoedit
 export alias si = sudo -i
-export alias su = systemctl --user
+export alias sus = systemctl --user status
 export alias sy = sudo yazi
 
 export alias tf = terraform
