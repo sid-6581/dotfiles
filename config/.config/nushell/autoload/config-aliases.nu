@@ -7,9 +7,11 @@ export alias n = nvim
 
 export alias s = sudo
 export alias sc = sudo systemctl
+export alias scen = sudo systemctl enable --now
 export alias scs = sudo systemctl status
 export alias se = sudoedit
 export alias si = sudo -i
+export alias suen = systemctl --user enable --now
 export alias sus = systemctl --user status
 export alias sy = sudo yazi
 
