@@ -40,8 +40,8 @@ export-env {
         mkdir $nu.cache-dir
 
         $"
-        export-env { use ($file_path) }
         export use ($file_path) *
+        export-env { use ($file_path) [] }
         "
         | save -f ($nu.cache-dir | path join ".autoload-nu")
 

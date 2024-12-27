@@ -15,11 +15,20 @@ export-env {
 
   let autoload_path = $"($nu.default-config-dir)/autoload.nu"
 
-  let autoload_contents = (
-    (get-files $"($nu.default-config-dir | path join autoload)" | each { $"use ($in) *" })
-    ++
-    (get-files $"($env.HOME | path join .dotfiles nushell autoload)" | each { $"use ($in) *" })
-  ) | str join "\n"
+  let files = (
+    (get-files $"($nu.default-config-dir | path join autoload)")
+    ++ (get-files $"($env.HOME | path join .dotfiles nushell autoload)")
+  )
+
+  let export_use = $files | each { $"export use ($in) *" } | str join "\n"
+  let env_use = $files | each { $"  use ($in) []" } | str join "\n"
+
+  let autoload_contents = $"
+  ($export_use)
+  export-env {
+  ($env_use)
+  }
+  "
 
   if $autoload_contents != "" and (try { open -r $autoload_path }) != $autoload_contents {
     $autoload_contents | save -f $autoload_path
