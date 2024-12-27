@@ -9,4 +9,4 @@ has() {
   command -v "$1" 1>/dev/null 2>&1
 }
 
-[[ -f "$HOME/.bash_profile.nu" ]] && has nu && nu .bash_profile.nu
+[[ -f "$HOME/.bash_profile.nu" ]] && has nu && nu .bash_profile.nu &
