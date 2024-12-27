@@ -1,4 +1,4 @@
-use ../config/.config/nushell/scripts/log.nu
+use ../scripts/log.nu
 
 const category = "update"
 

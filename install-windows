@@ -14,11 +14,11 @@ if $nu.os-info.name == "linux" {
 
 let file_pwd = $env.FILE_PWD
 
-use config/.config/nushell/scripts/globals.nu
-use config/.config/nushell/scripts/log.nu
-use config/.config/nushell/scripts/windows.nu
-use config/.config/nushell/scripts/nu-install *
-use setup/setup-git.nu
+use nushell/scripts/globals.nu
+use nushell/scripts/log.nu
+use nushell/scripts/windows.nu
+use nushell/scripts/nu-install *
+use nushell/setup/setup-git.nu
 
 log info "Installing Windows"
 

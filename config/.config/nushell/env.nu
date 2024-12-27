@@ -1,5 +1,5 @@
 export-env {
-  use globals.nu
+  use ~/.dotfiles/nushell/scripts/globals.nu
 
   $env.EDITOR = "nvim"
   $env.MANPAGER = "nvim +Man!"
@@ -16,7 +16,9 @@ export-env {
   let autoload_path = $"($nu.default-config-dir)/autoload.nu"
 
   let autoload_contents = (
-    (get-files $"($nu.default-config-dir)/autoload" | each { $"use ($in) *" })
+    (get-files $"($nu.default-config-dir | path join autoload)" | each { $"use ($in) *" })
+    ++
+    (get-files $"($env.HOME | path join .dotfiles nushell autoload)" | each { $"use ($in) *" })
   ) | str join "\n"
 
   if $autoload_contents != "" and (try { open -r $autoload_path }) != $autoload_contents {

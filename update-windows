@@ -16,9 +16,9 @@ let file_pwd = $env.FILE_PWD
 let current_file = $env.CURRENT_FILE
 let category = $current_file | path basename
 
-use config/.config/nushell/scripts/globals.nu
-use config/.config/nushell/scripts/log.nu
-use setup/update.nu
+use nushell/scripts/globals.nu
+use nushell/scripts/log.nu
+use nushell/setup/update.nu
 
 log info -c $category "Starting"
 

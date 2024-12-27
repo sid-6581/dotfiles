@@ -3,6 +3,7 @@
 # standard environment variables and paths.
 export-env {
   $env.HOME = if $nu.os-info.name == "linux" { $env.HOME } else { $env.HOME? | default $env.USERPROFILE }
+  $env.NU_LIB_DIRS = [($env.HOME | path join .dotfiles nushell scripts)] ++ $env.NU_LIB_DIRS | uniq
   $env.XDG_CACHE_HOME = $env.HOME | path join .cache
   $env.XDG_CONFIG_HOME = $env.HOME | path join .config
   $env.XDG_DATA_HOME = $env.HOME | path join .local share

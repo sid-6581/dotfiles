@@ -8,11 +8,11 @@ let file_pwd = $env.FILE_PWD
 let current_file = $env.CURRENT_FILE
 let category = $current_file | path basename
 
-use config/.config/nushell/scripts/globals.nu
-use config/.config/nushell/scripts/log.nu
-use config/.config/nushell/scripts/nu-install *
-use setup/setup-git.nu
-use setup/setup-kde.nu
+use nushell/scripts/globals.nu
+use nushell/scripts/log.nu
+use nushell/scripts/nu-install *
+use nushell/setup/setup-git.nu
+use nushell/setup/setup-kde.nu
 
 log info -c $category "Starting"
 
