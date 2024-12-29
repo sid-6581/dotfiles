@@ -5,6 +5,7 @@ export-env {
   $env.MANPAGER = "nvim +Man!"
   $env.RIPGREP_CONFIG_PATH = $env.HOME | path join .config ripgrep config
   $env.JUST_COMMAND_COLOR = "blue"
+  $env.SYSTEMD_PAGER = ''
   # F - Quit if the contents fit on a single screen,
   # R - Output ANSI color escape sequences in raw form
   # X - Don't send initialization strings to terminal
