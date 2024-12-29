@@ -10,7 +10,11 @@ log info "Starting"
 
 setup update app dnf { ^sudo dnf -y update --refresh }
 setup update app yay { ^yay -Syyu --noconfirm }
-setup update app pacman { ^sudo pacman -Syyu }
+
+if (which yay | is-empty) {
+  setup update app pacman { ^sudo pacman -Syyu }
+}
+
 setup update app rustup { ^rustup update }
 setup update app cargo { ^cargo install-update -a }
 setup update app tldr { ^tldr -u }

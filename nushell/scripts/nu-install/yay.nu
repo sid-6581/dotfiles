@@ -6,7 +6,7 @@ export def main [
 ] {
   $env.LOG_CATEGORY = "nu-install yay"
 
-  if (which pacman | is-empty) {
+  if (which yay | is-empty) {
     log error "yay not found"
     return
   }
@@ -17,5 +17,25 @@ export def main [
   if ($missing_packages | is-not-empty) {
     log info $"Installing: ($missing_packages)"
     ^yay -Syyu --noconfirm ...$missing_packages
+  }
+}
+
+# Uninstalls packages using yay.
+export def uninstall [
+  packages: list<string> # Packages to install
+] {
+  $env.LOG_CATEGORY = "nu-install yay uninstall"
+
+  if (which yay | is-empty) {
+    log error "yay not found"
+    return
+  }
+
+  let installed_packages = ^yay -Qq | lines
+  let found_packages = $packages | filter { $in in $installed_packages }
+
+  if ($found_packages | is-not-empty) {
+    log info $"Uninstalling: ($found_packages)"
+    ^yay -Rsu --noconfirm ...$found_packages
   }
 }

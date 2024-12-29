@@ -39,6 +39,10 @@ nu-install dnf [
   python3-pip
 ]
 
+nu-install pacman uninstall [
+  tldr
+]
+
 nu-install pacman [
   bat
   broot
@@ -48,8 +52,8 @@ nu-install pacman [
   gcc
   git-delta
   github-cli
-  just
   jq
+  just
   lazygit
   lsd
   nodejs
