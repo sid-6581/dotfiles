@@ -14,6 +14,7 @@ $env.LOG_CATEGORY = "install-linux"
 log info "Starting"
 
 setup git author
+setup kde settings
 
 nu-install link clean
 
@@ -132,15 +133,16 @@ nu-install gh [
 ]
 
 if (which bob | is-empty) and (which nvim | is-empty) {
-  log warning "bob not installed, skipping installation of neovim"
+  log warning "bob not found, skipping installation of neovim"
 } else if not (which bob | is-empty) and (^bob list | find used | is-empty) {
   log info "Installing neovim using bob"
   ^bob use nightly
 }
 
-if (which pueue | is-not-empty) {
+if (which pueue | is-empty) {
+  log warning "pueue not found, skipping pueued systemd service"
+} else {
+  log info "Starting pueued systemd service"
   ^systemctl --user start pueued
   ^systemctl --user enable pueued
 }
-
-setup kde settings

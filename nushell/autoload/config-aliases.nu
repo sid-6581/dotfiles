@@ -1,5 +1,7 @@
 export alias jc = sudo journalctl
-export alias ju = journalctl --user
+export alias jcl = sudo journalctl -xeu
+export alias jcu = journalctl --user
+export alias jcul = journalctl --user -xeu
 
 export alias lg = lazygit
 
