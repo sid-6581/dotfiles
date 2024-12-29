@@ -3,16 +3,12 @@ Image=docker.io/dpage/pgadmin4:latest
 AutoUpdate=registry
 PublishPort=5050:5050
 Volume=pgadmin4:/var/lib/pgadmin
-SecurityLabelDisable=true
 Environment=PGADMIN_DEFAULT_EMAIL=postgres@local.host
 Environment=PGADMIN_DEFAULT_PASSWORD=postgres
 Environment=PGADMIN_LISTEN_PORT=5050
 Environment=PGADMIN_DISABLE_POSTFIX=True
 Network=host
-UIDMap=5050:0:1
-UIDMap=0:1:1
-GIDMap=5050:0:1
-GIDMap=0:1:1
+UIDMap=+5050:0:1
 
 [Service]
 ExecStartPre=-podman volume create pgadmin4
