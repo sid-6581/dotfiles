@@ -11,6 +11,7 @@ export alias s = sudo
 export alias sc = sudo systemctl
 export alias scen = sudo systemctl enable --now
 export alias scs = sudo systemctl status
+export alias scu = systemctl --user
 export alias scuen = systemctl --user enable --now
 export alias scus = systemctl --user status
 export alias se = sudoedit
