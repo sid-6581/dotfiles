@@ -12,6 +12,8 @@ Environment=PGADMIN_DISABLE_POSTFIX=True
 Network=host
 UIDMap=5050:0:1
 UIDMap=0:1:1
+GIDMap=5050:0:1
+GIDMap=0:1:1
 
 [Service]
 ExecStartPre=-podman volume create pgadmin4
