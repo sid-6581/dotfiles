@@ -2,8 +2,11 @@
 Image=docker.io/library/postgres:17
 AutoUpdate=registry
 PublishPort=5432:5432
-Volume=postgres:/var/lib/postgresql/data:Z
+Volume=postgres:/var/lib/postgresql/data
+SecurityLabelDisable=true
 Environment=POSTGRES_PASSWORD=postgres
+UIDMap=999:0:1
+UIDMap=0:1:1
 
 [Service]
 ExecStartPre=-podman volume create postgres
