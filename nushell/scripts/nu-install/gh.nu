@@ -93,6 +93,8 @@ export def uninstall [
   repo: string                    # The repo to download for (OWNER/REPO)
   --destination (-d): string      # The destination directory (default $HOME/.local/bin)
 ] {
+  $env.LOG_CATEGORY = "nu-install gh uninstall"
+
   let destination = $destination | default ($env.HOME | path join .local bin)
   let executables = state history get ["gh" $repo "executables"]
 
