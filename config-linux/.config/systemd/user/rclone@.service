@@ -24,6 +24,7 @@ ExecStart= \
     --log-level INFO \
     --log-file /tmp/rclone-%i.log \
     --umask 022 \
+    --allow-non-empty \
     %i: %h/Mounts/%i
 ExecStop=/bin/fusermount -u %h/Mounts/%i
 

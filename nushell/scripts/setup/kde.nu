@@ -2,10 +2,12 @@ use ../log.nu
 
 def values [] {
   return [
+    ["baloofilerc", "Basic Settings", "Indexing-Enabled", "false"],
     ["breezerc", "Common", "OutlineIntensity", "OutlineOff"],
     ["breezerc", "Style", "MnemonicsMode", "MN_ALWAYS"],
     ["breezerc", "Windeco", "DrawBackgroundGradient", "true"],
     ["kaccessrc", "Bell", "SystemBell", "false"],
+    ["kactivitymanagerd-pluginsrc", "Plugin-org.kde.ActivityManager.Resources.Scoring", "what-to-remember", "2"],
     ["kcminputrc", "Keyboard", "RepeatDelay", "200"],
     ["kcminputrc", "Keyboard", "RepeatRate", "35"],
     ["kcminputrc", "Mouse", "X11LibInputXAccelProfileFlat", "true"],
@@ -67,9 +69,13 @@ def values [] {
     ["kglobalshortcutsrc", "kwin", "Switch Window Up", "Meta+Alt+Up,Meta+Alt+Up,Switch to Window Above"],
     ["klaunchrc", "BusyCursorSettings", "Bouncing", "false"],
     ["klaunchrc", "FeedbackStyle", "BusyCursor", "false"],
+    ["krunnerrc", "Plugins", "baloosearchEnabled", "false"],
     ["krunnerrc", "Plugins", "browserhistoryEnabled", "false"],
     ["krunnerrc", "Plugins", "browsertabsEnabled", "false"],
+    ["krunnerrc", "Plugins", "krunner_appstreamEnabled", "false"],
     ["krunnerrc", "Plugins", "krunner_bookmarksrunnerEnabled", "false"],
+    ["krunnerrc", "Plugins", "krunner_recentdocumentsEnabled", "false"],
+    ["krunnerrc", "Plugins", "krunner_webshortcutsEnabled", "false"],
     ["ksplashrc", "KSplash", "Engine", "none"],
     ["ksplashrc", "KSplash", "Theme", "none"],
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
