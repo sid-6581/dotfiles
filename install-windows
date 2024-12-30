@@ -18,7 +18,7 @@ use nushell/scripts/windows.nu
 use nushell/scripts/setup
 use nushell/scripts/nu-install
 
-const file_pwd = path self .
+const file_pwd = $env.FILE_PWD
 
 $env.LOG_CATEGORY = "install-windows"
 
