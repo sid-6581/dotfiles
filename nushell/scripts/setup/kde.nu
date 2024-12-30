@@ -111,7 +111,6 @@ def values [] {
               "applications": [
                 "org.wezfurlong.wezterm",
                 "Vivaldi-stable",
-                "systemsettings",
               ]
             },
             {
