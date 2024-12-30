@@ -80,10 +80,6 @@ wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _ma
   local title = pane.title
   local domain_name = pane.domain_name
 
-  if pane.domain_name:find("WSL") == 1 then
-    domain_name = "wsl"
-  end
-
   if pane.domain_name then
     title = domain_name .. ": " .. title
   end
@@ -122,7 +118,7 @@ config.skip_close_confirmation_for_processes_named = {
 if is_linux then
   config.default_domain = "nu"
 else
-  config.default_domain = "WSL:fedoraremix"
+  config.default_domain = "wsl"
 end
 
 if is_linux then
@@ -158,6 +154,15 @@ else
       cmd.args = args
       return cmd
     end),
+  }
+
+  config.wsl_domains = {
+    {
+      name = "wsl",
+      distribution = "fedoraremix",
+      default_cwd = "~",
+      default_prog = { "bash", "-lc", "nu", "-i" },
+    },
   }
 end
 
