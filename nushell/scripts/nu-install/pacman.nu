@@ -27,7 +27,7 @@ export def uninstall [
   $env.LOG_CATEGORY = "nu-install pacman uninstall"
 
   if (which pacman | is-empty) {
-    log error "pacman not found"
+    log warning "pacman not found"
     return
   }
 

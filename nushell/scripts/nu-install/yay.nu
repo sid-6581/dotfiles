@@ -7,7 +7,7 @@ export def main [
   $env.LOG_CATEGORY = "nu-install yay"
 
   if (which yay | is-empty) {
-    log error "yay not found"
+    log warning "yay not found"
     return
   }
 
@@ -27,7 +27,7 @@ export def uninstall [
   $env.LOG_CATEGORY = "nu-install yay uninstall"
 
   if (which yay | is-empty) {
-    log error "yay not found"
+    log warning "yay not found"
     return
   }
 
