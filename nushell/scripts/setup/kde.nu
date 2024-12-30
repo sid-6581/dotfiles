@@ -123,35 +123,6 @@ def values [] {
               ]
             }
           ]
-        },
-        {
-          "name": "Quadrant Grid",
-          "zones": [
-            {
-              "x": 0,
-              "y": 0,
-              "height": 50,
-              "width": 50
-            },
-            {
-              "x": 0,
-              "y": 50,
-              "height": 50,
-              "width": 50
-            },
-            {
-              "x": 50,
-              "y": 50,
-              "height": 50,
-              "width": 50
-            },
-            {
-              "x": 50,
-              "y": 0,
-              "height": 50,
-              "width": 50
-            }
-          ]
         }
       ]
       | to json
