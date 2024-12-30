@@ -75,16 +75,16 @@ config.inactive_pane_hsb = {
   brightness = 1.0,
 }
 
+if is_linux then
+  config.default_domain = "nu"
+else
+  config.default_domain = "wsl"
+end
+
 wezterm.on("format-tab-title", function(tab, _tabs, _panes, _config, _hover, _max_width)
   local pane = tab.active_pane
-  local title = pane.title
-  local domain_name = pane.domain_name
-
-  if pane.domain_name then
-    title = domain_name .. ": " .. title
-  end
-
-  return title
+  local domain_name = pane.domain_name == config.default_domain and "" or " (" .. pane.domain_name .. ")"
+  return tab.tab_index + 1 .. " | " .. pane.title .. domain_name
 end)
 
 wezterm.on(
@@ -114,12 +114,6 @@ config.skip_close_confirmation_for_processes_named = {
 }
 
 -- Profiles
-
-if is_linux then
-  config.default_domain = "nu"
-else
-  config.default_domain = "wsl"
-end
 
 if is_linux then
   config.exec_domains = {
