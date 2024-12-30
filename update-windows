@@ -36,3 +36,10 @@ setup update app rustup { ^rustup update }
 setup update app cargo { ^cargo install-update -a }
 setup update app tldr { ^tldr -u }
 setup update app bob { ^bob use nightly }
+
+setup update app nvim {
+  ^nvim --headless "+Lazy! sync" "+qa"
+  ^nvim --headless "+MasonToolsClean" "+qa"
+  ^nvim --headless "+MasonToolsUpdateSync" "+qa"
+  ^nvim --headless "+TSUpdateSync" "+qa"
+}
