@@ -118,9 +118,13 @@ config.skip_close_confirmation_for_processes_named = {
 if is_linux then
   config.exec_domains = {
     wezterm.exec_domain("nu", function(cmd)
-      local args = { "nu" }
-      for _, arg in ipairs(cmd.args or { "-i" }) do
-        table.insert(args, arg)
+      local args = { "nu", "-i" }
+
+      if cmd.args then
+        table.insert(args, "-e")
+        for _, arg in ipairs(cmd.args) do
+          table.insert(args, arg)
+        end
       end
 
       cmd.args = args
@@ -130,9 +134,13 @@ if is_linux then
 else
   config.exec_domains = {
     wezterm.exec_domain("nu", function(cmd)
-      local args = { "nu" }
-      for _, arg in ipairs(cmd.args or { "-i" }) do
-        table.insert(args, arg)
+      local args = { "nu", "-i" }
+
+      if cmd.args then
+        table.insert(args, "-e")
+        for _, arg in ipairs(cmd.args) do
+          table.insert(args, arg)
+        end
       end
 
       cmd.args = args
