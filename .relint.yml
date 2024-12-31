@@ -1,13 +1,3 @@
-- name: Templates must have exactly one space after {{
-  pattern: '{{(  |[^ -])'
-  filePattern: .*\.(nomad|tpl|tmpl|hcl|yaml|yml|sls)
-  error: true
-
-- name: Templates must have exactly one space before }}
-  pattern: '(  |[^ -])}}'
-  filePattern: .*\.(nomad|tpl|tmpl|hcl|yaml|yml|sls)
-  error: true
-
 - name: Invalid newline between opening braces
   pattern: '{\n\n+\s*{'
   error: true

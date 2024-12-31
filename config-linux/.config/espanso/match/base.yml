@@ -1,0 +1,42 @@
+matches:
+  # Print the current date
+  - trigger: "edate"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  - trigger: "egrim"
+    replace: "😬"
+
+  - trigger: "ehearts"
+    replace: "❤️❤️❤️"
+
+  - trigger: "ehearteyes"
+    replace: "😍😍😍"
+
+  - trigger: "eheartface"
+    replace: "🥰🥰🥰"
+
+  - trigger: "esmile"
+    replace: "😊"
+
+  - trigger: "ejoy"
+    replace: "😂"
+
+  - trigger: "ecry"
+    replace: "😢"
+
+  - trigger: "eloudcry"
+    replace: "😭"
+
+  - trigger: "etear"
+    replace: "🥲"
+
+  - trigger: "evomit"
+    replace: "🤮"
+
+  - trigger: "ewink"
+    replace: "😉"
