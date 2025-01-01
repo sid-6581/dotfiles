@@ -9,10 +9,12 @@ export alias n = nvim
 
 export alias s = sudo
 export alias sc = sudo systemctl
+export alias scdn = sudo systemctl disable --now
 export alias scdr = sudo systemctl daemon-reload
 export alias scen = sudo systemctl enable --now
 export alias scs = sudo systemctl status
 export alias scu = systemctl --user
+export alias scudn = systemctl --user disable --now
 export alias scudr = systemctl --user daemon-reload
 export alias scuen = systemctl --user enable --now
 export alias scus = systemctl --user status

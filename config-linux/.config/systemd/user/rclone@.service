@@ -15,7 +15,8 @@ Wants=network-online.target
 
 [Service]
 Type=notify
-ExecStartPre=-/usr/bin/mkdir -p %h/Mounts/%i
+ExecStartPre=-sudo /usr/bin/mkdir -p /mnt/%i
+ExecStartPre=-sudo chown %u:%g /mnt/%i
 ExecStart= \
   /usr/bin/rclone mount \
     --config=%h/.config/rclone/rclone.conf \
@@ -25,8 +26,8 @@ ExecStart= \
     --log-file /tmp/rclone-%i.log \
     --umask 022 \
     --allow-non-empty \
-    %i: %h/Mounts/%i
-ExecStop=/bin/fusermount -u %h/Mounts/%i
+    %i: /mnt/%i
+ExecStop=/bin/fusermount -u /mnt/%i
 
 [Install]
 WantedBy=default.target
