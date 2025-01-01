@@ -127,7 +127,8 @@ def values [] {
       ]
       | to json
     )],
-    ["kwinrc", "Script-kzones", "zoneOverlayHighlightTarget", "1"],
+    ["kwinrc", "Script-kzones", "rememberWindowGeometries", "false"],
+    ["kwinrc", "Script-kzones", "zoneOverlayHighlightTarget", "0"],
     ["kwinrc", "Script-kzones", "zoneSelectorTriggerDistance", "2"],
     ["kwinrc", "TabBox", "HighlightWindows", "false"],
     ["kwinrc", "Effect-overview", "BorderActivate", "9"],
