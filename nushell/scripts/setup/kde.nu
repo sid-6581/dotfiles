@@ -87,6 +87,7 @@ def values [] {
     ["krunnerrc", "Plugins", "krunner_webshortcutsEnabled", "false"],
     ["ksplashrc", "KSplash", "Engine", "none"],
     ["ksplashrc", "KSplash", "Theme", "none"],
+    ["ksmserverrc", "General", "confirmLogout", "false"],
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
     ["kwinrc", "Script-kzones", "layoutsJson", (
       [
