@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+zip -r tiling.kwinscript ./*
+kpackagetool6 -t KWin/Script -r tiling
+kpackagetool6 --type=KWin/Script -i tiling.kwinscript
+kwin_x11 --replace &
+kwriteconfig6 --file kwinrc --group Plugins --key tilingEnabled true
+qdbus6 org.kde.KWin /KWin reconfigure
+rm tiling.kwinscript

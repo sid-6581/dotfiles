@@ -1,0 +1,18 @@
+{
+  "KPlugin": {
+    "Name": "Tiling",
+    "Description": "Tiling utilities",
+    "Icon": "preferences-system-windows",
+    "Authors": [
+      {
+        "Name": "sid-6581"
+      }
+    ],
+    "Id": "tiling",
+    "Version": "1.0",
+    "Website": "https://github.com/sid-6581/dotfiles"
+  },
+  "X-Plasma-API": "javascript",
+  "X-Plasma-MainScript": "code/main.js",
+  "KPackageStructure": "KWin/Script"
+}
