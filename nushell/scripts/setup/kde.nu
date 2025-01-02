@@ -135,6 +135,7 @@ def values [] {
     ["kwinrc", "Windows", "ElectricBorderMaximize", "false"],
     ["kwinrc", "Windows", "ElectricBorderTiling", "false"],
     ["plasmaparc", "General", "AudioFeedback", "false"],
+    ["systemsettingsrc", "systemsettings_sidebar_mode", "HighlightNonDefaultSettings", "true"],
   ]
 }
 
