@@ -24,46 +24,6 @@ def values [] {
     ["kglobalshortcutsrc", "KDE Keyboard Layout Switcher", "Switch to Last-Used Keyboard Layout", "none,Meta+Alt+L,Switch to Last-Used Keyboard Layout"],
     ["kglobalshortcutsrc", "KDE Keyboard Layout Switcher", "Switch to Next Keyboard Layout", "none,Meta+Alt+K,Switch to Next Keyboard Layout"],
     ["kglobalshortcutsrc", "ksmserver", "Lock Session", "Meta+Shift+L\tScreensaver,Meta+L\tScreensaver,Lock Session"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 1", "none,none,KZones: Activate layout 1"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 2", "none,none,KZones: Activate layout 2"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 3", "none,none,KZones: Activate layout 3"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 4", "none,none,KZones: Activate layout 4"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 5", "none,none,KZones: Activate layout 5"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 6", "none,none,KZones: Activate layout 6"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 7", "none,none,KZones: Activate layout 7"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 8", "none,none,KZones: Activate layout 8"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Activate layout 9", "none,none,KZones: Activate layout 9"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Cycle layouts", "none,none,KZones: Cycle layouts"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Cycle layouts (reversed)", "none,none,KZones: Cycle layouts (reversed)"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window down", "none,none,KZones: Move active window down"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window left", "none,none,KZones: Move active window left"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window right", "none,none,KZones: Move active window right"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to next zone", "Meta+Right,none,KZones: Move active window to next zone"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to previous zone", "Meta+Left,none,KZones: Move active window to previous zone"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 1", "none,none,KZones: Move active window to zone 1"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 2", "none,none,KZones: Move active window to zone 2"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 3", "none,none,KZones: Move active window to zone 3"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 4", "none,none,KZones: Move active window to zone 4"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 5", "none,none,KZones: Move active window to zone 5"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 6", "none,none,KZones: Move active window to zone 6"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 7", "none,none,KZones: Move active window to zone 7"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 8", "none,none,KZones: Move active window to zone 8"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window to zone 9", "none,none,KZones: Move active window to zone 9"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Move active window up", "none,none,KZones: Move active window up"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Snap active window", "none,none,KZones: Snap active window"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Snap all windows", "none,none,KZones: Snap all windows"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to next window in current zone", "Meta+J,none,KZones: Switch to next window in current zone"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to previous window in current zone", "Meta+K,none,KZones: Switch to previous window in current zone"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 1", "Meta+Q,none,KZones: Switch to window in zone 1"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 2", "Meta+W,none,KZones: Switch to window in zone 2"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 3", "Meta+E,none,KZones: Switch to window in zone 3"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 4", "none,none,KZones: Switch to window in zone 4"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 5", "none,none,KZones: Switch to window in zone 5"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 6", "none,none,KZones: Switch to window in zone 6"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 7", "none,none,KZones: Switch to window in zone 7"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 8", "none,none,KZones: Switch to window in zone 8"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Switch to window in zone 9", "none,none,KZones: Switch to window in zone 9"],
-    ["kglobalshortcutsrc", "kwin", "KZones: Toggle zone overlay", "none,none,KZones: Toggle zone overlay"],
     ["kglobalshortcutsrc", "kwin", "Window Quick Tile Bottom", "none,Meta+Down,Quick Tile Window to the Bottom"],
     ["kglobalshortcutsrc", "kwin", "Window Quick Tile Bottom Left", "none,,Quick Tile Window to the Bottom Left"],
     ["kglobalshortcutsrc", "kwin", "Window Quick Tile Bottom Right", "none,,Quick Tile Window to the Bottom Right"],
@@ -90,48 +50,6 @@ def values [] {
     ["ksmserverrc", "General", "confirmLogout", "false"],
     ["ksmserverrc", "General", "loginMode", "emptySession"],
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
-    ["kwinrc", "Script-kzones", "layoutsJson", (
-      [
-        {
-          "name": "Priority Grid",
-          "padding": 4,
-          "zones": [
-            {
-              "x": 0,
-              "y": 0,
-              "height": 100,
-              "width": 25,
-              "applications": [
-                "discord",
-              ]
-            },
-            {
-              "x": 25,
-              "y": 0,
-              "height": 100,
-              "width": 50,
-              "applications": [
-                "org.wezfurlong.wezterm",
-                "Vivaldi-stable",
-              ]
-            },
-            {
-              "x": 75,
-              "y": 0,
-              "width": 25
-              "height": 100,
-              "applications": [
-                "Slack",
-              ]
-            }
-          ]
-        }
-      ]
-      | to json
-    )],
-    ["kwinrc", "Script-kzones", "rememberWindowGeometries", "false"],
-    ["kwinrc", "Script-kzones", "zoneOverlayHighlightTarget", "0"],
-    ["kwinrc", "Script-kzones", "zoneSelectorTriggerDistance", "2"],
     ["kwinrc", "TabBox", "HighlightWindows", "false"],
     ["kwinrc", "Effect-overview", "BorderActivate", "9"],
     ["kwinrc", "Windows", "ElectricBorderMaximize", "false"],
