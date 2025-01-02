@@ -61,6 +61,7 @@ nu-install pacman [
   nushell
   openssl
   pkgconf
+  pnpm
   podman
   pre-commit
   pueue
@@ -78,6 +79,7 @@ nu-install pacman [
 
 nu-install yay [
   neovim-nightly
+  ttf-ms-win11-auto
 ]
 
 if (which rustup | is-empty) {
