@@ -88,6 +88,7 @@ def values [] {
     ["ksplashrc", "KSplash", "Engine", "none"],
     ["ksplashrc", "KSplash", "Theme", "none"],
     ["ksmserverrc", "General", "confirmLogout", "false"],
+    ["ksmserverrc", "General", "loginMode", "emptySession"],
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
     ["kwinrc", "Script-kzones", "layoutsJson", (
       [
