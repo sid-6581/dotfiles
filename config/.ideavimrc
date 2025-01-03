@@ -41,7 +41,8 @@ nmap <Space>ft <Action>(FindInPath)
 
 " Git
 nmap <Space>gg <Action>(ActivateVersionControlToolWindow)
-nmap <Space>gh <Action>(Vcs.ShowTabbedFileHistory)
+nmap <Space>gh <Action>(ActivateVersionControlToolWindow)
+nmap <Space>gf <Action>(Vcs.ShowTabbedFileHistory)
 nmap <Space>gl <Action>(Annotate)
 nmap <Space>gp <Action>(VcsShowCurrentChangeMarker)
 nmap <Space>gr <Action>(Vcs.RollbackChangedLines)
