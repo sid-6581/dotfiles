@@ -80,6 +80,7 @@ nu-install pacman [
 nu-install yay [
   neovim-nightly
   ttf-ms-win11-auto
+  ttf-google-fonts-git
 ]
 
 if (which rustup | is-empty) {
