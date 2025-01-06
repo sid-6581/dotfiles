@@ -38,6 +38,7 @@ def values [] {
     ["kglobalshortcutsrc", "kwin", "Switch Window Up", "Meta+Alt+Up,Meta+Alt+Up,Switch to Window Above"],
     ["klaunchrc", "BusyCursorSettings", "Bouncing", "false"],
     ["klaunchrc", "FeedbackStyle", "BusyCursor", "false"],
+    ["krunnerrc", "General", "FreeFloating", "true"],
     ["krunnerrc", "Plugins", "baloosearchEnabled", "false"],
     ["krunnerrc", "Plugins", "browserhistoryEnabled", "false"],
     ["krunnerrc", "Plugins", "browsertabsEnabled", "false"],
@@ -55,6 +56,10 @@ def values [] {
     ["kwinrc", "Windows", "ElectricBorderMaximize", "false"],
     ["kwinrc", "Windows", "ElectricBorderTiling", "false"],
     ["plasmaparc", "General", "AudioFeedback", "false"],
+    ["spectaclerc", "General", "clipboardGroup", "PostScreenshotCopyImage"],
+    ["spectaclerc", "General", "launchAction", "UseLastUsedCapturemode"],
+    ["spectaclerc", "GuiConfig", "captureMode", "0"],
+    ["spectaclerc", "GuiConfig", "quitAfterSaveCopyExport", "true"],
     ["systemsettingsrc", "systemsettings_sidebar_mode", "HighlightNonDefaultSettings", "true"],
   ]
 }
