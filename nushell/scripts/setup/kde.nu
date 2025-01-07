@@ -50,6 +50,7 @@ def values [] {
     ["ksplashrc", "KSplash", "Theme", "none"],
     ["ksmserverrc", "General", "confirmLogout", "false"],
     ["ksmserverrc", "General", "loginMode", "emptySession"],
+    ["kwinrc", "Desktops", "Number", "4"],
     ["kwinrc", "EdgeBarrier", "CornerBarrier", "false"],
     ["kwinrc", "TabBox", "HighlightWindows", "false"],
     ["kwinrc", "Effect-overview", "BorderActivate", "9"],
