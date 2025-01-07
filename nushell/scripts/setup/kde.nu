@@ -13,7 +13,7 @@ def values [] {
     ["kcminputrc", "Mouse", "X11LibInputXAccelProfileFlat", "true"],
     ["kcminputrc", "Mouse", "XLbInptScrollOnButtonDown", "true"],
     ["kdeglobals", "General", "XftAntialias", "true"],
-    ["kdeglobals", "General", "XftHintStyle", "hintfull"],
+    ["kdeglobals", "General", "XftHintStyle", "hintslight"],
     ["kdeglobals", "General", "XftSubPixel", "rgb"],
     ["kdeglobals", "General", "fixed", "JetBrainsMono Nerd Font,9.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"],
     ["kdeglobals", "KDE", "AnimationDurationFactor", "0"],
