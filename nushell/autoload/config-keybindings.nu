@@ -1,26 +1,13 @@
-const RG_PREFIX = "rg --hidden --column --line-number --no-heading --color=always --smart-case"
-
-const FZF_CMD = [
-  "fzf --layout=reverse --height=~40% --ansi --preview-window=border-left --info=inline"
-  "--color 'fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f'"
-  "--color 'info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'"
-  "--preview"
-] | str join " "
-
-const FZF_FILES = [
-  "fd --hidden --color=always --type=file |"
-  $"($FZF_CMD) 'bat --color=always --style=full --line-range=:500 {}'"
-] | str join " "
-
-const FZF_DIRS = [
-  "fd --hidden --color=always --type=directory |"
-  $"($FZF_CMD) 'lsd -al --color=always {}'"
-] | str join " "
+const FZF_RG_CMD = "rg --hidden --column --line-number --no-heading --color=always --smart-case"
+const FZF_BAT_CMD = "bat --color=always --style=full --line-range=:500"
+const FZF_LSD_CMD = "lsd -al --color=always"
+const FZF_FILES = $"fd --hidden --color=always --type=file | fzf --preview '($FZF_BAT_CMD) {}'"
+const FZF_DIRS = $"fd --hidden --color=always --type=directory | fzf --preview '($FZF_LSD_CMD) {}'"
 
 const FZF_GREP = [
-  $"($FZF_CMD) 'bat --color=always --style=full --line-range=:500 {1} --highlight-line {2}'"
-  $"--bind 'start:reload:($RG_PREFIX) {q} || true'"
-  $"--bind 'change:reload:($RG_PREFIX) {q} || true'"
+  $"fzf --preview '($FZF_BAT_CMD) {1} --highlight-line {2}'"
+  $"--bind 'start:reload:($FZF_RG_CMD) {q} || true'"
+  $"--bind 'change:reload:($FZF_RG_CMD) {q} || true'"
   "--bind 'enter:become(echo {1})'"
   "--delimiter :"
   "--disabled"
