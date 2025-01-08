@@ -145,5 +145,30 @@ export-env {
           "
         }
       ]
-    }]
+    }
+    {
+      name: quote
+      modifier: control
+      keycode: char_q
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: executehostcommand
+          cmd: "commandline edit ('\"' ++ (commandline) ++ '\"')"
+        }
+      ]
+    }
+    {
+      name: edit
+      modifier: alt
+      keycode: char_e
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: executehostcommand
+          cmd: "commandline edit ('exec $env.EDITOR \"' ++ (commandline) ++ '\"')"
+        }
+      ]
+    }
+  ]
 }
