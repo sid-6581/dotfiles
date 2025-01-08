@@ -1,3 +1,31 @@
+const RG_PREFIX = "rg --hidden --column --line-number --no-heading --color=always --smart-case"
+
+const FZF_CMD = [
+  "fzf --layout=reverse --height=40% --ansi"
+  "--color 'fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f'"
+  "--color 'info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'"
+  "--preview"
+] | str join " "
+
+const FZF_FILES = [
+  "fd --hidden --color=always --type=file |"
+  $"($FZF_CMD) 'bat --color=always --style=full --line-range=:500 {}'"
+] | str join " "
+
+const FZF_DIRS = [
+  "fd --hidden --color=always --type=directory |"
+  $"($FZF_CMD) 'lsd -al --color=always {}'"
+] | str join " "
+
+const FZF_GREP = [
+  $"($FZF_CMD) 'bat --color=always --style=full --line-range=:500 {1} --highlight-line {2}'"
+  $"--bind 'start:reload:($RG_PREFIX) {q} || true'"
+  $"--bind 'change:reload:($RG_PREFIX) {q} || true'"
+  "--bind 'enter:become(echo {1})'"
+  "--delimiter :"
+  "--disabled"
+] | str join " "
+
 export-env {
   $env.config.keybindings ++= [
     {
@@ -85,5 +113,50 @@ export-env {
       mode: [emacs, vi_normal, vi_insert]
       event: null
     }
-  ]
+    {
+      name: fzf_files
+      modifier: control
+      keycode: char_t
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: executehostcommand
+          cmd: $"
+          let result = ($FZF_FILES);
+          commandline edit --append $result;
+          commandline set-cursor --end
+          "
+        }
+      ]
+    }
+    {
+      name: fzf_directory
+      modifier: alt
+      keycode: char_c
+      mode: emacs
+      event: {
+        send: executehostcommand,
+        cmd: $"
+        let result = ($FZF_DIRS);
+        commandline edit --append $result;
+        commandline set-cursor --end
+        "
+      }
+    }
+    {
+      name: fzf_grep
+      modifier: alt
+      keycode: char_g
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: executehostcommand
+          cmd: $"
+          let result = ($FZF_GREP);
+          commandline edit --append $result;
+          commandline set-cursor --end
+          "
+        }
+      ]
+    }]
 }
