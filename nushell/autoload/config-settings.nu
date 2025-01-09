@@ -20,7 +20,7 @@ export-env {
         columns: 4                    # Number of columns where the options are displayed
         col_width: 20                 # Optional value. If missing all the screen width is used to calculate column width
         col_padding: 2                # Padding between columns
-        selection_rows: 10             # Number of rows allowed to display found options
+        selection_rows: 10            # Number of rows allowed to display found options
         description_rows: 20          # Number of rows allowed to display command description
       }
       style: {

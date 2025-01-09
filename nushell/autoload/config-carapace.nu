@@ -12,6 +12,24 @@ export-env {
       $spans
     }
 
-    ^carapace $spans.0 nushell ...$spans | from json
+    let completions = ^carapace $spans.0 nushell ...$spans | from json
+    let width = $completions | get value | str length | math max
+
+    let formatted = $completions
+    | each {
+      (
+        $"(ansi --escape ($in.style? | default { fg: green }))($in.value | fill -w $width)(ansi reset)  " ++
+        $"(ansi --escape ($in.style? | default { fg: yellow }))($in.description)(ansi reset)"
+      )
+    }
+    | str join "\n"
+
+    let result = $formatted | try { fzf --ansi }
+
+    if $result != null {
+      [ ($result | lines | first | split row " " | first ) ]
+    } else {
+      [{ value: "", description: "" }]
+    }
   }
 }

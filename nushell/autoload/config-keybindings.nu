@@ -170,5 +170,22 @@ export-env {
         }
       ]
     }
+    {
+      name: fzf_history
+      modifier: control
+      keycode: char_r
+      mode: [emacs, vi_normal, vi_insert]
+      event: [
+        {
+          send: executehostcommand
+          cmd: $"
+          let commands = history | sort-by -r start_timestamp | get command | uniq | each { $in | nu-highlight } | str join \(char newline\);
+          let result = try { $commands | fzf } catch { '' };
+          commandline edit --append $result;
+          commandline set-cursor --end
+          "
+        }
+      ]
+    }
   ]
 }
