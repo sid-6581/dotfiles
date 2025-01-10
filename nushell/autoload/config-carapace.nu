@@ -29,11 +29,7 @@ export-env {
 
       let result = $formatted | try { fzf --ansi }
 
-      if $result != null {
-        [{ value: ($result | lines | first | split row " " | first) }]
-      } else {
-        [{ value: "" }]
-      }
+      [{ value: ($result | default "\n" | lines | first | split row " " | first) }]
     } else {
       null
     }
