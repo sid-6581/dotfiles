@@ -181,8 +181,7 @@ export-env {
           cmd: $"
           let commands = history | sort-by -r start_timestamp | get command | uniq | each { $in | nu-highlight } | str join \(char newline\);
           let result = try { $commands | fzf } catch { '' };
-          commandline edit --append $result;
-          commandline set-cursor --end
+          commandline edit $result
           "
         }
       ]

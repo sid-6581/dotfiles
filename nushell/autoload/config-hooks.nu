@@ -22,6 +22,27 @@ export-env {
       code: {|before, after| ^zoxide add -- $after }
     },
 
+    # Automatically hide .nu if not found in path or parent directory.
+    {
+      condition: {|before, after|
+        use ../scripts/path.nu
+
+        if not (".nu" in (overlay list)) {
+          return false
+        }
+
+        if not ($nu.cache-dir | path join .autounload-nu | path exists) {
+          return false
+        }
+
+        true
+      }
+
+      code: "
+      source ($nu.cache-dir | path join .autounload-nu)
+      "
+    },
+
     # Automatically use .nu if found in path or parent directory.
     {
       condition: {|before, after|
@@ -45,25 +66,18 @@ export-env {
         "
         | save -f ($nu.cache-dir | path join ".autoload-nu")
 
+        $"
+        print 'Hiding .nu overlay from ($file_path)'
+        overlay hide .nu --keep-env [PWD]
+        "
+        | save -f ($nu.cache-dir | path join ".autounload-nu")
+
         true
       }
 
       code: $"
       source ($nu.cache-dir | path join .autoload-nu)
       cd $after
-      "
-    },
-
-    # Automatically hide .nu if not found in path or parent directory.
-    {
-      condition: {|before, after|
-        use ../scripts/path.nu
-        (".nu" in (overlay list)) and ($after | path find-up ".nu") == null
-      }
-
-      code: "
-      print 'Hiding .nu overlay'
-      overlay hide .nu --keep-env [PWD]
       "
     },
   ]
