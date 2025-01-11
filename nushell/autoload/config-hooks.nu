@@ -40,17 +40,16 @@ export-env {
         mkdir $nu.cache-dir
 
         $"
-        export use ($file_path) *
-        export-env { use ($file_path) [] }
+        print 'Using .nu overlay from ($file_path)'
+        overlay use -r ($file_path) as .nu
         "
         | save -f ($nu.cache-dir | path join ".autoload-nu")
 
         true
       }
 
-      code: "
-      print 'Using .nu overlay'
-      overlay use -r ($nu.cache-dir | path join .autoload-nu) as .nu
+      code: $"
+      source ($nu.cache-dir | path join .autoload-nu)
       cd $after
       "
     },
