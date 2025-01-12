@@ -167,7 +167,7 @@ export-env {
       event: [
         {
           send: executehostcommand
-          cmd: "commandline edit ('exec $env.EDITOR \"' ++ (commandline) ++ '\"')"
+          cmd: "^$env.EDITOR (commandline); commandline edit ''"
         }
       ]
     }
