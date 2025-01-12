@@ -12,24 +12,30 @@ export-env {
       $spans
     }
 
-    let completions = ^carapace $spans.0 nushell ...$spans | from json
-    let width = $completions | get value? | default "" | str length | math max
+    let completions = try { ^carapace $spans.0 nushell ...$spans } catch { "[]" }
+    let completions = $completions | from json
 
     if ($completions | length) > 0 {
+      let width = $completions | get display? | str length | math max
+
       let formatted = (
         $completions
         | each {
           (
-            $"(ansi --escape ($in.style? | default { fg: green }))($in.value? | default "" | fill -w $width)(ansi reset)  " ++
+            $"(ansi --escape ($in.style? | default { fg: green }))($in.display? | default "" | fill -w $width)(ansi reset)  " ++
             $"(ansi --escape ($in.style? | default { fg: yellow }))($in.description? | default "")(ansi reset)"
           )
         }
         | str join "\n"
       )
 
-      let result = $formatted | try { fzf --ansi }
+      let result = $formatted | try { fzf --ansi --bind 'enter:become(echo {n})' --bind 'tab:become(echo {n})'}
 
-      [{ value: ($result | default "\n" | lines | first | split row " " | first) }]
+      if $result != null {
+        [($completions | get ($result | into int))]
+      } else {
+        [{ value: "" }]
+      }
     } else {
       null
     }
