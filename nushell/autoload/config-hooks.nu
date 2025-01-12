@@ -27,7 +27,11 @@ export-env {
       condition: {|before, after|
         use ../scripts/path.nu
 
-        if not (".nu" in (overlay list)) {
+        if $before == null {
+          return false
+        }
+
+        if not (overlay list | any { $in | str ends-with ".nu" }) {
           return false
         }
 
@@ -48,7 +52,7 @@ export-env {
       condition: {|before, after|
         use ../scripts/path.nu
 
-        if (".nu" in (overlay list)) {
+        if (overlay list | any { $in | str ends-with ".nu" }) {
           return false
         }
 
@@ -62,15 +66,15 @@ export-env {
 
         $"
         print 'Using .nu overlay from ($file_path)'
-        overlay use -r ($file_path) as .nu
+        exec nu -e 'overlay use -r ($file_path) as .nu'
         "
-        | save -f ($nu.cache-dir | path join ".autoload-nu")
+        | save -f ($nu.cache-dir | path join .autoload-nu)
 
         $"
         print 'Hiding .nu overlay from ($file_path)'
-        overlay hide .nu --keep-env [PWD]
+        exec nu -i
         "
-        | save -f ($nu.cache-dir | path join ".autounload-nu")
+        | save -f ($nu.cache-dir | path join .autounload-nu)
 
         true
       }
