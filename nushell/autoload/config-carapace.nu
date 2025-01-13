@@ -29,7 +29,7 @@ export-env {
         | str join "\n"
       )
 
-      let result = $formatted | try { fzf --ansi --bind 'enter:become(echo {n})' --bind 'tab:become(echo {n})'}
+      let result = $formatted | try { fzf --ansi --bind 'enter:become(echo {n})' --bind 'tab:become(echo {n})' --bind 'one:become(echo 0)' }
 
       if $result != null {
         [($completions | get ($result | into int))]

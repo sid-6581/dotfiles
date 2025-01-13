@@ -6,7 +6,7 @@ export-env {
   $env.config.history.isolation = true
   $env.config.history.sync_on_enter = false
   $env.config.rm.always_trash = true
-  $env.config.shell_integration.osc133 = $nu.os-info.name == "linux" and $nu.os-info.kernel_version !~ "microsoft"
+  $env.config.shell_integration.osc133 = false
   $env.config.show_banner = false
   $env.config.use_kitty_protocol = false
 
