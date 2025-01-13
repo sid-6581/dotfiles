@@ -15,7 +15,9 @@ export-env {
     let completions = try { ^carapace $spans.0 nushell ...$spans } catch { "[]" }
     let completions = $completions | from json
 
-    if ($completions | length) > 0 {
+    if ($completions | length) == 1 {
+      $completions
+    } else if ($completions | length) > 0 {
       let width = $completions | get display? | str length | math max
 
       let formatted = (
@@ -29,7 +31,7 @@ export-env {
         | str join "\n"
       )
 
-      let result = $formatted | try { fzf --ansi --bind 'enter:become(echo {n})' --bind 'tab:become(echo {n})' --bind 'one:become(echo 0)' }
+      let result = $formatted | try { fzf --ansi --bind 'enter:become(echo {n})' --bind 'tab:become(echo {n})' }
 
       if $result != null {
         [($completions | get ($result | into int))]
