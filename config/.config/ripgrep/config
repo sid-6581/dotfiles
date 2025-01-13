@@ -4,7 +4,7 @@
 --glob=!**/.pnpm/*
 --glob=!**/.cargo/*
 --glob=!**/.rustup/*
---glob=!**/node-modules/*
+--glob=!**/node_modules/*
 --no-ignore-vcs
 --hidden
 --smart-case
