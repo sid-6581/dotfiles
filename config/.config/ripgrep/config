@@ -1,7 +1,10 @@
 --glob=!**/.git/*
 --glob=!**/.npm/*
 --glob=!**/.nvm/*
+--glob=!**/.pnpm/*
+--glob=!**/.cargo/*
 --glob=!**/.rustup/*
+--glob=!**/node-modules/*
 --no-ignore-vcs
 --hidden
 --smart-case

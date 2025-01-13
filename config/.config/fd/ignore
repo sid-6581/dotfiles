@@ -1,4 +1,8 @@
 .git/
 .npm/
 .nvm/
+.pnpm/
+.cargo/
+.rustup/
+node-modules/
 winhome/
