@@ -9,6 +9,7 @@ export-env {
   $env.XDG_DATA_HOME = $env.HOME | path join .local share
   $env.XDG_STATE_HOME = $env.HOME | path join .local state
   $env.PNPM_HOME = $env.HOME | path join .local share pnpm
+  $env.DOTNET_ROOT = $env.HOME | path join .dotnet
   $env.GOPATH = $env.HOME | path join .go
 
   $env.PATH = (
