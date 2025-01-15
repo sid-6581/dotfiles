@@ -52,6 +52,11 @@ export-env {
       condition: {|before, after|
         use ../scripts/path.nu
 
+        if $env.NU_EXEC? != null {
+          $env.NU_EXEC = null
+          return false
+        }
+
         if (overlay list | any { $in | str ends-with ".nu" }) {
           return false
         }
@@ -66,7 +71,8 @@ export-env {
 
         $"
         print 'Using .nu overlay from ($file_path)'
-        exec nu -e 'overlay use -r ($file_path) as .nu'
+        $env.NU_EXEC = '1'
+        exec nu -i -e 'overlay use -r ($file_path) as .nu'
         "
         | save -f ($nu.cache-dir | path join .autoload-nu)
 
