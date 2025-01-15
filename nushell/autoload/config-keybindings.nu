@@ -111,8 +111,7 @@ export-env {
           send: executehostcommand
           cmd: $"
           let result = try { ($FZF_FILES) } catch { '' };
-          commandline edit --append $result;
-          commandline set-cursor --end
+          commandline edit --insert $result;
           "
         }
       ]
@@ -126,8 +125,7 @@ export-env {
         send: executehostcommand,
         cmd: $"
         let result = try { ($FZF_DIRS) } catch { '' };
-        commandline edit --append $result;
-        commandline set-cursor --end
+        commandline edit --insert $result;
         "
       }
     }
@@ -141,8 +139,7 @@ export-env {
           send: executehostcommand
           cmd: $"
           let result = try { ($FZF_GREP) } catch { '' };
-          commandline edit --append $result;
-          commandline set-cursor --end
+          commandline edit --insert $result;
           "
         }
       ]
