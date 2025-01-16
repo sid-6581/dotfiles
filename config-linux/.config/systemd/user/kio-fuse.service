@@ -1,0 +1,10 @@
+[Unit]
+Description=Fuse interface for KIO
+PartOf=graphical-session.target
+
+[Service]
+ExecStartPre=-sudo /usr/bin/mkdir -p /mnt/kio
+ExecStartPre=-sudo chown %u:%g /mnt/kio
+ExecStart=/usr/lib/kio-fuse -f /mnt/kio
+BusName=org.kde.KIOFuse
+Slice=background.slice
