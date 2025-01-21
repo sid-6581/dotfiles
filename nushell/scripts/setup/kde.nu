@@ -16,7 +16,7 @@ def values [] {
     ["kdeglobals", "General", "XftHintStyle", "hintslight"],
     ["kdeglobals", "General", "XftSubPixel", "rgb"],
     ["kdeglobals", "General", "fixed", "JetBrainsMono Nerd Font,9.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"],
-    ["kdeglobals", "KDE", "AnimationDurationFactor", "0"],
+    # ["kdeglobals", "KDE", "AnimationDurationFactor", "0"],
     ["kdeglobals", "KDE", "LookAndFeelPackage", "org.kde.breezedark.desktop"],
     ["kdeglobals", "KFileDialog Settings", "Show hidden files", "true"],
     ["kdeglobals", "KFileDialog Settings", "View Style", "DetailTree"],
