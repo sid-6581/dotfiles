@@ -72,13 +72,13 @@ export-env {
         $"
         print 'Using .nu overlay from ($file_path)'
         $env.NU_EXEC = '1'
-        exec nu -i -e 'overlay use -r ($file_path) as .nu'
+        try { exec nu -i -e 'overlay use -r ($file_path) as .nu' }
         "
         | save -f ($nu.cache-dir | path join .autoload-nu)
 
         $"
         print 'Hiding .nu overlay from ($file_path)'
-        exec nu -i
+        try { exec nu -i }
         "
         | save -f ($nu.cache-dir | path join .autounload-nu)
 
