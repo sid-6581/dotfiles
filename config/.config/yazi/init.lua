@@ -1,4 +1,8 @@
----@diagnostic disable: undefined-global
+--- @diagnostic disable: undefined-global
+
+require("session"):setup{
+  sync_yanked = true,
+}
 
 Status:children_add(function()
   local h = cx.active.current.hovered
