@@ -121,7 +121,7 @@ if is_linux then
       local args = { "nu", "-i" }
 
       if cmd.args then
-        table.insert(args, "-e")
+        table.insert(args, "-c")
         for _, arg in ipairs(cmd.args) do
           table.insert(args, arg)
         end
@@ -137,7 +137,7 @@ else
       local args = { "nu", "-i" }
 
       if cmd.args then
-        table.insert(args, "-e")
+        table.insert(args, "-c")
         for _, arg in ipairs(cmd.args) do
           table.insert(args, arg)
         end
