@@ -178,8 +178,8 @@ export-env {
           send: executehostcommand
           cmd: $"
           let commands = history | sort-by -r start_timestamp | get command | uniq | each { $in | nu-highlight } | str join \(char newline\);
-          let result = try { $commands | fzf } catch { '' };
-          commandline edit $result
+          let result = try { $commands | fzf -q \(commandline\) } catch { '' };
+          if $result != '' { commandline edit $result }
           "
         }
       ]
