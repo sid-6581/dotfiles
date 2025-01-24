@@ -79,7 +79,7 @@ nu-install pacman [
 ]
 
 nu-install yay [
-  espanso-wayland
+  espanso-x11
   neovim-nightly
   ttf-ms-win11-auto
   ttf-google-fonts-git
