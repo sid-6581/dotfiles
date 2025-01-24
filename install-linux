@@ -67,6 +67,7 @@ nu-install pacman [
   pueue
   python-pip
   ripgrep
+  rofi-wayland
   starship
   tealdeer
   ttf-jetbrains-mono-nerd
@@ -78,9 +79,11 @@ nu-install pacman [
 ]
 
 nu-install yay [
+  espanso-wayland
   neovim-nightly
   ttf-ms-win11-auto
-  # ttf-google-fonts-git
+  ttf-google-fonts-git
+  wezterm-git
 ]
 
 if (which rustup | is-empty) {
