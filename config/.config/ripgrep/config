@@ -4,6 +4,7 @@
 --glob=!**/.pnpm/*
 --glob=!**/.cargo/*
 --glob=!**/.rustup/*
+--glob=!**/dist/*
 --glob=!**/node_modules/*
 --no-ignore-vcs
 --hidden
