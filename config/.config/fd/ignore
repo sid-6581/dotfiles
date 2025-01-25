@@ -4,5 +4,6 @@
 .pnpm/
 .cargo/
 .rustup/
+dist/
 node_modules/
 winhome/
