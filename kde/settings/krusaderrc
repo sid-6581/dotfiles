@@ -1,0 +1,63 @@
+[Advanced]
+Confirm Copy=false
+
+[Archives]
+Supported Packers=tar,gzip,bzip2,lzma,xz,unzip,zip,cbz,cpio,unrar,7z
+
+[Colors]
+Directory Foreground=1,166,255
+KDE Default=false
+
+[Custom Selection Mode]
+Immediate Context Menu=true
+Left Selects=true
+Right Preserves=false
+ShiftCtrl Left Selects=false
+Space Moves Down=true
+
+[JobManager]
+Queue Mode=false
+
+[KTextEditor Renderer]
+Animate Bracket Matching=false
+Auto Color Theme Selection=true
+Color Theme=Breeze Dark
+Line Height Multiplier=1
+Show Indentation Lines=false
+Show Whole Bracket Expression=false
+Text Font=JetBrainsMono Nerd Font,9.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+Text Font Features=
+Word Wrap Marker=false
+
+[KrInterBriefView]
+IconSize=16
+
+[KrInterDetailedView]
+AutoResizeColumns=true
+IconSize=16
+ShowPreviews=false
+
+[ListPanelButtons]
+Icons=true
+
+[Look&Feel]
+Back Button Visible=false
+Equal Button Visible=true
+Forward Button Visible=false
+Home Button Visible=true
+Mouse Selection=0
+
+[MainWindow]
+ToolBarsMovable=Disabled
+
+[PanelLayout]
+Layout=krusader:compact
+
+[Startup]
+Show Cmd Line=false
+Show FN Keys=true
+Show Terminal Emulator=false
+Vertical Mode=false
+
+[ViewerModule]
+FirstRun=false
