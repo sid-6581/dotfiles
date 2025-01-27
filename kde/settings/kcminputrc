@@ -1,0 +1,10 @@
+[Keyboard]
+RepeatDelay=200
+RepeatRate=35
+
+[Libinput][2][10][TPPS/2 Elan TrackPoint]
+PointerAcceleration=-0.400
+
+[Mouse]
+X11LibInputXAccelProfileFlat=true
+XLbInptScrollOnButtonDown=true

@@ -1,0 +1,7 @@
+[General]
+clipboardGroup=PostScreenshotCopyImage
+launchAction=UseLastUsedCapturemode
+
+[GuiConfig]
+captureMode=0
+quitAfterSaveCopyExport=true

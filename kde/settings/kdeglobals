@@ -1,0 +1,18 @@
+[General]
+BrowserApplication=vivaldi-stable.desktop
+TerminalApplication=wezterm start --cwd .
+TerminalService=org.wezfurlong.wezterm.desktop
+XftAntialias=true
+XftHintStyle=hintslight
+XftSubPixel=rgb
+fixed=JetBrainsMono Nerd Font,9.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[KDE]
+LookAndFeelPackage=org.kde.breezedark.desktop
+
+[KFileDialog Settings]
+Show hidden files=true
+View Style=DetailTree
+
+[Sounds]
+Enable=false

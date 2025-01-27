@@ -1,0 +1,11 @@
+[General]
+FreeFloating=true
+
+[Plugins]
+baloosearchEnabled=false
+browserhistoryEnabled=false
+browsertabsEnabled=false
+krunner_appstreamEnabled=false
+krunner_bookmarksrunnerEnabled=false
+krunner_recentdocumentsEnabled=false
+krunner_webshortcutsEnabled=false

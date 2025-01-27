@@ -1,0 +1,15 @@
+[Desktops]
+Number=4
+
+[EdgeBarrier]
+CornerBarrier=false
+
+[Effect-overview]
+BorderActivate=9
+
+[TabBox]
+HighlightWindows=false
+
+[Windows]
+ElectricBorderMaximize=false
+ElectricBorderTiling=false
