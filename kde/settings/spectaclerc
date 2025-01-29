@@ -1,7 +1,22 @@
+[Annotations]
+annotationToolType=5
+
 [General]
 clipboardGroup=PostScreenshotCopyImage
 launchAction=UseLastUsedCapturemode
+rememberSelectionRect=Never
+showCaptureInstructions=false
+useReleaseToCapture=true
 
 [GuiConfig]
 captureMode=0
+captureOnClick=true
 quitAfterSaveCopyExport=true
+transientOnly=true
+
+[ImageSave]
+translatedScreenshotsFolder=Screenshots
+
+[VideoSave]
+preferredVideoFormat=0
+translatedScreencastsFolder=Screencasts
