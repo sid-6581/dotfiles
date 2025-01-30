@@ -28,8 +28,6 @@ repos:
     rev: v1.5.5
     hooks:
       - id: remove-crlf
-      - id: remove-tabs
-        args: ["--whitespaces-count", "2"]
 
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1

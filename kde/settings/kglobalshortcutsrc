@@ -3,7 +3,7 @@ Switch to Last-Used Keyboard Layout=none,Meta+Alt+L,
 Switch to Next Keyboard Layout=none,Meta+Alt+K,
 
 [ksmserver]
-Lock Session=Meta+Shift+L,Meta+L  Screensaver,Lock Session
+Lock Session=Meta+Shift+L,Meta+L	Screensaver,Lock Session
 
 [kwin]
 Switch Window Down=Meta+J,Meta+Alt+Down,Switch to Window Below
@@ -20,7 +20,7 @@ Window Quick Tile Top Left=none,,Quick Tile Window to the Top Left
 Window Quick Tile Top Right=none,,Quick Tile Window to the Top Right
 
 [services][org.kde.krunner.desktop]
-_launch=Alt+F2  Search
+_launch=Alt+F2	Search
 
 [services][net.local.rofi.desktop]
 _launch=Alt+Space
