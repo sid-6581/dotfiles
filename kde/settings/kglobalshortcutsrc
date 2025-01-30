@@ -1,15 +1,15 @@
 [KDE Keyboard Layout Switcher]
-Switch to Last-Used Keyboard Layout=none,Meta+Alt+L,Switch to Last-Used Keyboard Layout
-Switch to Next Keyboard Layout=none,Meta+Alt+K,Switch to Next Keyboard Layout
+Switch to Last-Used Keyboard Layout=none,Meta+Alt+L,
+Switch to Next Keyboard Layout=none,Meta+Alt+K,
 
 [ksmserver]
-Lock Session=Meta+Shift+L\tScreensaver,Meta+L\tScreensaver,Lock Session
+Lock Session=Meta+Shift+L,Meta+L  Screensaver,Lock Session
 
 [kwin]
-Switch Window Down=Meta+Alt+Down\tMeta+Alt+J,Meta+Alt+Down,Switch to Window Below
-Switch Window Left=Meta+Alt+Left\tMeta+H,Meta+Alt+Left,Switch to Window to the Left
-Switch Window Right=Meta+Alt+Right\tMeta+L,Meta+Alt+Right,Switch to Window to the Right
-Switch Window Up=Meta+Alt+Up,Meta+Alt+Up,Switch to Window Above
+Switch Window Down=Meta+J,Meta+Alt+Down,Switch to Window Below
+Switch Window Left=Meta+H,Meta+Alt+Left,Switch to Window to the Left
+Switch Window Right=Meta+L,Meta+Alt+Right,Switch to Window to the Right
+Switch Window Up=Meta+K,Meta+Alt+Up,Switch to Window Above
 Window Quick Tile Bottom=none,Meta+Down,Quick Tile Window to the Bottom
 Window Quick Tile Bottom Left=none,,Quick Tile Window to the Bottom Left
 Window Quick Tile Bottom Right=none,,Quick Tile Window to the Bottom Right
@@ -20,7 +20,7 @@ Window Quick Tile Top Left=none,,Quick Tile Window to the Top Left
 Window Quick Tile Top Right=none,,Quick Tile Window to the Top Right
 
 [services][org.kde.krunner.desktop]
-_launch=Search\tAlt+F2
+_launch=Alt+F2  Search
 
 [services][net.local.rofi.desktop]
 _launch=Alt+Space
