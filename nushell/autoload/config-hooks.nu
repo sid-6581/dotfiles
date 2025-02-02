@@ -47,7 +47,7 @@ export-env {
       "
     },
 
-    # Automatically use .nu if found in path or parent directory.
+    # Automatically use .nu/.nu.local if found in path or parent directory.
     {
       condition: {|before, after|
         use ../scripts/path.nu
@@ -61,7 +61,7 @@ export-env {
           return false
         }
 
-        let file_path = $after | path find-up ".nu"
+        let file_path = ($after | path find-up ".nu") | default ($after | path find-up ".nu.local")
 
         if $file_path == null {
           return false
