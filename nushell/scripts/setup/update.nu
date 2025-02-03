@@ -11,6 +11,6 @@ export def app [
     log warning $"($application) not found"
   } else {
     log info $"Updating ($application)"
-    do $command
+    try { do $command }
   }
 }
