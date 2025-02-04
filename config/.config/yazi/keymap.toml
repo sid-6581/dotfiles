@@ -13,6 +13,10 @@ prepend_keymap = [
   { on = "<Enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
   { on = "<C-p>", run = "plugin max-preview", desc = "Maximize or restore preview" },
   { on = "!", run = "shell \"nu -li\" --block --confirm", desc = "Launch shell" },
+  { on = [
+    "m",
+    "c",
+  ], run = "linemode custom", desc = "Linemode: custom" },
 ]
 
 [completion]

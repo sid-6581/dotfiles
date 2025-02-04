@@ -4,6 +4,21 @@ require("session"):setup{
   sync_yanked = true,
 }
 
+function Linemode:custom()
+  local time = os.date("%b %d %Y", (self._file.cha.mtime or 0) // 1)
+  local size = self._file:size()
+  local perm = self._file.cha:perm() or ""
+
+  return ui.Line(
+    string.format(
+      " %s %s %s",
+      size and ya.readable_size(size):gsub(" ", "") or "-",
+      time,
+      perm
+    )
+  )
+end
+
 Status:children_add(function()
   local h = cx.active.current.hovered
   if h == nil or ya.target_family() ~= "unix" then
