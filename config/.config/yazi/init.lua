@@ -9,13 +9,33 @@ function Linemode:custom()
   local size = self._file:size()
   local perm = self._file.cha:perm() or ""
 
+  local spans = {}
+
+  for i = 1, #perm do
+    local c = perm:sub(i, i)
+    local style = THEME.status.perm_type
+    if c == "-" or c == "?" then
+      style = THEME.status.perm_sep
+    elseif c == "r" then
+      style = THEME.status.perm_read
+    elseif c == "w" then
+      style = THEME.status.perm_write
+    elseif c == "x" or c == "s" or c == "S" or c == "t" or c == "T" then
+      style = THEME.status.perm_exec
+    end
+
+    spans[i] = ui.Span(c):style(style)
+  end
+
   return ui.Line(
-    string.format(
-      " %s %s %s",
-      size and ya.readable_size(size):gsub(" ", "") or "-",
-      time,
-      perm
-    )
+    {
+      string.format(
+        " %s %s ",
+        size and ya.readable_size(size):gsub(" ", "") or "-",
+        time
+      ),
+      table.unpack(spans),
+    }
   )
 end
 

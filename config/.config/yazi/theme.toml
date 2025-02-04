@@ -2,7 +2,7 @@
 cwd = { fg = "#83a598" }
 
 # Hovered
-hovered = { fg = "#282828", bg = "#83a598" }
+hovered = { bg = "#3c3836" }
 preview_hovered = { underline = true }
 
 # Find
