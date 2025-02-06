@@ -9,10 +9,10 @@ $env.LOG_CATEGORY = "update-linux"
 log info "Starting"
 
 setup update app dnf { ^sudo dnf -y update --refresh }
-setup update app yay { ^yay -Syu --noconfirm --devel --needed }
+setup update app yay { ^yay -Syu --noconfirm --devel }
 
 if (which yay | is-empty) {
-  setup update app pacman { ^sudo pacman -Syu }
+  setup update app pacman { ^sudo pacman -Syu --noconfirm }
 }
 
 setup update app rustup { ^rustup update }

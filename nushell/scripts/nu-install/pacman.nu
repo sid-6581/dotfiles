@@ -16,7 +16,7 @@ export def main [
 
   if ($missing_packages | is-not-empty) {
     log info $"Installing: ($missing_packages)"
-    ^sudo pacman -Sy --noconfirm ...$missing_packages
+    ^sudo pacman -Syu --noconfirm ...$missing_packages
   }
 }
 

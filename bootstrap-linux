@@ -13,10 +13,10 @@ has() {
 # If we're on arch we can do everything with pacman.
 if has pacman; then
   if ! has nu; then
-    sudo pacman -Sy --noconfirm nushell
+    sudo pacman -Syu --noconfirm nushell
   fi
   if ! has gh; then
-    sudo pacman -Sy --noconfirm github-cli
+    sudo pacman -Syu --noconfirm github-cli
   fi
   exit
 fi
