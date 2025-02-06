@@ -1,0 +1,12 @@
+[Container]
+Image=ghcr.io/open-webui/open-webui:main
+AddDevice=nvidia.com/gpu=all
+AutoUpdate=registry
+Volume=open-webui:/app/backend/data
+PublishPort=6002:8080
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
