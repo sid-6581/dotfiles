@@ -16,7 +16,7 @@ export def main [
 
   if ($missing_packages | is-not-empty) {
     log info $"Installing: ($missing_packages)"
-    ^yay -Syyu --noconfirm ...$missing_packages
+    ^yay -Sy --noconfirm ...$missing_packages
   }
 }
 
