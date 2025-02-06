@@ -6,8 +6,16 @@ export def enable [
   use ../log.nu
   $env.LOG_CATEGORY = "setup systemctl enable"
 
+  def --wrapped sc [...args] {
+    if $user {
+      ^systemctl --user ...$args
+    } else {
+      ^sudo systemctl ...$args
+    }
+  }
+
   for $service in $services {
-    let details = ^systemctl show $service
+    let details = sc show $service
     | lines
     | parse "{key}={value}"
     | transpose -r -d
@@ -19,17 +27,9 @@ export def enable [
 
     if $details.UnitFileState? != "enabled" or $details.ActiveState? != "active" {
       log info $"Starting ($service)"
-
-      let command = [
-        ...(if $user { [] } else { ["sudo"] })
-        "systemctl"
-        ...(if $user { ["--user"] } else { [] })
-        "enable"
-        "--now"
-        $service
-      ]
-
-      try { run-external $command }
+      try {
+        sc enable --now $service
+      }
     }
   }
 }
