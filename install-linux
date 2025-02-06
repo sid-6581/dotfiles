@@ -151,4 +151,4 @@ if (which bob | is-empty) and (which nvim | is-empty) {
 }
 
 setup systemctl enable reflector.timer podman-auto-update
-setup systemctl enable --user pueued podman-auto-update
+setup systemctl enable --user pueued podman-auto-update espanso
