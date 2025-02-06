@@ -45,8 +45,10 @@ def log [
   --category (-c): string
   --file (-f): string
 ] {
+  const category_width = 25
   let now = date now | format date "%Y-%m-%d %H:%M:%S"
-  let category = $category | default $env.LOG_CATEGORY? | default "" | str substring ..19 | fill -w 20
+  let category = $category | default $env.LOG_CATEGORY? | default "" | str substring ..($category_width - 1) | fill -w $category_width
+
   print --stderr $"($ansi)($now) | ($category) | ($message | ansi strip)(ansi reset)"
 
   if $file != null {

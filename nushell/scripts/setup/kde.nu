@@ -1,9 +1,8 @@
-use ../log.nu
-
 # Updates KDE settings from files.
 export def files [
   dir: string # The directory containing the settings files.
 ] {
+  use ../log.nu
   $env.LOG_CATEGORY = "setup kde files"
 
   if (which kwriteconfig6 | is-empty) {

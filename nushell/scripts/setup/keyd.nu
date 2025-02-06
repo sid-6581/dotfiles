@@ -1,8 +1,7 @@
-use ../log.nu
-use ../nu-install
-
 # Sets up keyd.
 export def main [] {
+  use ../log.nu
+  use ../nu-install
   $env.LOG_CATEGORY = "setup keyd"
 
   nu-install yay [keyd]
