@@ -19,6 +19,7 @@ setup kde files kde/settings
 nu-install link clean
 
 nu-install link [
+  { target: "nushell", link: $"($env.HOME)/.config/nushell" }
   { target: "config", link: $"($env.HOME)" }
   { target: "config-linux", link: $"($env.HOME)" }
   { target: $"($env.HOME)/winhome/scoop/apps/win32yank/current/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }

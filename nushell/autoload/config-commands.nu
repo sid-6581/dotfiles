@@ -1,5 +1,3 @@
-use config-git-aliases.nu *
-
 # Git simple PR:
 #
 # - Runs pre-commit on all files, if needed.
@@ -10,6 +8,8 @@ export def gspr [
   branch: string  # Branch name
   message: string # Commit messages
 ] {
+  use config-git-aliases.nu *
+
   if (git_current_branch) != (git_main_branch) {
     error make { msg: "Must be in main branch" }
   }

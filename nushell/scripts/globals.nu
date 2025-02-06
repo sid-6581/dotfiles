@@ -12,6 +12,13 @@ export-env {
   $env.DOTNET_ROOT = $env.HOME | path join .dotnet
   $env.GOPATH = $env.HOME | path join .go
 
+  $env.ENV_CONVERSIONS = {
+    "Path": {
+      from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
+      to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
+    }
+  }
+
   $env.PATH = (
     [
       ($env.HOME | path join .local bin)

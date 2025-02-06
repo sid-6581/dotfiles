@@ -39,8 +39,6 @@ export alias yrs = yay -Rs --noconfirm
 export alias zj = zellij
 export alias zja = zellij attach
 
-export alias activate = overlay use .venv/bin/activate.nu
-
 # LSD
 export alias lsd = ^lsd --color=always --icon=always --group-dirs=first --git
 export alias l = lsd -la
