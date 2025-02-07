@@ -6,6 +6,7 @@ export alias jcul = journalctl --user -xeu
 export alias lg = lazygit
 
 export alias n = nvim
+export alias nc = nvim - -c "lua require('snacks').terminal.colorize()"
 
 export alias s = sudo
 export alias sc = sudo systemctl
