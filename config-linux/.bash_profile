@@ -2,6 +2,7 @@ has() {
   command -v "$1" 1>/dev/null 2>&1
 }
 
+[[ -f "$HOME/.env" ]] && set -o allexport && source "$HOME/.env" && set +o allexport
 [[ -f "$HOME/.profile" ]] && . "$HOME/.profile"
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
 [[ -f "$HOME/.bash_profile.local" ]] && . "$HOME/.bash_profile.local"
