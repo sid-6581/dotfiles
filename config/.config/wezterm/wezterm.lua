@@ -18,7 +18,7 @@ config.default_cursor_style = "SteadyBar"
 config.freetype_load_flags = "DEFAULT"
 config.max_fps = 240
 config.animation_fps = 240
-config.custom_block_glyphs = false
+config.custom_block_glyphs = true
 config.font = wezterm.font({
   family = "JetBrainsMono Nerd Font",
 })
