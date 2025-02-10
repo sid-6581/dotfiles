@@ -331,7 +331,7 @@ sethandler <C-s> a:vim
 sethandler <C-t> a:vim
 sethandler <C-u> a:vim
 sethandler <C-v> a:vim
-sethandler <C-w> a:ide
+sethandler <C-w> a:vim
 sethandler <C-x> a:vim
 sethandler <C-y> a:vim
 sethandler <S-CR> a:vim
