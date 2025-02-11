@@ -44,6 +44,10 @@ nu-install pacman uninstall [
   tldr
 ]
 
+nu-install yay uninstall [
+  neovim-nightly
+]
+
 nu-install pacman [
   bat
   broot
@@ -82,7 +86,7 @@ nu-install pacman [
 
 nu-install yay [
   espanso-x11
-  neovim-nightly
+  neovim-git
   ttf-ms-win11-auto
   ttf-google-fonts-git
 ]
