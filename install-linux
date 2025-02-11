@@ -55,6 +55,7 @@ nu-install pacman [
   github-cli
   jq
   just
+  kitty
   lazygit
   lsd
   nodejs
@@ -84,7 +85,6 @@ nu-install yay [
   neovim-nightly
   ttf-ms-win11-auto
   ttf-google-fonts-git
-  wezterm-git
 ]
 
 if (which rustup | is-empty) {
