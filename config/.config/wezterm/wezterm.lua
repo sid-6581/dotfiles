@@ -23,11 +23,9 @@ config.font = wezterm.font({
   family = "JetBrainsMono Nerd Font",
 })
 
+config.adjust_window_size_when_changing_font_size = false
 config.font_size = 9.5
 config.command_palette_font_size = 12
-
--- config.window_background_opacity = 0
--- config.win32_system_backdrop = "Mica"
 
 config.window_decorations = is_linux and "TITLE | RESIZE" or "INTEGRATED_BUTTONS | RESIZE"
 
