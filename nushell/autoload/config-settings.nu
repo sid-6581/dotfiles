@@ -6,9 +6,9 @@ export-env {
   $env.config.history.isolation = true
   $env.config.history.sync_on_enter = false
   $env.config.rm.always_trash = true
-  $env.config.shell_integration.osc133 = ($env.TERMINFO | str contains "kitty")
+  $env.config.shell_integration.osc133 = ($env.TERMINFO? | str contains "kitty")
   $env.config.show_banner = false
-  $env.config.use_kitty_protocol = ($env.TERMINFO | str contains "kitty")
+  $env.config.use_kitty_protocol = ($env.TERMINFO? | str contains "kitty")
 
   $env.config.menus ++= [
     {
