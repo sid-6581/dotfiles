@@ -158,6 +158,10 @@ configuration {
 
 @theme "gruvbox-dark-hard"
 
+* {
+  highlight: bold;
+}
+
 window {
   font: "Noto Sans 12";
   width: 25%;
