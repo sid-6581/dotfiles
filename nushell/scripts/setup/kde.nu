@@ -41,7 +41,7 @@ export def files [
 
         if $existing_value != $setting.value {
           log info $"Setting ($filename) ($section.name) ($setting.name) to ($setting.value)"
-          ^kwriteconfig6 --file $filename ...$groups --key $setting.name $setting.value
+          try { ^kwriteconfig6 --file $filename ...$groups --key $setting.name $setting.value }
         }
       }
     }
