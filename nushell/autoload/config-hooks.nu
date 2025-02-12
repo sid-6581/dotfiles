@@ -16,12 +16,6 @@ export-env {
   ]
 
   $env.config.hooks.env_change.PWD = [
-    # Add directory to zoxide
-    {
-      condition: {|before, after| which zoxide | is-not-empty }
-      code: {|before, after| ^zoxide add -- $after }
-    },
-
     # Automatically hide .nu if not found in path or parent directory.
     {
       condition: {|before, after|
@@ -89,6 +83,12 @@ export-env {
       source ($nu.cache-dir | path join .autoload-nu)
       cd $after
       "
+    },
+
+    # Add directory to zoxide
+    {
+      condition: {|before, after| which zoxide | is-not-empty }
+      code: {|before, after| do -i { ^zoxide add $after } }
     },
   ]
 }
