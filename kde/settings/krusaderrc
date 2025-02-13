@@ -53,11 +53,5 @@ ToolBarsMovable=Disabled
 [PanelLayout]
 Layout=krusader:compact
 
-[Startup]
-Show Cmd Line=false
-Show FN Keys=true
-Show Terminal Emulator=false
-Vertical Mode=false
-
 [ViewerModule]
 FirstRun=false
