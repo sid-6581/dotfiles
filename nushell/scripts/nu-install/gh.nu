@@ -34,11 +34,6 @@ export def main [
     return
   }
 
-  if not (^gh auth status | complete | get stdout | str contains "Logged in to") {
-    log warning "Not logged into GitHub CLI, logging in"
-    ^gh auth login
-  }
-
   for $r in $repos {
     if $r.check? != null {
       let instances = which -a $r.check | get path
@@ -46,6 +41,11 @@ export def main [
         uninstall $r.repo
       }
       continue
+    }
+
+    if not (^gh auth status | complete | get stdout | str contains "Logged in to") {
+      log warning "Not logged into GitHub CLI, logging in"
+      ^gh auth login
     }
 
     let tag = $r.tag? | default "Latest"
