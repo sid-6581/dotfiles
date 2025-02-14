@@ -48,9 +48,13 @@ export def main [
 export def clean [] {
   $env.LOG_CATEGORY = "nu-install link clean"
 
-  let links = state history get ["link"] | transpose key value
+  let links = state history get ["link"]
 
-  for $link in $links {
+  if $links == null {
+    return
+  }
+
+  for $link in ($links | transpose key value) {
     if not ($link.key | path exists -n) {
       log info $"Removing history for missing link at ($link.key)"
       state history remove ["link" $link.key]
