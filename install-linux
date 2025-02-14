@@ -76,6 +76,7 @@ nu-install pacman [
   rofi-wayland
   starship
   tealdeer
+  ttf-jetbrains-mono
   ttf-jetbrains-mono-nerd
   unzip
   uv
