@@ -9,11 +9,13 @@ use utils/copy-executables.nu
 #
 # Each repo record should have the following required or optional fields:
 #
-# repo          The repo to download from (OWNER/REPO)
-# pattern       The glob pattern to match (must match a single asset)
-# tag?          The tag to download, defaults to "Latest"
-# process?      Closure to process extracted files in the supplied path and return a list of executables
-# executable?   Treat the downloaded asset as an executable and rename to this argument (overrides process)
+# check?        An executable to check for. If it was installed any other way, it will not be installed by this function.
+#               If it was already installed, it will be removed.
+# repo          The repo to download from (OWNER/REPO).
+# pattern       The glob pattern to match (must match a single asset).
+# tag?          The tag to download, defaults to "Latest".
+# process?      Closure to process extracted files in the supplied path and return a list of executables.
+# executable?   Treat the downloaded asset as an executable and rename to this argument (overrides process).
 export def main [
   repos: list<any>            # The repos to install
   --destination (-d): string  # The destination directory (default $HOME/.local/bin)
@@ -25,7 +27,7 @@ export def main [
     return
   }
 
-  let destination = $destination | default $"($env.HOME)/.local/bin/"
+  let destination = $destination | default $"($env.HOME)/.local/bin/" | path expand
 
   if not ($destination | path exists) {
     log error $"($destination) does not exist"
@@ -38,6 +40,14 @@ export def main [
   }
 
   for $r in $repos {
+    if $r.check? != null {
+      let instances = which -a $r.check | get path
+      if ($instances | any { ($in | path dirname) != $destination }) {
+        uninstall $r.repo
+      }
+      continue
+    }
+
     let tag = $r.tag? | default "Latest"
 
     let releases = (

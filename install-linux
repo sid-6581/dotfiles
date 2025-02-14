@@ -86,6 +86,8 @@ nu-install pacman [
 ]
 
 nu-install yay [
+  ast-grep
+  carapace
   espanso-x11
   neovim-git
   ttf-ms-win11-auto
@@ -106,46 +108,35 @@ nu-install cargo [
 ]
 
 nu-install gh [
-  { repo: "ast-grep/ast-grep", pattern: "*x86_64-unknown-linux-gnu.zip" } # ast-grep - Code structural search tool
-  { repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
-  { repo: "sxyazi/yazi", pattern: "*x86_64-unknown-linux-gnu.zip" } # yazi - Terminal file manager
-  { repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-unknown-linux-gnu.gz", executable: "rust-analyzer" } # rust-analyzer - LSP for rust
-
-  ...(
-    if (which pacman | is-empty) {[
-      { repo: "BurntSushi/ripgrep", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # ripgrep - grep replacement
-      { repo: "ajeetdsouza/zoxide", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # zoxide - Fast directory jumping
-      { repo: "astral-sh/uv", pattern: "uv-x86_64-unknown-linux-gnu.tar.gz" } # uv - Python package/project manager
-      { repo: "casey/just", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # just - Command runner
-      { repo: "cli/cli", pattern: "*linux_amd64.tar.gz" } # gh - GitHub CLI
-      { repo: "dandavison/delta", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # delta - git diff
-      { repo: "dbrgn/tealdeer", pattern: "tealdeer-linux-x86_64-musl", executable: "tldr" } # tealdeer - Help for command line tools
-      { repo: "jesseduffield/lazygit", pattern: "*Linux_x86_64.tar.gz" } # lazygit - git terminal UI
-      { repo: "jqlang/jq", pattern: "jq-linux-amd64", executable: "jq" } # jq - JSON command line processor
-      { repo: "junegunn/fzf", pattern: "*linux_amd64.tar.gz" } # fzf - Fuzzy finder
-      { repo: "lsd-rs/lsd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # lsd - ls replacement
-      { repo: "nushell/nushell", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # nushell - Shell
-      { repo: "sharkdp/bat", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # bat - File viewer
-      { repo: "sharkdp/fd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # fd - find replacement
-      { repo: "starship/starship", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # starship - Shell prompt
-
-      { repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
-        let executable = [$path x86_64-unknown-linux-gnu broot] | path join
-        ^chmod +x $executable
-        [$executable]
-      }} # broot - File manager
-    ]} else {[]}
-  )
-
-  ...(
-    if (which yay | is-empty) {[
-      { repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
-        let executable = [$path bob-linux-x86_64 bob] | path join
-        ^chmod +x $executable
-        [$executable]
-      }} # bob - Neovim version manager
-    ]} else {[]}
-  )
+  { check: "ast-grep", repo: "ast-grep/ast-grep", pattern: "*x86_64-unknown-linux-gnu.zip" } # ast-grep - Code structural search tool
+  { check: "rg", repo: "BurntSushi/ripgrep", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # ripgrep - grep replacement
+  { check: "zoxide", repo: "ajeetdsouza/zoxide", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # zoxide - Fast directory jumping
+  { check: "uv", repo: "astral-sh/uv", pattern: "uv-x86_64-unknown-linux-gnu.tar.gz" } # uv - Python package/project manager
+  { check: "just", repo: "casey/just", pattern: "*x86_64-unknown-linux-musl.tar.gz" } # just - Command runner
+  { check: "gh", repo: "cli/cli", pattern: "*linux_amd64.tar.gz" } # gh - GitHub CLI
+  { check: "delta", repo: "dandavison/delta", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # delta - git diff
+  { check: "tldr", repo: "dbrgn/tealdeer", pattern: "tealdeer-linux-x86_64-musl", executable: "tldr" } # tealdeer - Help for command line tools
+  { check: "lazygit", repo: "jesseduffield/lazygit", pattern: "*Linux_x86_64.tar.gz" } # lazygit - git terminal UI
+  { check: "jq", repo: "jqlang/jq", pattern: "jq-linux-amd64", executable: "jq" } # jq - JSON command line processor
+  { check: "fzf", repo: "junegunn/fzf", pattern: "*linux_amd64.tar.gz" } # fzf - Fuzzy finder
+  { check: "lsd", repo: "lsd-rs/lsd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # lsd - ls replacement
+  { check: "nu", repo: "nushell/nushell", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # nushell - Shell
+  { check: "rust-analyzer", repo: "rust-lang/rust-analyzer", pattern: "rust-analyzer-x86_64-unknown-linux-gnu.gz", executable: "rust-analyzer" } # rust-analyzer - LSP for rust
+  { check: "bat", repo: "sharkdp/bat", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # bat - File viewer
+  { check: "fd", repo: "sharkdp/fd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # fd - find replacement
+  { check: "starship", repo: "starship/starship", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # starship - Shell prompt
+  { check: "yazi", repo: "sxyazi/yazi", pattern: "*x86_64-unknown-linux-gnu.zip" } # yazi - Terminal file manager
+  { check: "broot", repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
+    let executable = [$path x86_64-unknown-linux-gnu broot] | path join
+    ^chmod +x $executable
+    [$executable]
+  }} # broot - File manager
+  { check: "carapace", repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
+  { check: "yay", repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
+    let executable = [$path bob-linux-x86_64 bob] | path join
+    ^chmod +x $executable
+    [$executable]
+  }} # bob - Neovim version manager
 ]
 
 if (which bob | is-empty) and (which nvim | is-empty) {
@@ -155,5 +146,15 @@ if (which bob | is-empty) and (which nvim | is-empty) {
   ^bob use nightly
 }
 
-setup systemctl enable reflector.timer podman-auto-update.timer
-setup systemctl enable --user pueued podman-auto-update.timer espanso
+(
+  setup systemctl enable
+  reflector.timer
+  podman-auto-update.timer
+)
+
+(
+  setup systemctl enable --user
+  pueued
+  podman-auto-update.timer
+  espanso
+)
