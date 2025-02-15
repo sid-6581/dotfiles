@@ -4,16 +4,15 @@ Confirm Copy=false
 [Archives]
 Supported Packers=tar,gzip,bzip2,lzma,xz,unzip,zip,cbz,cpio,unrar,7z
 
-[Colors]
-Directory Foreground=1,166,255
-KDE Default=false
-
 [Custom Selection Mode]
 Immediate Context Menu=true
 Left Selects=true
 Right Preserves=false
 ShiftCtrl Left Selects=false
 Space Moves Down=true
+
+[General]
+Move To Trash=false
 
 [JobManager]
 Queue Mode=false
@@ -43,6 +42,7 @@ Icons=true
 [Look&Feel]
 Back Button Visible=false
 Equal Button Visible=true
+Expanding Tabs=false
 Forward Button Visible=false
 Home Button Visible=true
 Mouse Selection=0
