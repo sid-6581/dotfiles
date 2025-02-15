@@ -1,14 +1,15 @@
 [General]
 BrowserApplication=vivaldi-stable.desktop
-TerminalApplication=wezterm start --cwd .
-TerminalService=org.wezfurlong.wezterm.desktop
+TerminalApplication=kitty
+TerminalService=kitty.desktop
 XftAntialias=true
 XftHintStyle=hintslight
 XftSubPixel=rgb
-fixed=JetBrainsMono Nerd Font,9.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+fixed=JetBrainsMono Nerd Font,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [KDE]
 LookAndFeelPackage=org.kde.breezedark.desktop
+ShowDeleteCommand=true
 
 [KFileDialog Settings]
 Show hidden files=true

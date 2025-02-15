@@ -1,6 +1,9 @@
 [ContentDisplay]
 DirectorySizeMode=ContentSize
 
+[ContextMenu]
+ShowCopyMoveMenu=true
+
 [DetailsMode]
 PreviewSize=16
 
@@ -9,12 +12,11 @@ BrowseThroughArchives=true
 CloseActiveSplitView=false
 ConfirmClosingMultipleTabs=false
 FilterBar=true
+OpenNewTabAfterLastTab=true
 ShowFullPath=true
 ShowZoomSlider=false
 SplitView=true
 UseTabForSwitchingSplitView=true
-Version=202
-ViewPropsTimestamp=2025,1,6,9,28,52.028
 
 [InformationPanel]
 dateFormat=ShortFormat
@@ -26,6 +28,3 @@ Places Icons Static Size=22
 [MainWindow]
 MenuBar=Disabled
 ToolBarsMovable=Disabled
-
-[PreviewSettings]
-Plugins=ffmpegthumbnailer,appimagethumbnail,audiothumbnail,avif,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,heif,imagethumbnail,jpegthumbnail,jxl,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,gsf-office,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs,gdk-pixbuf-thumbnailer
