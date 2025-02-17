@@ -1,0 +1,5 @@
+[formatting]
+allowed_blank_lines = 1
+array_auto_expand = false
+array_auto_collapse = false
+inline_table_expand = false
