@@ -1,3 +1,18 @@
+[services][org.kde.dolphin.desktop]
+_launch=none
+
+[services][org.kde.krunner.desktop]
+_launch=Alt+F2	Search
+
+[services][net.local.rofi.desktop]
+_launch=Alt+Space
+
+[services][nvim.desktop]
+_launch=Meta+Shift+N
+
+[services][yazi.desktop]
+_launch=Meta+Shift+Y
+
 [KDE Keyboard Layout Switcher]
 Switch to Last-Used Keyboard Layout=none,Meta+Alt+L,
 Switch to Next Keyboard Layout=none,Meta+Alt+K,
@@ -18,9 +33,3 @@ Window Quick Tile Right=none,Meta+Right,Quick Tile Window to the Right
 Window Quick Tile Top=none,Meta+Up,Quick Tile Window to the Top
 Window Quick Tile Top Left=none,,Quick Tile Window to the Top Left
 Window Quick Tile Top Right=none,,Quick Tile Window to the Top Right
-
-[services][org.kde.krunner.desktop]
-_launch=Alt+F2	Search
-
-[services][net.local.rofi.desktop]
-_launch=Alt+Space
