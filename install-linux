@@ -74,6 +74,7 @@ nu-install pacman [
   python-pip
   ripgrep
   rofi-wayland
+  rust-analyzer
   starship
   tealdeer
   ttf-jetbrains-mono
