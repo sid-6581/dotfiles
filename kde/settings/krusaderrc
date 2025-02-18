@@ -11,8 +11,12 @@ Right Preserves=false
 ShiftCtrl Left Selects=false
 Space Moves Down=true
 
+[Desktop Entry]
+DefaultProfile=nu.profile
+
 [General]
 Move To Trash=false
+Terminal=kitty --directory %d
 
 [JobManager]
 Queue Mode=false
@@ -55,3 +59,6 @@ Layout=krusader:compact
 
 [ViewerModule]
 FirstRun=false
+
+[UserActions]
+Terminal=kitty --hold --directory %d --title %t
