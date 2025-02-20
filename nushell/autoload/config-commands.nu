@@ -14,8 +14,13 @@ export def gspr [
     error make { msg: "Must be in main branch" }
   }
 
+  # Run pre-commit, and if it fails, try running again.
+  # The first pass may be able to auto-fix the files.
   if ("./.github/workflows/pre-commit.yml" | path exists) {
-    ^pre-commit run --all-files
+    let result = ^pre-commit run --all-files | complete
+    if $result.exit_code != 0 {
+      ^pre-commit run --all-files
+    }
   }
 
   ^git add .
