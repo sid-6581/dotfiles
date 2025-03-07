@@ -23,6 +23,7 @@ set scrolloff=8
 set ideajoin
 set selectmode=ideaselection
 set lookupkeys+=<C-K>
+set relativenumber
 
 let g:argtextobj_pairs="[:],(:),{:},<:>"
 

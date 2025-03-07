@@ -6,6 +6,7 @@ Volume=open-webui:/app/backend/data
 PublishPort=6002:8080
 
 [Service]
+ExecStartPre=-sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
 Restart=always
 
 [Install]
