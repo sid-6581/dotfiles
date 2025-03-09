@@ -5,6 +5,7 @@
 [manager]
 linemode = "custom"
 show_hidden = true
+ratio = [0, 4, 4]
 
 [preview]
 image_delay = 0
