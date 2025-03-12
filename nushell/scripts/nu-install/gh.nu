@@ -37,10 +37,14 @@ export def main [
   for $r in $repos {
     if $r.check? != null {
       let instances = which -a $r.check | get path
+
       if ($instances | any { ($in | path dirname) != $destination }) {
         uninstall $r.repo
       }
-      continue
+
+      if ($instances | length) != 0 {
+        continue
+      }
     }
 
     if not (^gh auth status | complete | get stdout | str contains "Logged in to") {
