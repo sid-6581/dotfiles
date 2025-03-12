@@ -132,7 +132,7 @@ nu-install gh [
     [$executable]
   }} # broot - File manager
   { check: "carapace", repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
-  { check: "yay", repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
+  { check: "bob", repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
     let executable = [$path bob-linux-x86_64 bob] | path join
     ^chmod +x $executable
     [$executable]
