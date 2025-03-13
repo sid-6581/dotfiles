@@ -132,19 +132,7 @@ nu-install gh [
     [$executable]
   }} # broot - File manager
   { check: "carapace", repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
-  { check: "bob", repo: "MordechaiHadad/bob", pattern: "bob-linux-x86_64.zip", process: {|path|
-    let executable = [$path bob-linux-x86_64 bob] | path join
-    ^chmod +x $executable
-    [$executable]
-  }} # bob - Neovim version manager
 ]
-
-if (which bob | is-empty) and (which nvim | is-empty) {
-  log warning "bob not found, skipping installation of neovim"
-} else if not (which bob | is-empty) and (^bob list | find used | is-empty) {
-  log info "Installing neovim using bob"
-  ^bob use nightly
-}
 
 (
   setup systemctl enable
