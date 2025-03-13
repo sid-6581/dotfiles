@@ -1,3 +1,5 @@
+export alias f = spf
+
 export alias jc = sudo journalctl
 export alias jcl = sudo journalctl -xeu
 export alias jcu = journalctl --user
@@ -24,6 +26,7 @@ export alias scus = systemctl --user status
 export alias scusa = systemctl --user start
 export alias scuso = systemctl --user stop
 export alias se = sudoedit
+export alias sf = sudo spf
 export alias si = sudo -i
 export alias sy = sudo yazi
 
