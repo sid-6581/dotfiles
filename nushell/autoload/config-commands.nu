@@ -1,3 +1,11 @@
+# Creates a new directory and cds to it.
+export def --env mcd [
+  dir: string # The directory to create
+] {
+  mkdir $dir
+  cd $dir
+}
+
 # Git simple PR:
 #
 # - Runs pre-commit on all files, if needed.
