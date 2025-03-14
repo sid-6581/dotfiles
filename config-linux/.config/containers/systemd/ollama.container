@@ -1,0 +1,13 @@
+[Container]
+Image=docker.io/ollama/ollama:latest
+AddDevice=nvidia.com/gpu=all
+AutoUpdate=registry
+Volume=ollama:/root/.ollama
+PublishPort=6003:11434
+
+[Service]
+ExecStartPre=-sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+Restart=always
+
+[Install]
+WantedBy=default.target
