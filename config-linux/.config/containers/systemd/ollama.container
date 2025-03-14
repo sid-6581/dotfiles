@@ -4,6 +4,7 @@ AddDevice=nvidia.com/gpu=all
 AutoUpdate=registry
 Volume=ollama:/root/.ollama
 PublishPort=6003:11434
+SecurityLabelDisable=true
 
 [Service]
 ExecStartPre=-sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml

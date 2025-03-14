@@ -4,6 +4,7 @@ AddDevice=nvidia.com/gpu=all
 AutoUpdate=registry
 Volume=open-webui:/app/backend/data
 PublishPort=6002:8080
+SecurityLabelDisable=true
 
 [Service]
 ExecStartPre=-sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
