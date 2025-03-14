@@ -5,6 +5,7 @@ AutoUpdate=registry
 Volume=open-webui:/app/backend/data
 PublishPort=6002:8080
 SecurityLabelDisable=true
+Network=ollama.container
 
 [Service]
 ExecStartPre=-sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
