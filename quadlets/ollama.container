@@ -5,6 +5,8 @@ AutoUpdate=registry
 Volume=ollama:/root/.ollama
 PublishPort=6003:11434
 SecurityLabelDisable=true
+Environment=OLLAMA_CONTEXT_LENGTH=131072
+Environment=OLLAMA_FLASH_ATTENTION=1
 
 [Service]
 ExecStartPre=-sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
