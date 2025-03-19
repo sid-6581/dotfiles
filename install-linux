@@ -46,6 +46,7 @@ nu-install pacman uninstall [
 
 nu-install yay uninstall [
   espanso-x11
+  espanso-wayland
   neovim-nightly
 ]
 
@@ -90,7 +91,7 @@ nu-install pacman [
 nu-install yay [
   ast-grep
   carapace
-  espanso-wayland
+  espanso-wayland-git
   neovim-git
   ttf-ms-win11-auto
   ttf-google-fonts-git
