@@ -5,6 +5,8 @@ export alias jcl = sudo journalctl -xeu
 export alias jcu = journalctl --user
 export alias jcul = journalctl --user -xeu
 
+export alias k = kubectl
+
 export alias lg = lazygit
 
 export alias n = nvim

@@ -202,5 +202,6 @@
   <Action name="search bar filter" shortcut="Ctrl+I; /"/>
   <Action name="toggle terminal emulator" shortcut="Ctrl+Alt+E; Ctrl+-"/>
   <Action name="unselect group" shortcut="; "/>
+  <Action name="unselect all" shortcut="Alt+-; "/>
  </ActionProperties>
 </gui>
