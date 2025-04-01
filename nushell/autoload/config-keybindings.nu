@@ -1,20 +1,20 @@
-const FZF_RG_CMD = "rg --hidden --column --line-number --no-heading --color=always --smart-case --trim"
-const FZF_BAT_CMD = "bat --color=always --style=full --line-range=:500"
-const FZF_LSD_CMD = "lsd -al --color=always"
-const FZF_FILES = $"fd --hidden --color=always --type=file | fzf --preview '($FZF_BAT_CMD) {}'"
-const FZF_DIRS = $"fd --hidden --color=always --type=directory | fzf --preview '($FZF_LSD_CMD) {}'"
-
-const FZF_GREP = [
-  $"fzf --preview '($FZF_BAT_CMD) {1} --highlight-line {2}'"
-  $"--bind 'start:reload:($FZF_RG_CMD) {q} || true'"
-  $"--bind 'change:reload:($FZF_RG_CMD) {q} || true'"
-  "--bind 'enter:become(echo {1})'"
-  "--bind 'tab:become(echo {1})'"
-  "--delimiter :"
-  "--disabled"
-] | str join " "
-
 export-env {
+  const FZF_RG_CMD = "rg --hidden --column --line-number --no-heading --color=always --smart-case --trim"
+  const FZF_BAT_CMD = "bat --color=always --style=full --line-range=:500"
+  const FZF_LSD_CMD = "lsd -al --color=always"
+  const FZF_FILES = $"fd --hidden --color=always --type=file | fzf --preview '($FZF_BAT_CMD) {}'"
+  const FZF_DIRS = $"fd --hidden --color=always --type=directory | fzf --preview '($FZF_LSD_CMD) {}'"
+
+  const FZF_GREP = [
+    $"fzf --preview '($FZF_BAT_CMD) {1} --highlight-line {2}'"
+    $"--bind 'start:reload:($FZF_RG_CMD) {q} || true'"
+    $"--bind 'change:reload:($FZF_RG_CMD) {q} || true'"
+    "--bind 'enter:become(echo {1})'"
+    "--bind 'tab:become(echo {1})'"
+    "--delimiter :"
+    "--disabled"
+  ] | str join " "
+
   $env.config.keybindings ++= [
     {
       name: copy_selection
