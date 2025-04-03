@@ -35,6 +35,8 @@ export alias sy = sudo yazi
 export alias tf = terraform
 export alias tree = broot -c :pt
 
+alias v = vifm
+
 export alias ys = yay -Syu --noconfirm
 export alias yss = yay -Ss
 export alias yq = yay -Q

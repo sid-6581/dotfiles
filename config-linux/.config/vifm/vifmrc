@@ -26,7 +26,7 @@ set syscalls
 " files by deleting them and then using p to put the file in the new location.
 " I recommend not changing this until you are familiar with vifm.
 " This probably shouldn't be an option.
- set notrash
+set notrash
 
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
@@ -112,8 +112,9 @@ colorscheme gruvbox
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
 mark h ~/
+mark m /mnt/
+mark r /
 
 " ------------------------------------------------------------------------------
 " Commands
@@ -565,6 +566,9 @@ nnoremap <a-o> :sync %c<cr>
 
 " Activate screen/tmux support
 " screen!
+
+nnoremap s :!nu -i<cr>
+nnoremap q :q<cr>
 
 " Ranger devicons for ViFM
 " https://github.com/cirala/vifm_devicons
