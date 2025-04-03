@@ -77,12 +77,12 @@ nu-install pacman [
   ripgrep
   rofi-wayland
   starship
-  superfile
   tealdeer
   ttf-jetbrains-mono
   ttf-jetbrains-mono-nerd
   unzip
   uv
+  vifm
   xclip
   yazi
   zoxide
