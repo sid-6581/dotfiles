@@ -1,3 +1,8 @@
+export def v [] {
+  $env.TERM = "kitty-direct"
+  ^vifm
+}
+
 # Creates a new directory and cds to it.
 export def --env mcd [
   dir: string # The directory to create
