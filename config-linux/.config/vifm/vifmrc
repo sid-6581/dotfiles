@@ -1,12 +1,10 @@
 " vim: filetype=vim :
-" Sample configuration file for vifm (last updated: 18 December, 2024)
-" You can edit this file by hand.
-" The " character at the beginning of a line comments out the line.
-" Blank lines are ignored.
-" The basic format for each item is shown with an example.
+
+source ~/.config/vifm/icons.vifm
+source ~/.config/vifm/filetypes.vifm
 
 " ------------------------------------------------------------------------------
-" Main settings
+" Settings
 " ------------------------------------------------------------------------------
 
 " Command used to edit files in various contexts.  The default is vim.
@@ -95,16 +93,17 @@ else
     set statusline="  Hint: %z%= %A %15s %20d  "
 endif
 
-" Suppress "Permission denied" errors using syntax specific to GNU find
-if system("find --version | grep -c 'GNU findutils'") != 0
-    set findprg='find %s %a -print , -type d \( ! -readable -o ! -executable \) -prune'
-endif
-
-" Add -s to the default value to suppress "Permission denied" errors
-set grepprg="grep -n -H -I -r -s %i %a %s"
+set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
+set findprg=fd\ --color=never\ %p\ %s
 
 " List of color schemes to try (picks the first one supported by the terminal)
 colorscheme gruvbox
+
+" Customize view columns a bit (enable ellipsis for truncated file names)
+set viewcolumns=-{name}..,6{}.
+
+" Show vertical border
+set fillchars=vborder:│
 
 " ------------------------------------------------------------------------------
 " Bookmarks
@@ -148,261 +147,14 @@ command! vgrep vim "+grep %a"
 command! reload :write | restart full
 
 " ------------------------------------------------------------------------------
-" File types association
+" Mappings
 " ------------------------------------------------------------------------------
 
-" :filetype pattern1,pattern2 defaultprogram,program2
-" :fileviewer pattern1,pattern2 consoleviewer
-"
-" The first entry is the default program to be used with a matching file.
-" The other programs for the file type can be accessed via :file command.
-" The command macros like %f, %F, %d, %D may be used in the commands.
-" The %a macro is ignored.  To use a % you must put %%.
-" Spaces in an app name must be escaped, for example: QuickTime\ Player.app
+" Shell
+nnoremap s :!nu -i<cr>
 
-" For automated FUSE mounts, you must register an extension with :file[x]type
-" in one of the following formats:
-"
-" :filetype patterns FUSE_MOUNT|mount_cmd %SOURCE_FILE %DESTINATION_DIR
-"
-" %SOURCE_FILE and %DESTINATION_DIR are filled in at runtime.
-"
-" Example:
-"   :filetype *.zip,*.[jwe]ar FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR
-"
-" :filetype patterns FUSE_MOUNT2|mount_cmd %PARAM %DESTINATION_DIR
-"
-" %PARAM and %DESTINATION_DIR are filled in at runtime.
-"
-" Example:
-"   :filetype *.ssh FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR
-"
-" %PARAM value is the first line of the matched file, example: root@127.0.0.1:/
-"
-" You can also add %CLEAR if you want to clear screen before running FUSE
-" program.  There is also %FOREGROUND, which is useful for entering passwords.
-
-" Pdf
-filextype {*.pdf},<application/pdf> zathura %c %i, apvlv %c, xpdf %c
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
-
-" PostScript
-filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in gv}
-        \ gv %c %i,
-
-" Djvu
-filextype {*.djvu},<image/vnd.djvu>
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in apvlv}
-        \ apvlv %f,
-
-" Midi
-filetype {*.mid,*.kar}
-       \ {Play using TiMidity++}
-       \ timidity %f,
-
-" Audio
-filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
-         \*.aac,*.mpga},
-        \<audio/*>
-       \ {Play using MPlayer}
-       \ mplayer %f,
-       \ {Play using mpv}
-       \ mpv --no-video %f %s,
-       \ {Play using ffplay}
-       \ ffplay -nodisp -hide_banner -autoexit %c,
-fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
-           \*.aac,*.mpga},
-          \<audio/*>
-         \ ffprobe -hide_banner -pretty %c 2>&1
-
-" Video
-filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx],*.unknown_video},
-         \<video/*>
-        \ {View using ffplay}
-        \ ffplay -fs -hide_banner -autoexit %f,
-        \ {View using Dragon}
-        \ dragon %f:p,
-        \ {View using mplayer}
-        \ mplayer %f,
-        \ {Play using mpv}
-        \ mpv %f,
-fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-           \*.fl[icv],*.m2v,*.mov,*.webm,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-           \*.as[fx],*.unknown_video},
-          \<video/*>
-         \ ffprobe -hide_banner -pretty %c 2>&1
-
-" Web
-filextype {*.xhtml,*.html,*.htm},<text/html>
-        \ {Open with qutebrowser}
-        \ qutebrowser %f %i,
-        \ {Open with firefox}
-        \ firefox %f &,
-filetype {*.xhtml,*.html,*.htm},<text/html> links, lynx
-
-" Object
-filetype {*.o},<application/x-object> nm %f | less
-
-" Man page
-filetype {*.[1-8]},<text/troff> man ./%c
-fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
-
-" Images
-filextype {*.svg,*.svgz},<image/svg+xml>
-        \ {Edit in Inkscape}
-        \ inkscape %f,
-        \ {View in Inkview}
-        \ inkview %f,
-filextype {*.cr2}
-        \ {Open in Darktable}
-        \ darktable %f,
-        \ {Open in RawTherapee}
-        \ rawtherapee %f,
-filextype {*.xcf}
-        \ {Open in GIMP}
-        \ gimp %f,
-filextype {*.kra}
-        \ {Open in Krita}
-        \ krita %f,
-filextype {*.blend}
-        \ {Open in Blender}
-        \ blender %c,
-filextype {*.sh3d}
-        \ {Open in Sweet Home 3D}
-        \ sweethome3d %c:p,
-filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-        \ {View in sxiv}
-        \ sxiv %f,
-        \ {View in gpicview}
-        \ gpicview %c,
-        \ {View in shotwell}
-        \ shotwell,
-fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
-
-" OpenRaster
-filextype *.ora
-        \ {Edit in MyPaint}
-        \ mypaint %f,
-
-" Mindmap
-filextype *.vym
-        \ {Open with VYM}
-        \ vym %f &,
-
-" MD5
-filetype *.md5
-       \ {Check MD5 hash sum}
-       \ md5sum -c %f %S,
-
-" SHA1
-filetype *.sha1
-       \ {Check SHA1 hash sum}
-       \ sha1sum -c %f %S,
-
-" SHA256
-filetype *.sha256
-       \ {Check SHA256 hash sum}
-       \ sha256sum -c %f %S,
-
-" SHA512
-filetype *.sha512
-       \ {Check SHA512 hash sum}
-       \ sha512sum -c %f %S,
-
-" GPG signature
-filetype {*.asc},<application/pgp-signature>
-       \ {Check signature}
-       \ !!gpg --verify %c,
-
-" Torrent
-filetype {*.torrent},<application/x-bittorrent> ktorrent %f &
-fileviewer {*.torrent},<application/x-bittorrent>
-         \ dumptorrent -v %c,
-         \ transmission-show %c
-
-" FuseZipMount
-filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
-        \<application/zip,application/java-archive>
-       \ {Mount with fuse-zip}
-       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-       \ {View contents}
-       \ unzip -l %f | less,
-       \ {Extract here}
-       \ unzip %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt unzip -l %f
-
-" ArchiveMount
-filetype {*.cpio,*.cpio.gz,*.rpm,*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,
-         \*.txz,*.tar.zst,*.tzst},
-        \<application/x-cpio,application/x-rpm,application/x-tar>
-       \ {Mount with archivemount}
-       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
-fileviewer *.tgz,*.tar.gz tar -tzf %c
-fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-fileviewer *.tar.xz,*.txz tar -tJf %c
-fileviewer *.tar.zst,*.tzst tar -t --zstd -f %c
-fileviewer {*.tar},<application/x-tar> tar -tf %c
-fileviewer {*.cpio},<application/x-cpio> cpio -t < %c
-fileviewer {*.rpm},<application/x-rpm> rpm -q --list %c%q 2> /dev/null
-
-" Rar2FsMount and rar archives
-filetype {*.rar},<application/x-rar>
-       \ {Mount with rar2fs}
-       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-fileviewer {*.rar},<application/x-rar> unrar v %c
-
-" IsoMount
-filetype {*.iso},<application/x-iso9660-image>
-       \ {Mount with fuseiso}
-       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
-
-" SshMount
-filetype *.ssh
-       \ {Mount with sshfs}
-       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
-
-" FtpMount
-filetype *.ftp
-       \ {Mount with curlftpfs}
-       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
-
-" Fuse7z and 7z archives
-filetype {*.7z},<application/x-7z-compressed>
-       \ {Mount with fuse-7z}
-       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
-fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
-
-" Office files
-filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
-         \<application/vnd.openxmlformats-officedocument.*,
-          \application/msword,
-          \application/vnd.ms-excel>
-        \ libreoffice %f &
-fileviewer {*.doc},<application/msword> catdoc %c
-fileviewer {*.docx},
-          \<application/
-           \vnd.openxmlformats-officedocument.wordprocessingml.document>
-         \ docx2txt.pl %f -
-
-" TuDu files
-filetype *.tudu tudu -f %c
-
-" Qt projects
-filextype *.pro qtcreator %f &
-
-" Customize view columns a bit (enable ellipsis for truncated file names)
-set viewcolumns=-{name}..,6{}.
-
-" Show vertical border
-set fillchars=vborder:│
+" Quit
+nnoremap q :q<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -410,13 +162,6 @@ nnoremap S :sort<cr>
 " Toggle visibility of preview window
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
-
-if $DISPLAY != '' && executable('gvim')
-    " Open file in existing instance of gvim
-    nnoremap o :!gvim --remote-tab-silent %f<cr>
-    " Open file in new instance of gvim
-    nnoremap O :!gvim %f<cr>
-endif
 
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
@@ -462,13 +207,6 @@ nnoremap A cw
 " nnoremap cc cW<c-u>
 " nnoremap A cW
 
-" Open console in current directory
-if $DISPLAY != '' && executable('xterm')
-    nnoremap ,t :!xterm &<cr>
-elseif $TERMINAL != ''
-    nnoremap ,t :!$TERMINAL &<cr>
-endif
-
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
 
@@ -488,105 +226,11 @@ nnoremap <f6> :move<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 
-" Midnight commander alike mappings
 " Open current directory in the other pane
 nnoremap <a-i> :sync<cr>
+
 " Open directory under cursor in the other pane
 nnoremap <a-o> :sync %c<cr>
+
 " Swap panes (uncomment if you don't need builtin behaviour of Ctrl-U)
 " nnoremap <c-u> <c-w>x
-
-" ------------------------------------------------------------------------------
-" Various customization examples
-" ------------------------------------------------------------------------------
-
-set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
-
-" Block particular shortcut
-" nnoremap <left> <nop>
-
-" Export IPC name of current instance as environment variable and use it to
-" communicate with the instance later.
-"
-" It can be used in some shell script that gets run from inside vifm, for
-" example, like this:
-"     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
-"
-" let $VIFM_SERVER_NAME = v:servername
-
-" Activate screen/tmux support
-" screen!
-
-nnoremap s :!nu -i<cr>
-nnoremap q :q<cr>
-
-" Ranger devicons for ViFM
-" https://github.com/cirala/vifm_devicons
-"
-" Filetypes/directories
-set classify=' :dir:/, :exe:, :reg:, :link:,? :?:, ::../::'
-
-" Specific files
-set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.bashrc,,.dmrc,,.d_store,,.fasd,,.gitconfig,,.gitignore,,.jack-settings,,.mime.types,,.nvidia-settings-rc,,.pam_environment,,.profile,,.recently-used,,.selected_editor,,.xinitpurc,,.zprofile,,.yarnc,,.snclirc,,.tmux.conf,,.urlview,,.config,,.ini,,.user-dirs.dirs,,.mimeapps.list,,.offlineimaprc,,.msmtprc,,.Xauthority,,config::'
-set classify+=' ::dropbox::'
-set classify+=' ::favicon.*,,README,,readme::'
-set classify+=' ::.vim,,.vimrc,,.gvimrc,,.vifm::'
-set classify+=' ::gruntfile.coffee,,gruntfile.js,,gruntfile.ls::'
-set classify+=' ::gulpfile.coffee,,gulpfile.js,,gulpfile.ls::'
-set classify+=' ::ledger::'
-set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
-set classify+=' ::node_modules::'
-set classify+=' ::react.jsx::'
-
-" File extensions
-set classify+='λ ::*.ml,,*.mli::'
-set classify+=' ::*.styl::'
-set classify+=' ::*.scss::'
-set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
-set classify+=' ::*.php::'
-set classify+=' ::*.markdown,,*.md::'
-set classify+=' ::*.json::'
-set classify+=' ::*.js::'
-set classify+=' ::*.bmp,,*.gif,,*.ico,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.svgz,,*.tga,,*.tiff,,*.xmb,,*.xcf,,*.xpm,,*.xspf,,*.xwd,,*.cr2,,*.dng,,*.3fr,,*.ari,,*.arw,,*.bay,,*.crw,,*.cr3,,*.cap,,*.data,,*.dcs,,*.dcr,,*.drf,,*.eip,,*.erf,,*.fff,,*.gpr,,*.iiq,,*.k25,,*.kdc,,*.mdc,,*.mef,,*.mos,,*.mrw,,*.obm,,*.orf,,*.pef,,*.ptx,,*.pxn,,*.r3d,,*.raf,,*.raw,,*.rwl,,*.rw2,,*.rwz,,*.sr2,,*.srf,,*.srw,,*.tif,,*.x3f,,*.webp,,*.avif,,*.jxl::'
-set classify+=' ::*.ejs,,*.htm,,*.html,,*.slim,,*.xml::'
-set classify+=' ::*.mustasche::'
-set classify+=' ::*.css,,*.less,,*.bat,,*.conf,,*.ini,,*.rc,,*.yml,,*.cfg::'
-set classify+=' ::*.rss::'
-set classify+=' ::*.coffee::'
-set classify+=' ::*.twig::'
-set classify+=' ::*.c++,,*.cpp,,*.cxx,,*.h::'
-set classify+=' ::*.cc,,*.c::'
-set classify+=' ::*.hs,,*.lhs::'
-set classify+=' ::*.lua::'
-set classify+=' ::*.jl::'
-set classify+=' ::*.go::'
-set classify+=' ::*.ts::'
-set classify+=' ::*.db,,*.dump,,*.sql::'
-set classify+=' ::*.sln,,*.suo::'
-set classify+=' ::*.exe::'
-set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
-set classify+=' ::*.scala::'
-set classify+=' ::*.java,,*.jar::'
-set classify+=' ::*.xul::'
-set classify+=' ::*.clj,,*.cljc::'
-set classify+=' ::*.pl,,*.pm,,*.t::'
-set classify+=' ::*.cljs,,*.edn::'
-set classify+=' ::*.rb::'
-set classify+=' ::*.fish,,*.sh,,*.bash::'
-set classify+=' ::*.dart::'
-set classify+=' ::*.f#,,*.fs,,*.fsi,,*.fsscript,,*.fsx::'
-set classify+=' ::*.rlib,,*.rs::'
-set classify+=' ::*.d::'
-set classify+=' ::*.erl,,*.hrl::'
-set classify+=' ::*.ai::'
-set classify+=' ::*.psb,,*.psd::'
-set classify+=' ::*.jsx::'
-set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
-set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.av1::'
-set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
-set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.cpio,,*.deb,,*.gem,,*.gz,,*.gzip,,*.lh,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip,,*.zst::'
-set classify+=' ::*.cbr,,*.cbz::'
-set classify+=' ::*.log::'
-set classify+=' ::*.doc,,*.docx,,*.adoc::'
-set classify+=' ::*.xls,,*.xlsmx::'
-set classify+=' ::*.pptx,,*.ppt::'
