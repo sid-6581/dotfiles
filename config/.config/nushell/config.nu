@@ -1,5 +1,6 @@
 source ~/.dotfiles/nushell/scripts/globals.nu
 
+$env.TERM = "kitty-direct"
 $env.EDITOR = "nvim"
 $env.MANPAGER = "nvim +Man!"
 $env.RIPGREP_CONFIG_PATH = $env.HOME | path join .config ripgrep config
