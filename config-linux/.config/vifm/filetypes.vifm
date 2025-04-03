@@ -249,3 +249,5 @@ filetype *.tudu tudu -f %c
 
 " Qt projects
 filextype *.pro qtcreator %f &
+
+fileviewer *[^/],.*[^/] bat --color always --wrap never --pager never %c -p
