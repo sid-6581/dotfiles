@@ -82,16 +82,9 @@ set incsearch
 set scrolloff=4
 
 " Don't do too many requests to slow file systems
-if !has('win')
-    set slowfs=curlftpfs
-endif
+set slowfs=curlftpfs
 
-" Set custom status line look
-if !has('win')
-    set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
-else
-    set statusline="  Hint: %z%= %A %15s %20d  "
-endif
+set statusline="  Hint: %z%= %T  %A %10u:%-7g %15s %20d  "
 
 set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
 set findprg=fd\ --color=never\ %p\ %s
@@ -169,12 +162,7 @@ vnoremap w :view<cr>gv
 nnoremap gb :file &<cr>l
 
 " Interaction with system clipboard
-if has('win')
-    " Yank current directory path to Windows clipboard with forward slashes
-    nnoremap yp :!echo %"d:gs!\!/! %i | clip<cr>
-    " Yank path to current file to Windows clipboard with forward slashes
-    nnoremap yf :!echo %"c:p:gs!\!/! %i | clip<cr>
-elseif $WAYLAND_DISPLAY != ''
+if $WAYLAND_DISPLAY != ''
     if executable('wl-copy')
         " Yank current directory path into primary and selection clipboards
         nnoremap yd :!echo -n %d | wl-copy %i &&
