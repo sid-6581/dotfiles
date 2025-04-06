@@ -1,6 +1,7 @@
 source ~/.dotfiles/nushell/scripts/globals.nu
 
 $env.EDITOR = "nvim"
+$env.DIFFPROG = "nvim -d"
 $env.MANPAGER = "nvim +Man!"
 $env.RIPGREP_CONFIG_PATH = $env.HOME | path join .config ripgrep config
 $env.JUST_COMMAND_COLOR = "blue"
