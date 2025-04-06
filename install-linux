@@ -139,7 +139,6 @@ nu-install gh [
 
 (
   setup systemctl enable
-  reflector.timer
   podman-auto-update.timer
 )
 
