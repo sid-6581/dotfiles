@@ -5,31 +5,6 @@
 " Reset all styles first
 highlight clear
 
-highlight Border cterm=none ctermfg=235 ctermbg=default
-
-highlight TopLine cterm=none ctermfg=214 ctermbg=235
-highlight TopLineSel cterm=bold ctermfg=214 ctermbg=237
-
-highlight Win  cterm=none ctermfg=223 ctermbg=default
-"highlight OtherWin  cterm=none ctermfg=223 ctermbg=236
-highlight Directory cterm=bold ctermfg=109 ctermbg=default
-highlight CurrLine cterm=bold,inverse ctermfg=default ctermbg=default
-highlight OtherLine cterm=bold ctermfg=default ctermbg=235
-highlight Selected cterm=none ctermfg=223 ctermbg=237
-
-highlight JobLine cterm=bold ctermfg=116 ctermbg=238
-highlight StatusLine cterm=bold ctermfg=144 ctermbg=236
-highlight ErrorMsg cterm=bold ctermfg=167 ctermbg=default
-highlight WildMenu cterm=bold ctermfg=235 ctermbg=144
-highlight CmdLine cterm=none ctermfg=223 ctermbg=default
-
-highlight Executable cterm=bold ctermfg=142 ctermbg=default
-highlight Link  cterm=none ctermfg=132 ctermbg=default
-highlight BrokenLink cterm=bold ctermfg=167 ctermbg=default
-highlight Device cterm=none,standout ctermfg=214 ctermbg=default
-highlight Fifo  cterm=none ctermfg=172 ctermbg=default
-highlight Socket cterm=bold ctermfg=223 ctermbg=default
-
 " generic file types
 highlight BrokenLink cterm=bold ctermfg=203 ctermbg=default
 highlight Device cterm=bold ctermfg=215 ctermbg=default
@@ -56,3 +31,28 @@ highlight /^.*(CHANGELOG|CHANGELOG.md|CHANGELOG.txt|CODE_OF_CONDUCT|CODE_OF_COND
 highlight /^.*(CMakeLists.txt|CODEOWNERS|Doxyfile|MANIFEST.in|Makefile|Makefile.am|SConscript|SConstruct|\.clang-format|\.cmake|\.cmake.in|\.dox|\.editorconfig|\.fdignore|\.flake8|\.gemspec|\.gitattributes|\.gitconfig|\.gitignore|\.gitmodules|\.hgrc|\.ignore|\.kdevelop|\.mailmap|\.make|\.mk|\.pro|\.rgignore|\.tfignore|configure|configure.ac|go.mod|hgrc|pyproject.toml|requirements.txt|setup.py|v.mod)$/I cterm=bold ctermfg=143 ctermbg=default
 highlight /^.*(COPYING|COPYRIGHT|LICENCE|LICENSE|LICENSE-APACHE|LICENSE-MIT)$/I cterm=bold ctermfg=223 ctermbg=default
 highlight /^.*(CMakeCache.txt|Icon\r|Makefile.in|\.CFUserTextEncoding|\.DS_Store|\.aux|\.bak|\.bbl|\.bc|\.bcf|\.blg|\.cache|\.class|\.ctags|\.dyn_hi|\.dyn_o|\.fdb_latexmk|\.fls|\.git|\.hi|\.idx|\.ilg|\.ind|\.la|\.lo|\.localized|\.lock|\.log|\.o|\.orig|\.out|\.pid|\.pyc|\.pyd|\.pyo|\.rlib|\.rmeta|\.scons_opt|\.sconsign.dblite|\.sty|\.swp|\.synctex.gz|\.timestamp|\.tmp|\.toc|bun.lockb|go.sum|package-lock.json|stderr|stdin|stdout|~)$/I cterm=bold ctermfg=59 ctermbg=default
+
+highlight Border cterm=none ctermfg=235 ctermbg=default
+
+highlight TopLine cterm=none ctermfg=214 ctermbg=235
+highlight TopLineSel cterm=bold ctermfg=214 ctermbg=237
+
+highlight Win  cterm=none ctermfg=223 ctermbg=default
+"highlight OtherWin  cterm=none ctermfg=223 ctermbg=236
+highlight Directory cterm=bold ctermfg=109 ctermbg=default
+highlight CurrLine cterm=bold,inverse ctermfg=default ctermbg=default
+highlight OtherLine cterm=bold ctermfg=default ctermbg=235
+highlight Selected cterm=none ctermfg=223 ctermbg=237
+
+highlight JobLine cterm=bold ctermfg=116 ctermbg=238
+highlight StatusLine cterm=bold ctermfg=144 ctermbg=236
+highlight ErrorMsg cterm=bold ctermfg=167 ctermbg=default
+highlight WildMenu cterm=bold ctermfg=235 ctermbg=144
+highlight CmdLine cterm=none ctermfg=223 ctermbg=default
+
+highlight Executable cterm=bold ctermfg=142 ctermbg=default
+highlight Link  cterm=none ctermfg=132 ctermbg=default
+highlight BrokenLink cterm=bold ctermfg=167 ctermbg=default
+highlight Device cterm=none,standout ctermfg=214 ctermbg=default
+highlight Fifo  cterm=none ctermfg=172 ctermbg=default
+highlight Socket cterm=bold ctermfg=223 ctermbg=default
