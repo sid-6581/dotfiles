@@ -160,6 +160,9 @@ nnoremap S :sort<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
+" Help
+nnoremap <f1> :help<cr>
+
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
 
