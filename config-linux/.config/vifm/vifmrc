@@ -78,6 +78,9 @@ set smartcase
 " Don't select search matches automatically
 set nohlsearch
 
+" Don't wrap in quick view
+set nowrap
+
 " Use increment searching (search while typing)
 set incsearch
 
