@@ -1,3 +1,5 @@
+" vim: filetype=vim :
+
 " gruvbox color scheme approximation for vifm
 
 " Reset all styles first
@@ -27,3 +29,30 @@ highlight BrokenLink cterm=bold ctermfg=167 ctermbg=default
 highlight Device cterm=none,standout ctermfg=214 ctermbg=default
 highlight Fifo  cterm=none ctermfg=172 ctermbg=default
 highlight Socket cterm=bold ctermfg=223 ctermbg=default
+
+" generic file types
+highlight BrokenLink cterm=bold ctermfg=203 ctermbg=default
+highlight Device cterm=bold ctermfg=215 ctermbg=default
+highlight Directory cterm=none ctermfg=66 ctermbg=default
+highlight Executable cterm=bold ctermfg=143 ctermbg=default
+highlight Fifo cterm=none ctermfg=132 ctermbg=default
+highlight Link cterm=bold ctermfg=108 ctermbg=default
+highlight Socket cterm=bold ctermfg=132 ctermbg=default
+highlight Win cterm=none ctermfg=223 ctermbg=234
+
+" file name specific highlight
+highlight /^.*\.(adb|ads|applescript|as|asa|asm|awk|bash|bash_profile|bashrc|bsh|c|c++|cabal|cc|cgi|clj|cp|cpp|cr|cs|css|csx|cxx|d|dart|def|di|diff|dot|dpr|el|elc|elm|epp|erl|ex|exs|fish|fs|fsi|fsx|gcode|go|gradle|groovy|gv|gvy|h|h++|ha|hack|hh|hpp|hs|htc|hxx|inc|inl|ino|ipp|ipynb|java|jl|js|jsx|kt|kts|less|lisp|ll|ltx|lua|m|matlab|mir|ml|mli|mn|mojo|nb|nim|nimble|nims|nu|p|pas|patch|php|pl|pm|pod|pp|prql|ps1|psd1|psm1|purs|py|r|raku|rb|rs|sass|sbt|scad|scala|scss|sh|sql|swift|t|tcl|td|tex|ts|tsx|v|vb|vim|vsh|zig|zsh)$/I cterm=none ctermfg=100 ctermbg=default
+highlight /^.*(\.cirrus.yml|\.gitlab-ci.yml|\.travis.yml|appveyor.yml|azure-pipelines.yml)$/I cterm=none ctermfg=108 ctermbg=default
+highlight /^.*(TODO|TODO.md|TODO.txt)$/I cterm=none ctermfg=143 ctermbg=default
+highlight /^.*\.(7z|apk|arj|bag|bz|bz2|db|deb|gz|jar|msi|pkg|rar|rpm|tar|tbz|tbz2|tgz|xbps|xz|z|zip|zst)$/I cterm=none ctermfg=166 ctermbg=default
+highlight /^.*\.(1|csv|htm|html|info|markdown|md|mdown|org|rst|shtml|typ|xhtml|xml)$/I cterm=none ctermfg=172 ctermbg=default
+highlight /^.*(Dockerfile|\.bib|\.bst|\.cfg|\.conf|\.config|\.desktop|\.ini|\.json|\.nix|\.tml|\.toml|\.ui|\.webmanifest|\.xmp|\.yaml|\.yml|passwd|shadow)$/I cterm=none ctermfg=215 ctermbg=default
+highlight /^.*\.(txt)$/I cterm=none ctermfg=223 ctermbg=default
+highlight /^.*\.(3ds|3fr|3mf|ai|aif|alembic|amf|ape|ari|arw|avif|bay|blend|bmp|braw|cap|cr2|cr3|crw|dae|data|dcr|dcs|dng|drf|dxf|eip|eps|erf|exr|fbx|fff|flac|fnt|fon|gif|gpr|hda|heif|hip|ico|iges|igs|iiq|jpeg|jpg|jxl|k25|kdc|kra|m3u|m4a|ma|mb|mdc|mef|mid|mos|mp3|mrw|mtl|nef|nrw|obj|obm|ogg|opus|orf|otf|otl|pbm|pcx|pef|pgm|png|ppm|psd|ptx|pxn|qoi|r3d|raf|raw|rw2|rwl|rwz|sr2|srf|srw|step|stl|stp|svg|tga|tif|tiff|ttf|usd|usda|usdc|usdz|wav|webp|wma|woff|woff2|wrl|wv|x3d|x3f|xpm|xvf)$/I cterm=none ctermfg=71 ctermbg=default
+highlight /^.*\.(avi|doc|docx|epub|flv|h264|ics|kex|m4v|mkv|mov|mp4|mpeg|mpg|odp|ods|odt|ogv|pdf|pps|ppt|pptx|ps|rm|rtf|swf|sxi|sxw|vob|webm|wmv|xlr|xls|xlsx)$/I cterm=bold ctermfg=108 ctermbg=default
+highlight /^.*\.(a|bat|com|dll|dylib|exe|ko|so)$/I cterm=bold ctermfg=143 ctermbg=default
+highlight /^.*\.(bin|dmg|img|iso|toast|vcd)$/I cterm=bold ctermfg=208 ctermbg=default
+highlight /^.*(CHANGELOG|CHANGELOG.md|CHANGELOG.txt|CODE_OF_CONDUCT|CODE_OF_CONDUCT.md|CODE_OF_CONDUCT.txt|CONTRIBUTING|CONTRIBUTING.md|CONTRIBUTING.txt|CONTRIBUTORS|CONTRIBUTORS.md|CONTRIBUTORS.txt|FAQ|INSTALL|INSTALL.md|INSTALL.txt|LEGACY|NOTICE|README|README.md|README.txt|VERSION)$/I cterm=bold ctermfg=215 ctermbg=default
+highlight /^.*(CMakeLists.txt|CODEOWNERS|Doxyfile|MANIFEST.in|Makefile|Makefile.am|SConscript|SConstruct|\.clang-format|\.cmake|\.cmake.in|\.dox|\.editorconfig|\.fdignore|\.flake8|\.gemspec|\.gitattributes|\.gitconfig|\.gitignore|\.gitmodules|\.hgrc|\.ignore|\.kdevelop|\.mailmap|\.make|\.mk|\.pro|\.rgignore|\.tfignore|configure|configure.ac|go.mod|hgrc|pyproject.toml|requirements.txt|setup.py|v.mod)$/I cterm=bold ctermfg=143 ctermbg=default
+highlight /^.*(COPYING|COPYRIGHT|LICENCE|LICENSE|LICENSE-APACHE|LICENSE-MIT)$/I cterm=bold ctermfg=223 ctermbg=default
+highlight /^.*(CMakeCache.txt|Icon\r|Makefile.in|\.CFUserTextEncoding|\.DS_Store|\.aux|\.bak|\.bbl|\.bc|\.bcf|\.blg|\.cache|\.class|\.ctags|\.dyn_hi|\.dyn_o|\.fdb_latexmk|\.fls|\.git|\.hi|\.idx|\.ilg|\.ind|\.la|\.lo|\.localized|\.lock|\.log|\.o|\.orig|\.out|\.pid|\.pyc|\.pyd|\.pyo|\.rlib|\.rmeta|\.scons_opt|\.sconsign.dblite|\.sty|\.swp|\.synctex.gz|\.timestamp|\.tmp|\.toc|bun.lockb|go.sum|package-lock.json|stderr|stdin|stdout|~)$/I cterm=bold ctermfg=59 ctermbg=default
