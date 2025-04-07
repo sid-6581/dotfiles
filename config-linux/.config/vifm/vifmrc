@@ -144,6 +144,9 @@ command! zip zip -r %c.zip %f
 " Mappings
 " ------------------------------------------------------------------------------
 
+" Select files using space
+nnoremap <Space> tj
+
 " Shell
 nnoremap s :!nu -i<cr>
 
