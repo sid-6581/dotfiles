@@ -27,8 +27,6 @@ log info "Starting"
 # Run everything from the Windows home directory, since some tools don't like being run from the WSL UNC path.
 cd $env.HOME
 
-setup git author
-
 windows set-user-env {
   EDITOR:                  "neovide"
   GIT_AUTHOR_EMAIL:        $env.GIT_AUTHOR_EMAIL?

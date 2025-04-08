@@ -13,7 +13,6 @@ $env.LOG_CATEGORY = "install-linux"
 
 log info "Starting"
 
-setup git author
 setup kde files kde/settings
 
 nu-install link clean
