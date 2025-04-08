@@ -13,6 +13,9 @@ disabled = false
 use_12hr = true
 format = "[$time]($style) "
 
+[aws]
+disabled = true
+
 [deno]
 disabled = true
 
