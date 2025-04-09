@@ -37,14 +37,34 @@ export alias sy = sudo yazi
 export alias tf = terraform
 export alias tree = broot -c :pt
 export alias yq = yay -Q
-export alias yqs = yay -Qs
 export alias yr = yay -R --noconfirm
 export alias yrs = yay -Rs --noconfirm
 export alias ys = yay -Syu --noconfirm
-export alias yss = yay -Ss
 
-# LSD - Recursive alias needs lsd first
+# LSD - Recursive alias needs lsd first.
 export alias lsd = lsd --color=always --icon=always --group-dirs=first --git
 export alias l = lsd -la
 export alias lt = lsd -la --tree
 export alias lz = lsd -laZ
+
+#
+# Alias-like commands.
+#
+
+# Search available packages with yay.
+export def yss [regexp: string] {
+  yay --color=always -Ss $regexp
+  | lines
+  | chunks 2
+  | each { { Package: $in.0, Description: ($in.1 | str trim) } }
+  | sort-by { $in.Package | ansi strip }
+}
+
+# Search installed packages with yay.
+export def yqs [regexp: string] {
+  yay --color=always -Qs $regexp
+  | lines
+  | chunks 2
+  | each { { Package: $in.0, Description: ($in.1 | str trim) } }
+  | sort-by { $in.Package | ansi strip }
+}

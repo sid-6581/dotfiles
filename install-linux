@@ -29,16 +29,6 @@ nu-install git [
   { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
 ]
 
-nu-install dnf [
-  cmake
-  gcc-c++
-  nodejs
-  openssl
-  openssl-devel
-  podman
-  python3-pip
-]
-
 nu-install pacman uninstall [
   tldr
 ]
@@ -75,6 +65,7 @@ nu-install pacman [
   python-pip
   ripgrep
   rofi-wayland
+  rustup
   starship
   tealdeer
   ttf-jetbrains-mono
@@ -96,17 +87,21 @@ nu-install yay [
   ttf-google-fonts-git
 ]
 
-if (which rustup | is-empty) {
-  log info "Installing rust"
-  ^curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-  ^rustup -q toolchain install nightly
+if (which rustup | is-not-empty) {
+  let toolchains = ^rustup toolchain list
+
+  if "stable" not-in $toolchains {
+    ^rustup default stable
+  }
+
+  if "nightly" not-in $toolchains {
+    ^rustup install nightly
+  }
 }
 
 nu-install cargo [
   cargo-edit
-  cargo-sweep
   cargo-update
-  x12pp
 ]
 
 nu-install gh [
