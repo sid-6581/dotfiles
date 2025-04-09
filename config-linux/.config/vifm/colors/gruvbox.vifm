@@ -49,6 +49,7 @@ highlight StatusLine cterm=bold ctermfg=144 ctermbg=236
 highlight ErrorMsg cterm=bold ctermfg=167 ctermbg=default
 highlight WildMenu cterm=bold ctermfg=235 ctermbg=144
 highlight CmdLine cterm=none ctermfg=223 ctermbg=default
+highlight LineNr cterm=none ctermfg=59 ctermbg=default
 
 "highlight Executable cterm=bold ctermfg=142 ctermbg=default
 "highlight Link  cterm=none ctermfg=132 ctermbg=default

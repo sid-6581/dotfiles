@@ -38,6 +38,10 @@ set history=100
 " Automatically resolve symbolic links on l or Enter.
 set nofollowlinks
 
+" Relative line numbers
+set number
+set relativenumber
+
 " Natural sort of (version) numbers within text.
 set sortnumbers
 
