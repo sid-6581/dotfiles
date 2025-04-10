@@ -52,8 +52,8 @@ export alias lz = lsd -laZ
 #
 
 # Search available packages with yay.
-export def yss [regexp: string] {
-  yay --color=always -Ss $regexp
+export def yss [...regexps: string] {
+  yay --color=always -Ss ...$regexps
   | lines
   | chunks 2
   | each { { Package: $in.0, Description: ($in.1 | str trim) } }
@@ -61,8 +61,8 @@ export def yss [regexp: string] {
 }
 
 # Search installed packages with yay.
-export def yqs [regexp: string] {
-  yay --color=always -Qs $regexp
+export def yqs [...regexps: string] {
+  yay --color=always -Qs ...$regexps
   | lines
   | chunks 2
   | each { { Package: $in.0, Description: ($in.1 | str trim) } }
