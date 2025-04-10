@@ -44,6 +44,7 @@ nu-install pacman [
   broot
   cmake
   fd
+  fuse-zip
   fzf
   gcc
   git-delta
@@ -79,6 +80,7 @@ nu-install pacman [
 ]
 
 nu-install yay [
+  archivemount-ng
   ast-grep
   carapace
   espanso-wayland-git
