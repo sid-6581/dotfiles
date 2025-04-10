@@ -94,6 +94,9 @@ set scrolloff=4
 " Don't do too many requests to slow file systems
 set slowfs=curlftpfs
 
+set uioptions=iodetails
+set tuioptions=pu
+
 set statusline="  Hint: %z%= %T  %A %10u:%-7g %15s %20d  "
 
 set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
