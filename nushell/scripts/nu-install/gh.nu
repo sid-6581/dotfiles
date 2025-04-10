@@ -48,8 +48,8 @@ export def main [
     }
 
     if not (^gh auth status | complete | get stdout | str contains "Logged in to") {
-      log warning "Not logged into GitHub CLI, logging in"
-      ^gh auth login
+      log error $"Not logged into GitHub CLI, can't install ($r.repo)"
+      continue
     }
 
     let tag = $r.tag? | default "Latest"
