@@ -68,3 +68,9 @@ export def yqs [...regexps: string] {
   | each { { Package: $in.0, Description: ($in.1 | str trim) } }
   | sort-by { $in.Package | ansi strip }
 }
+
+# Opens vifm with TERM=kitty-direct.
+export def v [] {
+  $env.TERM = "kitty-direct"
+  ^vifm
+}
