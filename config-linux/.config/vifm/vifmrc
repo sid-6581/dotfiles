@@ -215,11 +215,6 @@ nnoremap A cw
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
 
-" Open gvim to edit vifmrc
-if $DISPLAY != '' && executable('gvim')
-    nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
-endif
-
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
 
