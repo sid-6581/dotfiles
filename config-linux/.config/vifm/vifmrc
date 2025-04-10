@@ -235,5 +235,9 @@ nnoremap <a-i> :sync<cr>
 " Open directory under cursor in the other pane
 nnoremap <a-o> :sync %c<cr>
 
+" Wildmenu navigation
+cnoremap <C-j> <Tab>
+cnoremap <C-k> <S-Tab>
+
 " Swap panes (uncomment if you don't need builtin behaviour of Ctrl-U)
 " nnoremap <c-u> <c-w>x
