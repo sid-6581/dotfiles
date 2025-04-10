@@ -21,8 +21,6 @@ nu-install link [
   { target: "nushell", link: $"($env.HOME)/.config/nushell" }
   { target: "config", link: $"($env.HOME)" }
   { target: "config-linux", link: $"($env.HOME)" }
-  { target: $"($env.HOME)/winhome/scoop/apps/win32yank/current/win32yank.exe", link: $"($env.HOME)/.local/bin/win32yank" }
-  { target: $"($env.HOME)/.local/bin/win32yank", link: $"($env.HOME)/.local/bin/win32yank.exe" }
 ]
 
 nu-install git [
@@ -66,6 +64,7 @@ nu-install pacman [
   python-pip
   ripgrep
   rofi-wayland
+  rust-analyzer
   rustup
   starship
   tealdeer
