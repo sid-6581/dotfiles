@@ -12,7 +12,6 @@ use nushell/scripts/log.nu
 $env.LOG_CATEGORY = "bootstrap-windows"
 
 if not ($"($env.HOME)/winhome" | path exists) {
-  log warning $"($env.HOME)/winhome does not exist, skipping Windows bootstrap"
   return
 }
 
