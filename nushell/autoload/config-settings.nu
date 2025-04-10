@@ -1,5 +1,6 @@
 export-env {
   $env.config.completions.external.max_results = 1000
+  $env.config.edit_mode = "vi"
   $env.config.footer_mode = "always"
   $env.config.highlight_resolved_externals = true
   $env.config.history.file_format = "sqlite"

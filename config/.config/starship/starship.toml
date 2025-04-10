@@ -20,6 +20,7 @@ disabled = true
 disabled = true
 
 [character]
+format = "\n"
 success_symbol = "[](bold green)"
 error_symbol = "[](bold red)"
 
