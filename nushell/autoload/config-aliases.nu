@@ -70,7 +70,7 @@ export def yqs [...regexps: string] {
 }
 
 # Opens vifm with TERM=kitty-direct.
-export def v [] {
+export def --wrapped v [...args: string] {
   $env.TERM = "kitty-direct"
-  ^vifm
+  ^vifm ...$args
 }
