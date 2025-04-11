@@ -3,6 +3,8 @@
 source ~/.config/vifm/icons.vifm
 source ~/.config/vifm/filetypes.vifm
 
+plugin load
+
 " ------------------------------------------------------------------------------
 " Settings
 " ------------------------------------------------------------------------------
@@ -109,7 +111,7 @@ set findprg=fd\ --color=never\ %p\ %s
 colorscheme gruvbox
 
 " Customize view columns a bit (enable ellipsis for truncated file names)
-set viewcolumns=-{name}..,6{}.
+set viewcolumns=-{NameLink}..,6{}.
 
 " Show vertical border
 set fillchars=vborder:│
