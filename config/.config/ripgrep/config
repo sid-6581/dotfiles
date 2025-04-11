@@ -6,6 +6,13 @@
 --glob=!**/.rustup/*
 --glob=!**/dist/*
 --glob=!**/node_modules/*
+--glob=!*/proc/*
+--glob=!*/sys/*
+--glob=!*/dev/*
+--glob=!*/tmp/*
+--glob=!*/run/*
+--glob=!*/mnt/*
+--glob=!*/media/*
 --no-ignore-vcs
 --hidden
 --smart-case
