@@ -6,29 +6,9 @@ export-env {
 
     PROMPT_MULTILINE_INDICATOR: "∙ "
 
-    PROMPT_INDICATOR: {||
-      if $env.LAST_EXIT_CODE? != 0 {
-        $"(ansi red_bold)(ansi reset) "
-      } else {
-        $"(ansi green_bold)(ansi reset) "
-      }
-    }
-
-    PROMPT_INDICATOR_VI_NORMAL: {||
-      if $env.LAST_EXIT_CODE? != 0 {
-        $"(ansi red_bold):(ansi reset) "
-      } else {
-        $"(ansi green_bold):(ansi reset) "
-      }
-    }
-
-    PROMPT_INDICATOR_VI_INSERT: {||
-      if $env.LAST_EXIT_CODE? != 0 {
-        $"(ansi red_bold)(ansi reset) "
-      } else {
-        $"(ansi green_bold)(ansi reset) "
-      }
-    }
+    PROMPT_INDICATOR: {|| prompt "" }
+    PROMPT_INDICATOR_VI_NORMAL: {|| prompt ":" }
+    PROMPT_INDICATOR_VI_INSERT: {|| prompt "" }
 
     PROMPT_COMMAND: {||
       if (which starship | is-empty) {
@@ -53,4 +33,9 @@ export-env {
 
     PROMPT_COMMAND_RIGHT: ""
   }
+}
+
+def prompt [char: string] {
+  let color = if $env.LAST_EXIT_CODE? != 0 { ansi red_bold } else { ansi green_bold }
+  $"($color)($char)(ansi reset) "
 }
