@@ -6,9 +6,9 @@ export-env {
 
     PROMPT_MULTILINE_INDICATOR: "∙ "
 
-    PROMPT_INDICATOR: {|| prompt "" }
-    PROMPT_INDICATOR_VI_NORMAL: {|| prompt ":" }
-    PROMPT_INDICATOR_VI_INSERT: {|| prompt "" }
+    PROMPT_INDICATOR: ""
+    PROMPT_INDICATOR_VI_NORMAL: ""
+    PROMPT_INDICATOR_VI_INSERT: ""
 
     PROMPT_COMMAND: {||
       if (which starship | is-empty) {
@@ -33,9 +33,4 @@ export-env {
 
     PROMPT_COMMAND_RIGHT: ""
   }
-}
-
-def prompt [char: string] {
-  let color = if $env.LAST_EXIT_CODE? != 0 { ansi red_bold } else { ansi green_bold }
-  $"($color)($char)(ansi reset) "
 }
