@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!DOCTYPE gui SYSTEM 'kpartgui.dtd'>
-<gui name="dolphin" version="41">
+<gui name="dolphin" version="42">
  <MenuBar>
   <Menu name="file">
    <Action name="new_menu"/>
@@ -77,6 +77,20 @@
    <Action name="change_remote_encoding"/>
   </Menu>
  </MenuBar>
+ <ToolBar name="mainToolBar" noMerge="1">
+  <text context="@title:menu">Main Toolbar</text>
+  <Action name="go_back"/>
+  <Action name="go_forward"/>
+  <Separator name="separator_1"/>
+  <Action name="icons"/>
+  <Action name="compact"/>
+  <Action name="details"/>
+  <Action name="url_navigators"/>
+  <Action name="split_view"/>
+  <Action name="split_stash"/>
+  <Action name="toggle_search"/>
+  <Action name="hamburger_menu"/>
+ </ToolBar>
  <State name="new_file">
   <disable>
    <Action name="edit_undo"/>
@@ -102,36 +116,22 @@
    <Action name="invert_selection"/>
   </disable>
  </State>
- <ToolBar name="mainToolBar" noMerge="1">
-  <text context="@title:menu">Main Toolbar</text>
-  <Action name="go_back"/>
-  <Action name="go_forward"/>
-  <Separator name="separator_1"/>
-  <Action name="icons"/>
-  <Action name="compact"/>
-  <Action name="details"/>
-  <Action name="url_navigators"/>
-  <Action name="split_view"/>
-  <Action name="split_stash"/>
-  <Action name="toggle_search"/>
-  <Action name="hamburger_menu"/>
- </ToolBar>
  <ActionProperties scheme="Default">
-  <Action name="go_back" priority="0" shortcut="; Alt+Left; Back"/>
-  <Action name="go_forward" priority="0"/>
-  <Action name="go_up" priority="0" shortcut="Backspace; "/>
-  <Action name="go_home" priority="0"/>
-  <Action name="stop" priority="0"/>
-  <Action name="icons" priority="0"/>
   <Action name="compact" priority="0"/>
   <Action name="details" priority="0"/>
-  <Action name="view_zoom_in" priority="0"/>
-  <Action name="view_zoom_reset" priority="0"/>
-  <Action name="view_zoom_out" priority="0"/>
-  <Action name="edit_cut" priority="0" shortcut="Ctrl+X"/>
   <Action name="edit_copy" priority="0"/>
+  <Action name="edit_cut" priority="0" shortcut="Ctrl+X"/>
   <Action name="edit_paste" priority="0"/>
-  <Action name="toggle_search" priority="0"/>
+  <Action name="go_back" priority="0" shortcut="; Alt+Left; Back"/>
+  <Action name="go_forward" priority="0"/>
+  <Action name="go_home" priority="0"/>
+  <Action name="go_up" priority="0" shortcut="Backspace; "/>
+  <Action name="icons" priority="0"/>
+  <Action name="stop" priority="0"/>
   <Action name="toggle_filter" priority="0"/>
+  <Action name="toggle_search" priority="0"/>
+  <Action name="view_zoom_in" priority="0"/>
+  <Action name="view_zoom_out" priority="0"/>
+  <Action name="view_zoom_reset" priority="0"/>
  </ActionProperties>
 </gui>
