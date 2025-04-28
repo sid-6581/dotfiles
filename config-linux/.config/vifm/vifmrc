@@ -40,14 +40,17 @@ set history=100
 " Automatically resolve symbolic links on l or Enter.
 set nofollowlinks
 
-" Relative line numbers
+" Show location in terminal title.
+set title
+
+" Relative line numbers.
 set number
 set relativenumber
 
 " Natural sort of (version) numbers within text.
 set sortnumbers
 
-" Case insensitive sorting
+" Case insensitive sorting.
 set sort=+iname
 
 " Maximum number of changes that can be undone.
