@@ -23,7 +23,7 @@ local function nameLink(info)
   local e = info.entry
   local text = e.classify.prefix .. e.name .. e.classify.suffix
   if e.type == "link" then
-    text = text .. " -> " .. e.gettarget()
+    text = text .. "  " .. e.gettarget()
   end
 
   if not e.match then
