@@ -6,20 +6,21 @@ export def main [] {
 
   nu-install yay [keyd]
 
-  if not ("/etc/keyd/default.conf" | path exists) {
-    log info "Writing /etc/keyd/default.conf"
+  log info "Writing /etc/keyd/default.conf"
 
-    let conf = "
-    [ids]
-    *
+  let conf = "
+  [ids]
+  *
 
-    [main]
-    # Maps capslock to escape when pressed and control when held.
-    capslock = overload(control, esc)
-    "
+  [main]
+  # Maps capslock to escape when pressed and control when held.
+  capslock = overload(control, esc)
 
-    $conf | ^sudo tee /etc/keyd/default.conf | null
-  }
+  # Maps copilot key to control
+  leftshift+leftmeta+f23 = rightcontrol
+  "
+
+  $conf | ^sudo tee /etc/keyd/default.conf | null
 
   log info "Starting keyd service"
   ^sudo systemctl enable --now keyd
