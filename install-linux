@@ -76,6 +76,7 @@ nu-install pacman [
   vifm
   xclip
   yazi
+  zip
   zoxide
 ]
 
