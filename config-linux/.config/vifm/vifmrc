@@ -114,7 +114,7 @@ set findprg=fd\ --color=never\ %p\ %s
 colorscheme gruvbox
 
 " Customize view columns a bit (enable ellipsis for truncated file names)
-set viewcolumns=-{NameLink}..,6{}.
+set viewcolumns=-{NameLink}..,6{size}.,18{mtime}
 
 " Show vertical border
 set fillchars=vborder:│
