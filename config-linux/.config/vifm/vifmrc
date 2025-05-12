@@ -28,6 +28,9 @@ set syscalls
 " This probably shouldn't be an option.
 set notrash
 
+" Don't show ..
+set dotdirs=
+
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
 set vifminfo=dhistory,chistory,state,tui,tabs,shistory,ehistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks,mchistory
@@ -100,7 +103,8 @@ set incsearch
 set scrolloff=4
 
 " Don't do too many requests to slow file systems
-set slowfs=curlftpfs
+set slowfs+=curlftpfs
+set slowfs+=/mnt
 
 set uioptions=iodetails
 set tuioptions=pu
