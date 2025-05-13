@@ -63,6 +63,9 @@ set undolevels=100
 " If you would rather use a plain text help file set novimhelp.
 set vimhelp
 
+" Highlight all columns
+set hloptions=filehi:allrows
+
 " If you would like to run an executable file when you
 " press Enter, l or Right Arrow, set this.
 set norunexec
