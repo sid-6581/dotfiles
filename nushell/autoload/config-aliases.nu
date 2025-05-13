@@ -13,6 +13,7 @@ export alias jcul = journalctl --user -xeu
 export alias jl = just --list
 export alias k = kubectl
 export alias lg = lazygit
+export alias mc = mcli
 export alias n = nvim
 export alias nc = nvim - -c "lua require('util.winbuf').colorize()"
 export alias s = sudo
