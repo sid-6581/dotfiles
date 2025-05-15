@@ -33,7 +33,7 @@ set dotdirs=
 
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
-set vifminfo=dhistory,chistory,state,tui,tabs,shistory,ehistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks,mchistory
+set vifminfo=dhistory,chistory,shistory,ehistory,phistory,dirstack,registers,bookmarks,bmarks,mchistory
 
 " This is size of all of the many kinds of histories, in particular it's the
 " number of last visited directories (not necessarily distinct ones) stored in
