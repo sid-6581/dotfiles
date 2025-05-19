@@ -76,7 +76,7 @@ set sizefmt='units:iec,precision:1'
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
-set timefmt='%Y-%m-%d %H:%M'
+set timefmt='%a %b %d %H:%M %Y'
 
 " Show list of matches on tab completion in command-line mode
 set wildmenu
@@ -116,8 +116,8 @@ set findprg=fd\ --color=never\ %p\ %s
 " List of color schemes to try (picks the first one supported by the terminal)
 colorscheme gruvbox
 
-" Customize view columns a bit (enable ellipsis for truncated file names)
-set viewcolumns=-{name}..,6{size}.,18{mtime}
+" Customize view columns
+set viewcolumns=-{name}..,6{size}.,23{mtime},12{perms}
 
 " Show vertical border
 set fillchars=vborder:│
