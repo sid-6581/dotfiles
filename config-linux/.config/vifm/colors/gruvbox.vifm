@@ -9,7 +9,7 @@ highlight clear
 highlight BrokenLink cterm=bold ctermfg=203 ctermbg=default
 highlight Device cterm=bold ctermfg=215 ctermbg=default
 highlight Directory cterm=none ctermfg=66 ctermbg=default
-highlight Executable cterm=bold ctermfg=143 ctermbg=default
+highlight Executable cterm=bold ctermfg=default ctermbg=default
 highlight Fifo cterm=none ctermfg=132 ctermbg=default
 highlight Link cterm=bold ctermfg=108 ctermbg=default
 highlight Socket cterm=bold ctermfg=132 ctermbg=default
