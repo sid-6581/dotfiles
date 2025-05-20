@@ -51,9 +51,6 @@ Forward Button Visible=false
 Home Button Visible=true
 Mouse Selection=0
 
-[MainWindow]
-ToolBarsMovable=Disabled
-
 [PanelLayout]
 Layout=krusader:compact
 
