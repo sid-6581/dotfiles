@@ -105,6 +105,9 @@ set incsearch
 " Try to leave some space from cursor to upper/lower border in lists
 set scrolloff=4
 
+" Keep matching files in filter
+set cpoptions-=f
+
 set uioptions=iodetails
 set tuioptions=pu
 
