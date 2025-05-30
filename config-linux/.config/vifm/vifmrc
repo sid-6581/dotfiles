@@ -111,7 +111,7 @@ set cpoptions-=f
 set uioptions=iodetails
 set tuioptions=pu
 
-set statusline="  Hint: %z%= %T  %A %10u:%-7g %15s %20d  "
+set statusline="  %a/%c free%= %T  %A %10u:%-7g %15s %20d  "
 
 set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
 set findprg=fd\ --color=never\ %p\ %s
