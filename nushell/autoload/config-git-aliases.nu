@@ -10,7 +10,7 @@ export def git_main_branch [] {
   ^git remote show origin
   | lines
   | str trim
-  | find --regex 'HEAD .*?[：: ].+'
+  | find --no-highlight --regex 'HEAD .*?[：: ].+'
   | first
   | str replace --regex 'HEAD .*?[：: ]\s*(.+)' '$1'
 }
