@@ -21,6 +21,6 @@ string -> string
   $in
   | walk-up
   | each { path join $file }
-  | filter { path exists }
+  | where { path exists }
   | get 0?
 }

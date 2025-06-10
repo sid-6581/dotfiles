@@ -14,12 +14,12 @@ export def main [
   let installed_binaries = (
     ^cargo install --list
     | lines
-    | filter { $in !~ "^ " }
+    | where { $in !~ "^ " }
     | split column " " -c
     | rename name
     | get name
   )
-  let missing_binaries = $binaries | filter { $in not-in $installed_binaries }
+  let missing_binaries = $binaries | where { $in not-in $installed_binaries }
 
   if ($missing_binaries | is-not-empty) {
     log info $"Installing: ($missing_binaries)"

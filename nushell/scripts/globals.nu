@@ -32,7 +32,7 @@ export-env {
     ...$env.PATH
   ]
   | compact -e
-  | filter {|p| $p !~ "(?i)^/mnt/./" }
+  | where {|p| $p !~ "(?i)^/mnt/./" }
   | path expand --no-symlink
   | uniq
 }

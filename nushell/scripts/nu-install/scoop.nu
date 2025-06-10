@@ -17,21 +17,21 @@ export def main [
 
   let installed = ^scoop export | from json
 
-  let missing_buckets = $buckets | default [] | filter { $in not-in $installed.buckets.Name }
+  let missing_buckets = $buckets | default [] | where { $in not-in $installed.buckets.Name }
 
   if ($missing_buckets | is-not-empty) {
     log info $"Adding buckets: ($missing_buckets)"
     $missing_buckets | each { ^scoop bucket add $in }
   }
 
-  let missing_apps = $apps | default [] | filter { $in not-in $installed.apps.Name }
+  let missing_apps = $apps | default [] | where { $in not-in $installed.apps.Name }
 
   if ($missing_apps | is-not-empty) {
     log info $"Adding apps: ($missing_apps)"
     $missing_apps | each { ^scoop install -s $in }
   }
 
-  let missing_sudo_apps = $sudo_apps | default [] | filter { $in not-in $installed.apps.Name }
+  let missing_sudo_apps = $sudo_apps | default [] | where { $in not-in $installed.apps.Name }
 
   if ($missing_sudo_apps | is-not-empty) {
     if (which sudo | is-empty) {
@@ -63,7 +63,7 @@ export def uninstall [
   let found_buckets = (
     $buckets
     | default []
-    | filter { $in in $installed.buckets.Name }
+    | where { $in in $installed.buckets.Name }
   )
 
   if ($found_buckets | is-not-empty) {
@@ -74,7 +74,7 @@ export def uninstall [
   let found_apps = (
     $apps
     | default []
-    | filter { $in in ($installed.apps | where Info == "").Name }
+    | where { $in in ($installed.apps | where Info == "").Name }
   )
 
   if ($found_apps | is-not-empty) {
@@ -85,7 +85,7 @@ export def uninstall [
   let found_sudo_apps = (
     $sudo_apps
     | default []
-    | filter { $in in ($installed.apps | where Info == "Global install").Name }
+    | where { $in in ($installed.apps | where Info == "Global install").Name }
   )
 
   if ($found_sudo_apps | is-not-empty) {

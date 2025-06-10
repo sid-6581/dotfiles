@@ -12,7 +12,7 @@ export def main [
   }
 
   let installed_packages = ^rpm -qa --queryformat "%{NAME}\n" | lines
-  let missing_packages = $packages | filter { $in not-in $installed_packages }
+  let missing_packages = $packages | where { $in not-in $installed_packages }
 
   if ($missing_packages | is-not-empty) {
     log info $"Installing: ($missing_packages)"

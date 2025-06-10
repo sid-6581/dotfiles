@@ -28,7 +28,7 @@ if not ($"($win_bin_path)/nu.exe" | path exists) {
   ^unzip -qq (ls $temp_directory).name.0 -d $temp_directory
 
   ls $temp_directory
-  | filter { ($in.name | path parse).extension == exe }
+  | where { ($in.name | path parse).extension == exe }
   | each {|it| ^chmod +x $it.name; $it }
   | each { cp $in.name ([$win_bin_path ($in.name | path basename)] | path join) }
 
