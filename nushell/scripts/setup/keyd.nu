@@ -18,9 +18,16 @@ export def main [] {
 
   # Maps copilot key to control
   leftshift+leftmeta+f23 = rightcontrol
+
+  [altgr]
+  g = 😬
+  l = 😂
+  h = ❤️
+  c = 😢
   "
 
   $conf | ^sudo tee /etc/keyd/default.conf | null
+  ^ln -s /usr/share/keyd/keyd.compose ~/.XCompose
 
   log info "Starting keyd service"
   ^sudo systemctl enable --now keyd

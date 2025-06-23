@@ -34,6 +34,7 @@ nu-install pacman uninstall [
 nu-install yay uninstall [
   espanso-x11
   espanso-wayland
+  espanso-wayland-git
   neovim-nightly
 ]
 
@@ -84,7 +85,6 @@ nu-install yay [
   archivemount-ng
   ast-grep
   carapace
-  espanso-wayland-git
   neovim-git
   ttf-ms-win11-auto
   ttf-google-fonts-git
@@ -143,5 +143,4 @@ nu-install gh [
   setup systemctl enable --user
   pueued
   podman-auto-update.timer
-  espanso
 )
