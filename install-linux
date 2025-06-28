@@ -36,6 +36,7 @@ nu-install yay uninstall [
   espanso-wayland
   espanso-wayland-git
   neovim-nightly
+  ttf-google-fonts-git
 ]
 
 nu-install pacman [
@@ -87,7 +88,7 @@ nu-install yay [
   carapace
   neovim-git
   ttf-ms-win11-auto
-  ttf-google-fonts-git
+  ttf-google
 ]
 
 if (which rustup | is-not-empty) {
