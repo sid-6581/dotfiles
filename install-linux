@@ -87,8 +87,8 @@ nu-install yay [
   ast-grep
   carapace
   neovim-git
+  ttf-google-sans
   ttf-ms-win11-auto
-  ttf-google
 ]
 
 if (which rustup | is-not-empty) {
