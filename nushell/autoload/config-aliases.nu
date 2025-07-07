@@ -42,7 +42,7 @@ export alias tree = broot -c :pt
 export alias yq = yay -Q
 export alias yr = yay -R --noconfirm
 export alias yrs = yay -Rs --noconfirm
-export alias ys = yay -Syu --noconfirm
+export alias ys = yay -Syu --noconfirm --disable-download-timeout
 
 # LSD - Recursive alias needs lsd first.
 export alias lsd = lsd --color=always --icon=always --group-dirs=first --git

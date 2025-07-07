@@ -10,12 +10,12 @@ log info "Starting"
 
 setup update app dnf { ^sudo dnf -y update --refresh }
 setup update app yay {
-  ^yay -Syu --noconfirm --devel
+  ^yay -Syu --noconfirm --disable-download-timeout --devel
   ^yay -Yc --noconfirm
 }
 
 if (which yay | is-empty) {
-  setup update app pacman { ^sudo pacman -Syu --noconfirm }
+  setup update app pacman { ^sudo pacman -Syu --noconfirm --disable-download-timeout }
 }
 
 setup update app rustup { ^rustup update }
