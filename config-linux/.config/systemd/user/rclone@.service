@@ -21,8 +21,6 @@ ExecStart= \
   /usr/bin/rclone mount \
     --config=%h/.config/rclone/rclone.conf \
     --contimeout 30s \
-    --vfs-cache-mode full \
-    --vfs-cache-max-size 8G \
     --log-level INFO \
     --log-file /tmp/rclone_%i.log \
     --umask 022 \
