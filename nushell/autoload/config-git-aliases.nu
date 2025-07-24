@@ -31,7 +31,7 @@ export def --wrapped gh-clone [
   | select fullName description
   | insert name { $"($in.fullName | fill -w 50) ($in.description)" }
   | input list --fuzzy -d name
-  | get -i fullName
+  | get -o fullName
 
   if $repo == null {
     return
@@ -55,7 +55,7 @@ export def --wrapped gh-fork [
   | select fullName description
   | insert name { $"($in.fullName | fill -w 50) ($in.description)" }
   | input list --fuzzy -d name
-  | get -i fullName
+  | get -o fullName
 
   if $repo == null {
     return

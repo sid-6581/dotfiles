@@ -13,7 +13,7 @@ export def --env set-user-env [
   $environment
   | transpose key value
   | each {|it|
-    let current_value = $current_environment | get -i ([$it.key value 0] | into cell-path)
+    let current_value = $current_environment | get -o ([$it.key value 0] | into cell-path)
     if $it.value != $current_value {
       log info $"Setting environment variable ($it.key) to ($it.value) \(Current value: ($current_value)\)"
       ^setx $it.key $it.value

@@ -27,7 +27,7 @@ export def "history update" [
 export def "history get" [
   path: any
 ] {
-  history load | get -i ($path | into cell-path)
+  history load | get -o ($path | into cell-path)
 }
 
 export def "history upsert" [
