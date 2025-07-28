@@ -25,7 +25,6 @@ setup update app bob { ^bob use nightly }
 
 setup update app nvim {
   ^nvim --headless "+Lazy! sync" "+qa"
-  ^nvim --headless "+MasonToolsClean" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"
   ^nvim --headless "+TSUpdateSync" "+qa"
 }
