@@ -93,8 +93,8 @@ windows registry add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Sy
 windows registry add 'HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement' 'ScoobeSystemSettingEnabled' 0x0
 
 # Stop search indexing
-^sc stop 'wsearch' | null
-^sc config 'wsearch' start=disabled | null
+^sc stop 'wsearch' | ignore
+^sc config 'wsearch' start=disabled | ignore
 
 rm -rf ($env.HOME | path join .templateengine)
 rm -rf ($env.HOME | path join Contacts)

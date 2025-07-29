@@ -26,7 +26,7 @@ export def main [] {
   c = 😢
   "
 
-  $conf | ^sudo tee /etc/keyd/default.conf | null
+  $conf | ^sudo tee /etc/keyd/default.conf | ignore
   ^ln -s /usr/share/keyd/keyd.compose ~/.XCompose
 
   log info "Starting keyd service"
