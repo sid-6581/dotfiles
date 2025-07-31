@@ -134,10 +134,14 @@ set dotfiles
 " :mark mark /full/directory/path [filename]
 
 mark c ~/.config
+mark C ~/Code
 mark d ~/Downloads
+mark D ~/Documents
 mark h ~/
 mark m /mnt/
 mark r /
+mark t ~/Temp
+mark w ~/Documents/Work
 
 " ------------------------------------------------------------------------------
 " Commands
