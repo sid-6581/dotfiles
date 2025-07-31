@@ -20,6 +20,8 @@ set vicmd=nvim
 " doesn't support progress measuring.
 set syscalls
 
+set iooptions=datasync,fastfilecloning
+
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to
 " the trash directory.  If you change this you will not be able to move
@@ -246,8 +248,8 @@ nnoremap ,w :set wrap!<cr>
 nnoremap <f2> cw<c-a>
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
-nnoremap <f5> :copy -skip &<cr>
-nnoremap <f6> :move -skip &<cr>
+nnoremap <f5> :yank | winrun , put<cr>
+nnoremap <f6> :yank | winrun , put!<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete &<cr>
 
