@@ -1,0 +1,173 @@
+{
+  "vivaldi": {
+    "actions": [
+      {
+        "COMMAND_ADD_BOOKMARK": {
+          "shortcuts": []
+        },
+        "COMMAND_SHOW_BOOKMARKS": {
+          "shortcuts": []
+        },
+        "COMMAND_SHOW_BOOKMARK_BAR": {
+          "shortcuts": []
+        },
+        "COMMAND_SHOW_BOOKMARK_PANEL": {
+          "shortcuts": [
+            "ctrl+b"
+          ]
+        },
+        "COMMAND_SHOW_DOWNLOADS_PANEL": {
+          "shortcuts": [
+            "ctrl+d"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_1": {
+          "shortcuts": []
+        },
+        "COMMAND_WORKSPACE_SWITCH_10": {
+          "shortcuts": [
+            "alt+9"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_2": {
+          "shortcuts": [
+            "alt+1"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_3": {
+          "shortcuts": [
+            "alt+2"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_4": {
+          "shortcuts": [
+            "alt+3"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_5": {
+          "shortcuts": [
+            "alt+4"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_6": {
+          "shortcuts": [
+            "alt+5"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_7": {
+          "shortcuts": [
+            "alt+6"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_8": {
+          "shortcuts": [
+            "alt+7"
+          ]
+        },
+        "COMMAND_WORKSPACE_SWITCH_9": {
+          "shortcuts": [
+            "alt+8"
+          ]
+        }
+      }
+    ],
+    "downloads": {
+      "notify_on_complete": false,
+      "open_panel_on_new": true,
+      "start_automatically": true
+    },
+    "homepage": "vivaldi://startpage",
+    "incognito": {
+      "show_intro": false
+    },
+    "keyboard": {
+      "shortcuts": {
+        "alt_opens_menu": false,
+        "browser_priority_list": [
+          "ctrl+t",
+          "ctrl+w",
+          "ctrl+q",
+          "ctrl+n",
+          "ctrl+shift+t",
+          "ctrl+shift+n",
+          "ctrl+shift+w",
+          "ctrl+pagedown",
+          "ctrl+pageup",
+          "alt+w"
+        ]
+      },
+      "tab_to_all": -1
+    },
+    "quick_commands": {
+      "first_run_tip_dismissed": true
+    },
+    "show_extensions_banner": false,
+    "startpage": {
+      "speed_dial": {
+        "columns": 99,
+        "game_button_show": false,
+        "order": [],
+        "privacy_stats_show": true,
+        "restore_page_id": "150",
+        "size": 2,
+        "tracker_suggestion_show": false
+      }
+    },
+    "welcome": {
+      "read_pages": [
+        "intro",
+        "personalize",
+        "tabs",
+        "tracker_and_ad",
+        "control",
+        "intro",
+        "personalize",
+        "tabs",
+        "tracker_and_ad",
+        "control",
+        "import_data",
+        "welcome_feature_amount"
+      ],
+      "seen_pages": [
+        "intro",
+        "personalize",
+        "tabs",
+        "tracker_and_ad",
+        "control",
+        "import_data",
+        "welcome_feature_amount"
+      ]
+    },
+    "windows": {
+      "show_window_close_confirmation_dialog": false,
+      "use_native_decoration": true
+    },
+    "workspaces": {
+      "button": {
+        "show_in_tabbar": true
+      },
+      "list": [
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M14.5 0.5V15.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M14.5 10.5H10.5V4.5C10.5 3.43913 10.9214 2.42172 11.6716 1.67157C12.4217 0.921427 13.4391 0.5 14.5 0.5V0.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M4.5 8.5V15.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M7.5 0.5V5.5C7.5 6.29565 7.18393 7.05871 6.62132 7.62132C6.05871 8.18393 5.29565 8.5 4.5 8.5V8.5C3.70435 8.5 2.94129 8.18393 2.37868 7.62132C1.81607 7.05871 1.5 6.29565 1.5 5.5V0.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M4.5 0.5V5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1734923765341.0,
+          "name": "Personal"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M3.5 8.5V11.9648C3.5 12.2992 3.66819 12.6099 3.97304 12.7472C4.63034 13.0433 5.97266 13.5 8 13.5C10.0273 13.5 11.3697 13.0433 12.027 12.7472C12.3318 12.6099 12.5 12.2992 12.5 11.9648V8.5M14.4182 5.54402L8.0237 8.98724C8.00891 8.9952 7.99109 8.9952 7.9763 8.98724L1.58176 5.54402C1.5467 5.52515 1.5467 5.47485 1.58176 5.45598L7.9763 2.01276C7.99109 2.0048 8.00891 2.0048 8.0237 2.01276L14.4182 5.45598C14.4533 5.47485 14.4533 5.52515 14.4182 5.54402Z\" stroke-linecap=\"round\"/>\n  <path d=\"M14.5 5.5V10.5\" stroke-linecap=\"round\"/>\n  <path d=\"M14.5 12.5V13.5\" stroke-linecap=\"round\"/>\n</svg>\n",
+          "id": 1734923876325.0,
+          "name": "Work"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M13.5 3.5H15.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M10.5 6.5H2C1.60218 6.5 1.22064 6.34196 0.93934 6.06066C0.658035 5.77936 0.5 5.39782 0.5 5V2C0.5 1.60218 0.658035 1.22064 0.93934 0.93934C1.22064 0.658035 1.60218 0.5 2 0.5H10.5L13.5 1.5V5.5L10.5 6.5Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M7.5 6.5L6.687 10.565C6.63667 10.8169 6.68525 11.0786 6.82266 11.2957C6.96006 11.5128 7.17575 11.6687 7.425 11.731L9.364 12.216C9.68846 12.2972 9.97649 12.4844 10.1823 12.7481C10.3881 13.0117 10.5 13.3365 10.5 13.671V15.5H0.5V13.427C0.499917 13.1484 0.57743 12.8753 0.723853 12.6382C0.870276 12.4012 1.07982 12.2096 1.329 12.085L2.063 11.719C2.19933 11.6507 2.31824 11.5521 2.41062 11.4308C2.503 11.3094 2.56641 11.1686 2.596 11.019L3.5 6.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M10.5 0.5V6.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M2.5 4.5H5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M2.5 2.5H5.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1734923881417.0,
+          "name": "Research"
+        },
+        {
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M7.729 11.229L14.5 5.5L15.5 0.5L10.5 1.5L4.771 8.271\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M12.5 3.5L7.5 8.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M0.5 14L4.086 10.414L1.586 7.914L3 6.5L9.5 13L8.086 14.414L5.586 11.914L2 15.5L0.5 14Z\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+          "id": 1734923884838.0,
+          "name": "Junk"
+        }
+      ]
+    }
+  }
+}
