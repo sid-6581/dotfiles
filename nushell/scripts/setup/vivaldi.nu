@@ -7,6 +7,6 @@ export def main [] {
   let new_preferences = open $new_preferences_path
   let new_preferences = $preferences | merge deep $new_preferences
 
-  $preferences | save -f $"($preferences_path).bak"
+  $preferences | to json | save -f $"($preferences_path).bak"
   $new_preferences | to json | save -f $preferences_path
 }
