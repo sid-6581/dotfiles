@@ -65,7 +65,6 @@ nu-install pacman [
   pueue
   python-pip
   ripgrep
-  rofi-wayland
   rust-analyzer
   rustup
   starship
