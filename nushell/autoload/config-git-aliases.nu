@@ -15,7 +15,7 @@ export def git_main_branch [] {
   | str replace --regex 'HEAD .*?[：: ]\s*(.+)' '$1'
 }
 
-export def gu[] {
+export def gu [] {
   ^git fetch --all --prune
   ^git pull --all
 }
