@@ -57,6 +57,8 @@ nu-install pacman [
   nodejs
   npm
   nushell
+  1password
+  1password-cli
   openssl
   pkgconf
   pnpm
