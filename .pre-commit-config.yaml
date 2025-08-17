@@ -5,7 +5,7 @@ exclude: '.relint.yml'
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-json
@@ -20,7 +20,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v3.1.0
+    rev: v3.2.0
     hooks:
       - id: add-trailing-comma
 
@@ -30,11 +30,11 @@ repos:
       - id: remove-crlf
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
+    rev: v1.37.1
     hooks:
       - id: yamllint
 
   - repo: https://github.com/codingjoe/relint
-    rev: 3.1.1
+    rev: 3.3.1
     hooks:
       - id: relint

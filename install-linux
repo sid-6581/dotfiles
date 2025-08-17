@@ -57,8 +57,6 @@ nu-install pacman [
   nodejs
   npm
   nushell
-  1password
-  1password-cli
   openssl
   pkgconf
   pnpm
@@ -84,6 +82,8 @@ nu-install pacman [
 ]
 
 nu-install yay [
+  1password
+  1password-cli
   archivemount-ng
   ast-grep
   carapace
