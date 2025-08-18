@@ -1,7 +1,7 @@
 # Sets up vivaldi.
 export def main [] {
   let preferences_path = "~/.config/vivaldi/Default/Preferences" | path expand
-  const new_preferences_path = path self files/vivaldi.json
+  const new_preferences_path = path self files/vivaldi/Preferences.json
 
   let preferences = open --raw $preferences_path | from json
   let new_preferences = open $new_preferences_path
