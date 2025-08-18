@@ -49,6 +49,7 @@ nu-install pacman [
   gcc
   git-delta
   github-cli
+  go
   jq
   just
   kitty
