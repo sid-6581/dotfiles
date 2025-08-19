@@ -113,7 +113,7 @@ set cpoptions-=f
 set uioptions=iodetails
 set tuioptions=pu
 
-set statusline="  %a/%c free%= %T  %A %10u:%-7g %15s %20d  "
+set statusline=" %a/%c free%= %T  %7u:%-7g %6E %A %d "
 
 set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
 set findprg=fd\ --color=never\ %p\ %s
@@ -122,7 +122,7 @@ set findprg=fd\ --color=never\ %p\ %s
 colorscheme gruvbox
 
 " Customize view columns
-set viewcolumns=-{name}..,6{size}.,23{mtime},12{perms}
+set viewcolumns=-{name}..,6{size}.,11{perms},22{mtime}
 
 " Show vertical border
 set fillchars=vborder:│
