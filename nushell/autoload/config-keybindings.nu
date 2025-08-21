@@ -112,6 +112,13 @@ export-env {
       }
     }
     {
+      name: backspace
+      modifier: none
+      keycode: backspace
+      mode: [emacs, vi_normal, vi_insert]
+      event: { edit: backspace }
+    }
+    {
       name: backspace_word
       modifier: control
       keycode: backspace
