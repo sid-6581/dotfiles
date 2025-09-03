@@ -22,7 +22,7 @@ export-env {
         --terminal-width (term size).columns
       )
 
-      let overlays = overlay list | skip
+      let overlays = overlay list | get name | skip
 
       if ($overlays | is-not-empty) {
         $"(ansi green)\(($overlays | str join ',')\)(ansi reset) ($prompt)"

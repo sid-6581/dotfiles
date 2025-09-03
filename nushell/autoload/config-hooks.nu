@@ -25,7 +25,7 @@ export-env {
           return false
         }
 
-        if not (overlay list | any { $in | str ends-with ".nu" }) {
+        if not (overlay list | get name | any { $in | str ends-with ".nu" }) {
           return false
         }
 
@@ -51,7 +51,7 @@ export-env {
           return false
         }
 
-        if (overlay list | any { $in | str ends-with ".nu" }) {
+        if (overlay list | get name | any { $in | str ends-with ".nu" }) {
           return false
         }
 
