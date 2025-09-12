@@ -5,6 +5,3 @@ RepeatRate=35
 [Mouse]
 X11LibInputXAccelProfileFlat=true
 XLbInptScrollOnButtonDown=true
-
-[Libinput][2][10][TPPS/2 Elan TrackPoint]
-PointerAcceleration=-0.400
