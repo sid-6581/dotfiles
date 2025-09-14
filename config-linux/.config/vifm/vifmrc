@@ -139,6 +139,7 @@ mark h ~/
 mark m /mnt/
 mark r /
 mark t ~/Temp
+mark T /tmp
 mark w ~/Documents/Work
 
 " ------------------------------------------------------------------------------
@@ -202,7 +203,7 @@ nnoremap gb :file &<cr>l
 nnoremap o :!xdg-open %c %i<cr>
 
 " Edit file
-noremap e :edit %c<cr>
+noremap E :edit %c<cr>
 
 " Interaction with system clipboard
 if $WAYLAND_DISPLAY != ''
@@ -249,13 +250,18 @@ noremap <F2> cw
 " Edit file
 noremap <F4> :edit %c<cr>
 " Copy selected files
-noremap <F5> :yank | winrun, put<cr>
+noremap <F5> :yank | winrun , put<cr>
+noremap C :yank | winrun , put<cr>
  " Move selected files
-noremap <F6> :yank | winrun, put!<cr>
+noremap <F6> :yank | winrun , put!<cr>
+noremap M :yank | winrun , put!<cr>
 " Create directory
 noremap <F7> :mkdir<space>
 " Delete selected files
-noremap <F8> :delete &<cr>
+nnoremap <F8> DD
+vnoremap <F8> D
+nnoremap D DD
+
 
 " Open current directory in the other pane
 noremap <A-i> :sync<cr>
