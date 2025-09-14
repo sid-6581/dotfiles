@@ -5,6 +5,8 @@ source ~/.config/vifm/filetypes.vifm
 
 plugin load
 
+colorscheme gruvbox
+
 " ------------------------------------------------------------------------------
 " Settings
 " ------------------------------------------------------------------------------
@@ -68,9 +70,8 @@ set vimhelp
 " Highlight all columns
 set hloptions=filehi:allrows
 
-" If you would like to run an executable file when you
-" press Enter, l or Right Arrow, set this.
-set norunexec
+" If you would like to run an executable file when you press Enter, l or Right Arrow, set this.
+" set norunexec
 
 " Format for displaying sizes in file list.
 set sizefmt='units:iec,precision:1'
@@ -80,10 +81,7 @@ set sizefmt='units:iec,precision:1'
 " See man date or man strftime for details.
 set timefmt='%a %b %d %H:%M %Y'
 
-" Show list of matches on tab completion in command-line mode
 set wildmenu
-
-" Display completions in a form of popup with descriptions of the matches
 set wildstyle=popup
 
 " Display suggestions in normal, visual and view modes for keys, marks and
@@ -111,20 +109,18 @@ set scrolloff=4
 set cpoptions-=f
 
 set uioptions=iodetails
+
 set tuioptions=pu
 
-set statusline=" %a/%c free%= %T  %7u:%-7g %6E %A %d "
+set statusline="%a/%c free  %E selected %= %1*%[ %T%]%*  %7u:%-7g %A %d "
+
+set rulerformat="%l/%S%[ +%x%]"
+
+set viewcolumns=-{name}..,6{size}.,11{perms},22{mtime}
 
 set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
 set findprg=fd\ --color=never\ %p\ %s
 
-" List of color schemes to try (picks the first one supported by the terminal)
-colorscheme gruvbox
-
-" Customize view columns
-set viewcolumns=-{name}..,6{size}.,11{perms},22{mtime}
-
-" Show vertical border
 set fillchars=vborder:│
 
 set dotfiles
@@ -193,6 +189,9 @@ nnoremap S :sort<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
+" Leave view mode
+qnoremap <Esc> q
+
 " Help
 nnoremap <f1> :help<cr>
 
@@ -201,6 +200,9 @@ nnoremap gb :file &<cr>l
 
 " Open file using xdg-open
 nnoremap o :!xdg-open %c %i<cr>
+
+" Edit file
+noremap e :edit %c<cr>
 
 " Interaction with system clipboard
 if $WAYLAND_DISPLAY != ''
@@ -229,39 +231,39 @@ elseif $DISPLAY != ''
 endif
 
 " Mappings for faster renaming
-nnoremap I cw<c-a>
-nnoremap cc cw<c-u>
+nnoremap I cw<C-a>
+nnoremap cc cw<C-u>
 nnoremap A cw
 
-" As above, but without the file extension
-" nnoremap I cW<c-a>
-" nnoremap cc cW<c-u>
-" nnoremap A cW
-
 " Open editor to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
+nnoremap <C-,> :write | edit $MYVIFMRC | restart full<cr>
 
-" Toggle wrap setting on ,w key
+" Toggle wrap setting
 nnoremap ,w :set wrap!<cr>
 
-" Example of standard two-panel file managers mappings
-nnoremap <f2> cw<c-a>
-nnoremap <f3> :!less %f<cr>
-nnoremap <f4> :edit<cr>
-nnoremap <f5> :yank | winrun , put<cr>
-nnoremap <f6> :yank | winrun , put!<cr>
-nnoremap <f7> :mkdir<space>
-nnoremap <f8> :delete &<cr>
+" Select all files
+nnoremap ,a ggVG
+
+" Rename file
+noremap <F2> cw
+" Edit file
+noremap <F4> :edit %c<cr>
+" Copy selected files
+noremap <F5> :yank | winrun, put<cr>
+ " Move selected files
+noremap <F6> :yank | winrun, put!<cr>
+" Create directory
+noremap <F7> :mkdir<space>
+" Delete selected files
+noremap <F8> :delete &<cr>
 
 " Open current directory in the other pane
-nnoremap <a-i> :sync<cr>
-
+noremap <A-i> :sync<cr>
 " Open directory under cursor in the other pane
-nnoremap <a-o> :sync %c<cr>
+noremap <A-o> :sync %c<cr>
+" Swap panes
+noremap <A-u> <C-w>x
 
 " Wildmenu navigation
 cnoremap <C-j> <Tab>
 cnoremap <C-k> <S-Tab>
-
-" Swap panes (uncomment if you don't need builtin behaviour of Ctrl-U)
-" nnoremap <c-u> <c-w>x
