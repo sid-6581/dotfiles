@@ -136,6 +136,7 @@ mark C ~/Code
 mark d ~/Downloads
 mark D ~/Documents
 mark h ~/
+mark l ~/.local
 mark m /mnt/
 mark r /
 mark t ~/Temp
