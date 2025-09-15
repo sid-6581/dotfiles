@@ -58,6 +58,7 @@ nu-install pacman [
   nodejs
   npm
   nushell
+  okular
   openssl
   pkgconf
   pnpm
