@@ -11,6 +11,8 @@ colorscheme gruvbox
 " Settings
 " ------------------------------------------------------------------------------
 
+set shell=/bin/bash
+
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
@@ -205,6 +207,9 @@ nnoremap o :!xdg-open %c %i<cr>
 
 " Edit file
 noremap E :edit %c<cr>
+
+" Extract files to other directory
+noremap X :!for f in %f; do bsdtar --extract --file "$f" -C %D &>/dev/null; done &<cr>
 
 " Interaction with system clipboard
 if $WAYLAND_DISPLAY != ''
