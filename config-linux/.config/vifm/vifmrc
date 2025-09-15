@@ -172,6 +172,8 @@ command! reload :write | restart full
 command! run !! ./%f
 command! vgrep nvim "+grep %a"
 command! zip zip -r %c.zip %f
+command! loop for f in %f; do %a; done
+command! loopbg for f in %f; do %a; done &
 
 " ------------------------------------------------------------------------------
 " Mappings
@@ -209,7 +211,7 @@ nnoremap o :!xdg-open %c %i<cr>
 noremap E :edit %c<cr>
 
 " Extract files to other directory
-noremap X :!for f in %f; do bsdtar --extract --file "$f" -C %D &>/dev/null; done &<cr>
+noremap X :loopbg bsdtar --extract --file "$f" -C %D<cr>
 
 " Interaction with system clipboard
 if $WAYLAND_DISPLAY != ''
