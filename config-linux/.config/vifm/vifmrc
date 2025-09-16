@@ -35,7 +35,7 @@ set iooptions=datasync,fastfilecloning
 set notrash
 
 " Show count of files by default for directories
-set dirsize=nitems
+"set dirsize=nitems
 
 " Don't show ..
 set dotdirs=
