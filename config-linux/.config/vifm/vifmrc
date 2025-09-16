@@ -34,8 +34,13 @@ set iooptions=datasync,fastfilecloning
 " This probably shouldn't be an option.
 set notrash
 
+" Show count of files by default for directories
+set dirsize=nitems
+
 " Don't show ..
 set dotdirs=
+
+set dotfiles
 
 " What should be saved automatically on restarting vifm.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
@@ -52,9 +57,7 @@ set nofollowlinks
 " Show location in terminal title.
 set title
 
-" Relative line numbers.
 set number
-set relativenumber
 
 " Natural sort of (version) numbers within text.
 set sortnumbers
@@ -74,6 +77,8 @@ set hloptions=filehi:allrows
 
 " If you would like to run an executable file when you press Enter, l or Right Arrow, set this.
 " set norunexec
+
+set tabscope=pane
 
 " Format for displaying sizes in file list.
 set sizefmt='units:iec,precision:1'
@@ -124,8 +129,6 @@ set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
 set findprg=fd\ --color=never\ %p\ %s
 
 set fillchars=vborder:│
-
-set dotfiles
 
 " ------------------------------------------------------------------------------
 " Bookmarks
