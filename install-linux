@@ -71,6 +71,7 @@ nu-install pacman [
   rustup
   starship
   tealdeer
+  tree-sitter-cli
   ttf-jetbrains-mono
   ttf-jetbrains-mono-nerd
   ueberzugpp
