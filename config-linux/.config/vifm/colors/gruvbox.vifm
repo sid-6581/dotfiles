@@ -39,7 +39,7 @@ highlight TopLineSel cterm=bold ctermfg=214 ctermbg=237
 highlight Win  cterm=none ctermfg=223 ctermbg=default
 highlight CurrLine cterm=none ctermfg=default ctermbg=236
 highlight OtherLine cterm=none ctermfg=default ctermbg=default
-highlight Selected cterm=none ctermfg=default ctermbg=237
+highlight Selected cterm=none ctermfg=250 ctermbg=237
 
 highlight JobLine cterm=bold ctermfg=116 ctermbg=238
 highlight StatusLine cterm=bold ctermfg=144 ctermbg=236
