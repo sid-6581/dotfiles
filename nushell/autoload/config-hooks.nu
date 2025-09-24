@@ -1,7 +1,7 @@
 export-env {
   $env.config.hooks.pre_prompt = [
     {
-      condition: { which git | is-not-empty }
+      condition: { (which git | is-not-empty) and (".git" | path type) == "dir" }
 
       code: {
         let git_root = ^git rev-parse --show-toplevel | complete | get stdout | str trim
