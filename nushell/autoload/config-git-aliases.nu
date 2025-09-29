@@ -29,7 +29,7 @@ export def --wrapped gh-clone [
   let repo = $results
   | from json
   | select fullName description
-  | insert name { $"($in.fullName | fill -w 50) ($in.description)" }
+  | insert name { $"(ansi green)($in.fullName | fill -w 50)(ansi reset) (ansi yellow)($in.description)(ansi reset)" }
   | input list --fuzzy -d name
   | get -o fullName
 
@@ -53,7 +53,7 @@ export def --wrapped gh-fork [
   let repo = $results
   | from json
   | select fullName description
-  | insert name { $"($in.fullName | fill -w 50) ($in.description)" }
+  | insert name { $"(ansi green)($in.fullName | fill -w 50)(ansi reset) (ansi yellow)($in.description)(ansi reset)" }
   | input list --fuzzy -d name
   | get -o fullName
 
