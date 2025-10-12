@@ -31,7 +31,7 @@ nu-install pacman uninstall [
   tldr
 ]
 
-nu-install yay uninstall [
+nu-install paru uninstall [
   espanso-x11
   espanso-wayland
   espanso-wayland-git
@@ -84,7 +84,7 @@ nu-install pacman [
   zoxide
 ]
 
-nu-install yay [
+nu-install paru [
   1password
   1password-cli
   archivemount-ng

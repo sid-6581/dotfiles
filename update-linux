@@ -9,12 +9,13 @@ $env.LOG_CATEGORY = "update-linux"
 log info "Starting"
 
 setup update app dnf { ^sudo dnf -y update --refresh }
-setup update app yay {
-  ^yay -Syu --noconfirm --disable-download-timeout --devel
-  ^yay -Yc --noconfirm
+
+setup update app paru {
+  ^paru -Syu --noconfirm --disable-download-timeout --skipreview --devel
+  ^paru -c --noconfirm
 }
 
-if (which yay | is-empty) {
+if (which paru | is-empty) {
   setup update app pacman { ^sudo pacman -Syu --noconfirm --disable-download-timeout }
 }
 

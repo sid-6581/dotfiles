@@ -4,7 +4,7 @@ export def main [] {
   use ../nu-install
   $env.LOG_CATEGORY = "setup keyd"
 
-  nu-install yay [keyd]
+  nu-install paru [keyd]
 
   log info "Writing /etc/keyd/default.conf"
 

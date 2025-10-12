@@ -1,7 +1,7 @@
 # Installation
 
 These dotfiles are designed to be installed in Arch, or Arch running in WSL2.
-yay should be set up before starting.
+paru should be set up before starting.
 
 To install:
 

@@ -39,10 +39,16 @@ export alias si = sudo -i
 export alias sy = sudo yazi
 export alias tf = terraform
 export alias tree = broot -c :pt
+export alias yc = yay -Sc --noconfirm
 export alias yq = yay -Q
 export alias yr = yay -R --noconfirm
 export alias yrs = yay -Rs --noconfirm
 export alias ys = yay -Syu --noconfirm --disable-download-timeout
+export alias prc = paru -Sc --noconfirm
+export alias prq = paru -Q
+export alias prr = paru -R --noconfirm
+export alias prrs = paru -Rs --noconfirm
+export alias prs = paru -Syu --noconfirm --disable-download-timeout --skipreview
 
 # LSD - Recursive alias needs lsd first.
 export alias lsd = lsd --color=always --icon=always --group-dirs=first --git
@@ -54,7 +60,7 @@ export alias lz = lsd -laZ
 # Alias-like commands.
 #
 
-# Search available packages with yay.
+# Searches available packages with yay.
 export def yss [...regexps: string] {
   yay --color=always -Ss ...$regexps
   | lines
@@ -63,9 +69,27 @@ export def yss [...regexps: string] {
   | sort-by { $in.Package | ansi strip }
 }
 
-# Search installed packages with yay.
+# Searches installed packages with yay.
 export def yqs [...regexps: string] {
   yay --color=always -Qs ...$regexps
+  | lines
+  | chunks 2
+  | each { { Package: $in.0, Description: ($in.1 | str trim) } }
+  | sort-by { $in.Package | ansi strip }
+}
+
+# Searches available packages with paru.
+export def prss [...regexps: string] {
+  paru --color=always -Ss ...$regexps
+  | lines
+  | chunks 2
+  | each { { Package: $in.0, Description: ($in.1 | str trim) } }
+  | sort-by { $in.Package | ansi strip }
+}
+
+# Searches installed packages with paru.
+export def prqs [...regexps: string] {
+  paru --color=always -Qs ...$regexps
   | lines
   | chunks 2
   | each { { Package: $in.0, Description: ($in.1 | str trim) } }
