@@ -201,6 +201,7 @@ vnoremap w :view<cr>gv
 
 " Leave view mode
 qnoremap <Esc> q
+qnoremap e q
 
 " Help
 nnoremap <f1> :help<cr>
