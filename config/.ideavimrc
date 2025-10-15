@@ -309,7 +309,7 @@ sethandler <C-S-2> a:vim
 sethandler <C-S-;> a:vim
 sethandler <C-S-CR> a:vim
 sethandler <C-[> a:vim
-sethandler <C-\> a:vim
+sethandler <C-\> a:ide
 sethandler <C-]> a:vim
 sethandler <C-a> a:vim
 sethandler <C-b> a:vim
