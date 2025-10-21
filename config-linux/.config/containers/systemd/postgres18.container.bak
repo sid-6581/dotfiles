@@ -1,5 +1,34 @@
 [Container]
 Image=docker.io/library/postgres:18
+Exec=postgres \
+  -c io_method=io_uring \
+  -c autovacuum_max_workers=8 \
+  -c autovacuum_vacuum_insert_scale_factor=0.05 \
+  -c autovacuum_vacuum_scale_factor=0.05 \
+  -c checkpoint_completion_target=0.9 \
+  -c checkpoint_timeout=30min \
+  -c cpu_tuple_cost=0.03 \
+  -c default_statistics_target=100 \
+  -c default_toast_compression=lz4 \
+  -c effective_cache_size=128GB \
+  -c effective_io_concurrency=200 \
+  -c jit=off \
+  -c maintenance_work_mem=1GB \
+  -c max_connections=300 \
+  -c max_parallel_maintenance_workers=4 \
+  -c max_parallel_workers=32 \
+  -c max_parallel_workers_per_gather=16 \
+  -c max_wal_size=4GB \
+  -c max_worker_processes=32 \
+  -c min_wal_size=1GB \
+  -c random_page_cost=1.1 \
+  -c shared_buffers=16GB \
+  -c vacuum_cost_limit=500 \
+  -c wal_buffers=64MB \
+  -c wal_compression=zstd \
+  -c wal_init_zero=off \
+  -c work_mem=128MB
+
 AutoUpdate=registry
 PublishPort=5432:5432
 Volume=postgres18:/var/lib/postgresql/18/docker
