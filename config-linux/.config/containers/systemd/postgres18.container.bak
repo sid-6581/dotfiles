@@ -6,6 +6,7 @@ Volume=postgres18:/var/lib/postgresql/18/docker
 Environment=POSTGRES_PASSWORD=postgres
 Environment=POSTGRES_INITDB_ARGS='--encoding=UTF8 --lc-collate=C --lc-ctype=C'
 UIDMap=+999:0:1
+SeccompProfile=unconfined
 
 [Service]
 ExecStartPre=-podman volume create postgres18
