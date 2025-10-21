@@ -2,7 +2,7 @@
 Image=docker.io/library/postgres:18
 AutoUpdate=registry
 PublishPort=5432:5432
-Volume=postgres:/var/lib/postgresql/18/data
+Volume=postgres18:/var/lib/postgresql/18/data
 Environment=POSTGRES_PASSWORD=postgres
 Environment=POSTGRES_INITDB_ARGS='--encoding=UTF8 --lc-collate=C --lc-ctype=C'
 UIDMap=+999:0:1
