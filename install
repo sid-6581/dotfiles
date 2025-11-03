@@ -7,8 +7,8 @@ export PATH="$HOME/.local/bin:$PATH"
 ./bootstrap-linux
 ./install-linux
 
-./bootstrap-windows
-./install-windows
+# ./bootstrap-windows
+# ./install-windows
 
-./update-linux
-./update-windows
+ ./update-linux
+# ./update-windows
