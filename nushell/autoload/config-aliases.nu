@@ -12,6 +12,7 @@ export alias jcu = journalctl --user
 export alias jcul = journalctl --user -xeu
 export alias jl = just --list
 export alias k = kubectl
+export alias ke = kubectl events -A
 export alias lg = lazygit
 export alias mc = mcli
 export alias n = nvim
