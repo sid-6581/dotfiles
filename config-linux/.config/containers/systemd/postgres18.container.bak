@@ -1,7 +1,7 @@
 [Container]
 Image=docker.io/library/postgres:18
 Exec=postgres \
-  -c io_method=io_uring \
+  -c io_workers=8 \
   -c autovacuum_max_workers=8 \
   -c autovacuum_vacuum_insert_scale_factor=0.05 \
   -c autovacuum_vacuum_scale_factor=0.05 \
