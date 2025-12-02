@@ -175,6 +175,7 @@ command! reload :write | restart full
 command! run !! ./%f
 command! vgrep nvim "+grep %a"
 command! zip zip -r %c.zip %f
+command! gzip pigz -11 -k %f &
 command! loop for f in %f; do %a; done
 command! loopwait !! for f in %f; do echo "$f"; %a; done
 command! loopbg for f in %f; do %a; done &

@@ -60,6 +60,7 @@ nu-install pacman [
   nushell
   okular
   openssl
+  pigz
   pkgconf
   pnpm
   podman
