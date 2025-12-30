@@ -1,9 +1,3 @@
-[AC][Display]
-DimDisplayWhenIdle=false
-DisplayBrightness=100
-TurnOffDisplayWhenIdle=false
-UseProfileSpecificDisplayBrightness=true
-
 [AC][Performance]
 PowerProfile=performance
 
