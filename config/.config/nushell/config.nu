@@ -26,6 +26,8 @@ $env.FZF_DEFAULT_OPTS = [
   "--color 'info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'"
 ] | str join " "
 
+$env.WINELOADER = $env.HOME | path join .local bin wineloader.sh
+
 if ($"($env.HOME)/.env" | path exists) {
   open $"($env.HOME)/.env" | from toml | load-env
 }
