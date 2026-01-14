@@ -6,12 +6,17 @@ export def main [] {
 
   nu-install paru [keyd]
 
-  log info "Writing /etc/keyd/default.conf"
+  const new_conf_path = path self files/keyd
 
-  const new_default_conf_path = path self files/keyd/default.conf
-  ^sudo cp $new_default_conf_path /etc/keyd/default.conf
+  for path in (ls $new_conf_path | get name) {
+    let filename = $path | path basename
 
-  ^ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+    log info $"Writing /etc/keyd/($filename)"
+
+    ^sudo cp $path $"/etc/keyd/($filename)"
+  }
+
+  ^ln -sf /usr/share/keyd/keyd.compose ~/.XCompose
 
   log info "Starting keyd service"
   ^sudo systemctl enable --now keyd
