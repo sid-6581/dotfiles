@@ -1,3 +1,4 @@
+promptToReturnFromSubprocess: false
 os:
   editPreset: nvim
 git:
