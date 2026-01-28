@@ -4,6 +4,7 @@
 .pnpm/*
 .cargo/*
 .rustup/*
+.terraform/*
 dist/*
 node_modules/*
 winhome/*

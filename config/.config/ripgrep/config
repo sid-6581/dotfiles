@@ -6,6 +6,7 @@
 --glob=!**/.rustup/*
 --glob=!**/dist/*
 --glob=!**/node_modules/*
+--glob=!**/.terraform/*
 --glob=!*/proc/*
 --glob=!*/sys/*
 --glob=!*/dev/*
