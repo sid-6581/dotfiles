@@ -136,6 +136,7 @@ set fillchars=vborder:│
 
 " :mark mark /full/directory/path [filename]
 
+mark a /data
 mark c ~/.config
 mark C ~/Code
 mark d ~/Downloads
@@ -143,6 +144,7 @@ mark D ~/Documents
 mark h ~/
 mark l ~/.local
 mark m /mnt/
+mark o ~/.dotfiles
 mark r /
 mark t ~/Temp
 mark T /tmp
