@@ -91,7 +91,7 @@ nu-install paru [
   archivemount-ng
   ast-grep
   carapace
-  neovim
+  aur/neovim-git
   ttf-google-sans
   ttf-ms-win11-auto
 ]
