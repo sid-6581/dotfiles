@@ -1,4 +1,5 @@
 [Common]
+OutlineEnabled=false
 OutlineIntensity=OutlineOff
 
 [Style]
