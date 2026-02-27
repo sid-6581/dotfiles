@@ -123,7 +123,7 @@ set statusline="%a/%c free  %E selected %= %1*%[ %T%]%*  %7u:%-7g %A %d "
 
 set rulerformat="%l/%S%[ +%x%]"
 
-set viewcolumns=-{name}..,6{size}.,11{perms},22{mtime}
+set viewcolumns=-{name}..,7{size}.,11{perms},22{mtime}
 
 set grepprg=rg\ --color=never\ -Hn\ %i\ %a\ %s
 set findprg=fd\ --color=never\ %p\ %s
