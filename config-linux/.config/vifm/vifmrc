@@ -264,6 +264,10 @@ nnoremap <F8> DD
 vnoremap <F8> D
 nnoremap D DD
 
+" Open new tab
+noremap <C-t> :tabnew<cr>
+" Close current tab
+noremap <C-w>c :tabclose<cr>
 
 " Open current directory in the other pane
 noremap <A-i> :sync<cr>
