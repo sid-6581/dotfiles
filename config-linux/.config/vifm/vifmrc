@@ -218,6 +218,8 @@ nnoremap o :!xdg-open %c %i<cr>
 " Edit file
 noremap E :edit %c<cr>
 
+" Extract files to current directory
+noremap x :loopbg bsdtar --extract --file "$f" -C %d<cr>
 " Extract files to other directory
 noremap X :loopbg bsdtar --extract --file "$f" -C %D<cr>
 
