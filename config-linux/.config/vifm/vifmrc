@@ -172,7 +172,7 @@ mark w ~/Documents/Work
 
 command! df df -h %m 2> /dev/null
 command! diff nvim -d %f %F
-command! mcd :mkdir %a | cd %a
+command! mcd :mkdir! "%a" | cd "%a"
 command! reload :write | restart full
 command! run !! ./%f
 command! vgrep nvim "+grep %a"
