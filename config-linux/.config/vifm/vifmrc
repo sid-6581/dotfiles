@@ -247,7 +247,7 @@ nnoremap <C-,> :write | edit $MYVIFMRC | restart full<cr>
 nnoremap ,w :set wrap!<cr>
 
 " Select all files
-nnoremap ,a ggVG
+nnoremap <A-a> ggVG
 
 " Rename file
 noremap <F2> cw
