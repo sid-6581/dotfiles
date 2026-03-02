@@ -29,10 +29,6 @@ cd $env.HOME
 
 windows set-user-env {
   EDITOR:                  "neovide"
-  GIT_AUTHOR_EMAIL:        $env.GIT_AUTHOR_EMAIL?
-  GIT_AUTHOR_NAME:         $env.GIT_AUTHOR_NAME?
-  GIT_COMMITTER_EMAIL:     $env.GIT_COMMITTER_EMAIL?
-  GIT_COMMITTER_NAME:      $env.GIT_COMMITTER_NAME?
   HOME:                    $env.HOME?
   NODE_UNC_HOST_ALLOWLIST: "wsl.localhost"
   Path: (
@@ -69,6 +65,7 @@ nu-install git [
 nu-install link clean
 
 nu-install link [
+  { target: ($env.HOME | path join .dotfiles nushell), link: ($env.HOME | path join .config nushell) }
   { target: ($env.HOME | path join .dotfiles config), link: $env.HOME  }
   { target: ($env.HOME | path join .dotfiles config-windows), link: $env.HOME  }
   { target: ($env.HOME | path join .dotfiles config .config yazi), link: ($env.HOME | path join AppData Roaming yazi config) }
