@@ -3,7 +3,7 @@ export def debug [
   --category (-c): string
   --file (-f): string
 ] {
-  log debug $message (ansi default_dimmed) --category $category --file $file
+  _log debug $message (ansi default_dimmed) --category $category --file $file
 }
 
 export def info [
@@ -11,7 +11,7 @@ export def info [
   --category (-c): string
   --file (-f): string
 ] {
-  log info $message (ansi blue) --category $category --file $file
+  _log info $message (ansi blue) --category $category --file $file
 }
 
 export def warning [
@@ -19,7 +19,7 @@ export def warning [
   --category (-c): string
   --file (-f): string
 ] {
-  log warning $message (ansi yellow) --category $category --file $file
+  _log warning $message (ansi yellow) --category $category --file $file
 }
 
 export def error [
@@ -27,7 +27,7 @@ export def error [
   --category (-c): string
   --file (-f): string
 ] {
-  log error $message (ansi red) --category $category --file $file
+  _log error $message (ansi red) --category $category --file $file
 }
 
 export def critical [
@@ -35,10 +35,10 @@ export def critical [
   --category (-c): string
   --file (-f): string
 ] {
-  log critical $message (ansi red_bold) --category $category --file $file
+  _log critical $message (ansi red_bold) --category $category --file $file
 }
 
-def log [
+def _log [
   level: string
   message: string
   ansi: string
