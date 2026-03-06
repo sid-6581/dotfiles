@@ -1,77 +1,7 @@
 {
   "$help": "https://aka.ms/terminal-documentation",
   "$schema": "https://aka.ms/terminal-profiles-schema",
-  "actions": [
-    {
-      "command": null,
-      "keys": "alt+enter"
-    },
-    {
-      "command": null,
-      "keys": "f11"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+0"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+numpad0"
-    },
-    {
-      "command": null,
-      "keys": "alt+space"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+space"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+comma"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+plus"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+numpad_plus"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+numpad_minus"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+minus"
-    },
-    {
-      "command": null,
-      "keys": "enter"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+c"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+insert"
-    },
-    {
-      "command": null,
-      "keys": "ctrl+v"
-    },
-    {
-      "command": null,
-      "keys": "shift+insert"
-    },
-    {
-      "command": null,
-      "keys": "win+sc(41)"
-    }
-  ],
-  "confirmCloseAllTabs": false,
+  "actions": [],
   "copyFormatting": "all",
   "copyOnSelect": false,
   "defaultProfile": "{4c57ac3b-6013-4b4c-85c8-6debdc704c5c}",
@@ -81,6 +11,81 @@
     "Windows.Terminal.PowershellCore",
     "Windows.Terminal.SSH",
     "Windows.Terminal.VisualStudio"
+  ],
+  "keybindings": [
+    {
+      "id": null,
+      "keys": "ctrl+0"
+    },
+    {
+      "id": null,
+      "keys": "alt+enter"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+space"
+    },
+    {
+      "id": null,
+      "keys": "f11"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+numpad0"
+    },
+    {
+      "id": null,
+      "keys": "alt+space"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+v"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+comma"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+minus"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+plus"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+numpad_plus"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+numpad_minus"
+    },
+    {
+      "id": null,
+      "keys": "enter"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+c"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+insert"
+    },
+    {
+      "id": null,
+      "keys": "shift+insert"
+    },
+    {
+      "id": null,
+      "keys": "win+sc(41)"
+    }
+  ],
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
   ],
   "profiles": {
     "defaults": {
@@ -192,10 +197,10 @@
     }
   ],
   "snapToGridOnResize": false,
-  "startOnUserLogin": false,
   "tabSwitcherMode": "mru",
   "tabWidthMode": "titleLength",
   "themes": [],
   "trimBlockSelection": true,
-  "useAcrylicInTabRow": true
+  "useAcrylicInTabRow": true,
+  "warning.confirmCloseAllTabs": false
 }
