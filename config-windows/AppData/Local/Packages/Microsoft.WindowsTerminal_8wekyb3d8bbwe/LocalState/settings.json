@@ -4,7 +4,7 @@
   "actions": [],
   "copyFormatting": "all",
   "copyOnSelect": false,
-  "defaultProfile": "{4c57ac3b-6013-4b4c-85c8-6debdc704c5c}",
+  "defaultProfile": "{097e7b96-0f43-4b02-8eb6-b2210816a7d8}",
   "disabledProfileSources": [
     "Windows.Terminal.Wsl",
     "Windows.Terminal.Azure",
@@ -106,15 +106,6 @@
     },
     "list": [
       {
-        "commandline": "%LOCALAPPDATA%\\Microsoft\\WindowsApps\\fedoraremix.exe",
-        "guid": "{4c57ac3b-6013-4b4c-85c8-6debdc704c5c}",
-        "hidden": false,
-        "icon": "\ud83d\udc27",
-        "name": "Fedora",
-        "tabColor": "#8A4A00",
-        "tabTitle": "Fedora"
-      },
-      {
         "commandline": "nu.exe -il",
         "guid": "{097e7b96-0f43-4b02-8eb6-b2210816a7d8}",
         "name": "Nushell",
@@ -135,16 +126,6 @@
       {
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
         "name": "cmd"
-      },
-      {
-        "commandline": "%LOCALAPPDATA%\\Microsoft\\WindowsApps\\fedoraremix.exe -s",
-        "cursorShape": "filledBox",
-        "guid": "{b0d6baba-a655-48e9-b740-567e713811fd}",
-        "hidden": false,
-        "icon": "\ud83d\udc27",
-        "name": "Fedora (SystemD)",
-        "startingDirectory": null,
-        "tabTitle": "Fedora (SystemD)"
       }
     ]
   },
