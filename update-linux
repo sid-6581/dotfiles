@@ -20,7 +20,7 @@ if (which paru | is-empty) {
 }
 
 setup update app rustup { ^rustup update }
-setup update app cargo { ^cargo install-update -a }
+setup update app cargo { ^cargo install-update -a --locked }
 setup update app tldr { ^tldr -u }
 setup update app bob { ^bob use nightly }
 
