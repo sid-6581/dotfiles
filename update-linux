@@ -28,3 +28,7 @@ setup update app nvim {
   ^nvim --headless "+Lazy! sync" "+qa"
   ^nvim --headless "+MasonToolsUpdateSync" "+qa"
 }
+
+setup update app pnpm {
+  ^pnpm update -g -L
+}
