@@ -273,6 +273,10 @@ nnoremap D DD
 noremap <C-t> :tabnew<cr>
 " Close current tab
 noremap Q :tabclose<cr>
+" Next tab
+noremap ]t gt
+" Previous tab
+noremap [t gT
 
 " Open current directory in the other pane
 noremap <A-i> :sync<cr>
