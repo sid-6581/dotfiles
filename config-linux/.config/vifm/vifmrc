@@ -144,7 +144,10 @@ mark D ~/Documents
 mark h ~/
 mark l ~/.local
 mark m /mnt/
+mark M /mnt/minio
 mark o ~/.dotfiles
+mark O /mnt/OneDrive
+mark Q /mnt/qnap64
 mark r /
 mark t ~/Temp
 mark T /tmp
