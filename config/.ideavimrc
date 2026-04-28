@@ -102,8 +102,6 @@ nnoremap n nzz
 nnoremap N Nzz
 
 inoremap <Esc> <Esc>`^
-inoremap <C-s> <Esc>`^:w!<CR>
-vnoremap <C-s> <Esc>:w!<CR>
 
 " Insert blank lines
 inoremap <S-Enter> <Esc>mzo<Esc>`za
@@ -122,7 +120,11 @@ nnoremap Q q
 nnoremap <Esc> :noh<CR><Esc>
 nnoremap <S-Esc> :action JumpToLastWindow<CR>
 nnoremap <BS> :noh<CR>
-nnoremap <C-s> :w!<CR>
+
+" Save file
+nmap <C-s> <Action>(SaveDocument)
+imap <C-s> <Esc>`^<Action>(SaveDocument)
+vmap <C-s> <Action>(SaveDocument)
 
 " Better indenting
 xnoremap > >gv
