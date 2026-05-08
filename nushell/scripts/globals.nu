@@ -12,19 +12,13 @@ export-env {
   $env.DOTNET_ROOT = $env.HOME | path join .dotnet
   $env.GOPATH = $env.HOME | path join .go
 
-  # TODO: This is mainly needed for the LSP, because it's not spreading the values itself.
-  $env.ENV_CONVERSIONS = {
-    "Path": {
-      from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
-      to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
-    }
-  }
-
   $env.PATH = [
     ($env.HOME | path join .local bin)
     ($env.HOME | path join .cargo bin)
     ($env.HOME | path join .local share bob nvim-bin)
     (if $nu.os-info.name == "windows" { $env.HOME | path join scoop shims } else { null })
+    # TODO: Remove this once we're on pnpm 11
+    ($env.HOME | path join .local share pnpm)
     ($env.HOME | path join .local share pnpm bin)
     ($env.HOME | path join .go bin)
     ($env.HOME | path join .dotnet)
