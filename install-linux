@@ -50,6 +50,7 @@ nu-install pacman [
   git-delta
   github-cli
   go
+  ibus
   jq
   just
   kitty
