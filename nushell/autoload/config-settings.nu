@@ -5,7 +5,7 @@ export-env {
   $env.config.highlight_resolved_externals = true
   $env.config.history.file_format = "sqlite"
   $env.config.history.isolation = true
-  $env.config.history.sync_on_enter = false
+  $env.config.history.sync_on_enter = true
   $env.config.rm.always_trash = true
   $env.config.shell_integration.osc133 = ($env.TERMINFO? | default "" | str contains "kitty")
   $env.config.show_banner = false
