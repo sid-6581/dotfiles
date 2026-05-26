@@ -43,6 +43,7 @@ nu-install pacman [
   bat
   broot
   cmake
+  fcitx5
   fd
   fuse-zip
   fzf
@@ -50,7 +51,6 @@ nu-install pacman [
   git-delta
   github-cli
   go
-  ibus
   jq
   just
   kitty
