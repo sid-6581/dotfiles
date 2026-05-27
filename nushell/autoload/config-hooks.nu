@@ -66,7 +66,7 @@ export-env {
         $"
         print 'Using .nu overlay from ($file_path)'
         $env.NU_EXEC = '1'
-        do -i { exec nu -e 'overlay use -r ($file_path) as .nu' }
+        do -i { exec nu -e 'overlay use -r $\"($file_path)\" as .nu' }
         "
         | save -f ($nu.cache-dir | path join .autoload-nu)
 
