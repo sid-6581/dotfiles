@@ -28,6 +28,7 @@ nu-install git [
 ]
 
 nu-install pacman uninstall [
+  pnpm
   tldr
 ]
 
@@ -63,7 +64,7 @@ nu-install pacman [
   openssl
   pigz
   pkgconf
-  pnpm
+  pnpm-bin
   podman
   pre-commit
   pueue
