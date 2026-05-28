@@ -64,7 +64,6 @@ nu-install pacman [
   openssl
   pigz
   pkgconf
-  pnpm-bin
   podman
   pre-commit
   pueue
@@ -94,6 +93,7 @@ nu-install paru [
   ast-grep
   carapace
   neovim-git
+  pnpm-bin
   ttf-google-sans
   ttf-ms-win11-auto
 ]
