@@ -50,8 +50,18 @@ filetype {*.7z},<application/x-7z-compressed>
       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
 fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
 
-fileviewer {*.bmp,*.png,*.jpg,*.jpeg,*.gif,*.xpm,*.webp}
+fileviewer <image/*>
     \ kitten icat --silent --scale-up --place=%pwx%ph@%pxx%py %c >/dev/tty </dev/tty %N
+    \ %pc
+    \ kitten icat --silent --clear >/dev/tty </dev/tty %N
+
+fileviewer <video/*>
+    \ sh -c 'ffmpegthumbnailer -i %c -o /tmp/kitty_video_thumb_%c:t.jpg -s 720 2>/dev/null; kitten icat --silent --scale-up --place=%pwx%ph@%pxx%py /tmp/kitty_video_thumb_%c:t.jpg >/dev/tty </dev/tty' %N
+    \ %pc
+    \ kitten icat --silent --clear >/dev/tty </dev/tty %N
+
+fileviewer *.pdf
+    \ sh -c 'pdftoppm -jpeg -f 1 -singlefile %c /tmp/kitty_pdf_thumb_%c:t; kitten icat --silent --scale-up --place=%pwx%ph@%pxx%py /tmp/kitty_pdf_thumb_%c:t.jpg >/dev/tty </dev/tty' %N
     \ %pc
     \ kitten icat --silent --clear >/dev/tty </dev/tty %N
 
