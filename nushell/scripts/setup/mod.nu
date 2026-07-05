@@ -1,7 +1,7 @@
-export module arch.nu
-export module kde.nu
-export module keyd.nu
-export module op.nu
-export module systemctl.nu
-export module update.nu
-export module vivaldi.nu
+export use arch.nu
+export use kde.nu
+export use keyd.nu
+export use op.nu
+export use systemctl.nu
+export use update.nu
+export use vivaldi.nu
