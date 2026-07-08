@@ -246,6 +246,11 @@ nnoremap A cw
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
 
+" Go to root
+nnoremap ,/ :cd /<cr>
+" Go to home
+nnoremap ,' :cd ~<cr>
+
 " Toggle wrap setting
 nnoremap ,w :set wrap!<cr>
 
