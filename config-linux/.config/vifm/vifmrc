@@ -119,9 +119,9 @@ set uioptions=iodetails
 
 set tuioptions=pu
 
-set statusline="%a/%c free  %E selected %= %1*%[ %T%]%*  %7u:%-7g %A %d "
+set statusline="%a/%c free  %E selected %[ %{v:jobcount} jobs%] %= %1*%[ %T%]%*  %7u:%-7g %A %d "
 
-set rulerformat="%l/%S%[ +%x%]"
+set rulerformat="%l/%S%[ (%x filtered)%]"
 
 set viewcolumns=-{name}..,7{size}.,11{perms},22{mtime}
 
