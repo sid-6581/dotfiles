@@ -50,6 +50,7 @@ export alias prq = paru -Q
 export alias prr = paru -R --noconfirm
 export alias prrs = paru -Rs --noconfirm
 export alias prs = paru -Syu --noconfirm --disable-download-timeout --skipreview
+export alias v = vifm
 
 # LSD - Recursive alias needs lsd first.
 export alias lsd = lsd --color=always --icon=always --group-dirs=first --git
@@ -95,10 +96,4 @@ export def prqs [...regexps: string] {
   | chunks 2
   | each { { Package: $in.0, Description: ($in.1 | str trim) } }
   | sort-by { $in.Package | ansi strip }
-}
-
-# Opens vifm with TERM=kitty-direct.
-export def --wrapped v [...args: string] {
-  $env.TERM = "kitty-direct"
-  ^vifm ...$args
 }
