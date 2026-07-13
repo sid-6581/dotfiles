@@ -1,4 +1,5 @@
 set positional-arguments
+set indentation := "  "
 
 @default:
   just --list

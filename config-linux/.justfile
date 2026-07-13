@@ -1,4 +1,5 @@
 set positional-arguments
+set indentation := "  "
 
 alias i := install
 
