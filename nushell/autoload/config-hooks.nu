@@ -16,7 +16,7 @@ export-env {
   ]
 
   $env.config.hooks.env_change.PWD = [
-    # Automatically hide .nu if not found in path or parent directory.
+    # Automatically hide .nu/.nu.local
     {
       condition: {|before, after|
         use ../scripts/path.nu
@@ -25,23 +25,25 @@ export-env {
           return false
         }
 
-        if not (overlay list | get name | any { $in | str ends-with ".nu" }) {
+        if not (overlay list | get name | any { $in | str starts-with ".nu" }) {
           return false
         }
 
-        if not ($nu.cache-dir | path join .autounload-nu | path exists) {
+        let autounload_file = $nu.cache-dir | path join $".autounload-nu-($nu.pid)"
+
+        if not ($autounload_file | path exists) {
           return false
         }
 
         true
       }
 
-      code: "
-      source ($nu.cache-dir | path join .autounload-nu)
+      code: $"
+      source (($nu.cache-dir | path join ('.autounload-nu-' + ($nu.pid | into string))) | to nuon)
       "
     },
 
-    # Automatically use .nu/.nu.local if found in path or parent directory.
+    # Automatically use .nu/.nu.local if found in path or parent directories.
     {
       condition: {|before, after|
         use ../scripts/path.nu
@@ -51,36 +53,48 @@ export-env {
           return false
         }
 
-        if (overlay list | get name | any { $in | str ends-with ".nu" }) {
+        if (overlay list | get name | any { $in | str starts-with ".nu" }) {
           return false
         }
 
-        let file_path = ($after | path find-up ".nu") | default ($after | path find-up ".nu.local")
+        let file_paths = [
+          ($after | path find-up ".nu")
+          ($after | path find-up ".nu.local")
+        ] | compact
 
-        if $file_path == null {
+        if ($file_paths | is-empty) {
           return false
         }
 
         mkdir $nu.cache-dir
 
-        $"
-        print 'Using .nu overlay from ($file_path)'
-        $env.NU_EXEC = '1'
-        do -i { exec nu -e 'overlay use -r $\"($file_path)\" as .nu' }
-        "
-        | save -f ($nu.cache-dir | path join .autoload-nu)
+        let autoload_file = $nu.cache-dir | path join $".autoload-nu-($nu.pid)"
+        let autounload_file = $nu.cache-dir | path join $".autounload-nu-($nu.pid)"
+
+        let overlay_commands = $file_paths
+        | each {|file_path| $"overlay use -r ($file_path | to nuon) as ($file_path | path basename)" }
+        | str join "\n"
 
         $"
-        print 'Hiding .nu overlay from ($file_path)'
+        print 'Using overlays from ($file_paths | str join ', ')'
+        $env.NU_EXEC = '1'
+        rm -f ($autoload_file | to nuon)
+        do -i { exec nu -e ($overlay_commands | to nuon) }
+        "
+        | save -f $autoload_file
+
+        $"
+        print 'Hiding overlays from ($file_paths | str join ', ')'
+        rm -f ($autounload_file | to nuon)
         do -i { exec nu -i }
         "
-        | save -f ($nu.cache-dir | path join .autounload-nu)
+        | save -f $autounload_file
 
         true
       }
 
       code: $"
-      source ($nu.cache-dir | path join .autoload-nu)
+      source (($nu.cache-dir | path join ('.autoload-nu-' + ($nu.pid | into string))) | to nuon)
       cd $after
       "
     },
