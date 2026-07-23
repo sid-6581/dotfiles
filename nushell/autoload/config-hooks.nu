@@ -1,3 +1,23 @@
+def auto-overlay-state [directory] {
+  use ../scripts/path.nu
+
+  let overlays = overlay list
+  let modules = scope modules
+  let base_active = $overlays | any {|item| $item.name == ".nu" and $item.active }
+  let local_active = $overlays | any {|item| $item.name == ".nu.local" and $item.active }
+
+  {
+    current: {
+      base: (if $base_active { $modules | where name == ".nu" | get file.0? })
+      local: (if $local_active { $modules | where name == ".nu.local" | get file.0? })
+    }
+    next: {
+      base: ($directory | path find-up ".nu")
+      local: ($directory | path find-up ".nu.local")
+    }
+  }
+}
+
 export-env {
   $env.config.hooks.pre_prompt = [
     {
@@ -16,73 +36,55 @@ export-env {
   ]
 
   $env.config.hooks.env_change.PWD = [
-    # Automatically hide .nu if not found in path or parent directory.
+    # Automatically use .nu and .nu.local from the current path or a parent directory.
     {
-      condition: {|before, after|
-        use ../scripts/path.nu
-
-        if $before == null {
-          return false
-        }
-
-        if not (overlay list | get name | any { $in | str ends-with ".nu" }) {
-          return false
-        }
-
-        if not ($nu.cache-dir | path join .autounload-nu | path exists) {
-          return false
-        }
-
-        true
+      condition: {|_, after|
+        let state = auto-overlay-state $after
+        (
+          ($state.current.local != null and $state.current.local != $state.next.local) or
+          ($state.current.base != null and $state.current.base != $state.next.base)
+        )
       }
 
-      code: "
-      source ($nu.cache-dir | path join .autounload-nu)
-      "
+      code: '
+        let state = auto-overlay-state $env.PWD
+        if $state.current.local != null and $state.current.local != $state.next.local {
+          print $"Hiding .nu.local overlay from ($state.current.local)"
+          overlay hide --keep-env [PWD] .nu.local
+        }
+        if $state.current.base != null and $state.current.base != $state.next.base {
+          print $"Hiding .nu overlay from ($state.current.base)"
+          overlay hide --keep-env [PWD] .nu
+        }
+      '
     },
-
-    # Automatically use .nu/.nu.local if found in path or parent directory.
     {
-      condition: {|before, after|
-        use ../scripts/path.nu
-
-        if $env.NU_EXEC? != null {
-          $env.NU_EXEC = null
+      condition: {|_, after|
+        if $env.__NU_AUTO_OVERLAY_EXEC? != null {
+          hide-env __NU_AUTO_OVERLAY_EXEC
           return false
         }
 
-        if (overlay list | get name | any { $in | str ends-with ".nu" }) {
-          return false
-        }
-
-        let file_path = ($after | path find-up ".nu") | default ($after | path find-up ".nu.local")
-
-        if $file_path == null {
-          return false
-        }
-
-        mkdir $nu.cache-dir
-
-        $"
-        print 'Using .nu overlay from ($file_path)'
-        $env.NU_EXEC = '1'
-        do -i { exec nu -e 'overlay use -r $\"($file_path)\" as .nu' }
-        "
-        | save -f ($nu.cache-dir | path join .autoload-nu)
-
-        $"
-        print 'Hiding .nu overlay from ($file_path)'
-        do -i { exec nu -i }
-        "
-        | save -f ($nu.cache-dir | path join .autounload-nu)
-
-        true
+        let state = auto-overlay-state $after
+        $state.current != $state.next and ($state.next.base != null or $state.next.local != null)
       }
 
-      code: $"
-      source ($nu.cache-dir | path join .autoload-nu)
-      cd $after
-      "
+      code: {|_, after|
+        let state = auto-overlay-state $after
+        let commands = [
+          (if $state.next.base != null {
+            print $"Using .nu overlay from ($state.next.base)"
+            $"overlay use -r ($state.next.base | to nuon) as .nu"
+          })
+          (if $state.next.local != null {
+            print $"Using .nu.local overlay from ($state.next.local)"
+            $"overlay use -r ($state.next.local | to nuon) as .nu.local"
+          })
+        ] | compact
+
+        $env.__NU_AUTO_OVERLAY_EXEC = "1"
+        exec $nu.current-exe -e ($commands | str join "\n")
+      }
     },
 
     # Add directory to zoxide
