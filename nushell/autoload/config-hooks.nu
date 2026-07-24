@@ -15,87 +15,60 @@ export-env {
     },
   ]
 
+  const autoload_files = [".nu", ".nu.local"]
+
+  def get-files-to-autoload [] {
+    use ../scripts/path.nu
+
+    $autoload_files
+    | each {|it| $env.PWD | path find-up $it }
+    | compact
+  }
+
+  def get-autoloaded-files [] {
+    overlay list
+    | get name
+    | where $it in $autoload_files
+    | each {|o| scope modules | where name == $o | get 0?.file }
+    | compact
+  }
+
   $env.config.hooks.env_change.PWD = [
-    # Automatically hide .nu/.nu.local
+    # Automatically hide autoloaded file overlays
     {
-      condition: {|before, after|
-        use ../scripts/path.nu
+      code: {|before, after|
+        let files_to_autoload = get-files-to-autoload
+        let autoloaded_files = get-autoloaded-files
 
-        if $before == null {
-          return false
+        if ($autoloaded_files | where $it not-in $files_to_autoload | is-empty) {
+          return
         }
 
-        if not (overlay list | get name | any { $in | str starts-with ".nu" }) {
-          return false
-        }
-
-        let autounload_file = $nu.cache-dir | path join $".autounload-nu-($nu.pid)"
-
-        if not ($autounload_file | path exists) {
-          return false
-        }
-
-        true
+        # Unload all all autoloaded overlays by replacing the shell if we have
+        # any autoloaded files that are no longer in a parent directory.
+        # Hiding and reloading overlays/modules doesn't work properly in nushell yet.
+        print $"Hiding overlays ($autoloaded_files | str join ', ')"
+        exec nu -i
       }
-
-      code: $"
-      source (($nu.cache-dir | path join ('.autounload-nu-' + ($nu.pid | into string))) | to nuon)
-      "
     },
 
-    # Automatically use .nu/.nu.local if found in path or parent directories.
+    # Autoload file overlays if found in path or parent directories.
     {
-      condition: {|before, after|
-        use ../scripts/path.nu
+      code: {|before, after|
+        let autoloaded_files = get-autoloaded-files
+        let files_to_autoload = get-files-to-autoload | where $it not-in $autoloaded_files
 
-        if $env.NU_EXEC? != null {
-          $env.NU_EXEC = null
-          return false
+        if ($files_to_autoload | is-empty) {
+          return
         }
 
-        if (overlay list | get name | any { $in | str starts-with ".nu" }) {
-          return false
-        }
-
-        let file_paths = [
-          ($after | path find-up ".nu")
-          ($after | path find-up ".nu.local")
-        ] | compact
-
-        if ($file_paths | is-empty) {
-          return false
-        }
-
-        mkdir $nu.cache-dir
-
-        let autoload_file = $nu.cache-dir | path join $".autoload-nu-($nu.pid)"
-        let autounload_file = $nu.cache-dir | path join $".autounload-nu-($nu.pid)"
-
-        let overlay_commands = $file_paths
-        | each {|file_path| $"overlay use -r ($file_path | to nuon) as ($file_path | path basename)" }
+        let overlay_commands = $files_to_autoload
+        | each {|f| $"overlay use -r ($f | to nuon) as ($f | path basename)" }
         | str join "\n"
 
-        $"
-        print 'Using overlays from ($file_paths | str join ', ')'
-        $env.NU_EXEC = '1'
-        rm -f ($autoload_file | to nuon)
-        do -i { exec nu -e ($overlay_commands | to nuon) }
-        "
-        | save -f $autoload_file
-
-        $"
-        print 'Hiding overlays from ($file_paths | str join ', ')'
-        rm -f ($autounload_file | to nuon)
-        do -i { exec nu -i }
-        "
-        | save -f $autounload_file
-
-        true
+        print $"Using overlays from ($files_to_autoload | str join ', ')"
+        exec nu -e $overlay_commands
       }
-
-      code: $"
-      source (($nu.cache-dir | path join ('.autoload-nu-' + ($nu.pid | into string))) | to nuon)
-      "
     },
 
     # Add directory to zoxide
