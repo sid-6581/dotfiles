@@ -95,7 +95,6 @@ export-env {
 
       code: $"
       source (($nu.cache-dir | path join ('.autoload-nu-' + ($nu.pid | into string))) | to nuon)
-      cd $after
       "
     },
 
