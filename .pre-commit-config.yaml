@@ -20,21 +20,21 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v3.2.0
+    rev: v4.0.0
     hooks:
       - id: add-trailing-comma
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.5
+    rev: v1.5.6
     hooks:
       - id: remove-crlf
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
 
   - repo: https://github.com/codingjoe/relint
-    rev: 3.3.1
+    rev: 3.5.0
     hooks:
       - id: relint
