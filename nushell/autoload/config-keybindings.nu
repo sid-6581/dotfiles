@@ -18,35 +18,35 @@ export-env {
   $env.config.keybindings ++= [
     # Default keybindings that are just in emacs mode.
     {
-      name: backspace_word
+      # name: backspace_word
       modifier: alt
       keycode: backspace
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: backspaceword }
     }
     {
-      name: move_word_left
+      # name: move_word_left
       modifier: alt
       keycode: char_b
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: movewordleft }
     }
     {
-      name: capitalize_char
+      # name: capitalize_char
       modifier: alt
       keycode: char_c
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: capitalizechar }
     }
     {
-      name: cut_word_right
+      # name: cut_word_right
       modifier: alt
       keycode: char_d
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: cutwordright }
     }
     {
-      name: history_hint_word_complete
+      # name: history_hint_word_complete
       modifier: alt
       keycode: char_f
       mode: [emacs, vi_normal, vi_insert]
@@ -58,49 +58,49 @@ export-env {
       }
     }
     {
-      name: lowercase_word
+      # name: lowercase_word
       modifier: alt
       keycode: char_l
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: lowercaseword }
     }
     {
-      name: backspace_word
+      # name: backspace_word
       modifier: alt
       keycode: char_m
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: backspaceword }
     }
     {
-      name: uppercase_word
+      # name: uppercase_word
       modifier: alt
       keycode: char_u
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: uppercaseword }
     }
     {
-      name: delete_word
+      # name: delete_word
       modifier: alt
       keycode: delete
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: deleteword }
     }
     {
-      name: insert_new_line
+      # name: insert_new_line
       modifier: alt
       keycode: enter
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: insertnewline }
     }
     {
-      name: move_word_left
+      # name: move_word_left
       modifier: alt
       keycode: left
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: movewordleft }
     }
     {
-      name: history_hint_word_complete
+      # name: history_hint_word_complete
       modifier: alt
       keycode: right
       mode: [emacs, vi_normal, vi_insert]
@@ -112,21 +112,21 @@ export-env {
       }
     }
     {
-      name: backspace
+      # name: backspace
       modifier: none
       keycode: backspace
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: backspace }
     }
     {
-      name: backspace_word
+      # name: backspace_word
       modifier: control
       keycode: backspace
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: backspaceword }
     }
     {
-      name: left
+      # name: left
       modifier: control
       keycode: char_b
       mode: [emacs, vi_normal, vi_insert]
@@ -138,7 +138,7 @@ export-env {
       }
     }
     {
-      name: history_hint_complete
+      # name: history_hint_complete
       modifier: control
       keycode: char_f
       mode: [emacs, vi_normal, vi_insert]
@@ -151,49 +151,49 @@ export-env {
       }
     }
     {
-      name: redo
+      # name: redo
       modifier: control
       keycode: char_g
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: redo }
     }
     {
-      name: cut_to_line_end
+      # name: cut_to_line_end
       modifier: control
       keycode: char_k
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: cuttolineend }
     }
     {
-      name: swap_graphemes
+      # name: swap_graphemes
       modifier: control
       keycode: char_t
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: swapgraphemes }
     }
     {
-      name: cut_from_start
+      # name: cut_from_start
       modifier: control
       keycode: char_u
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: cutfromstart }
     }
     {
-      name: cut_word_left
+      # name: cut_word_left
       modifier: control
       keycode: char_w
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: cutwordleft }
     }
     {
-      name: paste_cut_buffer_before
+      # name: paste_cut_buffer_before
       modifier: control
       keycode: char_y
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: pastecutbufferbefore }
     }
     {
-      name: undo
+      # name: undo
       modifier: control
       keycode: char_z
       mode: [emacs, vi_normal, vi_insert]
@@ -201,21 +201,21 @@ export-env {
     }
 
     {
-      name: copy_selection
+      # name: copy_selection
       modifier: control
       keycode: insert
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: copyselection }
     }
     {
-      name: cut_selection
+      # name: cut_selection
       modifier: shift
       keycode: delete
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: cutselection }
     }
     {
-      name: paste
+      # name: paste
       modifier: shift
       keycode: insert
       mode: [emacs, vi_normal, vi_insert]
@@ -223,14 +223,14 @@ export-env {
     }
     # This is needed because CTRL+Backspace can get sent as CTRL+h.
     {
-      name: backspace_word
+      # name: backspace_word
       modifier: control
       keycode: char_h
       mode: [emacs, vi_normal, vi_insert]
       event: { edit: backspaceword }
     }
     {
-      name: move_up
+      # name: move_up
       modifier: control
       keycode: char_k
       mode: [emacs, vi_normal, vi_insert]
@@ -242,7 +242,7 @@ export-env {
       }
     }
     {
-      name: move_down
+      # name: move_down
       modifier: control
       keycode: char_j
       mode: [emacs, vi_normal, vi_insert]
@@ -255,7 +255,7 @@ export-env {
     }
     # This is needed because CTRL+j on Windows can get sent as CTRL+Enter.
     {
-      name: move_down
+      # name: move_down
       modifier: control
       keycode: enter
       mode: [emacs, vi_normal, vi_insert]
@@ -267,26 +267,29 @@ export-env {
       }
     }
     {
-      name: completion_menu
+      # name: completion_menu
       modifier: none
       keycode: tab
       mode: [emacs, vi_normal, vi_insert]
       event: {
         until: [
-          { send: menu name: completion_menu }
+          {
+            send: menu
+            name: completion_menu
+          }
           { send: enter }
         ]
       }
     }
     {
-      name: completion_previous_menu
+      # name: completion_previous_menu
       modifier: shift
       keycode: backtab
       mode: [emacs, vi_normal, vi_insert]
       event: null
     }
     {
-      name: fzf_files
+      # name: fzf_files
       modifier: control
       keycode: char_t
       mode: [emacs, vi_normal, vi_insert]
@@ -301,7 +304,7 @@ export-env {
       ]
     }
     {
-      name: fzf_directory
+      # name: fzf_directory
       modifier: alt
       keycode: char_c
       mode: [emacs, vi_normal, vi_insert]
@@ -314,7 +317,7 @@ export-env {
       }
     }
     {
-      name: fzf_grep
+      # name: fzf_grep
       modifier: alt
       keycode: char_g
       mode: [emacs, vi_normal, vi_insert]
@@ -329,7 +332,7 @@ export-env {
       ]
     }
     {
-      name: quote
+      # name: quote
       modifier: control
       keycode: char_q
       mode: [emacs, vi_normal, vi_insert]
@@ -341,7 +344,7 @@ export-env {
       ]
     }
     {
-      name: edit
+      # name: edit
       modifier: alt
       keycode: char_e
       mode: [emacs, vi_normal, vi_insert]
@@ -353,7 +356,7 @@ export-env {
       ]
     }
     {
-      name: fzf_history
+      # name: fzf_history
       modifier: control
       keycode: char_r
       mode: [emacs, vi_normal, vi_insert]
