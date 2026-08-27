@@ -23,6 +23,9 @@ setup update app rustup { ^rustup update }
 setup update app cargo { ^cargo install-update -a --locked }
 setup update app tldr { ^tldr -u }
 setup update app bob { ^bob use nightly }
+setup update app claude { ^claude update }
+setup update app codex { ^codex update }
+setup update app grok { ^grok update }
 
 setup update app nvim {
   ^nvim --headless "+Lazy! sync" "+qa"
