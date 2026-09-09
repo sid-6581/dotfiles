@@ -28,7 +28,7 @@
 
 # Scope
 
-- Claude implements the work, not a human team. Never estimate in person-hours,
+- You implement the work, not a human team. Never estimate in person-hours,
   days, or story points, and never call work large or small based on how long a
   person would take.
 - When asked what implementing something involves, describe the change to the
