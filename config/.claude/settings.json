@@ -1,0 +1,79 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(find *)",
+      "Bash(fd *)",
+      "Bash(wc *)",
+      "Bash(stat *)",
+      "Bash(file *)",
+      "Bash(tree *)",
+      "Bash(which *)",
+      "Bash(du *)",
+      "Bash(df *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(cut *)",
+      "Bash(diff *)",
+      "Bash(git status)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git branch)",
+      "Bash(git grep *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr checks *)"
+    ],
+    "ask": [
+      "Agent"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "claude-fable-5-1",
+  "sandbox": {
+    "enabled": false,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": [
+        "*"
+      ]
+    }
+  },
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
+  "autoMemoryEnabled": false,
+  "skipWorkflowUsageWarning": true,
+  "preferredNotifChannel": "notifications_disabled",
+  "switchModelsOnFlag": false,
+  "remoteControlAtStartup": false,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Merging a pull request in the trusted repo with a review or check bypass (such as `gh pr merge --admin`) is allowed when the user asked for the PR to be merged. The user is the sole maintainer of their repos and cannot approve their own pull requests, so the bypass is the normal merge path, not a review bypass.",
+      "Running a script that lives inside the trusted repo is allowed when the repo's own docs or runbooks describe it as the project workflow, including writes it makes under the repo's `.git/` or `.claude/worktrees/` directories, and a delivery or integrate step it performs is not an unreviewed merge.",
+      "Editing Claude Code's own configuration (settings files, CLAUDE.md, agents, hooks) is allowed when the user's own message in this session asked for that change or stated the permission being added.",
+      "Reading, copying, or deleting files under `~/.claude/` is never Self-Modification; only writes to live configuration are."
+    ]
+  },
+  "autoCompactWindow": 200000,
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-opus-5",
+    "CLAUDE_CODE_SUBAGENT_MODEL_FORCE": "1",
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "3"
+  }
+}
