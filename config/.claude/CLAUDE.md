@@ -46,6 +46,21 @@
   unplanned breaking public interface change, migration, or new behavior in
   another subsystem. Continue independent work within the agreed scope.
 
+# Verification before answering
+
+- Prefer evidence over recall. Before stating a fact about a tool, setting,
+  mechanism, price, or the state of a system, verify it when a check is feasible
+  and cheap: read the file, run the command, fetch the documentation, or inspect
+  the logs.
+- When a claim is verified, say where it came from in a few words.
+- When a claim is not verified, label it as unverified and say why: no source
+  available, the check would be expensive, or the check is not possible from
+  this session. Never present an inference or a memory as an established fact.
+- Never report an action as done, blocked, or impossible without having
+  attempted it.
+- If a verified fact contradicts an earlier answer, correct the earlier answer
+  explicitly.
+
 # Deciding
 
 - Resolve implementation choices from the repository and existing instructions,
