@@ -37,9 +37,6 @@
       "Bash(gh pr view *)",
       "Bash(gh pr checks *)"
     ],
-    "ask": [
-      "Agent"
-    ],
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
