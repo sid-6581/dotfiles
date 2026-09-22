@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "3"
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -39,7 +42,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5-1",
+  "model": "opus[1m]",
   "sandbox": {
     "enabled": false,
     "autoAllowBashIfSandboxed": true,
@@ -55,6 +58,7 @@
       "effortLevel": "high"
     }
   },
+  "autoCompactWindow": 200000,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
@@ -69,11 +73,5 @@
       "Editing Claude Code's own configuration (settings files, CLAUDE.md, agents, hooks) is allowed when the user's own message in this session asked for that change or stated the permission being added.",
       "Reading, copying, or deleting files under `~/.claude/` is never Self-Modification; only writes to live configuration are."
     ]
-  },
-  "autoCompactWindow": 200000,
-  "env": {
-    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-opus-5",
-    "CLAUDE_CODE_SUBAGENT_MODEL_FORCE": "1",
-    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "3"
   }
 }
