@@ -1,4 +1,4 @@
-use std
+use std/util null-device
 use log.nu
 use state.nu
 
@@ -89,7 +89,7 @@ def link [
     } else {
       cd $env.HOME
       rm -f $link
-      ^mklink $link $target o> (std null-device)
+      ^mklink $link $target o> (null-device)
     }
   }
 

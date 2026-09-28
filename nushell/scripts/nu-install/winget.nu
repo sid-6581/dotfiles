@@ -1,4 +1,4 @@
-use std
+use std/util null-device
 use log.nu
 
 # Installs apps using winget (Windows only).
@@ -14,7 +14,7 @@ export def main [
 
   for $app in $apps {
     try {
-      ^winget list --accept-source-agreements --exact --id $app o+e> (std null-device)
+      ^winget list --accept-source-agreements --exact --id $app o+e> (null-device)
     } catch {
       log info $"Installing: ($app)"
       ^winget install --accept-source-agreements --silent --exact --id $app
@@ -35,7 +35,7 @@ export def uninstall [
 
   for $app in $apps {
     try {
-      ^winget list --accept-source-agreements --exact --name $app o+e> (std null-device)
+      ^winget list --accept-source-agreements --exact --name $app o+e> (null-device)
       log info $"Uninstalling: ($app)"
       ^winget uninstall --accept-source-agreements --silent --exact --name $app
     } catch {
