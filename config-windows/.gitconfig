@@ -5,7 +5,7 @@
   eol = lf
   filemode = false
 [pull]
-  ff-only = true
+  ff = only
 [push]
   autoSetupRemote = true
 [delta]

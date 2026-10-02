@@ -4,7 +4,7 @@
   pager = delta
   eol = lf
 [pull]
-  ff-only = true
+  ff = only
 [push]
   autoSetupRemote = true
 [delta]
