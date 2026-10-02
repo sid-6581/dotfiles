@@ -68,3 +68,8 @@
   preference, domain fact, or authorization would materially change the result
   and cannot reasonably be inferred. Ask alongside the work that can proceed
   rather than stopping for it.
+
+# Shell
+
+- The Bash tool runs bash, even though the environment reports the login shell
+  as fish. Write bash syntax, never fish syntax.

@@ -1,6 +1,7 @@
 {
   "env": {
-    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "3"
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "3",
+    "CLAUDE_CODE_SHELL": "/usr/bin/bash"
   },
   "permissions": {
     "allow": [
