@@ -28,7 +28,6 @@ nu-install git [
 ]
 
 nu-install pacman uninstall [
-  pnpm
   tldr
 ]
 
@@ -94,7 +93,6 @@ nu-install paru [
   ast-grep
   carapace
   neovim-git
-  pnpm-bin
   ttf-google-sans
   ttf-ms-win11-auto
 ]
