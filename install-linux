@@ -43,6 +43,8 @@ nu-install pacman [
   bat
   broot
   cmake
+  docker
+  docker-buildx
   fcitx5
   fd
   fuse-zip
