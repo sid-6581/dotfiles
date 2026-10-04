@@ -68,7 +68,6 @@ nu-install pacman [
   pkgconf
   podman
   pre-commit
-  pueue
   python-pip
   ripgrep
   rust-analyzer
@@ -150,6 +149,8 @@ nu-install gh [
 
 (
   setup systemctl enable --user
-  pueued
   podman-auto-update.timer
+  docker
 )
+
+^sudo usermod -aG docker $env.USER
