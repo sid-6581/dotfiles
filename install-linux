@@ -35,6 +35,7 @@ nu-install paru uninstall [
   espanso-x11
   espanso-wayland
   espanso-wayland-git
+  pnpm-bin
   neovim-nightly
   ttf-google-fonts-git
 ]
