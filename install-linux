@@ -145,12 +145,12 @@ nu-install gh [
 (
   setup systemctl enable
   podman-auto-update.timer
+  docker
 )
 
 (
   setup systemctl enable --user
   podman-auto-update.timer
-  docker
 )
 
 ^sudo usermod -aG docker $env.USER
