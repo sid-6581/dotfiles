@@ -28,6 +28,7 @@ nu-install git [
 ]
 
 nu-install pacman uninstall [
+  pnpm
   tldr
 ]
 
@@ -67,7 +68,6 @@ nu-install pacman [
   openssl
   pigz
   pkgconf
-  pnpm
   podman
   pre-commit
   python-pip
