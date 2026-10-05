@@ -100,6 +100,11 @@ nu-install paru [
   ttf-ms-win11-auto
 ]
 
+if not ($env.PNPM_HOME | path join bin pnpm | path exists) {
+  log info "Installing pnpm"
+  http get https://get.pnpm.io/install.sh | ^sh -
+}
+
 if (which rustup | is-not-empty) {
   let toolchains = ^rustup toolchain list
 

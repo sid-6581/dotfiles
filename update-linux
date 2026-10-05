@@ -33,5 +33,13 @@ setup update app nvim {
 }
 
 setup update app pnpm {
+  let pnpm_path = which pnpm | first | get path | path expand
+  let home_path = $env.HOME | path expand
+
+  if ($pnpm_path | str starts-with $"($home_path)/") {
+    # Update the installed executable even when a project pins a pnpm version.
+    ^pnpm --pm-on-fail=ignore self-update
+  }
+
   ^pnpm update -g -L
 }
