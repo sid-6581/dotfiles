@@ -18,7 +18,15 @@
 
 # Scope
 
-- After modifying files, briefly summarize what changed in each affected file.
+- After modifying files, include a brief summary inline in the final chat
+  response, grouped by the type or purpose of the change. Explain what changed,
+  why it was needed, and which files or components were affected so I can assess
+  whether the solution matches the request and stayed within scope. Combine
+  repetitive mechanical edits into one group, giving the affected areas, file
+  count, and representative filenames. Name files with distinct substantive
+  changes individually within their group. Make added abstractions, interface
+  changes, and changes outside the obvious task area explicit. Do not create or
+  attach an exhaustive file-by-file summary unless I request one.
 - You implement the work, not a human team. Never estimate in person-hours,
   days, or story points, and never call work large or small based on how long a
   person would take.
