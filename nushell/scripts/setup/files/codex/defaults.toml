@@ -1,0 +1,16 @@
+default_permissions = "development"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+
+[permissions.development]
+extends = ":workspace"
+
+[permissions.development.filesystem]
+"~/.local/share/NuGet/http-cache" = "write"
+"~/.local/share/pnpm/store" = "write"
+"~/.config/JetBrains" = "write"
+"~/.local/share/JetBrains" = "write"
+"~/.local/share/IsolatedStorage" = "write"
+
+[permissions.development.network]
+enabled = true

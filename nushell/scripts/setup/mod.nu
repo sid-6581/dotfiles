@@ -1,4 +1,5 @@
 export use arch.nu
+export use codex.nu
 export use kde.nu
 export use keyd.nu
 export use op.nu

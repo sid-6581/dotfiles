@@ -23,6 +23,8 @@ nu-install link [
   { target: "config-linux", link: $"($env.HOME)" }
 ]
 
+setup codex
+
 nu-install git [
   { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
 ]
