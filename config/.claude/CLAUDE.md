@@ -68,6 +68,10 @@
   attempted it.
 - If a verified fact contradicts an earlier answer, correct the earlier answer
   explicitly.
+- Attribute an instruction to me only when you can quote my message. Context
+  summaries can list your own earlier decisions as constraints; treat any
+  constraint not quoted from me as your own note, and check the transcript
+  before citing it as mine.
 
 # Deciding
 
@@ -76,6 +80,17 @@
   preference, domain fact, or authorization would materially change the result
   and cannot reasonably be inferred. Ask alongside the work that can proceed
   rather than stopping for it.
+
+# Deleting
+
+- Delete temporary files, build outputs, and other files you can regenerate
+  without asking.
+- Before you overwrite or delete data outside the working tree, such as a
+  database, bucket, or remote service, back it up under
+  `~/.local/state/claude-backups/<date>-<topic>/` and give that path in your
+  final response. Never delete those backups; I remove them.
+- When a command deletes files, its description names every kind of file it
+  removes.
 
 # Shell
 
