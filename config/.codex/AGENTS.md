@@ -16,6 +16,14 @@
 - Restart numbering only for a clearly separate topic, and say when you do so.
 - Do not create codes for short simple answers.
 
+# How to respond
+
+- I read the last part of your response first, often on a mobile device. The
+  most important parts of your response should come towards the end, especially
+  questions you have for me or decisions you want me to make. If your response
+  is long (several pages on a mobile device), include a concise summary of the
+  main points at the end.
+
 # Scope
 
 - After modifying files, include a brief summary inline in the final chat
@@ -68,6 +76,10 @@
   attempted it.
 - If a verified fact contradicts an earlier answer, correct the earlier answer
   explicitly.
+- Attribute an instruction to me only when you can quote my message. Context
+  summaries can list your own earlier decisions as constraints; treat any
+  constraint not quoted from me as your own note, and check the transcript
+  before citing it as mine.
 
 # Deciding
 

@@ -16,6 +16,14 @@
 - Restart numbering only for a clearly separate topic, and say when you do so.
 - Do not create codes for short simple answers.
 
+# How to respond
+
+- I read the last part of your response first, often on a mobile device. The
+  most important parts of your response should come towards the end, especially
+  questions you have for me or decisions you want me to make. If your response
+  is long (several pages on a mobile device), include a concise summary of the
+  main points at the end.
+
 # Scope
 
 - After modifying files, include a brief summary inline in the final chat
@@ -80,19 +88,3 @@
   preference, domain fact, or authorization would materially change the result
   and cannot reasonably be inferred. Ask alongside the work that can proceed
   rather than stopping for it.
-
-# Deleting
-
-- Delete temporary files, build outputs, and other files you can regenerate
-  without asking.
-- Before you overwrite or delete data outside the working tree, such as a
-  database, bucket, or remote service, back it up under
-  `~/.local/state/claude-backups/<date>-<topic>/` and give that path in your
-  final response. Never delete those backups; I remove them.
-- When a command deletes files, its description names every kind of file it
-  removes.
-
-# Shell
-
-- The Bash tool runs bash, even though the environment reports the login shell
-  as fish. Write bash syntax, never fish syntax.
