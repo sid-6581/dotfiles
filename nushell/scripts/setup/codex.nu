@@ -45,3 +45,59 @@ export def main [] {
     error make $err
   }
 }
+
+# Updates and installs ChatGPT Community with the dotfiles' Linux features.
+export def install [] {
+  use ../log.nu
+  $env.LOG_CATEGORY = "setup codex install"
+
+  if $nu.os-info.name != "linux" {
+    error make { msg: "ChatGPT Community installation requires Linux" }
+  }
+
+  const repository_url = "https://github.com/ilysenko/codex-desktop-linux.git"
+  const features_path = path self files/codex/linux-features.json
+  let repository_dir = $env.HOME | path join Code Personal codex-desktop-linux
+
+  if ($repository_dir | path exists) {
+    if not ($repository_dir | path join .git | path exists) {
+      error make { msg: $"($repository_dir) exists but is not a Git checkout" }
+    }
+
+    let branch = do --capture-errors { ^git -C $repository_dir branch --show-current } | str trim
+    if $branch != "main" {
+      error make { msg: $"($repository_dir) must be on main before installing" }
+    }
+
+    log info $"Updating ($repository_dir)"
+    do --capture-errors { ^git -C $repository_dir pull --ff-only origin main }
+  } else {
+    mkdir ($repository_dir | path dirname)
+    log info $"Cloning ($repository_url) to ($repository_dir)"
+    do --capture-errors { ^git clone --branch main --single-branch $repository_url $repository_dir }
+  }
+
+  let config_path = $repository_dir | path join linux-features features.json
+  let config = if ($config_path | path exists) { open $config_path } else { {} }
+  let features = open $features_path
+  $config | merge $features | to json --indent 2 | save --force $config_path
+
+  # Keep package extraction on disk: /tmp is RAM-backed on this machine.
+  let cache_home = $env.XDG_CACHE_HOME? | default ($env.HOME | path join .cache)
+  let build_tmp = $cache_home | path join codex-desktop-dev tmp
+  mkdir $build_tmp
+
+  log info $"Installing with features: ($features.enabled | str join ', ')"
+  cd $repository_dir
+  with-env {
+    TMPDIR: $build_tmp
+    CARGO_TARGET_DIR: ($repository_dir | path join target)
+    CODEX_LINUX_FEATURES_ROOT: ($repository_dir | path join linux-features)
+    CODEX_LINUX_FEATURES_CONFIG: $config_path
+    PATH: ($env.PATH | prepend ($env.HOME | path join .cargo bin) | uniq)
+  } {
+    do --capture-errors { ^make install-native MAX_BUILD_THREADS=8 }
+  }
+
+  log info "Installed ChatGPT Community. Fully quit and reopen it to load the new version."
+}

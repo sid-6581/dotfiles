@@ -1,0 +1,9 @@
+{
+  "enabled": [
+    "computer-use-linux",
+    "remote-mobile-control",
+    "remote-control-ui",
+    "start-minimized-to-tray",
+    "tray-usage"
+  ]
+}
