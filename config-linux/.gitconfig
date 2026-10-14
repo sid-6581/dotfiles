@@ -33,3 +33,5 @@
   enabled = true
 [diff]
   algorithm = patience
+[fetch]
+	prune = true
