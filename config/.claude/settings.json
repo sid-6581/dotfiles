@@ -39,6 +39,11 @@
       "Bash(wc *)",
       "Bash(which *)"
     ],
+    "deny": [
+      "mcp__claude-code-remote__*",
+      "Artifact",
+      "Workflow"
+    ],
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
