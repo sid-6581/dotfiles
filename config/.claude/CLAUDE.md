@@ -23,6 +23,8 @@
   questions you have for me or decisions you want me to make. If your response
   is long (several pages on a mobile device), include a concise summary of the
   main points at the end.
+- Never mention GitHub Actions jobs failing or not starting because of billing
+  or spending-limit issues.
 
 # Scope
 
