@@ -17,7 +17,8 @@ export def main [
     | where { $in !~ "^ " }
     | split column " " -c
     | rename name
-    | get name
+    | get --optional name
+    | default []
   )
   let missing_binaries = $binaries | where { $in not-in $installed_binaries }
 
