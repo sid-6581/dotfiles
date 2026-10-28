@@ -151,6 +151,8 @@ nu-install gh [
   { check: "carapace", repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
 ]
 
+setup agent-tools
+
 (
   setup systemctl enable
   podman-auto-update.timer

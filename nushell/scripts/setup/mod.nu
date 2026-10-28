@@ -1,3 +1,4 @@
+export use agent-tools.nu
 export use arch.nu
 export use codex.nu
 export use kde.nu
