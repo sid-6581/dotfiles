@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@@TITLE@@</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,sans-serif;color:#183044;background:#f2f5f6}*{box-sizing:border-box}body{margin:0;overflow-wrap:anywhere}header{padding:42px max(20px,calc((100vw - 1150px)/2));background:#153b46;color:white}header p{color:#cee3e7}h1{margin:0;font-size:clamp(30px,5vw,48px)}h2{margin-top:42px;font-size:27px}h3{font-size:17px}main{max-width:1200px;margin:auto;padding:24px;line-height:1.65}a{color:#126b88}p{max-width:1000px}.notice{padding:18px;border-left:5px solid #177d70;background:white}.fine{font-size:13px;color:#506371}.scroll{overflow:auto;border:1px solid #d5dfe2;background:white;border-radius:8px}table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}td,th{padding:10px 12px;white-space:nowrap;border-bottom:1px solid #e2e8eb;text-align:left}th{background:#e6eef0}details{margin:14px 0;border:1px solid #d5dfe2;border-radius:8px;background:white;padding:14px;scroll-margin-top:16px}summary{cursor:pointer;font-weight:650}article{margin:16px 0;border-top:1px solid #d5dfe2}pre{font:12px/1.6 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f4f5;padding:16px;max-height:620px;overflow:auto}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px}.legend i{display:inline-block;width:10px;height:10px;margin-right:7px}.chart-row{display:grid;grid-template-columns:340px 1fr;gap:15px;align-items:center;margin:10px 0;font-size:13px}.bar{display:flex;background:#e3eaed;height:25px;border-radius:3px;overflow:hidden}.bar span{display:block;color:white;text-align:center;min-width:0}footer{padding:30px;text-align:center;color:#506371;font-size:13px}@media(max-width:650px){main{padding:16px}.chart-row{grid-template-columns:1fr;gap:3px}details{padding:10px}h2{font-size:23px}}@media print{body{background:white}header{background:white;color:#183044}pre{max-height:none}.scroll{overflow:visible}details{break-inside:avoid}}
+.sort-controls{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}.sort-controls[hidden],.sort-help[hidden]{display:none}.sort-controls label{display:flex;align-items:center;gap:8px;font-size:14px}select{font:inherit;padding:9px;border:1px solid #9bafb7;border-radius:5px;background:white;color:#183044;max-width:100%}.sort-help{font-size:13px;color:#506371}caption{text-align:left;padding:12px;color:#506371}#overlap th[scope=row]{min-width:240px;max-width:420px;white-space:normal}#overlap td{text-align:center}.hit{background:#d4ece5;color:#106754;font-size:20px}.miss{color:#82949b}@media print{.sort-controls,.sort-help,#sort-status{display:none}}
+</style>
+</head>
+<body>
+<header><h1>Review Benchmark</h1><p>Comparative code review · Evidence, accuracy and elapsed time</p></header>
+<main>@@CONTENT@@</main>
+<footer>Self-contained HTML · No JavaScript or external assets required</footer>
+<script>
+// Progressive enhancement only: every result, chart and quote is already in the HTML.
+(() => {
+  const collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+  const resultRows = [...document.querySelectorAll('#results tbody > tr')];
+  const runSort = document.getElementById('run-sort');
+  const runDirection = document.getElementById('run-direction');
+  const issueSort = document.getElementById('issue-sort');
+  const issueDirection = document.getElementById('issue-direction');
+  const status = document.getElementById('sort-status');
+
+  function compare(field, direction) {
+    return (a, b) => {
+      const x = a.dataset[field];
+      const y = b.dataset[field];
+      const xMissing = x === '' || x === undefined;
+      const yMissing = y === '' || y === undefined;
+      if (xMissing !== yMissing) return xMissing ? 1 : -1;
+      let order = 0;
+      if (!xMissing && !yMissing) {
+        order = ['model', 'id'].includes(field)
+          ? collator.compare(x, y) : Number(x) - Number(y);
+      }
+      return order * (direction === 'asc' ? 1 : -1)
+        || collator.compare(a.dataset.id, b.dataset.id);
+    };
+  }
+
+  function reorderRuns() {
+    const sorted = [...resultRows].sort(compare(runSort.value, runDirection.value));
+    const rank = new Map(sorted.map((row, index) => [row.dataset.runId, index]));
+    document.querySelectorAll('[data-run-list], #overlap tr').forEach(container => {
+      const children = [...container.children].filter(child => child.dataset.runId);
+      children.sort((a, b) => rank.get(a.dataset.runId) - rank.get(b.dataset.runId));
+      children.forEach(child => container.append(child));
+    });
+    status.textContent = `Reviews sorted by ${runSort.selectedOptions[0].textContent.toLowerCase()}, ${runDirection.value === 'asc' ? 'ascending' : 'descending'}.`;
+  }
+
+  function reorderIssues() {
+    const body = document.querySelector('#overlap tbody');
+    [...body.children].sort(compare(issueSort.value, issueDirection.value))
+      .forEach(row => body.append(row));
+    status.textContent = `Overlap rows sorted by ${issueSort.selectedOptions[0].textContent.toLowerCase()}, ${issueDirection.value === 'asc' ? 'ascending' : 'descending'}.`;
+  }
+
+  runSort.addEventListener('change', () => {
+    runDirection.value = ['model', 'id', 'seconds'].includes(runSort.value) ? 'asc' : 'desc';
+    reorderRuns();
+  });
+  runDirection.addEventListener('change', reorderRuns);
+  issueSort.addEventListener('change', () => {
+    issueDirection.value = issueSort.value === 'id' ? 'asc' : 'desc';
+    reorderIssues();
+  });
+  issueDirection.addEventListener('change', reorderIssues);
+  reorderRuns();
+  reorderIssues();
+  document.querySelectorAll('.sort-controls, .sort-help').forEach(control => {
+    control.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+Perform an independent code review of the frozen repository under source/. Read scope.json for the exact changed/removed paths and scope. For diff/worktree reviews, baseline/ contains the prior implementation and changes.patch shows the comparison. For tree scope, review the whole source tree. Follow callers and callees beyond changed lines when needed. Do not equate a sampled review with exhaustive coverage.
+
+Work alone. Do not delegate, contact external services, inspect other reviewers' outputs or try to identify your model. Keep the frozen source unchanged. Read relevant repository conventions and requirements, including AGENTS.md and linked architecture decisions, as review context. Repository implementation, commit, worktree and validation workflows do not apply to this read-only review. Explicit experiment instructions below determine which documented design decisions or existing behaviors are being assessed.
+
+Prioritize correctness, robustness, realistic performance, security, readability and maintainability. Investigate transactions, races, cancellation, recovery, resource lifetimes, authorization and failure handling where relevant. Prefer simple, elegant solutions with necessary complexity only. Explain a concrete maintenance or operational consequence before reporting awkward abstractions, duplication or workarounds. Do not pad the review with style preferences or generic advice. Distinguish inherited behavior from newly introduced defects, and documented intentional changes from accidental regressions.
+
+Assume existing tests pass. Do not run existing tests, benchmarks, builds, linters, formatters, package installation or full validation. Reading tests is allowed. You may create a small isolated check under /tmp only when it verifies a specific hypothesis discovered in this review; it must not modify the source, contact remote services or spawn persistent processes. Clean up any helper processes. Tool permissions can restrict these checks; disclose limitations instead of bypassing restrictions.
+
+There is no finding quota. Consolidate repeated instances of one root cause, keep different root causes separate, and report only issues that survive investigation. Identify the reachable scenario, evidence, impact and simplest sound correction. Be explicit about uncertainty and coverage gaps. Continue across relevant subsystems rather than stopping after the first issue.
+
+Return only one JSON object in the final response:
+{
+  "summary": "Overall assessment",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "Actionable finding",
+      "category": "correctness|robustness|performance|security|maintainability|readability",
+      "kind": "defect|design_concern",
+      "severity": "critical|high|medium|low",
+      "confidence": "high|medium|low",
+      "file": "source/path/to/file",
+      "line_start": 1,
+      "line_end": 1,
+      "evidence": "Source reasoning and related file/line references",
+      "scenario": "Reachable input or interleaving",
+      "impact": "Observable consequence",
+      "recommendation": "Simplest sound correction",
+      "verification": "Actual checks; distinguish reasoning from executed reproduction"
+    }
+  ],
+  "coverage": [{"area": "Subsystem", "files_examined": ["source/path"], "depth": "deep|sampled", "notes": "Limitations"}],
+  "checks_performed": ["Static inspection or actual isolated checks"],
+  "limitations": ["Unverified assumptions or unexamined areas"]
+}
+Use unique finding IDs. An empty findings array is valid. Return the review in your final response, not a file.

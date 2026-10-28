@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Benchmark"
+  short_description: "Compare code reviewers with evidence and timings"
+  default_prompt: "Use $review-benchmark to compare code reviewers in the current repository."
+policy:
+  allow_implicit_invocation: false
