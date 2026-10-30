@@ -1,6 +1,6 @@
 promptToReturnFromSubprocess: false
 os:
-  editPreset: nvim
+  editPreset: rvim
 git:
   autoStageResolvedConflicts: false
   diffRenderers:

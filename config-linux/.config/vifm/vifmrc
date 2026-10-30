@@ -16,7 +16,7 @@ set shell=/bin/bash
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
-set vicmd=nvim
+set vicmd=rvim
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -174,11 +174,11 @@ mark w ~/Documents/Work
 "  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
 
 command! df df -h %m 2> /dev/null
-command! diff nvim -d %f %F
+command! diff rvim -d %f %F
 command! mcd :mkdir! "%a" | cd "%a"
 command! reload :write | restart full
 command! run !! ./%f
-command! vgrep nvim "+grep %a"
+command! vgrep rvim "+grep %a"
 command! zip 7z a -mx9 %c.zip %f &
 command! gzip pigz -11 -k %f &
 command! loop for f in %f; do %a; done

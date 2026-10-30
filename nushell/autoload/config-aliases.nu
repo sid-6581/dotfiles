@@ -4,6 +4,7 @@ export alias bn = bat --number
 export alias bnl = bat --number --line-range
 export alias bp = bat --plain
 export alias bpl = bat --plain --line-range
+export alias f = rfile
 export alias gj = just --global-justfile
 export alias j = just
 export alias jc = sudo journalctl

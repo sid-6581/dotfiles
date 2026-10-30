@@ -2,12 +2,12 @@ source ~/.dotfiles/nushell/scripts/globals.nu
 
 $env.PG_LOCALHOST = "postgresql://postgres:postgres@localhost"
 
-$env.EDITOR = "nvim"
-$env.DIFFPROG = "nvim -d"
-$env.MANPAGER = "nvim +Man!"
+$env.EDITOR = "rvim"
+$env.DIFFPROG = "rvim -d"
+$env.MANPAGER = "rvim +Man!"
 $env.RIPGREP_CONFIG_PATH = $env.HOME | path join .config ripgrep config
 $env.JUST_COMMAND_COLOR = "blue"
-# $env.PAGER = "nvim - -c \"lua require('util.winbuf').colorize()\""
+# $env.PAGER = "rvim - -c \"lua require('util.winbuf').colorize()\""
 $env.SYSTEMD_PAGER = ''
 
 # F - Quit if the contents fit on a single screen,

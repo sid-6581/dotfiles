@@ -1,6 +1,6 @@
 [core]
   autocrlf = input
-  editor = nvim
+  editor = rvim
   pager = delta
   eol = lf
 [pull]
