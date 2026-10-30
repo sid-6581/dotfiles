@@ -3,6 +3,7 @@ source ~/.dotfiles/nushell/scripts/globals.nu
 $env.PG_LOCALHOST = "postgresql://postgres:postgres@localhost"
 
 $env.EDITOR = "rvim"
+$env.SUDO_EDITOR = "nvim"
 $env.DIFFPROG = "rvim -d"
 $env.MANPAGER = "rvim +Man!"
 $env.RIPGREP_CONFIG_PATH = $env.HOME | path join .config ripgrep config
