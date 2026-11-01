@@ -27,17 +27,6 @@ export def main [] {
     xorg-server-xvfb # Private X11 displays for GUI tests
   ]
 
-  if (which dotnet | is-empty) {
-    log warning "dotnet not found"
-  } else {
-    for tool in [ilspycmd dotnet-stack dotnet-dump seqcli] {
-      if (which $tool | is-empty) {
-        log info $"Installing ($tool)"
-        ^dotnet tool install --global $tool
-      }
-    }
-  }
-
   nu-install cargo [cargo-fuzz]
 
   if (which rustup | is-empty) {

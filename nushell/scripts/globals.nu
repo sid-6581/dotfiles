@@ -9,7 +9,6 @@ export-env {
   $env.XDG_DATA_HOME = $env.HOME | path join .local share
   $env.XDG_STATE_HOME = $env.HOME | path join .local state
   $env.PNPM_HOME = $env.HOME | path join .local share pnpm
-  $env.DOTNET_ROOT = $env.HOME | path join .dotnet
   $env.GOPATH = $env.HOME | path join .go
 
   # TODO: This is mainly needed for the LSP, because it's not spreading the values itself.
@@ -26,8 +25,6 @@ export-env {
     (if $nu.os-info.name == "windows" { $env.HOME | path join scoop shims } else { null })
     ($env.HOME | path join .local share pnpm bin)
     ($env.HOME | path join .go bin)
-    ($env.HOME | path join .dotnet)
-    ($env.HOME | path join .dotnet tools)
     ...$env.PATH
   ]
   | compact -e
