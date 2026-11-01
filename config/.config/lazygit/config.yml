@@ -1,6 +1,11 @@
 promptToReturnFromSubprocess: false
 os:
-  editPreset: rvim
+  # RVim has no built-in preset; configure its Vim-compatible commands explicitly.
+  edit: 'rvim -- {{filename}}'
+  editAtLine: 'rvim +{{line}} -- {{filename}}'
+  editAtLineAndWait: 'rvim +{{line}} -- {{filename}}'
+  openDirInEditor: 'rvim -- {{dir}}'
+  editInTerminal: true
 git:
   autoStageResolvedConflicts: false
   diffRenderers:
