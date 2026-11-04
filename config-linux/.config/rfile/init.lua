@@ -1,4 +1,5 @@
--- RFile's configuration: the bookmarks and mappings of vifmrc, where RFile's own keys differ.
+-- RFile's configuration: the bookmarks, commands and mappings of vifmrc, where RFile's own keys
+-- differ.
 
 -- ------------------------------------------------------------------------------
 -- Bookmarks
@@ -38,6 +39,28 @@ rfile.on("attach", function()
     rfile.cmd(("mark %s %s"):format(letter, directory))
   end
 end)
+
+-- ------------------------------------------------------------------------------
+-- Commands
+-- ------------------------------------------------------------------------------
+
+-- The commands below use bash's syntax, which vifm's shell option ran; RFile's is $SHELL.
+rfile.o.shell = "/bin/bash"
+
+rfile.cmd([[command! Df df -h %m 2> /dev/null]])
+rfile.cmd([[command! Diff rvim -d %f %F]])
+rfile.cmd([[command! Mcd :mkdir! "%a" | cd "%a"]])
+rfile.cmd([[command! Reload :source ~/.config/rfile/init.lua]])
+rfile.cmd([[command! Run !! ./%f]])
+rfile.cmd([[command! Vgrep rvim "+grep %a"]])
+rfile.cmd([[command! Loop for f in %f; do %a; done]])
+rfile.cmd([[command! Loopwait !! for f in %f; do echo "$f"; %a; done]])
+
+-- vifm's & ran these as jobs. %S runs them away from the terminal, without waiting for them, and
+-- shows on the status bar what they print, here only their errors.
+rfile.cmd([[command! Zip 7z a -mx9 %c.zip %f 2>&1 > /dev/null %S]])
+rfile.cmd([[command! Gzip pigz -11 -k %f 2>&1 %S]])
+rfile.cmd([[command! Loopbg for f in %f; do %a; done 2>&1 > /dev/null %S]])
 
 -- ------------------------------------------------------------------------------
 -- Mappings
