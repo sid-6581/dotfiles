@@ -53,7 +53,6 @@ windows set-user-env {
   XDG_CONFIG_HOME:         $env.XDG_CONFIG_HOME?
   XDG_DATA_HOME:           $env.XDG_DATA_HOME?
   XDG_STATE_HOME:          $env.XDG_STATE_HOME?
-  YAZI_FILE_ONE:           ($env.HOME | path join scoop apps git current usr bin file.exe)
 }
 
 # Pull latest changes from our github repo first.
@@ -67,7 +66,6 @@ nu-install link [
   { target: ($env.HOME | path join .dotfiles nushell), link: ($env.HOME | path join .config nushell) }
   { target: ($env.HOME | path join .dotfiles config), link: $env.HOME  }
   { target: ($env.HOME | path join .dotfiles config-windows), link: $env.HOME  }
-  { target: ($env.HOME | path join .dotfiles config .config yazi), link: ($env.HOME | path join AppData Roaming yazi config) }
 ]
 
 # Remove scoop application that may have been installed before.
@@ -88,7 +86,6 @@ nu-install scoop --buckets [
 ] --apps [
   JetBrainsMono-NF
   bat
-  broot
   carapace-bin
   cmake
   delta
@@ -116,7 +113,6 @@ nu-install scoop --buckets [
   which
   win32yank
   xsv
-  yazi
   zoxide
 ]
 

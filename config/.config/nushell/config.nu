@@ -28,5 +28,5 @@ $env.FZF_DEFAULT_OPTS = [
 ] | str join " "
 
 if ($"($env.HOME)/.env" | path exists) {
-  open $"($env.HOME)/.env" | from toml | load-env
+  open $"($env.HOME)/.env" | load-env
 }

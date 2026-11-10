@@ -45,7 +45,6 @@ nu-install paru uninstall [
 
 nu-install pacman [
   bat
-  broot
   cmake
   docker
   docker-buildx
@@ -86,7 +85,6 @@ nu-install pacman [
   uv
   vifm
   xclip
-  yazi
   zip
   zoxide
 ]
@@ -142,12 +140,6 @@ nu-install gh [
   { check: "bat", repo: "sharkdp/bat", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # bat - File viewer
   { check: "fd", repo: "sharkdp/fd", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # fd - find replacement
   { check: "starship", repo: "starship/starship", pattern: "*x86_64-unknown-linux-gnu.tar.gz" } # starship - Shell prompt
-  { check: "yazi", repo: "sxyazi/yazi", pattern: "*x86_64-unknown-linux-gnu.zip" } # yazi - Terminal file manager
-  { check: "broot", repo: "Canop/broot", pattern: "broot*.zip", process: {|path|
-    let executable = [$path x86_64-unknown-linux-gnu broot] | path join
-    ^chmod +x $executable
-    [$executable]
-  }} # broot - File manager
   { check: "carapace", repo: "carapace-sh/carapace-bin", pattern: "*linux_amd64.tar.gz" } # carapace - Command line completions
 ]
 
