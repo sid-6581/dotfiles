@@ -94,14 +94,11 @@
     "claude-fable-5-1": {
       "effortLevel": "high"
     },
-    "claude-fable-5-2": {
-      "autoCompactWindow": 400000
-    },
     "claude-opus-5-5": {
-      "effortLevel": "xhigh",
-      "autoCompactWindow": 400000
+      "effortLevel": "xhigh"
     }
   },
+  "autoCompactWindow": 300000,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
