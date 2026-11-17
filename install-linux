@@ -29,6 +29,14 @@ nu-install git [
   { repo: "https://github.com/sid-6581/NeovimConfig", dir: $"($env.HOME)/.config/nvim" }
 ]
 
+# Install the hooks before any transaction that could upgrade the kernel.
+if (which pacman | is-not-empty) {
+  log info "Installing kernel module preservation hooks"
+  do --capture-errors { ^sudo pacman -S --needed --noconfirm kernel-modules-hook }
+  do --capture-errors { ^sudo systemctl daemon-reload }
+  setup systemctl enable linux-modules-cleanup.service
+}
+
 nu-install pacman uninstall [
   pnpm
   tldr
